@@ -210,10 +210,17 @@ export class Trouvere extends Wanderer {
         const baseLevel = model.level;
         const stageMannerLv = this.learnLv('Stage Manner');
 
-        if (this.isSkillActive('Sound Blend')) {
-			return (skillLevel * 3600 + status.totalSpl * 3 * stageMannerLv / 2) * (baseLevel / 100);
+		if (this.isSkillActive('GGT Skill')) {
+			if (this.isSkillActive('Sound Blend')) {
+				return (skillLevel * 3600 + status.totalSpl * 3 * stageMannerLv / 2) * (baseLevel / 100);
+			}
+			return (skillLevel * 2600 + status.totalSpl * 3 * stageMannerLv / 2) * (baseLevel / 100);
+		} else {
+			if (this.isSkillActive('Sound Blend')) {
+				return (skillLevel * 4650 + status.totalSpl * 3 * stageMannerLv / 2) * (baseLevel / 100);
+			}
+			return (skillLevel * 3850 + status.totalSpl * 3 * stageMannerLv / 2) * (baseLevel / 100);
 		}
-        return (skillLevel * 2600 + status.totalSpl * 3 * stageMannerLv / 2) * (baseLevel / 100);
       },
     },
 	{
@@ -249,6 +256,15 @@ export class Trouvere extends Wanderer {
       inputType: 'selectButton',
       label: 'Sound Blend',
       name: 'Sound Blend',
+      dropdown: [
+        { label: 'Yes', value: 1, isUse: true },
+        { label: 'No', value: 0, isUse: false },
+      ],
+    },
+	{
+      inputType: 'selectButton',
+      label: 'GGT Skill',
+      name: 'GGT Skill',
       dropdown: [
         { label: 'Yes', value: 1, isUse: true },
         { label: 'No', value: 0, isUse: false },

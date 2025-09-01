@@ -644,6 +644,7 @@ export const OFFENSIVE_SKILL_NAMES = [
   "Twinkling Galaxy",
   "Violent Quake",
   "Warg Strike",
+  "GGT Skill",
 
   'Abyss Flame',
   'Dust Explosion',
