@@ -1617,6 +1617,7 @@ export const EnchantTable: EntTable[] = [
   { name: "WK_Mantle_Melee_TH", enchants: [null, whiteKnight2, whiteKnight34, whiteKnight34] },
   { name: "WK_Mantle_Range_TH", enchants: [null, whiteKnight2, whiteKnight34, whiteKnight34] },
   { name: "WK_Mantle_Magic_TH", enchants: [null, whiteKnight2, whiteKnight34, whiteKnight34] },
+  { name: "WK_Mantle_All_TH_LT", enchants: [null, whiteKnight2, whiteKnight34, whiteKnight34] },
 
   { name: "aegis_Kankrai", enchants: [null, rockPaperScissor, rockPaperScissor, rockPaperScissor] },
   { name: "aegis_Khon", enchants: [null, rockPaperScissor, rockPaperScissor, rockPaperScissor] },
