@@ -155,7 +155,17 @@ export class Thief extends CharacterBase {
 
   protected readonly classNames = [ClassName.Thief];
   protected readonly _atkSkillList: AtkSkillModel[] = [];
-  protected readonly _activeSkillList: ActiveSkillModel[] = [];
+  protected readonly _activeSkillList: ActiveSkillModel[] = [
+	{
+      inputType: 'selectButton',
+      label: 'GGT Skill',
+      name: 'GGT Skill',
+      dropdown: [
+        { label: 'Yes', value: 1, isUse: true },
+        { label: 'No', value: 0, isUse: false },
+      ],
+    }
+  ];
   protected readonly _passiveSkillList: PassiveSkillModel[] = [
     ImproveDodgeFn(),
     {

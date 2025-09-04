@@ -277,7 +277,11 @@ export class ShadowCross extends GuillotineCross {
       acd: 0.3,
       fct: 0,
       vct: 0,
-      cd: 0.7,
+      cd: () => {
+        if (this.isSkillActive('GGT Skill')) return 1;
+
+        return 0.7;
+      },
       isMelee: true,
       canCri: true,
       baseCriPercentage: 0.5,
@@ -298,11 +302,20 @@ export class ShadowCross extends GuillotineCross {
         const { totalPow } = status;
         const baseLevel = model.level;
 
-        if (this.isSkillActive('Shadow Exceed')) {
-          return (skillLevel * 125 + totalPow * 7) * (baseLevel / 100);
-        }
 
-        return (skillLevel * 105 + totalPow * 5) * (baseLevel / 100);
+		if (this.isSkillActive('GGT Skill')) {
+			if (this.isSkillActive('Shadow Exceed')) {
+			return (skillLevel * 110 + totalPow * 7) * (baseLevel / 100);
+			}
+	
+			return (skillLevel * 90 + totalPow * 5) * (baseLevel / 100);
+		} else {
+			if (this.isSkillActive('Shadow Exceed')) {
+			return (skillLevel * 125 + totalPow * 7) * (baseLevel / 100);
+			}
+	
+			return (skillLevel * 105 + totalPow * 5) * (baseLevel / 100);
+		}
       },
     },
     {
