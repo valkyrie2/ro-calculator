@@ -41,6 +41,7 @@ export const mShadowDK3 = [
   "DK_Soul_HS",
   "DK_Soul_MC",
   "DK_Soul_DB",
+  "DK_Soul_DP",
 ];
 
 export const mShadowIG3 = [
@@ -48,6 +49,9 @@ export const mShadowIG3 = [
   "IG_Soul_OS",
   "IG_Soul_SS",
   "IG_Soul_CR",
+  "IG_Soul_IC",
+  "IG_Soul_RS",
+  "IG_Soul_IP",
 ];
 
 export const mShadowSHC3 = [
@@ -56,6 +60,7 @@ export const mShadowSHC3 = [
   "SHC_Soul_SI",
   "SHC_Soul_IC",
   "SHC_Soul_SS",
+  "SHC_Soul_CS",
 ];
 
 export const mShadowABC3 = [
@@ -66,6 +71,10 @@ export const mShadowABC3 = [
   "ABC_Soul_AD",
   "ABC_Soul_AS",
   "ABC_Soul_FA",
+  "ABC_Soul_HAS",
+  "ABC_Soul_CB",
+  "ABC_Soul_CS",
+  "ABC_Soul_AF",
 ];
 
 export const mShadowCAR3 = [
@@ -73,6 +82,7 @@ export const mShadowCAR3 = [
   "CD_Soul_AB",
   "CD_Soul_FL",
   "CD_Soul_PT",
+  "CD_Soul_DF",
 ];
 
 export const mShadowIQ3 = [
@@ -81,6 +91,7 @@ export const mShadowIQ3 = [
   "IQ_Soul_JD",
   "IQ_Soul_EX",
   "IQ_Soul_FL",
+  "IQ_Soul_BFB",
 ];
 
 export const mShadowMEI3 = [
@@ -89,6 +100,9 @@ export const mShadowMEI3 = [
   "MT_Soul_SB",
   "MT_Soul_MS",
   "MT_Soul_TL",
+  "MT_Soul_RS",
+  "MT_Soul_PS",
+  "MT_Soul_EC",
 ];
 
 export const mShadowBIO3 = [
@@ -96,6 +110,8 @@ export const mShadowBIO3 = [
   "BO_Soul_MT",
   "BO_Soul_AZ",
   "BO_Soul_EP",
+  "BO_Soul_MP",
+  "BO_Soul_DE",
 ];
 
 export const mShadowWH3 = [
@@ -148,6 +164,8 @@ export const mShadowNW3 = [
   "NW_Soul_WF",
   "NW_Soul_MO",
   "NW_Soul_GR",
+  "NW_Soul_WS",
+  "NW_Soul_MF",
 ];
 
 export const mShadowSH3 = [
@@ -156,6 +174,8 @@ export const mShadowSH3 = [
   "SH_Soul_HC",
   "SH_Soul_CS",
   "SH_Soul_HS",
+  "SH_Soul_CHB",
+  "SH_Soul_HRSP",
 ];
 
 export const mShadowSS3 = [
@@ -181,6 +201,9 @@ export const mShadowSKY3 = [
   "SKE_Soul_DB",
   "SKE_Soul_TG",
   "SKE_Soul_SC",
+  "SKE_Soul_SS",
+  "SKE_Soul_SM",
+  "SKE_Soul_SLK",
 ];
 
 export const mShadowSA3 = [
