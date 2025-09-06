@@ -1596,6 +1596,16 @@
                   </ng-template>
                 </p-listbox>
               </div>
+			  <div class="col-12">
+                <p-listbox [options]="extrabuff" [(ngModel)]="model.aspdPotions" [multiple]="true" [metaKeySelection]="false" (onChange)="onConsumableChange()">
+                  <ng-template let-item pTemplate="item">
+                    <div class="flex gap-2">
+                      <img src="assets/demo/images/items/{{ item.value }}.png" alt="" style="width: 19px" />
+                      <div class="text_ellips">{{ item.label }}</div>
+                    </div>
+                  </ng-template>
+                </p-listbox>
+              </div>
             </div>
           </div>
         </div>

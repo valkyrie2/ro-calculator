@@ -29,6 +29,7 @@ import {
   WeaponTypeName,
   WeaponTypeNameMapBySubTypeId,
   getMonsterSpawnMap,
+  extrabuff,
 } from 'src/app/constants';
 import { ActiveSkillModel, AtkSkillModel, CharacterBase, ClassID, ClassIcon, ClassName, JobPromotionMapper, PassiveSkillModel } from 'src/app/jobs';
 import {
@@ -223,6 +224,7 @@ export class RoCalculatorComponent implements OnInit, OnDestroy {
   consumableList2: DropdownModel[][] = FoodStatList;
   aspdPotionList: DropdownModel[] = [];
   aspdPotionList2: DropdownModel[] = AspdPotionList2;
+  extrabuff: DropdownModel[] = extrabuff;
 
   totalPoints = 0;
   availablePoints = 0;

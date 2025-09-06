@@ -13787,7 +13787,7 @@
     "stats": {
       "attackRange": 2,
       "level": 265,
-      "health": 155742230,
+      "health": 1557422300,
       "sp": 1,
       "str": 487,
       "int": 312,
@@ -13840,7 +13840,7 @@
     "stats": {
       "attackRange": 3,
       "level": 265,
-      "health": 155742230,
+      "health": 5000000000,
       "sp": 1,
       "str": 1,
       "int": 1,
@@ -13893,7 +13893,7 @@
     "stats": {
       "attackRange": 1,
       "level": 274,
-      "health": 568512900,
+      "health": 5685129000,
       "sp": 1,
       "str": 1,
       "int": 1,
@@ -13946,7 +13946,7 @@
     "stats": {
       "attackRange": 1,
       "level": 274,
-      "health": 1137025800,
+      "health": 11370258000,
       "sp": 1,
       "str": 1,
       "int": 1,
@@ -13999,7 +13999,7 @@
     "stats": {
       "attackRange": 1,
       "level": 275,
-      "health": 568512900,
+      "health": 5685129000,
       "sp": 1,
       "str": 1,
       "int": 1,
@@ -14052,7 +14052,7 @@
     "stats": {
       "attackRange": 1,
       "level": 275,
-      "health": 1127025800,
+      "health": 11270258000,
       "sp": 1,
       "str": 1,
       "int": 1,
@@ -14105,7 +14105,7 @@
     "stats": {
       "attackRange": 1,
       "level": 273,
-      "health": 585701784,
+      "health": 5857017840,
       "sp": 1,
       "str": 1,
       "int": 1,
@@ -14158,7 +14158,7 @@
     "stats": {
       "attackRange": 1,
       "level": 273,
-      "health": 1171403568,
+      "health": 11714035680,
       "sp": 1,
       "str": 1,
       "int": 1,
@@ -14211,7 +14211,7 @@
     "stats": {
       "attackRange": 1,
       "level": 274,
-      "health": 600796440,
+      "health": 6007964400,
       "sp": 1,
       "str": 1,
       "int": 1,
@@ -14264,7 +14264,7 @@
     "stats": {
       "attackRange": 1,
       "level": 274,
-      "health": 1201592880,
+      "health": 12015928800,
       "sp": 1,
       "str": 1,
       "int": 1,
@@ -14317,7 +14317,7 @@
     "stats": {
       "attackRange": 1,
       "level": 275,
-      "health": 592310700,
+      "health": 5923107000,
       "sp": 1,
       "str": 1,
       "int": 1,
@@ -14370,7 +14370,7 @@
     "stats": {
       "attackRange": 1,
       "level": 275,
-      "health": 1184621400,
+      "health": 11846214000,
       "sp": 1,
       "str": 1,
       "int": 1,
@@ -14423,7 +14423,7 @@
     "stats": {
       "attackRange": 1,
       "level": 276,
-      "health": 592310700,
+      "health": 5923107000,
       "sp": 1,
       "str": 1,
       "int": 1,
@@ -14476,7 +14476,7 @@
     "stats": {
       "attackRange": 1,
       "level": 276,
-      "health": 1184621400,
+      "health": 11846214000,
       "sp": 1,
       "str": 1,
       "int": 1,
@@ -14529,7 +14529,7 @@
     "stats": {
       "attackRange": 1,
       "level": 278,
-      "health": 671843520,
+      "health": 6718435200,
       "sp": 1,
       "str": 1,
       "int": 1,
@@ -14581,8 +14581,8 @@
     "spawn": "ch1_gfn03",
     "stats": {
       "attackRange": 1,
-      "level": 276,
-      "health": 1343687040,
+      "level": 278,
+      "health": 13436870400,
       "sp": 1,
       "str": 1,
       "int": 1,
