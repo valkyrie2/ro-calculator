@@ -83,6 +83,15 @@ export class Taekwondo extends CharacterBase {
   protected readonly classNames = [ClassName.Taekwondo];
   protected readonly _atkSkillList: AtkSkillModel[] = [];
   protected readonly _activeSkillList: ActiveSkillModel[] = [
+	{
+      inputType: 'selectButton',
+      label: 'GGT Skill',
+      name: 'GGT Skill',
+      dropdown: [
+        { label: 'Yes', value: 1, isUse: true },
+        { label: 'No', value: 0, isUse: false },
+      ],
+    },
     {
       label: 'Seven Wind',
       name: 'Seven Wind',

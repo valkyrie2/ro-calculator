@@ -155,6 +155,16 @@ export class Acolyte extends CharacterBase {
   protected override initialStatusPoint = 40;
   protected readonly classNames = [ClassName.Acolyte];
   protected readonly _atkSkillList: AtkSkillModel[] = [];
-  protected readonly _activeSkillList: ActiveSkillModel[] = [];
+  protected readonly _activeSkillList: ActiveSkillModel[] = [
+	{
+      inputType: 'selectButton',
+      label: 'GGT Skill',
+      name: 'GGT Skill',
+      dropdown: [
+        { label: 'Yes', value: 1, isUse: true },
+        { label: 'No', value: 0, isUse: false },
+      ],
+    }
+  ];
   protected readonly _passiveSkillList: PassiveSkillModel[] = [Heal, DemonBane];
 }

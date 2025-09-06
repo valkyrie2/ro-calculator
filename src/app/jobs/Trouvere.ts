@@ -261,15 +261,6 @@ export class Trouvere extends Wanderer {
         { label: 'No', value: 0, isUse: false },
       ],
     },
-	{
-      inputType: 'selectButton',
-      label: 'GGT Skill',
-      name: 'GGT Skill',
-      dropdown: [
-        { label: 'Yes', value: 1, isUse: true },
-        { label: 'No', value: 0, isUse: false },
-      ],
-    },
 	MysticSymphonyFn()
   ];
   private readonly passiveSkillList4th: PassiveSkillModel[] = [

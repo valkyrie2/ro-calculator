@@ -180,6 +180,15 @@ export class Doram extends CharacterBase {
   ];
 
   protected readonly _activeSkillList: ActiveSkillModel[] = [
+	{
+      inputType: 'selectButton',
+      label: 'GGT Skill',
+      name: 'GGT Skill',
+      dropdown: [
+        { label: 'Yes', value: 1, isUse: true },
+        { label: 'No', value: 0, isUse: false },
+      ],
+    },
     {
       label: 'Arclouse Dash',
       name: 'Arclouse Dash',

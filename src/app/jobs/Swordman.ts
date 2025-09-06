@@ -155,6 +155,15 @@ export class Swordman extends CharacterBase {
   protected readonly classNames = [ClassName.Swordman];
   protected readonly _atkSkillList: AtkSkillModel[] = [];
   protected readonly _activeSkillList: ActiveSkillModel[] = [
+	{
+      inputType: 'selectButton',
+      label: 'GGT Skill',
+      name: 'GGT Skill',
+      dropdown: [
+        { label: 'Yes', value: 1, isUse: true },
+        { label: 'No', value: 0, isUse: false },
+      ],
+    },
     {
       label: 'Magnum Break 10',
       name: 'Magnum Break',
