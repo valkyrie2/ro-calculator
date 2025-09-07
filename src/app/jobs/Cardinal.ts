@@ -188,12 +188,16 @@ export class Cardinal extends ArchBishop {
     },
     {
       name: 'Arbitrium',
-      label: '[V3] Arbitrium Lv10',
+      label: '[K] Arbitrium Lv10',
       value: 'Arbitrium==10',
       acd: 0.5,
       fct: 1.5,
       vct: 4,
-      cd: 1.5,
+      cd: () => {
+        if (this.isSkillActive('GGT Skill')) return 1.5;
+
+        return 1;
+      },
       isMatk: true,
       element: ElementType.Holy,
       formula: (input: AtkSkillFormulaInput): number => {
@@ -202,10 +206,36 @@ export class Cardinal extends ArchBishop {
         const baseLevel = model.level;
         const fidusLv = this.learnLv('Fidus Animus');
 
-        const primaryDmg = (skillLevel * (1250 + fidusLv * 10) + totalSpl * 7) * (baseLevel / 100);
-        const secondaryDmg = (skillLevel * (1000 + fidusLv * 10) + totalSpl * 7) * (baseLevel / 100);
+		if (this.isSkillActive('GGT Skill')) {
+			const primaryDmg = (skillLevel * (1250 + fidusLv * 10) + totalSpl * 7) * (baseLevel / 100);
+			const secondaryDmg = (skillLevel * (1000 + fidusLv * 10) + totalSpl * 7) * (baseLevel / 100);
+	
+			return primaryDmg + secondaryDmg;
+		} else {
+			const primaryDmg = (skillLevel * (1750 + fidusLv * 50) + totalSpl * 7) * (baseLevel / 100);
+			const secondaryDmg = (skillLevel * (1000 + fidusLv * 10) + totalSpl * 7) * (baseLevel / 100);
+	
+			return primaryDmg + secondaryDmg;
+		}
+      },
+    },
+	{
+      name: 'Divinus Flos',
+      label: '[K] Divinus Flos Lv5',
+      value: 'Divinus Flos==5',
+      acd: 0.85,
+      fct: 1.5,
+      vct: 2,
+      cd: 0.7,
+      isMatk: true,
+      element: ElementType.Holy,
+      formula: (input: AtkSkillFormulaInput): number => {
+        const { model, skillLevel, status } = input;
+        const { totalSpl } = status;
+        const baseLevel = model.level;
+        const fidusLv = this.learnLv('Fidus Animus');
 
-        return primaryDmg + secondaryDmg;
+		return ((skillLevel * 4000) + (fidusLv * 70) + (totalSpl * 5)) * (baseLevel / 100);
       },
     },
     {
