@@ -645,6 +645,10 @@ export const OFFENSIVE_SKILL_NAMES = [
   "Violent Quake",
   "Warg Strike",
   "GGT Skill",
+  "Fire Colors Charm",
+  "Water Colors Charm",
+  "Wind Colors Charm",
+  "Earth Colors Charm",
 
   'Abyss Flame',
   'Dust Explosion',

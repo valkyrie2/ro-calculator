@@ -3,6 +3,7 @@ import { ElementType } from '../constants';
 import { genSkillList } from '../utils';
 import { Kagerou } from './Kagerou';
 import { ActiveSkillModel, AtkSkillFormulaInput, AtkSkillModel, PassiveSkillModel } from './_character-base.abstract';
+import { FourColorFireFn } from '../constants/share-active-skills';
 import { ClassName } from './_class-name';
 
 const jobBonusTable: Record<number, [number, number, number, number, number, number]> = {
@@ -310,7 +311,7 @@ export class Shinkiro extends Kagerou {
     },
     {
       name: 'Red Flame Cannon',
-      label: '[V2] Red Flame Cannon Lv10',
+      label: '[K] Red Flame Cannon Lv10',
       value: 'Red Flame Cannon==10',
       acd: 0,
       fct: 1,
@@ -325,7 +326,11 @@ export class Shinkiro extends Kagerou {
         const baseLevel = model.level;
         const skillBonusLv = this.learnLv('Darkening Cannon');
 
-        return (850 + skillLevel * (1250 + skillBonusLv * 70) + totalSpl * 5) * (baseLevel / 100);
+		if (this.isSkillActive('GGT Skill')) {
+			return (850 + skillLevel * (1250 + skillBonusLv * 70) + totalSpl * 5) * (baseLevel / 100);
+		} else {
+			return (600 + skillLevel * (1100 + skillBonusLv * 70) + totalSpl * 5) * (baseLevel / 100);
+		}
       },
     },
     {
@@ -350,7 +355,7 @@ export class Shinkiro extends Kagerou {
     },
     {
       name: 'Thundering Cannon',
-      label: '[V2] Thundering Cannon Lv10',
+      label: '[K] Thundering Cannon Lv10',
       value: 'Thundering Cannon==10',
       acd: 0,
       fct: 1,
@@ -365,7 +370,11 @@ export class Shinkiro extends Kagerou {
         const baseLevel = model.level;
         const skillBonusLv = this.learnLv('Darkening Cannon');
 
-        return (600 + skillLevel * (1300 + skillBonusLv * 70) + totalSpl * 5) * (baseLevel / 100);
+		if (this.isSkillActive('GGT Skill')) {
+			return (600 + skillLevel * (1300 + skillBonusLv * 70) + totalSpl * 5) * (baseLevel / 100);
+		} else {
+			return (600 + skillLevel * (1100 + skillBonusLv * 70) + totalSpl * 5) * (baseLevel / 100);
+		}
       },
     },
     {
@@ -407,7 +416,9 @@ export class Shinkiro extends Kagerou {
       },
     },
   ];
-  private readonly activeSkillList4th: ActiveSkillModel[] = [];
+  private readonly activeSkillList4th: ActiveSkillModel[] = [
+	FourColorFireFn()
+  ];
   private readonly passiveSkillList4th: PassiveSkillModel[] = [
     {
       name: 'Shadow Hunting',
