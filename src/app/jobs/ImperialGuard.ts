@@ -203,7 +203,7 @@ export class ImperialGuard extends RoyalGuard {
     },
     {
       name: 'Cross Rain',
-      label: '[V3] Cross Rain Lv10',
+      label: '[K] Cross Rain Lv10',
       value: 'Cross Rain==10',
       acd: 0.15,
       fct: 1.5,
