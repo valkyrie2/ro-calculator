@@ -7,3 +7,6 @@ export * from './s16th-night';
 export * from './shield-spell';
 export * from './swing-dance-fn';
 export * from './four_color_fire-fn';
+export * from './four_color_water-fn';
+export * from './four_color_wind-fn';
+export * from './four_color_earth-fn';

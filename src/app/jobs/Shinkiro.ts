@@ -3,7 +3,7 @@ import { ElementType } from '../constants';
 import { genSkillList } from '../utils';
 import { Kagerou } from './Kagerou';
 import { ActiveSkillModel, AtkSkillFormulaInput, AtkSkillModel, PassiveSkillModel } from './_character-base.abstract';
-import { FourColorFireFn } from '../constants/share-active-skills';
+import { FourColorFireFn, FourColorWaterFn, FourColorWindFn, FourColorEarthFn } from '../constants/share-active-skills';
 import { ClassName } from './_class-name';
 
 const jobBonusTable: Record<number, [number, number, number, number, number, number]> = {
@@ -417,7 +417,10 @@ export class Shinkiro extends Kagerou {
     },
   ];
   private readonly activeSkillList4th: ActiveSkillModel[] = [
-	FourColorFireFn()
+	FourColorFireFn(),
+	FourColorWaterFn(),
+	FourColorWindFn(),
+	FourColorEarthFn()
   ];
   private readonly passiveSkillList4th: PassiveSkillModel[] = [
     {
