@@ -206,6 +206,22 @@ export class AppTopBarComponent implements OnInit, OnDestroy {
 
   updates: { v: string; date: string; logs: string[]; }[] = [
     {
+      v: 'V1.0 Joam',
+      date: '09-09-2568',
+      logs: [
+        "KRO Skill version > Cardinal, Shinkiro-Shiranui, Archmage, EM, Shadowcross, Imperial Guard, Troubadour-vere, Soul Ascetic",
+		"GGT Skill version option",
+        "4th skill shadow",
+        "Gambler Seal KRO, Ace card in mouth",
+        "Soul ascetic , EM , Trouvere II Enchant stone",
+        "ep21 Buff, Juno Library Event Buff, Speed booster potion",
+        "Fix All Bloom lv3 buff",
+        "Add All Bloom lv4 debuff",
+        "Fix Savage Impact to lv 10",
+        "GGT White Knight Manteau-LT",
+      ],
+    },
+	{
       v: 'V3.2.13',
       date: '21-08-2568',
       logs: [

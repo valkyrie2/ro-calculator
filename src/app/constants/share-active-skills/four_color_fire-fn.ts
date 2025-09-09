@@ -5,7 +5,7 @@ export const FourColorFireFn = (): ActiveSkillModel => ({
   name: 'Fire Colors Charm',
   inputType: 'selectButton',
   dropdown: [
-    { label: 'Yes', value: 1, isUse: true, bonus: { 'flat_Red Flame Cannon': 8500 } },
+    { label: 'Yes', value: 1, isUse: true },
     { label: 'No', value: 0, isUse: false },
   ],
 });

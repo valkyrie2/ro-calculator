@@ -329,7 +329,10 @@ export class Shinkiro extends Kagerou {
 		if (this.isSkillActive('GGT Skill')) {
 			return (850 + skillLevel * (1250 + skillBonusLv * 70) + totalSpl * 5) * (baseLevel / 100);
 		} else {
-			return (600 + skillLevel * (1100 + skillBonusLv * 70) + totalSpl * 5) * (baseLevel / 100);
+			if (this.isSkillActive('Fire Colors Charm'))
+				return (600 + 8500 + skillLevel * (1100 + skillBonusLv * 70) + totalSpl * 5) * (baseLevel / 100);
+			else
+				return (600 + skillLevel * (1100 + skillBonusLv * 70) + totalSpl * 5) * (baseLevel / 100);
 		}
       },
     },
@@ -373,7 +376,10 @@ export class Shinkiro extends Kagerou {
 		if (this.isSkillActive('GGT Skill')) {
 			return (600 + skillLevel * (1300 + skillBonusLv * 70) + totalSpl * 5) * (baseLevel / 100);
 		} else {
-			return (600 + skillLevel * (1100 + skillBonusLv * 70) + totalSpl * 5) * (baseLevel / 100);
+			if (this.isSkillActive('Wind Colors Charm'))
+				return (600 + 8500 + skillLevel * (1100 + skillBonusLv * 70) + totalSpl * 5) * (baseLevel / 100);
+			else
+				return (600 + skillLevel * (1100 + skillBonusLv * 70) + totalSpl * 5) * (baseLevel / 100);
 		}
       },
     },
