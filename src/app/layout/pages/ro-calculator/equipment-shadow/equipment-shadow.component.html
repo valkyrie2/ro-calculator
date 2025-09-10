@@ -43,6 +43,35 @@
     <div class="col-8 grid grid-nogutter">
       <div class="col-5">
         <p-dropdown
+          inputId="baseItemEnchant1"
+          [autoDisplayFirst]="false"
+          [resetFilterOnHide]="true"
+          [options]="enchant2List"
+          [filter]="true"
+          filterBy="label"
+          scrollHeight="350px"
+          [(ngModel)]="enchant2Id"
+          [showClear]="true"
+          [disabled]="enchant2List.length === 0 || !itemId"
+          (onChange)="onSelectItem('enchant2Id', $event.value)"
+          placeholder="Enchant 2"
+        >
+          <ng-template let-item pTemplate="selectedItem">
+            <div class="flex gap-1 item_template" *ngIf="enchant3Id">
+              <img src="assets/demo/images/items/{{ item.value }}.png" alt="" class="item_img" />
+              <div>{{ item.label }}</div>
+            </div>
+          </ng-template>
+          <ng-template let-item pTemplate="item">
+            <div class="flex gap-1">
+              <img src="assets/demo/images/items/{{ item.value }}.png" alt="" style="width: 19px" />
+              <div>{{ item.label }}</div>
+            </div>
+          </ng-template>
+        </p-dropdown>
+      </div>
+      <div class="col-5">
+        <p-dropdown
           inputId="baseItemEnchant2"
           [autoDisplayFirst]="false"
           [resetFilterOnHide]="true"

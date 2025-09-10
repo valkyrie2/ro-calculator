@@ -37,6 +37,9 @@ export class EquipmentShadowComponent implements OnInit, OnChanges {
   @Input() optionValue = undefined;
   @Output() optionValueChange = new EventEmitter<string>();
 
+  @Input() enchant2Id = undefined;
+  @Output() enchant2IdChange = new EventEmitter<number>();
+
   @Input() enchant3Id = undefined;
   @Output() enchant3IdChange = new EventEmitter<number>();
 
@@ -48,6 +51,7 @@ export class EquipmentShadowComponent implements OnInit, OnChanges {
   private readonly requireSet = new Set(['items', 'itemList', 'mapEnchant',]);
   private isInternalItemIdChange = false;
 
+  enchant2List: DropdownModel[] = [];
   enchant3List: DropdownModel[] = [];
   enchant4List: DropdownModel[] = [];
 
@@ -57,6 +61,7 @@ export class EquipmentShadowComponent implements OnInit, OnChanges {
     this.itemTypeMap = {
       itemId: this.itemType,
       itemRefine: `${this.itemType}Refine`,
+	  enchant3Id: `${this.itemType}Enchant1`,
       enchant3Id: `${this.itemType}Enchant2`,
       enchant4Id: `${this.itemType}Enchant3`,
     };
@@ -104,10 +109,10 @@ export class EquipmentShadowComponent implements OnInit, OnChanges {
     const { aegisName, name } = this.getItem();
     const enchants = getEnchants(aegisName) ?? getEnchants(name);
 
-    const [_, __, e3, e4] = Array.isArray(enchants) ? enchants : [];
+    const [_, __, ___, e2, e3, e4] = Array.isArray(enchants) ? enchants : [];
     // console.log({ mainItemId, e2, e3, e4 });
     const clearModel = () => {
-      for (const idx of [3, 4]) {
+      for (const idx of [2, 3, 4]) {
         const enchantList = this[`enchant${idx}List`] as DropdownModel[];
         const property = `enchant${idx}Id`;
         const currentEnchantValue = this[property];
@@ -118,6 +123,7 @@ export class EquipmentShadowComponent implements OnInit, OnChanges {
       }
     };
 
+    this.enchant2List = (e2 ?? []).map((a: any) => this.mapEnchant.get(a)).map((a: any) => ({ label: a.name, value: a.id }));
     this.enchant3List = (e3 ?? []).map((a: any) => this.mapEnchant.get(a)).map((a: any) => ({ label: a.name, value: a.id }));
     this.enchant4List = (e4 ?? []).map((a: any) => this.mapEnchant.get(a)).map((a: any) => ({ label: a.name, value: a.id }));
 
