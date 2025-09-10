@@ -41,7 +41,7 @@
     </div>
 
     <div class="col-8 grid grid-nogutter">
-      <div class="col-5">
+      <div class="col-3">
         <p-dropdown
           inputId="baseItemEnchant1"
           [autoDisplayFirst]="false"
@@ -57,7 +57,7 @@
           placeholder="Enchant 2"
         >
           <ng-template let-item pTemplate="selectedItem">
-            <div class="flex gap-1 item_template" *ngIf="enchant3Id">
+            <div class="flex gap-1 item_template" *ngIf="enchant2Id">
               <img src="assets/demo/images/items/{{ item.value }}.png" alt="" class="item_img" />
               <div>{{ item.label }}</div>
             </div>
@@ -70,7 +70,7 @@
           </ng-template>
         </p-dropdown>
       </div>
-      <div class="col-5">
+      <div class="col-3">
         <p-dropdown
           inputId="baseItemEnchant2"
           [autoDisplayFirst]="false"
@@ -129,7 +129,7 @@
         </p-dropdown>
       </div>
 
-      <div class="col-4">
+      <div class="col-3">
         <p-cascadeSelect
           [(ngModel)]="optionValue"
           [disabled]="!itemId"

@@ -61,7 +61,7 @@ export class EquipmentShadowComponent implements OnInit, OnChanges {
     this.itemTypeMap = {
       itemId: this.itemType,
       itemRefine: `${this.itemType}Refine`,
-	  enchant3Id: `${this.itemType}Enchant1`,
+      enchant2Id: `${this.itemType}Enchant1`,
       enchant3Id: `${this.itemType}Enchant2`,
       enchant4Id: `${this.itemType}Enchant3`,
     };
@@ -109,7 +109,7 @@ export class EquipmentShadowComponent implements OnInit, OnChanges {
     const { aegisName, name } = this.getItem();
     const enchants = getEnchants(aegisName) ?? getEnchants(name);
 
-    const [_, __, ___, e2, e3, e4] = Array.isArray(enchants) ? enchants : [];
+    const [_, e2, e3, e4] = Array.isArray(enchants) ? enchants : [];
     // console.log({ mainItemId, e2, e3, e4 });
     const clearModel = () => {
       for (const idx of [2, 3, 4]) {

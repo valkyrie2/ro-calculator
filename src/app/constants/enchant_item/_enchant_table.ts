@@ -126,6 +126,7 @@ import { heroBadge2, heroBootLt2, heroBootLt3, heroBootLt4 } from './hero_boots_
 import { heroicHead3, heroicHead4 } from './heroic_hairband';
 import { madBunnyLt4 } from './mad_bunny_lt';
 import { mShadow3, mShadow4, mShadowABC3, mShadowAM3, mShadowAllClass4, mShadowBIO3, mShadowCAR3, mShadowDK3, mShadowEM3, mShadowHYPER3, mShadowIG3, mShadowIQ3, mShadowMEI3, mShadowNW3, mShadowSA3, mShadowSH3, mShadowSHC3, mShadowSKY3, mShadowSS3, mShadowTVTB3, mShadowWH3 } from './master_shadow';
+import { nebulaShadow4, nebulaShadow3, nebulaShadow2 } from './nebula_shadow';
 import { muqaddas3, muqaddas4 } from './muqaddas';
 import { oasdWeapon3, oasdWeapon4 } from './osad_weapon';
 import { plusWeapon3, plusWeapon4 } from './plus_weapon';
@@ -1777,6 +1778,13 @@ export const EnchantTable: EntTable[] = [
   { name: "S_Centering_Earring", enchants: [null, null, traitShadow3, traitShadow4] },
   { name: "S_Witty_Pendant", enchants: [null, null, traitShadow3, traitShadow4] },
   { name: "S_Witty_Earring", enchants: [null, null, traitShadow3, traitShadow4] },
+
+  { name: "S_BP8_Melee_W", enchants: [null, nebulaShadow2, nebulaShadow3, nebulaShadow4] },
+  { name: "S_BP8_Melee_S", enchants: [null, nebulaShadow2, nebulaShadow3, nebulaShadow4] },
+  { name: "S_BP8_Range_W", enchants: [null, nebulaShadow2, nebulaShadow3, nebulaShadow4] },
+  { name: "S_BP8_Range_S", enchants: [null, nebulaShadow2, nebulaShadow3, nebulaShadow4] },
+  { name: "S_BP8_Magic_W", enchants: [null, nebulaShadow2, nebulaShadow3, nebulaShadow4] },
+  { name: "S_BP8_Magic_S", enchants: [null, nebulaShadow2, nebulaShadow3, nebulaShadow4] },
 ];
 
 Object.freeze(EnchantTable);
