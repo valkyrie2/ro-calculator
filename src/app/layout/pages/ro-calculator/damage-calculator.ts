@@ -1399,7 +1399,7 @@ export class DamageCalculator {
       skillCanCri: calculated.canCri,
       skillTotalPene: isIgnoreDef ? 100 : totalPene,
       skillTotalPeneLabel: isMatk ? 'เจาะเวท' : 'เจาะกาย',
-      skillTotalPeneRes: isMatk ? totalPeneMres : totalPeneRes,
+      skillTotalPeneRes: isMatk ? Math.min(totalPeneMres, 50) : Math.min(totalPeneRes, 50),
       skillTotalPeneResLabel: isMatk ? 'เจาะ MRes' : 'เจาะ Res',
       skillMinDamage: minDamage,
       skillMaxDamage: maxDamage,
