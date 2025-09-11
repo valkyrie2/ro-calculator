@@ -332,6 +332,18 @@ export class HyperNovice extends SuperNovice {
         'Napalm Vulcan Strike': lv * 2,
       }))
     },
+    {
+      name: 'Jack Frost Nova',
+      label: 'Jack Frost Nova',
+      inputType: 'dropdown',
+      dropdown: genSkillList(10),
+    },
+    {
+      name: 'Breaking Limit',
+      label: 'Breaking Limit',
+      inputType: 'dropdown',
+      dropdown: genSkillList(1),
+    },
   ];
 
   constructor() {

@@ -5,6 +5,7 @@ import { AdditionalBonusInput } from '../models/info-for-class.model';
 import { Ranger } from './Ranger';
 import { ActiveSkillModel, AtkSkillFormulaInput, AtkSkillModel, PassiveSkillModel } from './_character-base.abstract';
 import { ClassName } from './_class-name';
+import { genSkillList } from '../utils';
 
 const jobBonusTable: Record<number, [number, number, number, number, number, number]> = {
   1: [0, 0, 0, 0, 1, 0],
@@ -250,6 +251,18 @@ export class Windhawk extends Ranger {
         { label: 'Lv 5', value: 5, isUse: true },
         { label: '-', value: 0, isUse: false },
       ],
+    },
+    {
+      name: 'Gale Storm',
+      label: 'Gale Storm',
+      inputType: 'dropdown',
+      dropdown: genSkillList(10),
+    },
+    {
+      name: 'Wind Sign',
+      label: 'Wind Sign',
+      inputType: 'dropdown',
+      dropdown: genSkillList(5),
     },
   ];
 

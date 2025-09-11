@@ -3,6 +3,7 @@ import { Genetic } from './Genetic';
 import { ActiveSkillModel, AtkSkillFormulaInput, AtkSkillModel, PassiveSkillModel } from './_character-base.abstract';
 import { ClassName } from './_class-name';
 import { genBioloMonsterSkillList } from './summons';
+import { genSkillList } from '../utils';
 
 const jobBonusTable: Record<number, [number, number, number, number, number, number]> = {
   1: [0, 0, 0, 1, 0, 0],
@@ -222,7 +223,20 @@ export class Biolo extends Genetic {
       ],
     },
   ];
-  private readonly passiveSkillList4th: PassiveSkillModel[] = [];
+  private readonly passiveSkillList4th: PassiveSkillModel[] = [
+    {
+      name: 'Mayhemic Thorns',
+      label: 'Mayhemic Thorns',
+      inputType: 'dropdown',
+      dropdown: genSkillList(5)
+    },
+    {
+      name: 'Bionic Pharmacy',
+      label: 'Bionic Pharmacy',
+      inputType: 'dropdown',
+      dropdown: genSkillList(5)
+    },
+  ];
 
   constructor() {
     super();

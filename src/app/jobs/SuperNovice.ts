@@ -4,6 +4,7 @@ import { InfoForClass } from '../models/info-for-class.model';
 import { floor } from '../utils';
 import { ActiveSkillModel, AtkSkillFormulaInput, AtkSkillModel, CharacterBase, PassiveSkillModel } from './_character-base.abstract';
 import { ClassName } from './_class-name';
+import { genSkillList } from '../utils';
 
 const jobBonusTable: Record<number, [number, number, number, number, number, number]> = {
   1: [1, 0, 0, 0, 0, 0],
@@ -494,6 +495,12 @@ export class SuperNovice extends CharacterBase {
         { label: 'Lv 4', value: 4, isUse: true },
         { label: 'Lv 5', value: 5, isUse: true },
       ],
+    },
+    {
+      name: 'Help Angel',
+      label: 'Help Angel',
+      inputType: 'dropdown',
+      dropdown: genSkillList(1)
     },
   ];
 

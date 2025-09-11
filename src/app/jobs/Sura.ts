@@ -4,6 +4,7 @@ import { AdditionalBonusInput, InfoForClass } from '../models/info-for-class.mod
 import { floor } from '../utils';
 import { ElementType } from '../constants/element-type.const';
 import { Champion } from './Champion';
+import { genSkillList } from '../utils';
 
 const jobBonusTable: Record<number, [number, number, number, number, number, number]> = {
   1: [0, 1, 0, 0, 0, 0],
@@ -658,6 +659,19 @@ export class Sura extends Champion {
       ],
     },
     {
+      label: 'GT - Energy Gain',
+      name: 'Gentle Touch - Energy Gain',
+      inputType: 'dropdown',
+      dropdown: [
+        { label: '-', value: 0, isUse: false },
+        { label: 'Lv 1', value: 1, isUse: true },
+        { label: 'Lv 2', value: 2, isUse: true },
+        { label: 'Lv 3', value: 3, isUse: true },
+        { label: 'Lv 4', value: 4, isUse: true },
+        { label: 'Lv 5', value: 5, isUse: true },
+      ],
+    },
+    {
       label: 'Rampage Blast',
       name: 'Rampage Blast',
       inputType: 'dropdown',
@@ -700,6 +714,12 @@ export class Sura extends Champion {
         { label: 'Lv 4', value: 4, isUse: true },
         { label: 'Lv 5', value: 5, isUse: true },
       ],
+    },
+    {
+      name: 'Tiger Cannon',
+      label: 'Tiger Cannon',
+      inputType: 'dropdown',
+      dropdown: genSkillList(10)
     },
   ];
 

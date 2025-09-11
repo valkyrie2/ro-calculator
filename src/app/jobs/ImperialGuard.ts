@@ -6,6 +6,7 @@ import { addBonus } from '../utils';
 import { RoyalGuard } from './RoyalGuard';
 import { ActiveSkillModel, AtkSkillFormulaInput, AtkSkillModel, PassiveSkillModel } from './_character-base.abstract';
 import { ClassName } from './_class-name';
+import { genSkillList } from '../utils';
 
 const jobBonusTable: Record<number, [number, number, number, number, number, number]> = {
   1: [0, 0, 0, 0, 0, 0],
@@ -316,6 +317,12 @@ export class ImperialGuard extends RoyalGuard {
         { label: 'Lv 9', value: 9, isUse: true, bonus: { res: 9 * 3 } },
         { label: 'Lv 10', value: 10, isUse: true, bonus: { res: 10 * 3 } },
       ],
+    },
+    {
+      label: 'Cross Rain',
+      name: 'Cross Rain',
+      inputType: 'dropdown',
+      dropdown: genSkillList(10),
     },
   ];
 

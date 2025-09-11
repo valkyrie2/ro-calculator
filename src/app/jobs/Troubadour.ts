@@ -7,6 +7,7 @@ import { addBonus } from '../utils';
 import { Minstrel } from './Minstrel';
 import { ActiveSkillModel, AtkSkillFormulaInput, AtkSkillModel, PassiveSkillModel } from './_character-base.abstract';
 import { ClassName } from './_class-name';
+import { genSkillList } from '../utils';
 
 const jobBonusTable: Record<number, [number, number, number, number, number, number]> = {
   1: [0, 0, 0, 1, 0, 0],
@@ -189,7 +190,7 @@ export class Troubadour extends Minstrel {
         return (200 + skillLevel * 120 + status.totalCon * 3 * stageMannerLv) * (baseLevel / 100);
       },
     },
-	{
+    {
       name: 'Metallic Fury',
       label: '[K] Metallic Fury Lv5',
       value: 'Metallic Fury==5',
@@ -198,7 +199,7 @@ export class Troubadour extends Minstrel {
       vct: 0,
       cd: 0.4,
       totalHit: 1,
-	  isMatk: true,
+      isMatk: true,
       verifyItemFn: ({ weapon }) => {
         const requires: WeaponTypeName[] = ['bow', 'instrument', 'whip'];
         if (requires.some(wType => weapon.isType(wType))) return '';
@@ -210,20 +211,20 @@ export class Troubadour extends Minstrel {
         const baseLevel = model.level;
         const stageMannerLv = this.learnLv('Stage Manner');
 
-		if (this.isSkillActive('GGT Skill')) {
-			if (this.isSkillActive('Sound Blend')) {
-				return (skillLevel * 3600 + status.totalSpl * 3 * stageMannerLv / 2) * (baseLevel / 100);
-			}
-			return (skillLevel * 2600 + status.totalSpl * 3 * stageMannerLv / 2) * (baseLevel / 100);
-		} else {
-			if (this.isSkillActive('Sound Blend')) {
-				return (skillLevel * 4650 + status.totalSpl * 3 * stageMannerLv / 2) * (baseLevel / 100);
-			}
-			return (skillLevel * 3850 + status.totalSpl * 3 * stageMannerLv / 2) * (baseLevel / 100);
-		}
+        if (this.isSkillActive('GGT Skill')) {
+          if (this.isSkillActive('Sound Blend')) {
+            return (skillLevel * 3600 + status.totalSpl * 3 * stageMannerLv / 2) * (baseLevel / 100);
+          }
+          return (skillLevel * 2600 + status.totalSpl * 3 * stageMannerLv / 2) * (baseLevel / 100);
+        } else {
+          if (this.isSkillActive('Sound Blend')) {
+            return (skillLevel * 4650 + status.totalSpl * 3 * stageMannerLv / 2) * (baseLevel / 100);
+          }
+          return (skillLevel * 3850 + status.totalSpl * 3 * stageMannerLv / 2) * (baseLevel / 100);
+        }
       },
     },
-	{
+    {
       name: 'Rhythmical Wave',
       label: '[K] Rhythmical Wave Lv5',
       value: 'Rhythmical Wave==5',
@@ -232,7 +233,7 @@ export class Troubadour extends Minstrel {
       vct: 2,
       cd: 0.4,
       totalHit: 1,
-	  isMatk: true,
+      isMatk: true,
       verifyItemFn: ({ weapon }) => {
         const requires: WeaponTypeName[] = ['bow', 'instrument', 'whip'];
         if (requires.some(wType => weapon.isType(wType))) return '';
@@ -245,14 +246,14 @@ export class Troubadour extends Minstrel {
         const stageMannerLv = this.learnLv('Stage Manner');
 
         if (this.isSkillActive('Mystic Symphony')) {
-			return (450 + skillLevel * 4650 + status.totalSpl * 3 * stageMannerLv / 2) * (baseLevel / 100);
-		}
+          return (450 + skillLevel * 4650 + status.totalSpl * 3 * stageMannerLv / 2) * (baseLevel / 100);
+        }
         return (250 + skillLevel * 3650 + status.totalSpl * 3 * stageMannerLv / 2) * (baseLevel / 100);
       },
     },
   ];
   private readonly activeSkillList4th: ActiveSkillModel[] = [
-	{
+    {
       inputType: 'selectButton',
       label: 'Sound Blend',
       name: 'Sound Blend',
@@ -261,10 +262,10 @@ export class Troubadour extends Minstrel {
         { label: 'No', value: 0, isUse: false },
       ],
     },
-	MysticSymphonyFn()
+    MysticSymphonyFn()
   ];
   private readonly passiveSkillList4th: PassiveSkillModel[] = [
-	{
+    {
       inputType: 'dropdown',
       label: 'Sound Blend',
       name: 'Sound Blend',
@@ -277,7 +278,13 @@ export class Troubadour extends Minstrel {
         { label: 'Lv 5', isUse: true, value: 5 },
       ],
     },
-	StageMannerFn()
+    StageMannerFn(),
+    {
+      name: 'Rhythm Shooting',
+      label: 'Rhythm Shooting',
+      inputType: 'dropdown',
+      dropdown: genSkillList(5),
+    },
   ];
 
   constructor() {

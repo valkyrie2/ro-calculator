@@ -214,15 +214,6 @@ export class Mechanic extends Whitesmith {
     },
   ];
   protected readonly activeSkillList3rd: ActiveSkillModel[] = [
-	{
-      inputType: 'selectButton',
-      label: 'GGT Skill',
-      name: 'GGT Skill',
-      dropdown: [
-        { label: 'Yes', value: 1, isUse: true },
-        { label: 'No', value: 0, isUse: false },
-      ],
-    },
     {
       label: 'On Magogear',
       name: 'On Magogear',

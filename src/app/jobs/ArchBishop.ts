@@ -4,6 +4,7 @@ import { InfoForClass } from '../models/info-for-class.model';
 import { HighPriest } from './HighPriest';
 import { ActiveSkillModel, AtkSkillFormulaInput, AtkSkillModel, PassiveSkillModel } from './_character-base.abstract';
 import { ClassName } from './_class-name';
+import { genSkillList } from '../utils';
 
 const jobBonusTable: Record<number, [number, number, number, number, number, number]> = {
   1: [0, 0, 0, 1, 0, 0],
@@ -340,6 +341,18 @@ export class ArchBishop extends HighPriest {
     },
     {
       inputType: 'dropdown',
+      label: 'Lauda Ramus',
+      name: 'Lauda Ramus',
+      dropdown: [
+        { label: '-', value: 0, isUse: false },
+        { label: 'Lv 1', value: 1, isUse: true },
+        { label: 'Lv 2', value: 2, isUse: true },
+        { label: 'Lv 3', value: 3, isUse: true },
+        { label: 'Lv 4', value: 4, isUse: true },
+      ],
+    },
+    {
+      inputType: 'dropdown',
       label: 'Expiatio',
       name: 'Expiatio',
       dropdown: [
@@ -363,6 +376,18 @@ export class ArchBishop extends HighPriest {
         { label: 'Lv 4', value: 4, isUse: true },
         { label: 'Lv 5', value: 5, isUse: true },
       ],
+    },
+    {
+      name: 'Cantocandidus',
+      label: 'Cantocandidus',
+      inputType: 'dropdown',
+      dropdown: genSkillList(3)
+    },
+    {
+      name: 'Oratio',
+      label: 'Oratio',
+      inputType: 'dropdown',
+      dropdown: genSkillList(10)
     },
   ];
 

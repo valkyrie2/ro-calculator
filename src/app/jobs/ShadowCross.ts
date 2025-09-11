@@ -402,6 +402,12 @@ export class ShadowCross extends GuillotineCross {
       inputType: 'dropdown',
       dropdown: genSkillList(10, (lv) => ({ flee: lv * 10 })),
     },
+    {
+      name: 'Cross Slash SHC',
+      label: 'Cross Slash SHC',
+      inputType: 'dropdown',
+      dropdown: genSkillList(5)
+    },
   ];
 
   constructor() {

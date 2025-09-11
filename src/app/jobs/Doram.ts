@@ -133,7 +133,7 @@ export class Doram extends CharacterBase {
       cd: 5,
       isMatk: true,
       totalHit: 7,
-      getElement: () => ColorOfHyunrokValue[this.activeSkillLv('Colors of Hynrok')] || ElementType.Neutral,
+      getElement: () => ColorOfHyunrokValue[this.activeSkillLv('Colors of Hyunrok')] || ElementType.Neutral,
       formula: (input: AtkSkillFormulaInput): number => {
         const { skillLevel, model, status } = input;
         const baseLevel = model.level;
@@ -398,6 +398,19 @@ export class Doram extends CharacterBase {
     {
       label: 'Arclouse Dash',
       name: 'Arclouse Dash',
+      inputType: 'dropdown',
+      dropdown: [
+        { label: '-', value: 0, isUse: false },
+        { label: 'Lv 1', value: 1, isUse: true },
+        { label: 'Lv 2', value: 2, isUse: true },
+        { label: 'Lv 3', value: 3, isUse: true },
+        { label: 'Lv 4', value: 4, isUse: true },
+        { label: 'Lv 5', value: 5, isUse: true },
+      ],
+    },
+    {
+      label: 'Lunatic Carrot Beat',
+      name: 'Lunatic Carrot Beat',
       inputType: 'dropdown',
       dropdown: [
         { label: '-', value: 0, isUse: false },

@@ -373,6 +373,24 @@ export class Inquisitor extends Sura {
       inputType: 'dropdown',
       dropdown: genSkillList(10),
     },
+    {
+      name: 'Oleum Sanctum',
+      label: 'Oleum Sanctum',
+      inputType: 'dropdown',
+      dropdown: genSkillList(5),
+    },
+    {
+      name: 'Second Flame',
+      label: 'Second Flame',
+      inputType: 'dropdown',
+      dropdown: genSkillList(5),
+    },
+    {
+      name: 'Third Exorcism Flame',
+      label: 'Third Exor Flame',
+      inputType: 'dropdown',
+      dropdown: genSkillList(5),
+    },
   ];
 
   constructor() {

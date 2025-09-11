@@ -7,6 +7,7 @@ import { addBonus } from '../utils';
 import { Wanderer } from './Wanderer';
 import { ActiveSkillModel, AtkSkillFormulaInput, AtkSkillModel, PassiveSkillModel } from './_character-base.abstract';
 import { ClassName } from './_class-name';
+import { genSkillList } from '../utils';
 
 const jobBonusTable: Record<number, [number, number, number, number, number, number]> = {
   1: [0, 0, 0, 0, 1, 0],
@@ -264,7 +265,7 @@ export class Trouvere extends Wanderer {
 	MysticSymphonyFn()
   ];
   private readonly passiveSkillList4th: PassiveSkillModel[] = [
-	{
+    {
       inputType: 'dropdown',
       label: 'Sound Blend',
       name: 'Sound Blend',
@@ -277,7 +278,13 @@ export class Trouvere extends Wanderer {
         { label: 'Lv 5', isUse: true, value: 5 },
       ],
     },
-	StageMannerFn()
+    StageMannerFn(),
+    {
+      name: 'Rhythm Shooting',
+      label: 'Rhythm Shooting',
+      inputType: 'dropdown',
+      dropdown: genSkillList(5),
+    },
   ];
 
   constructor() {

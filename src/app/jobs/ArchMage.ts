@@ -448,6 +448,12 @@ export class ArchMage extends Warlock {
       inputType: 'dropdown',
       dropdown: genSkillList(10),
     },
+    {
+      name: 'Soul Vulcan Strike',
+      label: 'Soul Vulcan Strike',
+      inputType: 'dropdown',
+      dropdown: genSkillList(5),
+    },
   ];
 
   constructor() {

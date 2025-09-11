@@ -371,6 +371,12 @@ export class AbyssChaser extends ShadowChaser {
       inputType: 'dropdown',
       dropdown: genSkillList(10),
     },
+    {
+      name: 'Frenzy Shot',
+      label: 'Frenzy Shot',
+      inputType: 'dropdown',
+      dropdown: genSkillList(10),
+    },
   ];
 
   constructor() {

@@ -238,7 +238,7 @@ export class SpiritHandler extends Doram {
       vct: 3,
       cd: 4.5,
       isMatk: true,
-      getElement: () => ColorOfHyunrokValue[this.activeSkillLv('Colors of Hynrok')] || ElementType.Neutral,
+      getElement: () => ColorOfHyunrokValue[this.activeSkillLv('Colors of Hyunrok')] || ElementType.Neutral,
       formula: (input: AtkSkillFormulaInput): number => {
         const { model, skillLevel, status } = input;
         const { totalSpl } = status;
@@ -260,7 +260,7 @@ export class SpiritHandler extends Doram {
       vct: 2,
       cd: 0.3,
       isMatk: true,
-      getElement: () => ColorOfHyunrokValue[this.activeSkillLv('Colors of Hynrok')] || ElementType.Neutral,
+      getElement: () => ColorOfHyunrokValue[this.activeSkillLv('Colors of Hyunrok')] || ElementType.Neutral,
       formula: (input: AtkSkillFormulaInput): number => {
         const { model, skillLevel, status } = input;
         const { totalSpl } = status;
@@ -276,8 +276,8 @@ export class SpiritHandler extends Doram {
   ];
   private readonly activeSkillList4th: ActiveSkillModel[] = [
     {
-      label: 'Colors of Hynrok',
-      name: 'Colors of Hynrok',
+      label: 'Colors of Hyunrok',
+      name: 'Colors of Hyunrok',
       inputType: 'dropdown',
       dropdown: [
         { label: '-', value: 0, isUse: false },
@@ -315,6 +315,18 @@ export class SpiritHandler extends Doram {
       label: 'Mystical Cre Mastery',
       inputType: 'dropdown',
       dropdown: genSkillList(10, lv => ({ pAtk: floor(lv * 1.5), sMatk: floor(lv * 1.5) }))
+    },
+    {
+      name: 'Howling of Chulho',
+      label: 'Howling of Chulho',
+      inputType: 'dropdown',
+      dropdown: genSkillList(7),
+    },
+    {
+      name: 'Colors of Hyunrok',
+      label: 'Colors of Hyunrok',
+      inputType: 'dropdown',
+      dropdown: genSkillList(7),
     },
   ];
 

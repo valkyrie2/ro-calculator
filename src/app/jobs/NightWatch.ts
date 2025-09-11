@@ -523,6 +523,12 @@ export class NightWatch extends Rebellion {
       inputType: 'dropdown',
       dropdown: genSkillList(10, lv => ({ con: lv }))
     },
+    {
+      name: 'Hidden Card',
+      label: 'Hidden Card',
+      inputType: 'dropdown',
+      dropdown: genSkillList(10)
+    },
   ];
 
   constructor() {

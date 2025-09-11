@@ -295,6 +295,12 @@ export class Meister extends Mechanic {
       inputType: 'dropdown',
       dropdown: genSkillList(10),
     },
+    {
+      name: 'Manufacture Machine',
+      label: 'Manufacture Machine',
+      inputType: 'dropdown',
+      dropdown: genSkillList(5),
+    },
   ];
 
   constructor() {

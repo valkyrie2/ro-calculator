@@ -326,14 +326,14 @@ export class Shinkiro extends Kagerou {
         const baseLevel = model.level;
         const skillBonusLv = this.learnLv('Darkening Cannon');
 
-		if (this.isSkillActive('GGT Skill')) {
-			return (850 + skillLevel * (1250 + skillBonusLv * 70) + totalSpl * 5) * (baseLevel / 100);
-		} else {
-			if (this.isSkillActive('Fire Colors Charm'))
-				return (600 + 8500 + skillLevel * (1100 + skillBonusLv * 70) + totalSpl * 5) * (baseLevel / 100);
-			else
-				return (600 + skillLevel * (1100 + skillBonusLv * 70) + totalSpl * 5) * (baseLevel / 100);
-		}
+        if (this.isSkillActive('GGT Skill')) {
+          return (850 + skillLevel * (1250 + skillBonusLv * 70) + totalSpl * 5) * (baseLevel / 100);
+        } else {
+          if (this.isSkillActive('Fire Colors Charm'))
+            return (600 + 8500 + skillLevel * (1100 + skillBonusLv * 70) + totalSpl * 5) * (baseLevel / 100);
+          else
+            return (600 + skillLevel * (1100 + skillBonusLv * 70) + totalSpl * 5) * (baseLevel / 100);
+        }
       },
     },
     {
@@ -373,14 +373,14 @@ export class Shinkiro extends Kagerou {
         const baseLevel = model.level;
         const skillBonusLv = this.learnLv('Darkening Cannon');
 
-		if (this.isSkillActive('GGT Skill')) {
-			return (600 + skillLevel * (1300 + skillBonusLv * 70) + totalSpl * 5) * (baseLevel / 100);
-		} else {
-			if (this.isSkillActive('Wind Colors Charm'))
-				return (600 + 8500 + skillLevel * (1100 + skillBonusLv * 70) + totalSpl * 5) * (baseLevel / 100);
-			else
-				return (600 + skillLevel * (1100 + skillBonusLv * 70) + totalSpl * 5) * (baseLevel / 100);
-		}
+        if (this.isSkillActive('GGT Skill')) {
+          return (600 + skillLevel * (1300 + skillBonusLv * 70) + totalSpl * 5) * (baseLevel / 100);
+        } else {
+          if (this.isSkillActive('Wind Colors Charm'))
+            return (600 + 8500 + skillLevel * (1100 + skillBonusLv * 70) + totalSpl * 5) * (baseLevel / 100);
+          else
+            return (600 + skillLevel * (1100 + skillBonusLv * 70) + totalSpl * 5) * (baseLevel / 100);
+        }
       },
     },
     {
@@ -423,10 +423,10 @@ export class Shinkiro extends Kagerou {
     },
   ];
   private readonly activeSkillList4th: ActiveSkillModel[] = [
-	FourColorFireFn(),
-	FourColorWaterFn(),
-	FourColorWindFn(),
-	FourColorEarthFn()
+    FourColorFireFn(),
+    FourColorWaterFn(),
+    FourColorWindFn(),
+    FourColorEarthFn()
   ];
   private readonly passiveSkillList4th: PassiveSkillModel[] = [
     {
@@ -482,6 +482,18 @@ export class Shinkiro extends Kagerou {
       label: 'Darkening Cannon',
       inputType: 'dropdown',
       dropdown: genSkillList(10),
+    },
+    {
+      name: 'Infiltrate',
+      label: 'Infiltrate',
+      inputType: 'dropdown',
+      dropdown: genSkillList(5),
+    },
+    {
+      name: 'Melt Away',
+      label: 'Melt Away',
+      inputType: 'dropdown',
+      dropdown: genSkillList(5),
     },
   ];
 

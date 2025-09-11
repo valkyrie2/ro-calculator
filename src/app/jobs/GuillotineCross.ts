@@ -3,6 +3,7 @@ import { AssassinCross } from './AssassinCross';
 import { ActiveSkillModel, AtkSkillFormulaInput, AtkSkillModel, PassiveSkillModel } from './_character-base.abstract';
 import { InfoForClass } from '../models/info-for-class.model';
 import { DarkClawFn } from '../constants/share-active-skills';
+import { genSkillList } from '../utils';
 
 const jobBonusTable: Record<number, [number, number, number, number, number, number]> = {
   1: [0, 1, 0, 0, 0, 0],
@@ -303,6 +304,12 @@ export class GuillotineCross extends AssassinCross {
         { label: 'Lv 4', isUse: true, value: 4 },
         { label: 'Lv 5', isUse: true, value: 5 },
       ],
+    },
+    {
+      name: 'Dark Claw',
+      label: 'Dark Claw',
+      inputType: 'dropdown',
+      dropdown: genSkillList(5)
     },
   ];
 

@@ -3,6 +3,7 @@ import { WeaponTypeName } from '../constants';
 import { RuneKnight } from './RuneKnight';
 import { ActiveSkillModel, AtkSkillFormulaInput, AtkSkillModel, PassiveSkillModel } from './_character-base.abstract';
 import { ClassName } from './_class-name';
+import { genSkillList } from '../utils';
 
 const jobBonusTable: Record<number, [number, number, number, number, number, number]> = {
   1: [1, 0, 0, 0, 0, 0],
@@ -297,10 +298,19 @@ export class DragonKnight extends RuneKnight {
       label: 'Dragonic Aura',
       name: 'Dragonic Aura',
       inputType: 'dropdown',
-      dropdown: [
-        { label: '-', value: 0, isUse: false },
-        { label: 'Lv 10', value: 10, isUse: true },
-      ],
+      dropdown: genSkillList(10),
+    },
+    {
+      label: 'Two Hand Defending',
+      name: 'Two Hand Defending',
+      inputType: 'dropdown',
+      dropdown: genSkillList(10),
+    },
+    {
+      label: 'Hack and Slasher',
+      name: 'Hack and Slasher',
+      inputType: 'dropdown',
+      dropdown: genSkillList(10),
     },
   ];
 
