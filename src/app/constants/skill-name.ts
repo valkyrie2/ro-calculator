@@ -649,6 +649,7 @@ export const OFFENSIVE_SKILL_NAMES = [
   "Water Colors Charm",
   "Wind Colors Charm",
   "Earth Colors Charm",
+  "Infiltrate",
 
   'Abyss Flame',
   'Dust Explosion',
