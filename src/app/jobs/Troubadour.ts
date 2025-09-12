@@ -251,6 +251,54 @@ export class Troubadour extends Minstrel {
         return (250 + skillLevel * 3650 + status.totalSpl * 3 * stageMannerLv / 2) * (baseLevel / 100);
       },
     },
+    {
+      name: 'Rose Blossom',
+      label: '[K] Rose Blossom Lv5',
+      value: 'Rose Blossom==5',
+      acd: 0.15,
+      fct: 0.5,
+      vct: 1,
+      cd: 0.7,
+      verifyItemFn: ({ weapon }) => {
+        const requires: WeaponTypeName[] = ['bow', 'instrument', 'whip'];
+        if (requires.some(wType => weapon.isType(wType))) return '';
+
+        return requires.join(', ');
+      },
+      formula: (input: AtkSkillFormulaInput): number => {
+        const { model, skillLevel, status } = input;
+        const baseLevel = model.level;
+        const stageMannerLv = this.learnLv('Stage Manner');
+
+        // if (this.isSkillActive('Sonic Brand'))
+
+        if (this.isSkillActive('GGT Skill')) {
+          if (this.isSkillActive('Sound Blend')) {
+            const primaryDmg = (200 + skillLevel * 2200 + status.totalCon * 3 * stageMannerLv) * (baseLevel / 100);
+            const secondaryDmg = (250 + skillLevel * 3000 + status.totalCon * 3 * stageMannerLv) * (baseLevel / 100);
+
+            return primaryDmg + secondaryDmg;
+          } else {
+            const primaryDmg = (200 + skillLevel * 2000 + status.totalCon * 3 * stageMannerLv) * (baseLevel / 100);
+            const secondaryDmg = (250 + skillLevel * 2800 + status.totalCon * 3 * stageMannerLv) * (baseLevel / 100);
+
+            return primaryDmg + secondaryDmg;
+          }
+        } else {
+          if (this.isSkillActive('Sound Blend')) {
+            const primaryDmg = (200 + skillLevel * 2200 + status.totalCon * 3 * stageMannerLv) * (baseLevel / 100);
+            const secondaryDmg = (250 + skillLevel * 3000 + status.totalCon * 3 * stageMannerLv) * (baseLevel / 100);
+
+            return primaryDmg + secondaryDmg;
+          } else {
+            const primaryDmg = (200 + skillLevel * 2000 + status.totalCon * 3 * stageMannerLv) * (baseLevel / 100);
+            const secondaryDmg = (250 + skillLevel * 2800 + status.totalCon * 3 * stageMannerLv) * (baseLevel / 100);
+
+            return primaryDmg + secondaryDmg;
+          }
+        }
+      },
+    },
   ];
   private readonly activeSkillList4th: ActiveSkillModel[] = [
     {

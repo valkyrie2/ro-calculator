@@ -190,7 +190,7 @@ export class Trouvere extends Wanderer {
         return (200 + skillLevel * 120 + status.totalCon * 3 * stageMannerLv) * (baseLevel / 100);
       },
     },
-	{
+    {
       name: 'Metallic Fury',
       label: '[K] Metallic Fury Lv5',
       value: 'Metallic Fury==5',
@@ -199,7 +199,7 @@ export class Trouvere extends Wanderer {
       vct: 0,
       cd: 0.4,
       totalHit: 1,
-	  isMatk: true,
+      isMatk: true,
       verifyItemFn: ({ weapon }) => {
         const requires: WeaponTypeName[] = ['bow', 'instrument', 'whip'];
         if (requires.some(wType => weapon.isType(wType))) return '';
@@ -211,20 +211,20 @@ export class Trouvere extends Wanderer {
         const baseLevel = model.level;
         const stageMannerLv = this.learnLv('Stage Manner');
 
-		if (this.isSkillActive('GGT Skill')) {
-			if (this.isSkillActive('Sound Blend')) {
-				return (skillLevel * 3600 + status.totalSpl * 3 * stageMannerLv / 2) * (baseLevel / 100);
-			}
-			return (skillLevel * 2600 + status.totalSpl * 3 * stageMannerLv / 2) * (baseLevel / 100);
-		} else {
-			if (this.isSkillActive('Sound Blend')) {
-				return (skillLevel * 4650 + status.totalSpl * 3 * stageMannerLv / 2) * (baseLevel / 100);
-			}
-			return (skillLevel * 3850 + status.totalSpl * 3 * stageMannerLv / 2) * (baseLevel / 100);
-		}
+        if (this.isSkillActive('GGT Skill')) {
+          if (this.isSkillActive('Sound Blend')) {
+            return (skillLevel * 3600 + status.totalSpl * 3 * stageMannerLv / 2) * (baseLevel / 100);
+          }
+          return (skillLevel * 2600 + status.totalSpl * 3 * stageMannerLv / 2) * (baseLevel / 100);
+        } else {
+          if (this.isSkillActive('Sound Blend')) {
+            return (skillLevel * 4650 + status.totalSpl * 3 * stageMannerLv / 2) * (baseLevel / 100);
+          }
+          return (skillLevel * 3850 + status.totalSpl * 3 * stageMannerLv / 2) * (baseLevel / 100);
+        }
       },
     },
-	{
+    {
       name: 'Rhythmical Wave',
       label: '[K] Rhythmical Wave Lv5',
       value: 'Rhythmical Wave==5',
@@ -233,7 +233,7 @@ export class Trouvere extends Wanderer {
       vct: 2,
       cd: 0.4,
       totalHit: 1,
-	  isMatk: true,
+      isMatk: true,
       verifyItemFn: ({ weapon }) => {
         const requires: WeaponTypeName[] = ['bow', 'instrument', 'whip'];
         if (requires.some(wType => weapon.isType(wType))) return '';
@@ -246,14 +246,62 @@ export class Trouvere extends Wanderer {
         const stageMannerLv = this.learnLv('Stage Manner');
 
         if (this.isSkillActive('Mystic Symphony')) {
-			return (450 + skillLevel * 4650 + status.totalSpl * 3 * stageMannerLv / 2) * (baseLevel / 100);
-		}
+          return (450 + skillLevel * 4650 + status.totalSpl * 3 * stageMannerLv / 2) * (baseLevel / 100);
+        }
         return (250 + skillLevel * 3650 + status.totalSpl * 3 * stageMannerLv / 2) * (baseLevel / 100);
+      },
+    },
+    {
+      name: 'Rose Blossom',
+      label: '[K] Rose Blossom Lv5',
+      value: 'Rose Blossom==5',
+      acd: 0.15,
+      fct: 0.5,
+      vct: 1,
+      cd: 0.7,
+      verifyItemFn: ({ weapon }) => {
+        const requires: WeaponTypeName[] = ['bow', 'instrument', 'whip'];
+        if (requires.some(wType => weapon.isType(wType))) return '';
+
+        return requires.join(', ');
+      },
+      formula: (input: AtkSkillFormulaInput): number => {
+        const { model, skillLevel, status } = input;
+        const baseLevel = model.level;
+        const stageMannerLv = this.learnLv('Stage Manner');
+
+        // if (this.isSkillActive('Sonic Brand'))
+
+        if (this.isSkillActive('GGT Skill')) {
+          if (this.isSkillActive('Sound Blend')) {
+            const primaryDmg = (200 + skillLevel * 2200 + status.totalCon * 3 * stageMannerLv) * (baseLevel / 100);
+            const secondaryDmg = (250 + skillLevel * 3000 + status.totalCon * 3 * stageMannerLv) * (baseLevel / 100);
+
+            return primaryDmg + secondaryDmg;
+          } else {
+            const primaryDmg = (200 + skillLevel * 2000 + status.totalCon * 3 * stageMannerLv) * (baseLevel / 100);
+            const secondaryDmg = (250 + skillLevel * 2800 + status.totalCon * 3 * stageMannerLv) * (baseLevel / 100);
+
+            return primaryDmg + secondaryDmg;
+          }
+        } else {
+          if (this.isSkillActive('Sound Blend')) {
+            const primaryDmg = (200 + skillLevel * 2200 + status.totalCon * 3 * stageMannerLv) * (baseLevel / 100);
+            const secondaryDmg = (250 + skillLevel * 3000 + status.totalCon * 3 * stageMannerLv) * (baseLevel / 100);
+
+            return primaryDmg + secondaryDmg;
+          } else {
+            const primaryDmg = (200 + skillLevel * 2000 + status.totalCon * 3 * stageMannerLv) * (baseLevel / 100);
+            const secondaryDmg = (250 + skillLevel * 2800 + status.totalCon * 3 * stageMannerLv) * (baseLevel / 100);
+
+            return primaryDmg + secondaryDmg;
+          }
+        }
       },
     },
   ];
   private readonly activeSkillList4th: ActiveSkillModel[] = [
-	{
+    {
       inputType: 'selectButton',
       label: 'Sound Blend',
       name: 'Sound Blend',
@@ -262,7 +310,7 @@ export class Trouvere extends Wanderer {
         { label: 'No', value: 0, isUse: false },
       ],
     },
-	MysticSymphonyFn()
+    MysticSymphonyFn()
   ];
   private readonly passiveSkillList4th: PassiveSkillModel[] = [
     {
