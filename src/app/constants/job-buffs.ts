@@ -371,6 +371,17 @@ export const JobBuffs: ActiveSkillModel[] = [
     ],
   },
   {
+    name: 'Oratio',
+    label: 'Oratio',
+    inputType: 'dropdown',
+    isDebuff: true,
+    dropdown: [
+	  { label: '-', value: 0, isUse: false },
+      { label: '10%', isUse: true, value: 1, bonus: { comet: 10 } },
+      { label: '20%', isUse: true, value: 2, bonus: { comet: 20 } },
+    ],
+  },
+  {
     name: 'Ep21 Race',
     label: 'Ep21 Race +15%',
     inputType: 'selectButton',
