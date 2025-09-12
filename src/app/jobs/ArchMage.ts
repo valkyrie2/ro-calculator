@@ -179,14 +179,21 @@ export class ArchMage extends Warlock {
         const { totalSpl } = status;
         const { level: baseLevel } = model;
 
-        return (skillLevel * 300 + totalSpl * 3) * (baseLevel / 100);
+        if (this.isSkillActive('GGT Skill'))
+          return (skillLevel * 250 + totalSpl * 3) * (baseLevel / 100);
+        else
+          return (skillLevel * 300 + totalSpl * 3) * (baseLevel / 100);
       }
     },
     {
       name: 'Mystery Illusion',
-      label: '[V3] Mystery Illusion Lv5',
+      label: '[K] Mystery Illusion Lv5',
       value: 'Mystery Illusion==5',
-      acd: 0.5,
+      acd: () => {
+        if (this.isSkillActive('GGT Skill')) return 0.5;
+
+        return 0.75;
+      },
       fct: 1.5,
       vct: 4,
       cd: 4,
@@ -291,12 +298,21 @@ export class ArchMage extends Warlock {
         const { model, skillLevel, status } = input;
         const { totalSpl } = status;
         const { level: baseLevel } = model;
-        const blimaxBonus = this.isSkillActive('Climax') ? 750 : 0;
 
-        const directDmg = floor((skillLevel * 400 + totalSpl * 3) * (baseLevel / 100));
-        const bomDmg = floor((skillLevel * (750 + blimaxBonus) + totalSpl * 5) * (baseLevel / 100));
+        if (this.isSkillActive('GGT Skill')) {
+          const blimaxBonus = this.isSkillActive('Climax') ? 600 : 0;
+          const directDmg = floor((skillLevel * 300 + totalSpl * 3) * (baseLevel / 100));
+          const bomDmg = floor((skillLevel * (600 + blimaxBonus) + totalSpl * 5) * (baseLevel / 100));
 
-        return directDmg + bomDmg;
+		  return directDmg + bomDmg;
+        }
+        else {
+          const blimaxBonus = this.isSkillActive('Climax') ? 750 : 0;
+          const directDmg = floor((skillLevel * 400 + totalSpl * 3) * (baseLevel / 100));
+          const bomDmg = floor((skillLevel * (750 + blimaxBonus) + totalSpl * 5) * (baseLevel / 100));
+
+		  return directDmg + bomDmg;
+        }
       },
     },
     {
@@ -314,11 +330,21 @@ export class ArchMage extends Warlock {
         const { model, skillLevel, status } = input;
         const { totalSpl } = status;
         const { level: baseLevel } = model;
-        if (this.isSkillActive('Climax')) {
-          return (600 + skillLevel * 1300 + totalSpl * 5) * (baseLevel / 100);
+
+        if (this.isSkillActive('GGT Skill')) {
+          if (this.isSkillActive('Climax')) {
+            return (400 + skillLevel * 1250 + totalSpl * 5) * (baseLevel / 100);
+          }
+
+          return (250 + skillLevel * 900 + totalSpl * 5) * (baseLevel / 100);
+        } else {
+          if (this.isSkillActive('Climax')) {
+            return (600 + skillLevel * 1300 + totalSpl * 5) * (baseLevel / 100);
+          }
+
+          return (450 + skillLevel * 950 + totalSpl * 5) * (baseLevel / 100);
         }
 
-        return (450 + skillLevel * 950 + totalSpl * 5) * (baseLevel / 100);
       },
     },
     {
@@ -336,11 +362,20 @@ export class ArchMage extends Warlock {
         const { model, skillLevel, status } = input;
         const { totalSpl } = status;
         const { level: baseLevel } = model;
-        if (this.isSkillActive('Climax')) {
-          return (skillLevel * 1850 + totalSpl * 5) * (baseLevel / 100);
-        }
 
-        return (skillLevel * 1550 + totalSpl * 5) * (baseLevel / 100);
+        if (this.isSkillActive('GGT Skill')) {
+          if (this.isSkillActive('Climax')) {
+            return (skillLevel * 1250 + totalSpl * 5) * (baseLevel / 100);
+          }
+
+          return (skillLevel * 950 + totalSpl * 5) * (baseLevel / 100);
+        } else {
+          if (this.isSkillActive('Climax')) {
+            return (skillLevel * 1850 + totalSpl * 5) * (baseLevel / 100);
+          }
+
+          return (skillLevel * 1550 + totalSpl * 5) * (baseLevel / 100);
+        }
       },
     },
     {
@@ -358,18 +393,30 @@ export class ArchMage extends Warlock {
         const { model, skillLevel, status } = input;
         const { totalSpl } = status;
         const { level: baseLevel } = model;
-        if (this.isSkillActive('Climax')) {
-          return (skillLevel * 1850 + totalSpl * 5) * (baseLevel / 100);
-        }
+        if (this.isSkillActive('GGT Skill')) {
+          if (this.isSkillActive('Climax')) {
+            return (skillLevel * 1250 + totalSpl * 5) * (baseLevel / 100);
+          }
 
-        return (skillLevel * 1550 + totalSpl * 5) * (baseLevel / 100);
+          return (skillLevel * 950 + totalSpl * 5) * (baseLevel / 100);
+        } else {
+          if (this.isSkillActive('Climax')) {
+            return (skillLevel * 1850 + totalSpl * 5) * (baseLevel / 100);
+          }
+
+          return (skillLevel * 1550 + totalSpl * 5) * (baseLevel / 100);
+        }
       },
     },
     {
       name: 'All Bloom',
       label: '[K] All Bloom Lv5 (1 hit)',
       value: 'All Bloom==5',
-      acd: 0.5,
+      acd: () => {
+        if (this.isSkillActive('GGT Skill')) return 0.5;
+
+        return 1;
+      },
       fct: 1.5,
       vct: 4,
       cd: 6,
@@ -388,7 +435,11 @@ export class ArchMage extends Warlock {
       name: 'Violent Quake',
       label: '[K] Violent Quake Lv5 (1 hit)',
       value: 'Violent Quake==5',
-      acd: 0.5,
+      acd: () => {
+        if (this.isSkillActive('GGT Skill')) return 0.5;
+
+        return 1;
+      },
       fct: 1.5,
       vct: 4,
       cd: 6,
@@ -435,7 +486,7 @@ export class ArchMage extends Warlock {
         { label: '-', value: 0, isUse: false },
         { label: 'Lv 1', value: 1, isUse: true },
         { label: 'Lv 2', value: 2, isUse: true },
-        { label: 'Lv 3', value: 3, isUse: true, bonus: { "All Bloom": 300, "Violent Quake": 200 }  },
+        { label: 'Lv 3', value: 3, isUse: true, bonus: { "All Bloom": 300, "Violent Quake": 200 } },
         { label: 'Lv 4', value: 4, isUse: true },
         { label: 'Lv 5', value: 5, isUse: true },
       ],

@@ -210,12 +210,20 @@ export class SoulAscetic extends SoulReaper {
         const baseLevel = model.level;
         const talisMaster = this.learnLv('Talisman Mastery');
 
-        if (this.isSkillActive('Talisman of Five Elements')) {
-          return (950 + skillLevel * (2950 + talisMaster * 15) + totalSpl * 5) * (baseLevel / 100);
+        if (this.isSkillActive('GGT Skill')) {
+          if (this.isSkillActive('Talisman of Five Elements')) {
+            return (350 + skillLevel * (1650 + talisMaster * 15) + totalSpl * 5) * (baseLevel / 100);
+          }
 
+          return (250 + skillLevel * (1450 + talisMaster * 15) + totalSpl * 5) * (baseLevel / 100);
         }
+        else {
+          if (this.isSkillActive('Talisman of Five Elements')) {
+            return (950 + skillLevel * (2950 + talisMaster * 15) + totalSpl * 5) * (baseLevel / 100);
+          }
 
-        return (850 + skillLevel * (2250 + talisMaster * 15) + totalSpl * 5) * (baseLevel / 100);
+          return (850 + skillLevel * (2250 + talisMaster * 15) + totalSpl * 5) * (baseLevel / 100);
+        }
       },
     },
     {
@@ -234,12 +242,20 @@ export class SoulAscetic extends SoulReaper {
         const baseLevel = model.level;
         const talisMaster = this.learnLv('Talisman Mastery');
 
-        if (this.isSkillActive('Talisman of Five Elements')) {
-          return (400 + skillLevel * (1400 + talisMaster * 15) + totalSpl * 5) * (baseLevel / 100);
+        if (this.isSkillActive('GGT Skill')) {
+          if (this.isSkillActive('Talisman of Five Elements')) {
+            return (350 + skillLevel * (1350 + talisMaster * 15) + totalSpl * 5) * (baseLevel / 100);
+          }
 
+          return (350 + skillLevel * (950 + talisMaster * 15) + totalSpl * 5) * (baseLevel / 100);
         }
+        else {
+          if (this.isSkillActive('Talisman of Five Elements')) {
+            return (400 + skillLevel * (1400 + talisMaster * 15) + totalSpl * 5) * (baseLevel / 100);
+          }
 
-        return (4000 + skillLevel * (1000 + talisMaster * 15) + totalSpl * 5) * (baseLevel / 100);
+          return (400 + skillLevel * (1000 + talisMaster * 15) + totalSpl * 5) * (baseLevel / 100);
+        }
       },
     },
     {
@@ -258,12 +274,22 @@ export class SoulAscetic extends SoulReaper {
         const baseLevel = model.level;
         const talisMaster = this.learnLv('Talisman Mastery');
 
-        if (this.isSkillActive('Talisman of Five Elements')) {
-          return (1600 + skillLevel * (1850 + talisMaster * 15) + totalSpl * 5) * (baseLevel / 100);
+        if (this.isSkillActive('GGT Skill')) {
+          if (this.isSkillActive('Talisman of Five Elements')) {
+            return (1200 + skillLevel * (1300 + talisMaster * 15) + totalSpl * 5) * (baseLevel / 100);
 
+          }
+
+          return (1000 + skillLevel * (900 + talisMaster * 15) + totalSpl * 5) * (baseLevel / 100);
         }
+        else {
+          if (this.isSkillActive('Talisman of Five Elements')) {
+            return (1600 + skillLevel * (1850 + talisMaster * 15) + totalSpl * 5) * (baseLevel / 100);
 
-        return (1400 + skillLevel * (1450 + talisMaster * 15) + totalSpl * 5) * (baseLevel / 100);
+          }
+
+          return (1400 + skillLevel * (1450 + talisMaster * 15) + totalSpl * 5) * (baseLevel / 100);
+        }
       },
     },
     {
@@ -282,12 +308,22 @@ export class SoulAscetic extends SoulReaper {
         const baseLevel = model.level;
         const talisMaster = this.learnLv('Talisman Mastery');
 
-        if (this.isSkillActive('Talisman of Five Elements')) {
-          return (2300 + skillLevel * (2100 + talisMaster * 15) + totalSpl * 5) * (baseLevel / 100);
+        if (this.isSkillActive('GGT Skill')) {
+          if (this.isSkillActive('Talisman of Five Elements')) {
+            return (1850 + skillLevel * (1850 + talisMaster * 15) + totalSpl * 5) * (baseLevel / 100);
 
+          }
+
+          return (2150 + skillLevel * (1450 + talisMaster * 15) + totalSpl * 5) * (baseLevel / 100);
         }
+        else {
+          if (this.isSkillActive('Talisman of Five Elements')) {
+            return (2300 + skillLevel * (2100 + talisMaster * 15) + totalSpl * 5) * (baseLevel / 100);
 
-        return (2150 + skillLevel * (1600 + talisMaster * 15) + totalSpl * 5) * (baseLevel / 100);
+          }
+
+          return (2150 + skillLevel * (1600 + talisMaster * 15) + totalSpl * 5) * (baseLevel / 100);
+        }
       },
     },
     {
@@ -339,7 +375,7 @@ export class SoulAscetic extends SoulReaper {
         m_element_neutral: lv * 4,
       })),
     },
-	{
+    {
       name: 'Talisman of Magician',
       label: 'Talisman of Magician',
       inputType: 'dropdown',
@@ -383,7 +419,7 @@ export class SoulAscetic extends SoulReaper {
       inputType: 'dropdown',
       dropdown: genSkillList(10, lv => ({ spl: lv })),
     },
-	{
+    {
       name: 'Circle of Directions and Elementals',
       label: 'Circle of 4 Directions',
       inputType: 'dropdown',

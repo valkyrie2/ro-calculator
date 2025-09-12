@@ -209,7 +209,11 @@ export class ImperialGuard extends RoyalGuard {
       acd: 0.15,
       fct: 1.5,
       vct: 4,
-      cd: 4.5,
+      cd: () => {
+        if (this.isSkillActive('GGT Skill')) return 4.5;
+
+        return 2.4;
+      },
       isMatk: true,
       element: ElementType.Holy,
       totalHit: 15,
@@ -219,19 +223,19 @@ export class ImperialGuard extends RoyalGuard {
         const baseLevel = model.level;
         const ssMastLv = this.learnLv('Spear & Sword Mastery');
 
-		if (this.isSkillActive('GGT Skill')) {
-			if (this.isSkillActive('Holy Shield')) {
-			return (skillLevel * (450 + ssMastLv * 10) + totalSpl * 5) * (baseLevel / 100);
-			}
-	
-			return (skillLevel * (320 + ssMastLv * 5) + totalSpl * 2) * (baseLevel / 100);
-		} else {
-			if (this.isSkillActive('Holy Shield')) {
-			return (skillLevel * (650 + ssMastLv * 15) + totalSpl * 5) * (baseLevel / 100);
-			}
-	
-			return (skillLevel * (450 + ssMastLv * 10) + totalSpl * 2) * (baseLevel / 100);
-		}
+        if (this.isSkillActive('GGT Skill')) {
+          if (this.isSkillActive('Holy Shield')) {
+            return (skillLevel * (450 + ssMastLv * 10) + totalSpl * 5) * (baseLevel / 100);
+          }
+
+          return (skillLevel * (320 + ssMastLv * 5) + totalSpl * 2) * (baseLevel / 100);
+        } else {
+          if (this.isSkillActive('Holy Shield')) {
+            return (skillLevel * (650 + ssMastLv * 15) + totalSpl * 5) * (baseLevel / 100);
+          }
+
+          return (skillLevel * (450 + ssMastLv * 10) + totalSpl * 2) * (baseLevel / 100);
+        }
       },
     },
   ];

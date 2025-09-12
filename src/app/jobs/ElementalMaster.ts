@@ -188,11 +188,19 @@ export class ElementalMaster extends Sorcerer {
         const { totalSpl } = status;
         const { level: baseLevel } = model;
 
-        if (this.isSpirit('Divulio')) {
-          return (7800 + skillLevel * 2600 + totalSpl * 10) * (baseLevel / 100);
-        }
+        if (this.isSkillActive('GGT Skill')) {
+          if (this.isSpirit('Divulio')) {
+            return (5400 + skillLevel * 1800 + totalSpl * 10) * (baseLevel / 100);
+          }
 
-        return (500 + skillLevel * 2400 + totalSpl * 5) * (baseLevel / 100);
+          return (400 + skillLevel * 1550 + totalSpl * 5) * (baseLevel / 100);
+        } else {
+          if (this.isSpirit('Divulio')) {
+            return (7800 + skillLevel * 2600 + totalSpl * 10) * (baseLevel / 100);
+          }
+
+          return (500 + skillLevel * 2400 + totalSpl * 5) * (baseLevel / 100);
+        }
       },
     },
     {
@@ -211,11 +219,20 @@ export class ElementalMaster extends Sorcerer {
         const { totalSpl } = status;
         const { level: baseLevel } = model;
 
-        if (this.isSpirit('Ardor')) {
-          return (700 + skillLevel * 1300 + totalSpl * 7) * (baseLevel / 100);
-        }
+        if (this.isSkillActive('GGT Skill')) {
+          if (this.isSpirit('Ardor')) {
+            return (500 + skillLevel * 1050 + totalSpl * 7) * (baseLevel / 100);
+          }
 
-        return (700 + skillLevel * 1100 + totalSpl * 5) * (baseLevel / 100);
+          return (500 + skillLevel * 650 + totalSpl * 5) * (baseLevel / 100);
+        }
+        else {
+          if (this.isSpirit('Ardor')) {
+            return (700 + skillLevel * 1300 + totalSpl * 7) * (baseLevel / 100);
+          }
+
+          return (700 + skillLevel * 1100 + totalSpl * 5) * (baseLevel / 100);
+        }
       },
     },
     {
@@ -234,11 +251,20 @@ export class ElementalMaster extends Sorcerer {
         const { totalSpl } = status;
         const { level: baseLevel } = model;
 
-        if (this.isSpirit('Procella')) {
-          return (700 + skillLevel * 1300 + totalSpl * 7) * (baseLevel / 100);
-        }
+        if (this.isSkillActive('GGT Skill')) {
+          if (this.isSpirit('Procella')) {
+            return (500 + skillLevel * 1050 + totalSpl * 7) * (baseLevel / 100);
+          }
 
-        return (700 + skillLevel * 1100 + totalSpl * 5) * (baseLevel / 100);
+          return (500 + skillLevel * 650 + totalSpl * 5) * (baseLevel / 100);
+        }
+        else {
+          if (this.isSpirit('Procella')) {
+            return (700 + skillLevel * 1300 + totalSpl * 7) * (baseLevel / 100);
+          }
+
+          return (700 + skillLevel * 1100 + totalSpl * 5) * (baseLevel / 100);
+        }
       },
     },
     {
@@ -257,11 +283,19 @@ export class ElementalMaster extends Sorcerer {
         const { totalSpl } = status;
         const { level: baseLevel } = model;
 
-        if (this.isSpirit('Terramotus')) {
-          return (7800 + skillLevel * 2600 + totalSpl * 10) * (baseLevel / 100);
-        }
+        if (this.isSkillActive('GGT Skill')) {
+          if (this.isSpirit('Terramotus')) {
+            return (5400 + skillLevel * 1800 + totalSpl * 10) * (baseLevel / 100);
+          }
 
-        return (500 + skillLevel * 2400 + totalSpl * 5) * (baseLevel / 100);
+          return (400 + skillLevel * 1550 + totalSpl * 5) * (baseLevel / 100);
+        } else {
+          if (this.isSpirit('Terramotus')) {
+            return (7800 + skillLevel * 2600 + totalSpl * 10) * (baseLevel / 100);
+          }
+
+          return (500 + skillLevel * 2400 + totalSpl * 5) * (baseLevel / 100);
+        }
       },
     },
     {
@@ -280,11 +314,20 @@ export class ElementalMaster extends Sorcerer {
         const { totalSpl } = status;
         const { level: baseLevel } = model;
 
-        if (this.isSpirit('Serpens')) {
-          return (700 + skillLevel * 1300 + totalSpl * 7) * (baseLevel / 100);
-        }
+        if (this.isSkillActive('GGT Skill')) {
+          if (this.isSpirit('Serpens')) {
+            return (500 + skillLevel * 1050 + totalSpl * 7) * (baseLevel / 100);
+          }
 
-        return (700 + skillLevel * 1100 + totalSpl * 5) * (baseLevel / 100);
+          return (500 + skillLevel * 650 + totalSpl * 5) * (baseLevel / 100);
+        }
+        else {
+          if (this.isSpirit('Serpens')) {
+            return (700 + skillLevel * 1300 + totalSpl * 7) * (baseLevel / 100);
+          }
+
+          return (700 + skillLevel * 1100 + totalSpl * 5) * (baseLevel / 100);
+        }
       },
     },
     {
@@ -307,10 +350,18 @@ export class ElementalMaster extends Sorcerer {
         const { totalSpl } = status;
         const { level: baseLevel } = model;
 
-		if (monster.isRace('dragon', 'formless')) {
-			return (550 + skillLevel * 2800 + totalSpl * 10) * (baseLevel / 100);
-		}
-        return (550 + skillLevel * 2650 + totalSpl * 10) * (baseLevel / 100);
+        if (this.isSkillActive('GGT Skill')) {
+          if (monster.isRace('dragon', 'formless')) {
+            return (500 + skillLevel * 2350 + totalSpl * 10) * (baseLevel / 100);
+          }
+          return (500 + skillLevel * 2200 + totalSpl * 10) * (baseLevel / 100);
+        }
+        else {
+          if (monster.isRace('dragon', 'formless')) {
+            return (550 + skillLevel * 2800 + totalSpl * 10) * (baseLevel / 100);
+          }
+          return (550 + skillLevel * 2650 + totalSpl * 10) * (baseLevel / 100);
+        }
       },
     },
   ];
@@ -336,13 +387,13 @@ export class ElementalMaster extends Sorcerer {
       inputType: 'dropdown',
       dropdown: genSkillList(10),
     },
-	{
+    {
       name: 'Increase AP',
       label: 'Increase AP',
       inputType: 'dropdown',
       dropdown: genSkillList(5),
     },
-	{
+    {
       name: 'Spell Enchanting',
       label: 'Spell Enchanting',
       inputType: 'dropdown',
