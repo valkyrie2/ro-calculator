@@ -657,6 +657,38 @@ const nebular3 = [
   'Nebula_Of_HP2',
   'Nebula_Of_HP3',
 ];
+const nebular5 = [
+    Str._2,
+    Str._3,
+    Str._4,
+    Str._5,
+    Int._2,
+    Int._3,
+    Int._4,
+    Int._5,
+    Dex._2,
+    Dex._3,
+    Dex._4,
+    Dex._5,
+    Agi._2,
+    Agi._3,
+    Agi._4,
+    Agi._5,
+    Vit._2,
+    Vit._3,
+    Vit._4,
+    Vit._5,
+    Luk._2,
+    Luk._3,
+    Luk._4,
+    Luk._5,
+	RuneStr._1,
+    RuneDex._1,
+    RuneInt._1,
+    RuneLuk._1,
+    RuneAgi._1,
+    RuneVit._1,
+];
 const nebular4 = [...str(3, 5), ...int(3, 5), ...dex(2, 4), ...agi(3, 5), ...vit(3, 5)];
 
 const moraAtkType1 = [...atkPer13, ...fs13, ...str(1, 3)];
@@ -1022,6 +1054,8 @@ export const EnchantTable: EntTable[] = [
   { name: 'Star_Suit_Of_Crt', enchants: [null, nebular2, nebular3, nebular4] },
   { name: 'Star_Robe_Of_Spl', enchants: [null, nebular2, nebular3, nebular4] },
   { name: 'Star_Robe_Of_Wis', enchants: [null, nebular2, nebular3, nebular4] },
+
+  { name: 'Temporal_Armor_TW_LT', enchants: [null, nebular2, nebular3, nebular5] },
 
   { name: 'Thanos_Helm1_LT', enchants: [null, null, thanosHead3, thanosHead4] },
   { name: 'Thanos_Helm2_LT', enchants: [null, null, thanosHead3, thanosHead4] },
