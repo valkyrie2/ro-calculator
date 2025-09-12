@@ -210,6 +210,7 @@ export class AppTopBarComponent implements OnInit, OnDestroy {
       date: '12-09-2568',
       logs: [
         "Update Enchant stone to Box 40",
+        "add Oratio Debuff",
       ],
     },
 	{
