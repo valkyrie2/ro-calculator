@@ -206,7 +206,7 @@ export class AppTopBarComponent implements OnInit, OnDestroy {
 
   updates: { v: string; date: string; logs: string[]; }[] = [
     {
-      v: 'V1.2 Joam',
+      v: 'V1.2 Extra',
       date: '12-09-2568',
       logs: [
         "Update Enchant stone to Box 40",
@@ -214,14 +214,14 @@ export class AppTopBarComponent implements OnInit, OnDestroy {
       ],
     },
 	{
-      v: 'V1.1 Joam',
+      v: 'V1.1 Extra',
       date: '10-09-2568',
       logs: [
         "GGT Update Nebula shadow + enchant",
       ],
     },
 	{
-      v: 'V1.0 Joam',
+      v: 'V1.0 Extra',
       date: '09-09-2568',
       logs: [
         "KRO Skill version > Cardinal, Shinkiro-Shiranui, Archmage, EM, Shadowcross, Imperial Guard, Troubadour-vere, Soul Ascetic",
