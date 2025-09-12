@@ -212,6 +212,7 @@ export class AppTopBarComponent implements OnInit, OnDestroy {
         "Update Enchant stone to Box 40",
         "add Oratio Debuff",
         "Exotic Armor-LT Enchant",
+        "Add Rose Blossom skill to Troubadour/Trouvere",
       ],
     },
 	{
