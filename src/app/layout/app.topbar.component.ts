@@ -211,6 +211,7 @@ export class AppTopBarComponent implements OnInit, OnDestroy {
       logs: [
         "Update Enchant stone to Box 40",
         "add Oratio Debuff",
+        "Exotic Armor-LT Enchant",
       ],
     },
 	{
