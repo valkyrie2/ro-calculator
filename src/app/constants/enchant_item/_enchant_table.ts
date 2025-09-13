@@ -857,6 +857,8 @@ export const EnchantTable: EntTable[] = [
 
   { name: 'Temporal_Ring_TW', enchants: [null, null, null, [...ea410, ...fs410, ...sp46, ...base46]] },
 
+  { name: 'Temporal_Ring_LT_TH', enchants: [null, null, null, [...ea410, ...fs410, ...sp46, ...base46]] },
+
   { name: 'Earring_Of_Sarah_L', enchants: [null, null, sarahAcc3, sarahAcc4] },
   { name: 'Earring_Of_Sarah_R', enchants: [null, null, sarahAcc3, sarahAcc4] },
 
