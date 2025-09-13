@@ -206,31 +206,37 @@ export class AppTopBarComponent implements OnInit, OnDestroy {
 
   updates: { v: string; date: string; logs: string[]; }[] = [
     {
-      v: 'V1.2 Extra',
+      v: 'Extra 1.0.3',
+      date: '13-09-2568',
+      logs: [
+        "GGT: Costume Autumn Piece (Thankgiving event 2025)",
+      ],
+    },
+	{
+      v: 'Extra 1.0.2',
       date: '12-09-2568',
       logs: [
         "Update Enchant stone to Box 40",
-        "add Oratio Debuff",
+        "Add Oratio Debuff",
         "Exotic Armor-LT Enchant",
         "Add Rose Blossom skill to Troubadour/Trouvere",
       ],
     },
 	{
-      v: 'V1.1 Extra',
+      v: 'Extra 1.0.1',
       date: '10-09-2568',
       logs: [
         "GGT Update Nebula shadow + enchant",
       ],
     },
 	{
-      v: 'V1.0 Extra',
+      v: 'Extra 1.0',
       date: '09-09-2568',
       logs: [
         "KRO Skill version > Cardinal, Shinkiro-Shiranui, Archmage, EM, Shadowcross, Imperial Guard, Troubadour-vere, Soul Ascetic",
 		"GGT Skill version option",
-        "4th skill shadow",
-        "Gambler Seal KRO, Ace card in mouth",
-        "Soul ascetic , EM , Trouvere II Enchant stone",
+        "Add 4th Skill Shadow",
+        "Add Gambler Seal KRO, Ace card in mouth",
         "ep21 Buff, Juno Library Event Buff, Speed booster potion",
         "Fix All Bloom lv3 buff",
         "Add All Bloom lv4 debuff",
