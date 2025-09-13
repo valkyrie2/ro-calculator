@@ -210,6 +210,7 @@ export class AppTopBarComponent implements OnInit, OnDestroy {
       date: '13-09-2568',
       logs: [
         "GGT: Costume Autumn Piece (Thankgiving event 2025)",
+        "Add Razer Energy Coffee Drink",
       ],
     },
 	{
