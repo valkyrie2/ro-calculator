@@ -279,9 +279,13 @@ export class Inquisitor extends Sura {
     },
     {
       name: 'Third Flame Bomb',
-      label: '[V3] Third Flame Bomb Lv5',
+      label: '[K] Third Flame Bomb Lv5',
       value: 'Third Flame Bomb==5',
-      acd: 0,
+      acd: () => {
+        if (this.isSkillActive('GGT Skill')) return 0;
+
+        return 0.7;
+      },
       fct: 0,
       vct: 0,
       cd: 1,
@@ -297,9 +301,13 @@ export class Inquisitor extends Sura {
     },
     {
       name: 'Explosion Blaster',
-      label: '[V3] Explosion Blaster Lv5',
+      label: '[K] Explosion Blaster Lv5',
       value: 'Explosion Blaster==5',
-      acd: 0,
+      acd: () => {
+        if (this.isSkillActive('GGT Skill')) return 0;
+
+        return 1;
+      },
       fct: 0,
       vct: 0,
       cd: 0.7,
@@ -312,10 +320,16 @@ export class Inquisitor extends Sura {
         const baseLevel = model.level;
 
         if (this.isSkillActive('Oleum Sanctum')) {
-          return (skillLevel * 3200 + totalPow * 15) * (baseLevel / 100);
+          if (this.isSkillActive('GGT Skill'))
+            return (skillLevel * 3200 + totalPow * 15) * (baseLevel / 100);
+          else
+            return (450 + skillLevel * 3550 + totalPow * 15) * (baseLevel / 100);
         }
 
-        return (skillLevel * 2800 + totalPow * 15) * (baseLevel / 100);
+        if (this.isSkillActive('GGT Skill'))
+          return (skillLevel * 2800 + totalPow * 15) * (baseLevel / 100);
+        else
+          return (450 + skillLevel * 2600 + totalPow * 10) * (baseLevel / 100);
       },
     },
     {
