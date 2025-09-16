@@ -338,6 +338,29 @@ export class Inquisitor extends Sura {
         return (skillLevel * (2150 + raceBonus) + totalPow * 15) * (baseLevel / 100);
       },
     },
+	{
+      name: 'Blazing Flame Blast',
+      label: '[K] Blazing Flame Blast Lv5',
+      value: 'Blazing Flame Blast==5',
+      acd: 1,
+      fct: 0.5,
+      vct: 0.5,
+      cd: 0.7,
+      canCri: true,
+      baseCriPercentage: 1,
+      criDmgPercentage: 0.5,
+      formula: (input: AtkSkillFormulaInput): number => {
+        const { model, skillLevel, status } = input;
+        const { totalPow } = status;
+        const baseLevel = model.level;
+
+        if (this.isSkillActive('Massive Flame Blaster')) {
+          return (3500 + skillLevel * 4200 + totalPow * 15) * (baseLevel / 100);
+        }
+
+        return (2000 + skillLevel * 3800 + totalPow * 10) * (baseLevel / 100);
+      },
+    },
   ];
   private readonly activeSkillList4th: ActiveSkillModel[] = [
     {
@@ -363,6 +386,15 @@ export class Inquisitor extends Sura {
         // { label: 'Lv 2', value: 2, isUse: true, bonus: { oleumSanctum: 2 * 3 } },
         // { label: 'Lv 3', value: 3, isUse: true, bonus: { oleumSanctum: 3 * 3 } },
         // { label: 'Lv 4', value: 4, isUse: true, bonus: { oleumSanctum: 4 * 3 } },
+      ],
+    },
+	{
+      name: 'Massive Flame Blaster',
+      label: 'Massive F Blaster 5',
+      inputType: 'selectButton',
+      dropdown: [
+        { label: 'Yes', value: 5, isUse: true },
+        { label: 'No', value: 0, isUse: false },
       ],
     },
   ];
