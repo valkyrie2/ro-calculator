@@ -184,13 +184,25 @@ export class Biolo extends Genetic {
     },
     {
       name: 'Mayhemic Thorns',
-      label: '[V3] Mayhemic Thorns Lv10',
+      label: '[K] Mayhemic Thorns Lv10',
       value: 'Mayhemic Thorns==10',
       acd: 0.25,
       fct: 0.5,
       vct: 1.5,
       cd: 0.7,
-      totalHit: () => this.isSkillActive('Research Report') ? 5 : 3,
+      totalHit: () => {
+        if (this.isSkillActive('GGT Skill')) {
+          if (this.isSkillActive('Research Report'))
+            return 5;
+          else
+            return 3;
+        } else {
+          if (this.isSkillActive('Research Report'))
+            return 4;
+          else
+            return 3;
+        }
+      },
       canCri: true,
       baseCriPercentage: 1,
       criDmgPercentage: 0.5,
@@ -199,10 +211,16 @@ export class Biolo extends Genetic {
         const { totalPow } = status;
         const baseLevel = model.level;
         if (this.isSkillActive('Research Report')) {
-          return (250 + skillLevel * 300 + totalPow * 10) * (baseLevel / 100);
+          if (this.isSkillActive('GGT Skill'))
+            return (250 + skillLevel * 300 + totalPow * 10) * (baseLevel / 100);
+          else
+            return (350 + skillLevel * 300 + totalPow * 10) * (baseLevel / 100);
         }
-
-        return (200 + skillLevel * 250 + totalPow * 7) * (baseLevel / 100);
+        
+        if (this.isSkillActive('GGT Skill'))
+          return (200 + skillLevel * 250 + totalPow * 7) * (baseLevel / 100);
+        else
+          return (200 + skillLevel * 300 + totalPow * 7) * (baseLevel / 100);
       },
     },
   ];

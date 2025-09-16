@@ -165,12 +165,20 @@ export class Windhawk extends Ranger {
   private readonly atkSkillList4th: AtkSkillModel[] = [
     {
       name: 'Crescive Bolt',
-      label: '[V3] Crescive Bolt Lv10',
+      label: '[K] Crescive Bolt Lv10',
       value: 'Crescive Bolt==10',
-      acd: 0.3,
+      acd: () => {
+        if (this.isSkillActive('GGT Skill')) return 0.3;
+
+        return 0.7;
+      },
       fct: 1,
       vct: 1,
-      cd: 0.15,
+      cd: () => {
+        if (this.isSkillActive('GGT Skill')) return 0.15;
+
+        return 0.5;
+      },
       maxStack: 3,
       canCri: true,
       criDmgPercentage: 0.5,
@@ -180,25 +188,35 @@ export class Windhawk extends Ranger {
         const baseLevel = model.level;
         const totalStack = stack;
         const calaBonus = this.isSkillActive('Calamity Gale') ? 1.2 : 1;
-
-        return (skillLevel * 340 + status.totalCon * 10) * (baseLevel / 100) * (1 + 0.1 * totalStack) * calaBonus;
+        
+        if (this.isSkillActive('GGT Skill'))
+          return (skillLevel * 340 + status.totalCon * 10) * (baseLevel / 100) * (1 + 0.1 * totalStack) * calaBonus;
+        else
+          return (500 + skillLevel * 1300 + status.totalCon * 10) * (baseLevel / 100) * (1 + 0.2 * totalStack) * calaBonus;
       },
     },
     {
       name: 'Gale Storm',
-      label: '[V3] Gale Storm Lv10',
+      label: '[K] Gale Storm Lv10',
       value: 'Gale Storm==10',
       acd: 0.15,
       fct: 0.5,
       vct: 1,
-      cd: 1.5,
+      cd: () => {
+        if (this.isSkillActive('GGT Skill')) return 1.5;
+
+        return 0.7;
+      },
       hit: 5,
       canCri: () => this.isSkillActive('Calamity Gale'),
       formula: (input: AtkSkillFormulaInput): number => {
         const { model, skillLevel, status } = input;
         const baseLevel = model.level;
-
-        return (skillLevel * 950 + status.totalCon * 5) * (baseLevel / 100);
+        
+        if (this.isSkillActive('GGT Skill'))
+          return (skillLevel * 950 + status.totalCon * 5) * (baseLevel / 100);
+        else
+          return (skillLevel * 1350 + status.totalCon * 10) * (baseLevel / 100);
       },
     },
     {

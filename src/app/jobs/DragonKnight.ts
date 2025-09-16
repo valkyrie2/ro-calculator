@@ -261,7 +261,7 @@ export class DragonKnight extends RuneKnight {
     },
     {
       name: 'Dragonic Breath',
-      label: '[V3] Dragonic Breath Lv10',
+      label: '[K] Dragonic Breath Lv10',
       value: 'Dragonic Breath==10',
       acd: 0.15,
       fct: 0.5,
@@ -274,11 +274,20 @@ export class DragonKnight extends RuneKnight {
         const { model, skillLevel, status, maxHp, maxSp } = input;
         const { totalPow } = status;
         const baseLevel = model.level;
-        if (this.activeSkillLv('Dragonic Aura')) {
-          return (50 + skillLevel * (350 + 0.07 * (maxHp / 8 + maxSp / 4)) + totalPow * 10) * (baseLevel / 100);
-        }
+        
+        if (this.isSkillActive('GGT Skill')) {
+          if (this.activeSkillLv('Dragonic Aura')) {
+            return (50 + skillLevel * (350 + 0.07 * (maxHp / 8 + maxSp / 4)) + totalPow * 10) * (baseLevel / 100);
+          }
 
-        return (50 + skillLevel * (350 + 0.05 * (maxHp / 8 + maxSp / 4)) + totalPow * 7) * (baseLevel / 100);
+          return (50 + skillLevel * (350 + 0.05 * (maxHp / 8 + maxSp / 4)) + totalPow * 7) * (baseLevel / 100);
+        } else {
+          if (this.activeSkillLv('Dragonic Aura')) {
+            return (50 + skillLevel * (350 + 0.07 * (maxHp / 4 + maxSp / 2)) + totalPow * 10) * (baseLevel / 100);
+          }
+
+          return (50 + skillLevel * (350 + 0.05 * (maxHp / 4 + maxSp / 2)) + totalPow * 7) * (baseLevel / 100);
+        }
       },
     },
   ];

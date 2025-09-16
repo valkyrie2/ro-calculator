@@ -52,6 +52,16 @@ export const JobBuffs: ActiveSkillModel[] = [
     ],
   },
   {
+    name: "Odin's Power",
+    label: "Odin's Power",
+    inputType: 'dropdown',
+    dropdown: [
+      { label: '-', isUse: false, value: 0 },
+      { label: 'Lv 1', isUse: true, value: 1, bonus: { atk: 70, matk: 70, def: -20, mdef: -20 } },
+      { label: 'Lv 2', isUse: true, value: 2, bonus: { atk: 100, matk: 100, def: -40, mdef: -40 } },
+    ],
+  },
+  {
     name: 'Competentia',
     label: '[บิC4] Competentia',
     inputType: 'selectButton',
@@ -161,6 +171,17 @@ export const JobBuffs: ActiveSkillModel[] = [
     ],
   },
   {
+    label: 'Magnum Break',
+    name: 'Magnum Break',
+    inputType: 'dropdown',
+    dropdown: [
+      { label: '-', value: 0, isUse: false },
+      { label: 'Active', value: 1, isUse: true, bonus: { magnumBreakPsedoBonus: 1 } },
+      { label: 'Clear EDP', value: 2, isUse: true, bonus: { magnumBreakClearEDP: 1 } },
+    ],
+  },
+  ShieldSpellFn(),
+  {
     name: 'Soul',
     label: 'Soul 5',
     inputType: 'dropdown',
@@ -172,91 +193,32 @@ export const JobBuffs: ActiveSkillModel[] = [
     ],
   },
   {
-    name: "Odin's Power",
-    label: "Odin's Power",
-    inputType: 'dropdown',
-    dropdown: [
-      { label: '-', isUse: false, value: 0 },
-      { label: 'Lv 1', isUse: true, value: 1, bonus: { atk: 70, matk: 70, def: -20, mdef: -20 } },
-      { label: 'Lv 2', isUse: true, value: 2, bonus: { atk: 100, matk: 100, def: -40, mdef: -40 } },
-    ],
-  },
-  {
-    name: 'Comet Amp',
-    label: 'Comet Amp',
+    name: '_Talisman_pAtk_sMatk',
+    label: 'Talisman Buff 5',
     inputType: 'selectButton',
-    isDebuff: true,
     dropdown: [
-      { label: 'Yes', isUse: true, value: 1, bonus: { comet: 50 } },
+      { label: 'Yes', isUse: true, value: 5, bonus: { sMatk: 10, pAtk: 10 } },
       { label: 'No', isUse: false, value: 0 },
     ],
   },
   {
-    label: 'Magnum Break',
-    name: 'Magnum Break',
-    inputType: 'dropdown',
-    dropdown: [
-      { label: '-', value: 0, isUse: false },
-      { label: 'Active', value: 1, isUse: true, bonus: { magnumBreakPsedoBonus: 1 } },
-      { label: 'Clear EDP', value: 2, isUse: true, bonus: { magnumBreakClearEDP: 1 } },
-    ],
-  },
-  {
-    label: 'Bunch of Shrimp',
-    name: 'Bunch of Shrimp',
+    name: 'Talisman of Five Elements',
+    label: 'Talisman Five Ele 5',
     inputType: 'selectButton',
     dropdown: [
-      { label: 'Yes', isUse: true, value: 1, bonus: { atkPercent: 10, matkPercent: 10 } },
+	  { label: 'Yes', isUse: true, value: 5, bonus: { m_element_water: 20, m_element_fire: 20, m_element_wind: 20, m_element_earth: 20, m_element_neutral: 20, p_element_water: 20, p_element_fire: 20, p_element_wind: 20, p_element_earth: 20, p_element_neutral: 20 } },
       { label: 'No', isUse: false, value: 0 },
     ],
   },
   {
-    name: 'Moonlight Serenade',
-    label: 'Moonlight Ser 5',
-    inputType: 'dropdown',
-    dropdown: [
-      { label: '-', isUse: false, value: 0 },
-      { label: 'Job 30', value: 13, isUse: true, bonus: { matk: 46 } },
-      { label: 'Job 40', value: 14, isUse: true, bonus: { matk: 48 } },
-      { label: 'Job 50', value: 15, isUse: true, bonus: { matk: 50 } },
-      { label: 'Job 60', value: 16, isUse: true, bonus: { matk: 52 } },
-      { label: 'Job 70', value: 17, isUse: true, bonus: { matk: 54 } },
-    ],
-  },
-  {
-    name: 'Striking',
-    label: 'Striking 5',
+    name: 'Soul of Heaven and Earth',
+    label: 'Soul of Heaven 10',
     inputType: 'selectButton',
-    isEquipAtk: true,
     dropdown: [
-      { label: 'Yes', isUse: true, value: 20, bonus: { atk: 100, perfectHit: 70 } },
+	  { label: 'Yes', isUse: true, value: 5, bonus: { melee: 25, range: 25, m_my_element_all: 25 } },
       { label: 'No', isUse: false, value: 0 },
     ],
   },
-  {
-    name: 'Raid',
-    label: 'Raid',
-    inputType: 'selectButton',
-    isDebuff: true,
-    dropdown: [
-      { label: 'Yes', isUse: true, value: 1, bonus: { raid: 1 } },
-      { label: 'No', isUse: false, value: 0 },
-    ],
-  },
-  DarkClawFn(),
-  {
-    name: 'Debuff_Spore Explosion',
-    label: 'Spore Explosion',
-    inputType: 'selectButton',
-    isDebuff: true,
-    dropdown: [
-      { label: 'Yes', isUse: true, value: 1, bonus: { sporeExplosion: 10 } },
-      { label: 'No', isUse: false, value: 0 },
-    ],
-  },
-  ShieldSpellFn(),
-  BragisPoemFn(),
-  SwingDanceFn(),
   {
     name: 'Mystical Amplification',
     label: 'Mystical Amp 10',
@@ -273,6 +235,40 @@ export const JobBuffs: ActiveSkillModel[] = [
     dropdown: [
       { label: 'Yes', isUse: true, value: 5, bonus: { sMatk: 5 * 4 } },
       { label: 'No', isUse: false, value: 0 },
+    ],
+  },
+  {
+    name: 'Striking',
+    label: 'Striking 5',
+    inputType: 'selectButton',
+    isEquipAtk: true,
+    dropdown: [
+      { label: 'Yes', isUse: true, value: 20, bonus: { atk: 100, perfectHit: 70 } },
+      { label: 'No', isUse: false, value: 0 },
+    ],
+  },
+  {
+    label: 'Bunch of Shrimp',
+    name: 'Bunch of Shrimp',
+    inputType: 'selectButton',
+    dropdown: [
+      { label: 'Yes', isUse: true, value: 1, bonus: { atkPercent: 10, matkPercent: 10 } },
+      { label: 'No', isUse: false, value: 0 },
+    ],
+  },
+  BragisPoemFn(),
+  SwingDanceFn(),
+  {
+    name: 'Moonlight Serenade',
+    label: 'Moonlight Ser 5',
+    inputType: 'dropdown',
+    dropdown: [
+      { label: '-', isUse: false, value: 0 },
+      { label: 'Job 30', value: 13, isUse: true, bonus: { matk: 46 } },
+      { label: 'Job 40', value: 14, isUse: true, bonus: { matk: 48 } },
+      { label: 'Job 50', value: 15, isUse: true, bonus: { matk: 50 } },
+      { label: 'Job 60', value: 16, isUse: true, bonus: { matk: 52 } },
+      { label: 'Job 70', value: 17, isUse: true, bonus: { matk: 54 } },
     ],
   },
   // {
@@ -325,14 +321,34 @@ export const JobBuffs: ActiveSkillModel[] = [
       { label: '+ 22', isUse: true, value: 6, bonus: { sMatk: 22, pAtk: 22 } },
     ],
   },
-
   {
-    name: '_Trouvere_Troubadour_ignore_res_mres',
-    label: 'Res/MRes -100',
+    name: 'Comet Amp',
+    label: 'Comet Amp',
     inputType: 'selectButton',
     isDebuff: true,
     dropdown: [
-      { label: 'Yes', isUse: true, value: 10, bonus: { monster_res: -10 * 10, monster_mres: -10 * 10 } },
+      { label: 'Yes', isUse: true, value: 1, bonus: { comet: 50 } },
+      { label: 'No', isUse: false, value: 0 },
+    ],
+  },
+  {
+    name: 'Raid',
+    label: 'Raid',
+    inputType: 'selectButton',
+    isDebuff: true,
+    dropdown: [
+      { label: 'Yes', isUse: true, value: 1, bonus: { raid: 1 } },
+      { label: 'No', isUse: false, value: 0 },
+    ],
+  },
+  DarkClawFn(),
+  {
+    name: 'Debuff_Spore Explosion',
+    label: 'Spore Explosion',
+    inputType: 'selectButton',
+    isDebuff: true,
+    dropdown: [
+      { label: 'Yes', isUse: true, value: 1, bonus: { sporeExplosion: 10 } },
       { label: 'No', isUse: false, value: 0 },
     ],
   },
@@ -379,6 +395,16 @@ export const JobBuffs: ActiveSkillModel[] = [
 	  { label: '-', value: 0, isUse: false },
       { label: '10%', isUse: true, value: 1, bonus: { comet: 10 } },
       { label: '20%', isUse: true, value: 2, bonus: { comet: 20 } },
+    ],
+  },
+  {
+    name: '_Trouvere_Troubadour_ignore_res_mres',
+    label: 'Res/MRes -100',
+    inputType: 'selectButton',
+    isDebuff: true,
+    dropdown: [
+      { label: 'Yes', isUse: true, value: 10, bonus: { monster_res: -10 * 10, monster_mres: -10 * 10 } },
+      { label: 'No', isUse: false, value: 0 },
     ],
   },
   {
