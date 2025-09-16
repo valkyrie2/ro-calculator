@@ -14626,5 +14626,58 @@
       "scaleName": "Large",
       "raceName": "DemiHuman"
     }
+  },
+  "21525": {
+    "id": 21525,
+    "dbname": "EP19_ICE_GANGU",
+    "name": "Ice Gangu",
+    "spawn": "jor_tail",
+    "stats": {
+      "attackRange": 1,
+      "level": 208,
+      "health": 7285680,
+      "sp": 0,
+      "str": 82,
+      "int": 69,
+      "vit": 54,
+      "dex": 87,
+      "agi": 96,
+      "luk": 84,
+      "rechargeTime": 288,
+      "atk1": 5854,
+      "atk2": 1158,
+      "attack": {
+        "minimum": 4973,
+        "maximum": 7314
+      },
+      "magicAttack": {
+        "minimum": 1087,
+        "maximum": 1782
+      },
+      "defense": 170,
+      "baseExperience": 269913,
+      "jobExperience": 195432,
+      "aggroRange": 10,
+      "escapeRange": 12,
+      "movementSpeed": 100,
+      "attackSpeed": 576,
+      "attackedSpeed": 180,
+      "element": 21,
+      "scale": 0,
+      "race": 4,
+      "magicDefense": 84,
+      "hit": 504,
+      "flee": 465,
+      "ai": "",
+      "mvp": 0,
+      "class": 0,
+      "attr": 0,
+      "res": 104,
+      "mres": 78,
+      "elementName": "Water 1",
+      "elementShortName": "Water",
+      "scaleName": "Small",
+      "raceName": "Insect"
+    }
   }
 }
