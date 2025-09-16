@@ -213,7 +213,7 @@ export class AppTopBarComponent implements OnInit, OnDestroy {
 		"Windhawk: Crescive Bolt, Gale Storm",
 		"Dragon Knight: Dragonic Breath",
 		"Biolo: Mayhemic Thorn",
-		"Inquisitor: Third Flame Bomb, Explosion Blaster",
+		"Inquisitor: Third Flame Bomb, Explosion Blaster, Blazing Flame Blast",
       ],
     },
 	{
