@@ -222,6 +222,7 @@ export class RuneKnight extends LordKnight {
       vct: 2,
       cd: 0,
       isHit100: true,
+      phyHit: false,
       currentHpFn: (maxHp) => this.getCurrentHp(maxHp),
       getElement: () => {
         if (this.isSkillActive('Lux Anima Runestone')) {
@@ -249,6 +250,7 @@ export class RuneKnight extends LordKnight {
       vct: 2,
       cd: 0,
       isHit100: true,
+      phyHit: false,
       currentHpFn: (maxHp) => this.getCurrentHp(maxHp),
       getElement: () => {
         if (this.isSkillActive('Lux Anima Runestone')) {

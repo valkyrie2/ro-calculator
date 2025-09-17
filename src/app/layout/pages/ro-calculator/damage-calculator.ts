@@ -21,6 +21,7 @@ interface DamageResultModel {
   sizePenalty: number;
   canCri: boolean;
   criDmgToMonster: number;
+  phyHit: boolean;
 }
 
 export class DamageCalculator {
@@ -59,6 +60,7 @@ export class DamageCalculator {
     isAutoSpell: false,
     skillSizePenalty: 0,
     skillCanCri: false,
+    skillPhyHit: false,
     skillPropertyAtk: ElementType.Neutral,
     skillPropertyMultiplier: 0,
     skillTotalPene: 0,
@@ -835,6 +837,7 @@ export class DamageCalculator {
       name: skillName,
       element,
       canCri: canCriFn,
+      phyHit: phyHitFn,
       isMelee: _isMelee,
       isHDefToSDef = false,
       isIgnoreDef = false,
@@ -848,11 +851,12 @@ export class DamageCalculator {
     const { criDmgPercentage = 1 } = skillData;
     const _canCri = typeof canCriFn === 'function' ? canCriFn(formulaParams) : canCriFn;
     const canCri = this.isForceSkillCri || _canCri || forceCri;
+    const { phyHit = true } = skillData;
     const { reducedHardDef, finalDmgReduction, finalSoftDef, resReduction } = this.getPhisicalDefData();
     const hardDef = isIgnoreDef || isHDefToSDef ? 1 : finalDmgReduction;
     const softDef = isIgnoreSDef ? 0 : finalSoftDef + (isHDefToSDef ? reducedHardDef : 0);
 
-    const { range, melee, criDmg } = this.totalBonus;
+    const { range, melee, criDmg, hitDmg } = this.totalBonus;
     const isMelee = _isMelee != null && typeof _isMelee === 'function' ? _isMelee(this.weaponData.data.typeName) : !!_isMelee;
     const ranged = isMelee ? melee : range;
     const rangedMultiplier = this.toPercent(ranged + 100);
@@ -860,6 +864,7 @@ export class DamageCalculator {
     const equipSkillMultiplier = this.toPercent(100 + this.getSkillBonus(skillName));
     const criDmgToMonster = floor(criDmg * criDmgPercentage || 0);
     const criMultiplier = canCri ? this.toPercent(criDmgToMonster + 100) : 1;
+    const phyHitMultiplier = phyHit ? this.toPercent(hitDmg + 100) : 1;
 
     const dmgType = isMelee ? SkillType.MELEE : SkillType.RANGE;
     const advKatar = 100 + this.getAdvanceKatar();
@@ -867,9 +872,10 @@ export class DamageCalculator {
     const finalDmgMultipliers = [advKatar].map((b) => this.toPercent(b));
     const infoForClass = this.infoForClass;
 
-    const skillFormula = (_totalAtk: number, _calcCri: boolean) => {
+    const skillFormula = (_totalAtk: number, _calcCri: boolean, _phyHit: boolean) => {
       let total = this._class.modifyFinalAtk(_totalAtk, infoForClass);
       if (_calcCri) total = floor(total * criMultiplier); // tested
+      else if (_phyHit) total = floor(total * phyHitMultiplier);
       total = floor(total * rangedMultiplier); // tested
       total = floor(total * baseSkillMultiplier); // tested
       total = floor(total * equipSkillMultiplier);
@@ -902,24 +908,25 @@ export class DamageCalculator {
     });
 
     const extraDmg = this._class.getAdditionalDmg(infoForClass);
+    const extraDmgPhyHit = phyHit ? floor(extraDmg * phyHitMultiplier) : extraDmg;
     const extraDmgCri = canCri ? floor(extraDmg * criMultiplier) : extraDmg;
 
-    const rawMaxDamage = skillFormula(totalMaxOver, canCri) + extraDmgCri;
+    const rawMaxDamage = skillFormula(totalMaxOver, canCri, phyHit) + extraDmgPhyHit + extraDmgCri;
     const maxDamage = this._class.calcSkillDmgByTotalHit({
       info: this.infoForClass,
       finalDamage: rawMaxDamage,
       skill: skillData,
     });
 
-    const rawMinDamage = canCri ? skillFormula(totalMax, canCri) : skillFormula(totalMin, canCri);
+    const rawMinDamage = canCri ? skillFormula(totalMax, canCri, phyHit) : skillFormula(totalMin, canCri, phyHit);
     const minDamage = this._class.calcSkillDmgByTotalHit({
       info: this.infoForClass,
-      finalDamage: rawMinDamage + extraDmgCri,
+      finalDamage: rawMinDamage + extraDmgPhyHit + extraDmgCri,
       skill: skillData,
     });
 
-    const rawMinNoCri = canCri ? skillFormula(totalMin, false) + extraDmgCri : 0;
-    const rawMaxNoCri = canCri ? skillFormula(totalMaxOver, false) + extraDmgCri : 0;
+    const rawMinNoCri = canCri ? skillFormula(totalMin, false, phyHit) +  extraDmgCri : 0;
+    const rawMaxNoCri = canCri ? skillFormula(totalMaxOver, false, phyHit) + extraDmgCri : 0;
 
     return {
       minDamage,
@@ -933,6 +940,7 @@ export class DamageCalculator {
       sizePenalty,
       canCri,
       criDmgToMonster,
+      phyHit,
     };
   }
 
@@ -1070,6 +1078,7 @@ export class DamageCalculator {
       sizePenalty: 1,
       canCri: false,
       criDmgToMonster: 0,
+      phyHit: true,
     };
   }
 
@@ -1289,6 +1298,7 @@ export class DamageCalculator {
       });
       calculated = {
         canCri: false,
+        phyHit: true,
         minDamage: d,
         maxDamage: d,
         rawMinNoCri: d,
@@ -1397,6 +1407,7 @@ export class DamageCalculator {
       skillPropertyAtk: calculated.propertyAtk,
       skillPropertyMultiplier: calculated.propertyMultiplier,
       skillCanCri: calculated.canCri,
+      skillPhyHit: calculated.phyHit,
       skillTotalPene: isIgnoreDef ? 100 : totalPene,
       skillTotalPeneLabel: isMatk ? 'เจาะเวท' : 'เจาะกาย',
       skillTotalPeneRes: isMatk ? Math.min(totalPeneMres, 50) : Math.min(totalPeneRes, 50),

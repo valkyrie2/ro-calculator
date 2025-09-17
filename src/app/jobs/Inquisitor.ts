@@ -291,6 +291,7 @@ export class Inquisitor extends Sura {
       cd: 1,
       totalHit: 3,
       isMelee: true,
+      phyHit: false,
       formula: (input: AtkSkillFormulaInput): number => {
         const { model, skillLevel, status, maxHp } = input;
         const { totalPow } = status;

@@ -65,6 +65,7 @@ export interface EquipmentSummaryModel {
   fctPercent: number;
   cri: number;
   criDmg: number;
+  hitDmg: number;
   perfectHit: number;
   hit: number;
   flee: number;

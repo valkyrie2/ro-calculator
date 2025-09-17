@@ -270,6 +270,7 @@ export class DragonKnight extends RuneKnight {
       hit: 2,
       isIgnoreDef: true,
       isIgnoreSDef: true,
+      phyHit: false,
       formula: (input: AtkSkillFormulaInput): number => {
         const { model, skillLevel, status, maxHp, maxSp } = input;
         const { totalPow } = status;

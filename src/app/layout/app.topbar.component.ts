@@ -211,6 +211,7 @@ export class AppTopBarComponent implements OnInit, OnDestroy {
       logs: [
         "Update GGT official item",
 		"Add Mob Scarf-LT enchant",
+		"KRO: Add new Hit physical bonus",
       ],
     },
 	{

@@ -225,6 +225,7 @@ export class Sura extends Champion {
       acd: 1,
       cd: 3,
       isMelee: true,
+      phyHit: false,
       formula: (input: AtkSkillFormulaInput): number => {
         const { model, skillLevel, maxHp, maxSp, monster } = input;
         if (monster.isElement(ElementType.Ghost)) return 0;

@@ -33,6 +33,7 @@ export interface SkillDamageSummaryModel {
   isAutoSpell: boolean;
   skillSizePenalty: number;
   skillCanCri: boolean;
+  skillPhyHit: boolean;
   skillPropertyAtk: ElementType;
   skillPropertyMultiplier: number;
   skillTotalPene: number;
