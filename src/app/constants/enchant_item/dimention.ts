@@ -31,6 +31,12 @@ export const dimensionHead3 = [
   "T_D_Jewel_WIS_1",
   "T_D_Jewel_WIS_2",
   "T_D_Jewel_WIS_3",
+  "T_D_Jewel_POW_1",
+  "T_D_Jewel_POW_2",
+  "T_D_Jewel_POW_3",
+  "T_D_Jewel_CON_1",
+  "T_D_Jewel_CON_2",
+  "T_D_Jewel_CON_3",
 ]
 export const dimensionHead2 = [
   'Acute_Jewel_3',
@@ -89,6 +95,23 @@ export const dimensionHead2 = [
   'Adamatine_Jewel_8',
   'Adamatine_Jewel_9',
   'Adamatine_Jewel_10',
+  'Fierce_A_Jewel_3',
+  'Fierce_A_Jewel_4',
+  'Fierce_A_Jewel_5',
+  'Fierce_A_Jewel_6',
+  'Fierce_A_Jewel_7',
+  'Fierce_A_Jewel_8',
+  'Fierce_A_Jewel_9',
+  'Fierce_A_Jewel_10',
+  'Great_C_Jewel_3',
+  'Great_C_Jewel_4',
+  'Great_C_Jewel_5',
+  'Great_C_Jewel_6',
+  'Great_C_Jewel_7',
+  'Great_C_Jewel_8',
+  'Great_C_Jewel_8',
+  'Great_C_Jewel_9',
+  'Great_C_Jewel_10',
 ]
 
 export const dimensionWeapon3 = [
