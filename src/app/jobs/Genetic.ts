@@ -218,6 +218,10 @@ export class Genetic extends Creator {
         { label: 'Lv 180', value: 180, isUse: true, bonus: { atk: 100 + 180 } },
         { label: 'Lv 190', value: 190, isUse: true, bonus: { atk: 100 + 190 } },
         { label: 'Lv 200', value: 200, isUse: true, bonus: { atk: 100 + 200 } },
+        { label: 'Lv 240', value: 240, isUse: true, bonus: { atk: 100 + 240 } },
+        { label: 'Lv 250', value: 250, isUse: true, bonus: { atk: 100 + 250 } },
+        { label: 'Lv 260', value: 260, isUse: true, bonus: { atk: 100 + 260 } },
+        { label: 'Lv 275', value: 275, isUse: true, bonus: { atk: 100 + 275 } },
       ],
     },
   ];

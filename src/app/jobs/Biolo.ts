@@ -240,6 +240,15 @@ export class Biolo extends Genetic {
         { label: 'No', value: 0, isUse: false },
       ],
     },
+    {
+      name: 'Tempering',
+      label: 'Tempering',
+      inputType: 'selectButton',
+      dropdown: [
+        { label: 'Yes', value: 1, isUse: true, bonus: { pAtk: 15 } },
+        { label: 'No', value: 0, isUse: false },
+      ],
+    },
   ];
   private readonly passiveSkillList4th: PassiveSkillModel[] = [
     {

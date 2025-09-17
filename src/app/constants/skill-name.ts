@@ -308,6 +308,7 @@ const ACTIVE_PASSIVE_SKILL_NAMES = [
   'Gale Storm',
   'Wind Sign',
   'Lunatic Carrot Beat',
+  'Tempering',
 ] as const;
 
 export const OFFENSIVE_SKILL_NAMES = [
