@@ -304,14 +304,14 @@ export class ArchMage extends Warlock {
           const directDmg = floor((skillLevel * 300 + totalSpl * 3) * (baseLevel / 100));
           const bomDmg = floor((skillLevel * (600 + blimaxBonus) + totalSpl * 5) * (baseLevel / 100));
 
-		  return directDmg + bomDmg;
+          return directDmg + bomDmg;
         }
         else {
           const blimaxBonus = this.isSkillActive('Climax') ? 750 : 0;
           const directDmg = floor((skillLevel * 400 + totalSpl * 3) * (baseLevel / 100));
           const bomDmg = floor((skillLevel * (750 + blimaxBonus) + totalSpl * 5) * (baseLevel / 100));
 
-		  return directDmg + bomDmg;
+          return directDmg + bomDmg;
         }
       },
     },
@@ -452,6 +452,47 @@ export class ArchMage extends Warlock {
         //const climaxBonus = this.activeSkillLv('Climax') === 3 ? 200 : 0;
 
         return (200 + skillLevel * 1200 + totalSpl * 5) * (baseLevel / 100);
+      },
+    },
+    {
+      name: 'Crystal Impact',
+      label: '[V3] Crystal Impact Lv5',
+      value: 'Crystal Impact==5',
+      acd: 0.5,
+      fct: 1.5,
+      vct: 4,
+      cd: 2,
+      totalHit: () => {
+        if (this.activeSkillLv('Climax') === 2) {
+          return 2;
+        } else {
+          return 1;
+        }
+      },
+      isMatk: true,
+      element: ElementType.Water,
+      formula: (input: AtkSkillFormulaInput): number => {
+        const { model, skillLevel, status } = input;
+        const { totalSpl } = status;
+        const { level: baseLevel } = model;
+
+        const blimaxBonus = this.isSkillActive('Climax') ? 600 : 0;
+        if (this.activeSkillLv('Climax') === 3) {
+          const directDmg = floor(((250 + (skillLevel * 1300 + totalSpl * 5)) * (baseLevel / 100)) * 150 / 100);
+          const bomDmg = floor((250 + (skillLevel * 1300 + totalSpl * 5)) * (baseLevel / 100));
+          return directDmg + bomDmg;
+        } else if (this.activeSkillLv('Climax') === 4) {
+          const directDmg = floor(((250 + (skillLevel * 1300 + totalSpl * 5)) * (baseLevel / 100)) * 50 / 100);
+          const bomDmg = floor(((250 + (skillLevel * 1300 + totalSpl * 5)) * (baseLevel / 100)) * 250 / 100);
+          return directDmg + bomDmg;
+        } else if (this.activeSkillLv('Climax') === 1) {
+          return 0;
+        }
+        else {
+          const directDmg = floor((250 + (skillLevel * 1300 + totalSpl * 5)) * (baseLevel / 100));
+          const bomDmg = floor((250 + (skillLevel * 1300 + totalSpl * 5)) * (baseLevel / 100));
+          return directDmg + bomDmg;
+        }
       },
     },
     // {

@@ -177,7 +177,7 @@ export class Windhawk extends Ranger {
       cd: () => {
         if (this.isSkillActive('GGT Skill')) return 0.15;
 
-        return 0.5;
+        return 0.35;
       },
       maxStack: 3,
       canCri: true,

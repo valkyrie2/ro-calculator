@@ -639,6 +639,7 @@ export const OFFENSIVE_SKILL_NAMES = [
   "Hyunrok Breeze",
   "Hyunrok Cannon",
   "Jack Frost Nova",
+  "Jack Frost Nova Type",
   "Jupitel Thunderstorm",
   "Kunai - Distortion",
   "Kunai - Refraction",
