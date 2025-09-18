@@ -206,6 +206,13 @@ export class AppTopBarComponent implements OnInit, OnDestroy {
 
   updates: { v: string; date: string; logs: string[]; }[] = [
     {
+      v: 'Extra 1.0.8',
+      date: '18-09-2568',
+      logs: [
+        "Add Jack Frost Nova, Crystal Impact skill",
+      ],
+    },
+	{
       v: 'Extra 1.0.7',
       date: '18-09-2568',
       logs: [
