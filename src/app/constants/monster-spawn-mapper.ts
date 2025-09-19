@@ -42,7 +42,6 @@ const Mapper = {
   ba_pw03: 'Magic Power Plant 2',
   ba_lost: '150 - 160 Farm Lost Valley',
   ch1_gfn03: 'Encroached Geffenia',
-  ch1_gfn03: 'Encroached Geffenia',
   bl_grass: 'Biosphere - Grass',
   bl_lava: 'Biosphere - Inferno',
   bl_ice: 'Biosphere - Frost',
