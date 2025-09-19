@@ -177,6 +177,10 @@ export class HyperNovice extends SuperNovice {
         const baseLevel = model.level;
         const skillBonusLv = this.learnLv('Self Study Tactics');
 
+        if (this.isSkillActive('Breaking Limit')) {
+          return (150 + skillLevel * (250 + skillBonusLv * 3) + totalPow * 2) * (baseLevel / 100) * 150 / 100;
+        }
+
         return (150 + skillLevel * (250 + skillBonusLv * 3) + totalPow * 2) * (baseLevel / 100);
       },
     },
@@ -199,6 +203,9 @@ export class HyperNovice extends SuperNovice {
         const baseLevel = model.level;
         const skillBonusLv = this.learnLv('Self Study Tactics');
 
+        if (this.isSkillActive('Breaking Limit'))
+          return (850 + skillLevel * (450 + skillBonusLv * 5) + totalPow * 4) * (baseLevel / 100) * 170 / 100;
+
         return (850 + skillLevel * (450 + skillBonusLv * 5) + totalPow * 4) * (baseLevel / 100);
       },
     },
@@ -217,6 +224,9 @@ export class HyperNovice extends SuperNovice {
         const { totalPow } = status;
         const baseLevel = model.level;
         const skillBonusLv = this.learnLv('Self Study Tactics');
+
+        if (this.isSkillActive('Breaking Limit'))
+          return (600 + skillLevel * (450 + skillBonusLv * 3) + totalPow * 3) * (baseLevel / 100) * 150 / 100;
 
         return (600 + skillLevel * (450 + skillBonusLv * 3) + totalPow * 3) * (baseLevel / 100);
       },
@@ -243,6 +253,9 @@ export class HyperNovice extends SuperNovice {
         };
         const sizeModifier = sizeMap[monster.size];
 
+        if (this.isSkillActive('Breaking Limit'))
+          return (550 + skillLevel * (350 + skillBonusLv * 3) * sizeModifier + totalPow * 3) * (baseLevel / 100) * 170 / 100;
+
         return (550 + skillLevel * (350 + skillBonusLv * 3) * sizeModifier + totalPow * 3) * (baseLevel / 100);
       },
     },
@@ -263,6 +276,9 @@ export class HyperNovice extends SuperNovice {
         const baseLevel = model.level;
         const skillBonusLv = this.learnLv('Self Study Sorcery');
 
+        if (this.isSkillActive('Rule Break'))
+          return (350 + skillLevel * (650 + skillBonusLv * 4) + totalSpl * 3) * (baseLevel / 100) * 140 / 100;
+
         return (350 + skillLevel * (650 + skillBonusLv * 4) + totalSpl * 3) * (baseLevel / 100);
       },
     },
@@ -281,6 +297,9 @@ export class HyperNovice extends SuperNovice {
         const { totalSpl } = status;
         const baseLevel = model.level;
         const skillBonusLv = this.learnLv('Self Study Sorcery');
+
+        if (this.isSkillActive('Rule Break'))
+          return (skillLevel * (1800 + skillBonusLv * 3) + totalSpl * 3) * baseLevel / 100 * 170 / 100;
 
         return (skillLevel * (1800 + skillBonusLv * 3) + totalSpl * 3) * baseLevel / 100;
       },
@@ -309,8 +328,16 @@ export class HyperNovice extends SuperNovice {
         const skillBonusLv = this.learnLv('Self Study Sorcery');
 
         if (this.activeSkillLv('Jack Frost Nova Type')===1) {
+
+          if (this.isSkillActive('Rule Break'))
+            return (skillLevel * (200 + skillBonusLv * 3) + totalSpl * 2) * (baseLevel / 100) * 170 / 100;
+
           return (skillLevel * (200 + skillBonusLv * 3) + totalSpl * 2) * (baseLevel / 100);
         } else {
+
+          if (this.isSkillActive('Rule Break'))
+            return (400 + skillLevel * (500 + skillBonusLv * 3) + totalSpl * 2) * (baseLevel / 100) * 170 / 100;
+
           return (400 + skillLevel * (500 + skillBonusLv * 3) + totalSpl * 2) * (baseLevel / 100);
         }
       },
@@ -332,6 +359,9 @@ export class HyperNovice extends SuperNovice {
         const baseLevel = model.level;
         const skillBonusLv = this.learnLv('Self Study Sorcery');
 
+        if (this.isSkillActive('Rule Break'))
+          return (1500 + skillLevel * (700 + skillBonusLv * 4) + totalSpl * 3) * (baseLevel / 100) * 170 / 100;
+
         return (1500 + skillLevel * (700 + skillBonusLv * 4) + totalSpl * 3) * (baseLevel / 100);
       },
     },
@@ -344,6 +374,24 @@ export class HyperNovice extends SuperNovice {
       dropdown: [
         { label: 'ระเบิด', value: 1, isUse: true },
         { label: 'บ่อ', value: 0, isUse: false },
+      ],
+    },
+    {
+      name: 'Breaking Limit',
+      label: 'Breaking Limit',
+      inputType: 'selectButton',
+      dropdown: [
+        { label: 'Yes', value: 1, isUse: true },
+        { label: 'No', value: 0, isUse: false },
+      ],
+    },
+    {
+      name: 'Rule Break',
+      label: 'Rule Break',
+      inputType: 'selectButton',
+      dropdown: [
+        { label: 'Yes', value: 1, isUse: true },
+        { label: 'No', value: 0, isUse: false },
       ],
     },
   ];

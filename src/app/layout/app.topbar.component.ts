@@ -206,11 +206,20 @@ export class AppTopBarComponent implements OnInit, OnDestroy {
 
   updates: { v: string; date: string; logs: string[]; }[] = [
     {
+      v: 'Extra 1.0.10',
+      date: '19-09-2568',
+      logs: [
+        "Fix Jupitel Thunderstorm formula",
+        "Add Auto Guard skill to Super novice, Hyper novice",
+        "Add Rule Break / Breaking Limit buff",
+        "Fix Poenitentia Ring (Hyper Novice) Jack Frost Nova cooldown."
+      ],
+    },
+    {
       v: 'Extra 1.0.9',
       date: '19-09-2568',
       logs: [
         "Add monster Varmund Biosphere, Biosphere Deep F1, Biosphere Deep Abyss, Oz Dungeon F1-2",
-        "Fix Jupitel Thunderstorm formula",
       ],
     },
     {
