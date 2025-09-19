@@ -274,7 +274,6 @@ export class HyperNovice extends SuperNovice {
       fct: 1,
       vct: 2,
       cd: 1.8,
-      totalHit: 10,
       isMatk: true,
       element: ElementType.Wind,
       formula: (input: AtkSkillFormulaInput): number => {
@@ -283,7 +282,7 @@ export class HyperNovice extends SuperNovice {
         const baseLevel = model.level;
         const skillBonusLv = this.learnLv('Self Study Sorcery');
 
-        return (skillLevel * (1600 + skillBonusLv * 3) + totalSpl * 3) * (baseLevel / 100);
+        return (skillLevel * (1800 + skillBonusLv * 3) + totalSpl * 3) * baseLevel / 100;
       },
     },
     {
