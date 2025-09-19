@@ -210,6 +210,7 @@ export class AppTopBarComponent implements OnInit, OnDestroy {
       date: '19-09-2568',
       logs: [
         "Add monster Varmund Biosphere, Biosphere Deep F1, Biosphere Deep Abyss, Oz Dungeon F1-2",
+        "Fix Jupitel Thunderstorm formula",
       ],
     },
     {
