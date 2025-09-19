@@ -1709,6 +1709,7 @@ export const EnchantTable: EntTable[] = [
   { name: 'Entwined_Shoes', enchants: [null, ch1Boot2, ch1Boot3, ch1Boot4] },
   { name: 'Entwined_Manteau', enchants: [null, ch1Garment2, ch1Garment3, ch1Garment4] },
   { name: 'Entwined_Muffler', enchants: [null, ch1Garment2, ch1Garment3, ch1Garment4] },
+
   { name: 'Dimension_B_Greave', enchants: [null, ch1DimenBoot2, ch1DimenBoot3, ch1DimenBoot4] },
   { name: 'Dimension_H_Boots', enchants: [null, ch1DimenBoot2, ch1DimenBoot3, ch1DimenBoot4] },
   { name: 'Dimension_S_Shoes', enchants: [null, ch1DimenBoot2, ch1DimenBoot3, ch1DimenBoot4] },
