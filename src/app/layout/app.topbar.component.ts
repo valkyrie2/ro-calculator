@@ -206,13 +206,20 @@ export class AppTopBarComponent implements OnInit, OnDestroy {
 
   updates: { v: string; date: string; logs: string[]; }[] = [
     {
+      v: 'Extra 1.0.9',
+      date: '19-09-2568',
+      logs: [
+        "Add monster Varmund Biosphere, Biosphere Deep F1, Biosphere Deep Abyss, Oz Dungeon F1-2",
+      ],
+    },
+    {
       v: 'Extra 1.0.8',
       date: '18-09-2568',
       logs: [
         "Add Jack Frost Nova, Crystal Impact skill",
       ],
     },
-	{
+    {
       v: 'Extra 1.0.7',
       date: '18-09-2568',
       logs: [
@@ -226,29 +233,29 @@ export class AppTopBarComponent implements OnInit, OnDestroy {
       date: '17-09-2568',
       logs: [
         "Update GGT official item",
-		"Add Mob Scarf-LT enchant",
-		"KRO: Add new Hit physical bonus",
+        "Add Mob Scarf-LT enchant",
+        "KRO: Add new Hit physical bonus",
       ],
     },
-	{
+    {
       v: 'Extra 1.0.5',
       date: '15-09-2568',
       logs: [
         "Add Skill KRO version",
-		"Windhawk: Crescive Bolt, Gale Storm",
-		"Dragon Knight: Dragonic Breath",
-		"Biolo: Mayhemic Thorn",
-		"Inquisitor: Third Flame Bomb, Explosion Blaster, Blazing Flame Blast",
+        "Windhawk: Crescive Bolt, Gale Storm",
+        "Dragon Knight: Dragonic Breath",
+        "Biolo: Mayhemic Thorn",
+        "Inquisitor: Third Flame Bomb, Explosion Blaster, Blazing Flame Blast",
       ],
     },
-	{
+    {
       v: 'Extra 1.0.4',
       date: '14-09-2568',
       logs: [
         "Add Soul Ascetic buff.",
       ],
     },
-	{
+    {
       v: 'Extra 1.0.3',
       date: '13-09-2568',
       logs: [
@@ -256,7 +263,7 @@ export class AppTopBarComponent implements OnInit, OnDestroy {
         "Add Razer Energy Coffee Drink",
       ],
     },
-	{
+    {
       v: 'Extra 1.0.2',
       date: '12-09-2568',
       logs: [
@@ -266,19 +273,19 @@ export class AppTopBarComponent implements OnInit, OnDestroy {
         "Add Rose Blossom skill to Troubadour/Trouvere",
       ],
     },
-	{
+    {
       v: 'Extra 1.0.1',
       date: '10-09-2568',
       logs: [
         "GGT Update Nebula shadow + enchant",
       ],
     },
-	{
+    {
       v: 'Extra 1.0',
       date: '09-09-2568',
       logs: [
         "KRO Skill version > Cardinal, Shinkiro-Shiranui, Archmage, EM, Shadowcross, Imperial Guard, Troubadour-vere, Soul Ascetic",
-		"GGT Skill version option",
+        "GGT Skill version option",
         "Add 4th Skill Shadow",
         "Add Gambler Seal KRO, Ace card in mouth",
         "ep21 Buff, Juno Library Event Buff, Speed booster potion",
@@ -288,7 +295,7 @@ export class AppTopBarComponent implements OnInit, OnDestroy {
         "GGT White Knight Manteau-LT",
       ],
     },
-	{
+    {
       v: 'V3.2.13',
       date: '21-08-2568',
       logs: [
