@@ -42,6 +42,18 @@ const Mapper = {
   ba_pw03: 'Magic Power Plant 2',
   ba_lost: '150 - 160 Farm Lost Valley',
   ch1_gfn03: 'Encroached Geffenia',
+  ch1_gfn03: 'Encroached Geffenia',
+  bl_grass: 'Biosphere - Grass',
+  bl_lava: 'Biosphere - Inferno',
+  bl_ice: 'Biosphere - Frost',
+  bl_death: 'Biosphere - Death',
+  bl_soul: 'Biosphere - Soul',
+  bl_venom: 'Biosphere - Venom',
+  bl_temple: 'Biosphere - temple',
+  oz_dun01: 'Oz Labyrinth 1F',
+  oz_dun02: 'Oz Labyrinth 2F',
+  bl_depth1: 'Biosphere Depth 1st Floor',
+  bl_depth2: 'Biosphere Depth Abyss',
 } as const;
 
 export const MonsterGroupNames = [...new Set(Object.values(Mapper))].sort((a, b) => (a > b ? 1 : -1));
