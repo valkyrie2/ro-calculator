@@ -364,6 +364,28 @@ export class ElementalMaster extends Sorcerer {
         }
       },
     },
+    {
+      name: 'Soul Vulcan Strike',
+      label: 'Soul Vulcan Strike 5 (Frontier Crown)',
+      value: 'Soul Vulcan Strike==5',
+      acd: 0.5,
+      fct: 1,
+      vct: 3,
+      cd: 0.7,
+      isMatk: true,
+      element: ElementType.Ghost,
+      totalHit: ({ skillLevel }) => skillLevel + 2,
+      formula: (input: AtkSkillFormulaInput): number => {
+        const { model, skillLevel, status } = input;
+        const { totalSpl } = status;
+        const { level: baseLevel } = model;
+
+        if (this.isSkillActive('GGT Skill'))
+          return (skillLevel * 250 + totalSpl * 3) * (baseLevel / 100);
+        else
+          return (skillLevel * 300 + totalSpl * 3) * (baseLevel / 100);
+      }
+    },
   ];
   private readonly activeSkillList4th: ActiveSkillModel[] = [
     {

@@ -200,6 +200,21 @@ export class Mage extends CharacterBase {
         return 100;
       },
     },
+    {
+      label: 'Soul Strike Lv10',
+      name: 'Soul Strike',
+      value: 'Soul Strike==10',
+      acd: 1.4,
+      fct: 0.1,
+      vct: 0.4,
+      cd: 0,
+      totalHit: 5,
+      isMatk: true,
+      element: ElementType.Ghost,
+      formula: (): number => {
+        return 100;
+      },
+    },
   ];
   protected readonly _activeSkillList: ActiveSkillModel[] = [
 	{
