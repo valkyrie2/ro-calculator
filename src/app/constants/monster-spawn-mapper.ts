@@ -53,6 +53,7 @@ const Mapper = {
   oz_dun02: 'Oz Labyrinth 2F',
   bl_depth1: 'Biosphere Depth 1st Floor',
   bl_depth2: 'Biosphere Depth Abyss',
+  clock_01: 'Clock Tower Unknown Basement',
 } as const;
 
 export const MonsterGroupNames = [...new Set(Object.values(Mapper))].sort((a, b) => (a > b ? 1 : -1));

@@ -206,6 +206,13 @@ export class AppTopBarComponent implements OnInit, OnDestroy {
 
   updates: { v: string; date: string; logs: string[]; }[] = [
     {
+      v: 'Extra 1.0.13',
+      date: '23-09-2568',
+      logs: [
+        "Add Clock Tower Unknown Basement (GGT Version)",
+      ],
+    },
+	{
       v: 'Extra 1.0.12',
       date: '21-09-2568',
       logs: [
