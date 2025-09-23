@@ -210,6 +210,8 @@ export class AppTopBarComponent implements OnInit, OnDestroy {
       date: '23-09-2568',
       logs: [
         "Add Clock Tower Unknown Basement (GGT Version)",
+        "Fix Soul Ascetic Blessing of Four Direction buff",
+        "Fix Exocism Malicious Soul Formula relate to Totem tutelary buff",
       ],
     },
 	{
