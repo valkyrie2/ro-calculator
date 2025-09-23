@@ -188,11 +188,11 @@ export class SoulAscetic extends SoulReaper {
         const totalSoul = this.activeSkillLv('Total Soul') || 1;
 
         if (this.isSkillActive('Totem of Tutelary')) {
-          return (150 * skillLevel + soulMasteryLv * 2 + totalSpl) * totalSoul * (baseLevel / 100);
+          return (250 * skillLevel + soulMasteryLv * 2 + totalSpl) * totalSoul * (baseLevel / 100);
 
         }
 
-        return (250 * skillLevel + soulMasteryLv * 2 + totalSpl) * totalSoul * (baseLevel / 100);
+        return (150 * skillLevel + soulMasteryLv * 2 + totalSpl) * totalSoul * (baseLevel / 100);
       },
     },
     {
@@ -211,14 +211,14 @@ export class SoulAscetic extends SoulReaper {
         const talisMaster = this.learnLv('Talisman Mastery');
 
         if (this.isSkillActive('GGT Skill')) {
-          if (this.isSkillActive('Talisman of Five Elements')) {
+          if (this.activeSkillLv('_SoulAscetic_Blessing') === BlessingValue.Four_Directions) {
             return (350 + skillLevel * (1650 + talisMaster * 15) + totalSpl * 5) * (baseLevel / 100);
           }
 
           return (250 + skillLevel * (1450 + talisMaster * 15) + totalSpl * 5) * (baseLevel / 100);
         }
         else {
-          if (this.isSkillActive('Talisman of Five Elements')) {
+          if (this.activeSkillLv('_SoulAscetic_Blessing') === BlessingValue.Four_Directions) {
             return (950 + skillLevel * (2950 + talisMaster * 15) + totalSpl * 5) * (baseLevel / 100);
           }
 
@@ -243,14 +243,14 @@ export class SoulAscetic extends SoulReaper {
         const talisMaster = this.learnLv('Talisman Mastery');
 
         if (this.isSkillActive('GGT Skill')) {
-          if (this.isSkillActive('Talisman of Five Elements')) {
+          if (this.activeSkillLv('_SoulAscetic_Blessing') === BlessingValue.Four_Directions) {
             return (350 + skillLevel * (1350 + talisMaster * 15) + totalSpl * 5) * (baseLevel / 100);
           }
 
           return (350 + skillLevel * (950 + talisMaster * 15) + totalSpl * 5) * (baseLevel / 100);
         }
         else {
-          if (this.isSkillActive('Talisman of Five Elements')) {
+          if (this.activeSkillLv('_SoulAscetic_Blessing') === BlessingValue.Four_Directions) {
             return (400 + skillLevel * (1400 + talisMaster * 15) + totalSpl * 5) * (baseLevel / 100);
           }
 
@@ -275,7 +275,7 @@ export class SoulAscetic extends SoulReaper {
         const talisMaster = this.learnLv('Talisman Mastery');
 
         if (this.isSkillActive('GGT Skill')) {
-          if (this.isSkillActive('Talisman of Five Elements')) {
+          if (this.activeSkillLv('_SoulAscetic_Blessing') === BlessingValue.Four_Directions) {
             return (1200 + skillLevel * (1300 + talisMaster * 15) + totalSpl * 5) * (baseLevel / 100);
 
           }
@@ -283,7 +283,7 @@ export class SoulAscetic extends SoulReaper {
           return (1000 + skillLevel * (900 + talisMaster * 15) + totalSpl * 5) * (baseLevel / 100);
         }
         else {
-          if (this.isSkillActive('Talisman of Five Elements')) {
+          if (this.activeSkillLv('_SoulAscetic_Blessing') === BlessingValue.Four_Directions) {
             return (1600 + skillLevel * (1850 + talisMaster * 15) + totalSpl * 5) * (baseLevel / 100);
 
           }
@@ -309,7 +309,7 @@ export class SoulAscetic extends SoulReaper {
         const talisMaster = this.learnLv('Talisman Mastery');
 
         if (this.isSkillActive('GGT Skill')) {
-          if (this.isSkillActive('Talisman of Five Elements')) {
+          if (this.activeSkillLv('_SoulAscetic_Blessing') === BlessingValue.Four_Directions) {
             return (1850 + skillLevel * (1850 + talisMaster * 15) + totalSpl * 5) * (baseLevel / 100);
 
           }
@@ -317,7 +317,7 @@ export class SoulAscetic extends SoulReaper {
           return (2150 + skillLevel * (1450 + talisMaster * 15) + totalSpl * 5) * (baseLevel / 100);
         }
         else {
-          if (this.isSkillActive('Talisman of Five Elements')) {
+          if (this.activeSkillLv('_SoulAscetic_Blessing') === BlessingValue.Four_Directions) {
             return (2300 + skillLevel * (2100 + talisMaster * 15) + totalSpl * 5) * (baseLevel / 100);
 
           }
