@@ -61,51 +61,61 @@ def map_monster(data: dict) -> dict:
 
     stats_raw = data.get("stats", {})
     element_val = stats_raw.get("element")
-
     elementName, elementShort = build_element_info(element_val)
 
-    # ถ้ามี spawn ให้เก็บ map name ตัวแรก ถ้าไม่มีเก็บ ""
     spawn_list = data.get("spawn", [])
     spawn_map = ""
     if isinstance(spawn_list, list) and len(spawn_list) > 0:
         spawn_map = spawn_list[0].get("mapname", "")
 
+    # ✅ Default to 1, convert floats like 420.93 -> 420
+    def nz(value):
+        if value is None:
+            return 1
+        try:
+            return int(float(value))
+        except (ValueError, TypeError):
+            return 1
+
+    attack_info = stats_raw.get("attack") or {}
+    magic_info = stats_raw.get("magicAttack") or {}
+
     stats = {
-        "attackRange": stats_raw.get("attackRange"),
+        "attackRange": nz(stats_raw.get("attackRange")),
         "level": stats_raw.get("level"),
         "health": stats_raw.get("health"),
-        "sp": stats_raw.get("sp"),
-        "str": stats_raw.get("str"),
-        "int": stats_raw.get("int"),
-        "vit": stats_raw.get("vit"),
-        "dex": stats_raw.get("dex"),
-        "agi": stats_raw.get("agi"),
-        "luk": stats_raw.get("luk"),
+        "sp": nz(stats_raw.get("sp")),
+        "str": nz(stats_raw.get("str")),
+        "int": nz(stats_raw.get("int")),
+        "vit": nz(stats_raw.get("vit")),
+        "dex": nz(stats_raw.get("dex")),
+        "agi": nz(stats_raw.get("agi")),
+        "luk": nz(stats_raw.get("luk")),
         "rechargeTime": stats_raw.get("rechargeTime"),
-        "atk1": stats_raw.get("atk1"),
-        "atk2": stats_raw.get("atk2"),
+        "atk1": nz(stats_raw.get("atk1")),
+        "atk2": nz(stats_raw.get("atk2")),
         "attack": {
-            "minimum": stats_raw.get("attack", {}).get("minimum"),
-            "maximum": stats_raw.get("attack", {}).get("maximum"),
+            "minimum": nz(attack_info.get("minimum")),
+            "maximum": nz(attack_info.get("maximum")),
         },
         "magicAttack": {
-            "minimum": stats_raw.get("magicAttack", {}).get("minimum"),
-            "maximum": stats_raw.get("magicAttack", {}).get("maximum"),
+            "minimum": nz(magic_info.get("minimum")),
+            "maximum": nz(magic_info.get("maximum")),
         },
         "defense": stats_raw.get("defense"),
         "baseExperience": stats_raw.get("baseExperience"),
         "jobExperience": stats_raw.get("jobExperience"),
         "aggroRange": stats_raw.get("aggroRange"),
         "escapeRange": stats_raw.get("escapeRange"),
-        "movementSpeed": int(stats_raw.get("movementSpeed", 0)),
-        "attackSpeed": int(stats_raw.get("attackSpeed", 0)),
-        "attackedSpeed": int(stats_raw.get("attackedSpeed", 0)),
+        "movementSpeed": nz(stats_raw.get("movementSpeed")),
+        "attackSpeed": nz(stats_raw.get("attackSpeed")),
+        "attackedSpeed": nz(stats_raw.get("attackedSpeed")),
         "element": element_val,
         "scale": stats_raw.get("scale"),
         "race": stats_raw.get("race"),
         "magicDefense": stats_raw.get("magicDefense"),
-        "hit": stats_raw.get("hit"),
-        "flee": stats_raw.get("flee"),
+        "hit": nz(stats_raw.get("hit")),
+        "flee": nz(stats_raw.get("flee")),
         "ai": stats_raw.get("ai"),
         "mvp": stats_raw.get("mvp"),
         "class": stats_raw.get("class"),
@@ -130,30 +140,34 @@ def map_monster(data: dict) -> dict:
 
 
 def main():
-    monster_input = input("Enter monster id or range (e.g. 1278 or 1000-1010): ")
-    try:
-        monster_ids = parse_monster_ids(monster_input)
-    except Exception as e:
-        print(f"[ERROR] Invalid id/range: {e}")
-        return
+    while True:
+        monster_input = input("Enter monster id or range (e.g. 1278 or 1000-1010): ")
+        if monster_input.strip().lower() in {"q", "quit", "exit"}:
+            print("👋 Exiting...")
+            break
 
-    monsters = {}
-    with requests.Session() as session:
-        for i, mid in enumerate(monster_ids, 1):
-            try:
-                raw = fetch_monster(mid, session)
-                monsters.update(map_monster(raw))
-                print(f"[OK] {mid}")
-            except Exception as e:
-                print(f"[WARN] {mid}: {e}")
-            if i < len(monster_ids):
-                time.sleep(REQUEST_DELAY_SEC)
+        try:
+            monster_ids = parse_monster_ids(monster_input)
+        except Exception as e:
+            print(f"[ERROR] Invalid id/range: {e}")
+            continue
 
-    with open(OUTPUT_FILE, "w", encoding="utf-8") as f:
-        json.dump(monsters, f, ensure_ascii=False, indent=2)
+        monsters = {}
+        with requests.Session() as session:
+            for i, mid in enumerate(monster_ids, 1):
+                try:
+                    raw = fetch_monster(mid, session)
+                    monsters.update(map_monster(raw))
+                    print(f"[OK] {mid}")
+                except Exception as e:
+                    print(f"[WARN] {mid}: {e}")
+                if i < len(monster_ids):
+                    time.sleep(REQUEST_DELAY_SEC)
 
-    print(f"\n✔ Done. Saved {len(monsters)} monsters -> {OUTPUT_FILE}")
-    input("\nPress Enter to exit...")
+        with open(OUTPUT_FILE, "w", encoding="utf-8") as f:
+            json.dump(monsters, f, ensure_ascii=False, indent=2)
+
+        print(f"\n✔ Done. Saved {len(monsters)} monsters -> {OUTPUT_FILE}\n")
 
 
 if __name__ == "__main__":
