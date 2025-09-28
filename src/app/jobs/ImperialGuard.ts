@@ -7,6 +7,8 @@ import { RoyalGuard } from './RoyalGuard';
 import { ActiveSkillModel, AtkSkillFormulaInput, AtkSkillModel, PassiveSkillModel } from './_character-base.abstract';
 import { ClassName } from './_class-name';
 import { genSkillList } from '../utils';
+import { WeaponTypeName } from '../constants';
+
 
 const jobBonusTable: Record<number, [number, number, number, number, number, number]> = {
   1: [0, 0, 0, 0, 0, 0],
@@ -236,6 +238,34 @@ export class ImperialGuard extends RoyalGuard {
 
           return (skillLevel * (450 + ssMastLv * 10) + totalSpl * 2) * (baseLevel / 100);
         }
+      },
+    },
+    {
+      name: 'Radiant Spear',
+      label: '[K] Radiant Spear Lv10',
+      value: 'Radiant Spear==10',
+      acd: 1.2,
+      fct: 1,
+      vct: 1,
+      cd: 0.7,
+      isMelee: true,
+      verifyItemFn: ({ weapon }) => {
+        const requires: WeaponTypeName[] = ['spear'];
+        if (requires.some(wType => weapon.isType(wType))) return '';
+
+        return requires.join(', ');
+      },
+      formula: (input: AtkSkillFormulaInput): number => {
+        const { model, skillLevel, status } = input;
+        const { totalPow } = status;
+        const baseLevel = model.level;
+        const ssMastLv = this.learnLv('Spear & Sword Mastery');
+
+        if (this.isSkillActive('Grand Judgement')) {
+          return (3500 + skillLevel * 1400 + ssMastLv * 50 + totalPow * 5) * (baseLevel / 100);
+        }
+
+        return (3500 + skillLevel * 1150 + ssMastLv * 50 + totalPow * 5) * (baseLevel / 100);
       },
     },
   ];

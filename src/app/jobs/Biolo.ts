@@ -163,7 +163,7 @@ export class Biolo extends Genetic {
   private readonly atkSkillList4th: AtkSkillModel[] = [
     {
       name: 'Explosive Powder',
-      label: '[V3] Explosive Powder Lv5',
+      label: '[K] Explosive Powder Lv5',
       value: 'Explosive Powder==5',
       acd: 0.25,
       fct: 0,
@@ -176,10 +176,16 @@ export class Biolo extends Genetic {
         const { totalPow } = status;
         const baseLevel = model.level;
         if (this.isSkillActive('Research Report')) {
-          return (400 + skillLevel * 550 + totalPow * 10) * (baseLevel / 100);
+          if (this.isSkillActive('GGT Skill'))
+            return (400 + skillLevel * 550 + totalPow * 10) * (baseLevel / 100);
+          else
+            return (500 + skillLevel * 750 + totalPow * 10) * (baseLevel / 100);
+        } else {
+          if (this.isSkillActive('GGT Skill'))
+            return (400 + skillLevel * 450 + totalPow * 7) * (baseLevel / 100);
+          else
+            return (500 + skillLevel * 650 + totalPow * 7) * (baseLevel / 100);
         }
-
-        return (400 + skillLevel * 450 + totalPow * 7) * (baseLevel / 100);
       },
     },
     {
@@ -216,11 +222,50 @@ export class Biolo extends Genetic {
           else
             return (350 + skillLevel * 300 + totalPow * 10) * (baseLevel / 100);
         }
-        
+
         if (this.isSkillActive('GGT Skill'))
           return (200 + skillLevel * 250 + totalPow * 7) * (baseLevel / 100);
         else
           return (200 + skillLevel * 300 + totalPow * 7) * (baseLevel / 100);
+      },
+    },
+    {
+      name: 'Dust Explosion',
+      label: '[K] Dust Explosion Lv5',
+      value: 'Dust Explosion==5',
+      acd: 0.5,
+      fct: 0,
+      vct: 0,
+      cd: 0.5,
+      isMelee: true,
+      totalHit: 5,
+      formula: (input: AtkSkillFormulaInput): number => {
+        const { model, skillLevel, status } = input;
+        const { totalPow } = status;
+        const baseLevel = model.level;
+        if (this.isSkillActive('Research Report')) {
+          return (450 + skillLevel * 800 + totalPow * 10) * (baseLevel / 100);
+        }
+
+        return (450 + skillLevel * 600 + totalPow * 7) * (baseLevel / 100);
+      },
+    },
+    {
+      name: 'Mystery Powder',
+      label: '[K] Mystery Powder Lv5',
+      value: 'Mystery Powder==5',
+      acd: 0.5,
+      fct: 0,
+      vct: 0,
+      cd: 1.5,
+      isMelee: true,
+      totalHit: 5,
+      formula: (input: AtkSkillFormulaInput): number => {
+        const { model, skillLevel, status } = input;
+        const { totalPow } = status;
+        const baseLevel = model.level;
+
+        return (1500 + skillLevel * 4000 + totalPow * 10) * (baseLevel / 100);
       },
     },
   ];
