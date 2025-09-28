@@ -248,7 +248,7 @@ export class ImperialGuard extends RoyalGuard {
       fct: 1,
       vct: 1,
       cd: 0.7,
-      isMelee: true,
+      canCri: true,
       verifyItemFn: ({ weapon }) => {
         const requires: WeaponTypeName[] = ['spear'];
         if (requires.some(wType => weapon.isType(wType))) return '';
