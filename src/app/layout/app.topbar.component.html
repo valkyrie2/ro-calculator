@@ -79,7 +79,7 @@
         label="Request / Report"
         (click)="survey.click()"
       ></button>
-      <!--<button
+      <button
         class="font-bold p-button-info p-button-rounded p-button-raised"
         icon="pi pi-exclamation-triangle"
         pButton
@@ -87,7 +87,7 @@
         label="Issues Tracking"
         (click)="tracking.click()"
       ></button>
-      <button class="font-bold p-button-primary p-button-rounded p-button-raised" icon="pi pi-heart" pButton pRipple label="Support" (click)="showDialog()"></button>-->
+      <!--<button class="font-bold p-button-primary p-button-rounded p-button-raised" icon="pi pi-heart" pButton pRipple label="Support" (click)="showDialog()"></button>-->
     </div>
     <div *ngIf="!!username" class="ml-3 flex align-items-center">
       <p-chip label="{{ username }}" icon="pi pi-google" class="chip-profile" styleClass="text-xl"></p-chip>
