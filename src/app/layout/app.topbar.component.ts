@@ -206,13 +206,20 @@ export class AppTopBarComponent implements OnInit, OnDestroy {
 
   updates: { v: string; date: string; logs: string[]; }[] = [
     {
+      v: 'Extra 1.0.15',
+      date: '28-09-2568',
+      logs: [
+        "Add Mystery Powder, Dust Explosion, Radiant Spear, Explosive Powder (KRO Version)",
+      ],
+    },
+    {
       v: 'Extra 1.0.14',
       date: '27-09-2568',
       logs: [
         "KRO: Add Zero Cell monster F1-4",
       ],
     },
-	{
+    {
       v: 'Extra 1.0.13',
       date: '23-09-2568',
       logs: [
@@ -221,14 +228,14 @@ export class AppTopBarComponent implements OnInit, OnDestroy {
         "Fix Exocism Malicious Soul Formula relate to Totem tutelary buff",
       ],
     },
-	{
+    {
       v: 'Extra 1.0.12',
       date: '21-09-2568',
       logs: [
         "KRO: Add Frontier Weapon, Frontier Crown, 2nd Dimension Weapon",
       ],
     },
-	{
+    {
       v: 'Extra 1.0.11',
       date: '20-09-2568',
       logs: [
