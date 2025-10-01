@@ -167,12 +167,16 @@ export class Trouvere extends Wanderer {
   private readonly atkSkillList4th: AtkSkillModel[] = [
     {
       name: 'Rhythm Shooting',
-      label: '[V3] Rhythm Shooting Lv5',
+      label: '[K] Rhythm Shooting Lv5',
       value: 'Rhythm Shooting==5',
       acd: 0,
       fct: 0,
       vct: 2,
-      cd: 0.15,
+      cd: () => {
+        if (this.isSkillActive('GGT Skill')) return 0.15;
+
+        return 0.35;
+      },
       totalHit: 3,
       verifyItemFn: ({ weapon }) => {
         const requires: WeaponTypeName[] = ['bow', 'instrument', 'whip'];
@@ -186,8 +190,18 @@ export class Trouvere extends Wanderer {
         const stageMannerLv = this.learnLv('Stage Manner');
 
         // if (this.isSkillActive('Sonic Brand'))
+        if (this.isSkillActive('GGT Skill')) {
+          if (this.isSkillActive('Sound Blend')) {
+            return (300 + skillLevel * 220 + status.totalCon * 3 * stageMannerLv) * (baseLevel / 100);
+          }
 
-        return (200 + skillLevel * 120 + status.totalCon * 3 * stageMannerLv) * (baseLevel / 100);
+          return (200 + skillLevel * 100 + status.totalCon * 3 * stageMannerLv) * (baseLevel / 100);
+        } else {
+          if (this.isSkillActive('Sound Blend')) {
+            return (850 + skillLevel * 1050 + status.totalCon * 3 * stageMannerLv) * (baseLevel / 100);
+          }
+          return (550 + skillLevel * 950 + status.totalCon * 3 * stageMannerLv) * (baseLevel / 100);
+        }
       },
     },
     {

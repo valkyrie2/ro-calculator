@@ -210,6 +210,7 @@ export class AppTopBarComponent implements OnInit, OnDestroy {
       date: '01-10-2568',
       logs: [
         "Add GGT official item",
+        "Fix Rose Blossom , Rhythm Shooting affected by Mystic Symphony buff"
       ],
     },
     {
