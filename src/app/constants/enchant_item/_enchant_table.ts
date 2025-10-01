@@ -1077,6 +1077,8 @@ export const EnchantTable: EntTable[] = [
   { name: 'Signet_Of_Spl_Star', enchants: [null, stellarAcc2, stellarAcc3, stellarAcc4] },
   { name: 'Signet_Of_Wis_Star', enchants: [null, stellarAcc2, stellarAcc3, stellarAcc4] },
 
+  { name: 'Nebula_Nec_LT_TH', enchants: [null, null, stellarAcc3, stellarAcc4] },
+
   { name: 'Signet_Of_Spring', enchants: [null, null, signetAcc3, signetAcc4] },
   { name: 'Signet_Of_Summer', enchants: [null, null, signetAcc3, signetAcc4] },
   { name: 'Signet_Of_Autumn', enchants: [null, null, signetAcc3, signetAcc4] },
