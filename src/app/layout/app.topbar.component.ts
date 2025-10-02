@@ -206,6 +206,13 @@ export class AppTopBarComponent implements OnInit, OnDestroy {
 
   updates: { v: string; date: string; logs: string[]; }[] = [
     {
+      v: 'Extra 1.0.17',
+      date: '02-10-2568',
+      logs: [
+        "Add Wireless Drone-LT",
+      ],
+    },
+    {
       v: 'Extra 1.0.16',
       date: '01-10-2568',
       logs: [
