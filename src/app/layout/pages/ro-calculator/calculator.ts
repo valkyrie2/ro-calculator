@@ -1231,27 +1231,24 @@ export class Calculator {
     const consumableBonus: Record<string, number> = {};
     for (const cons of this.consumableBonuses) {
       for (const [attr, value] of Object.entries(cons)) {
+        let valNum = Number(value);
 
-        let valdummy = value;
-        // exception value
-        if (value === "MD_BETELGEUSE20") {
-          if (this.monster.data.name === 'Betelgeuse') {
-            valdummy = '20';
-          } else {
-            valdummy = '0';
-          }
+        switch(valNum) {
+          case 10020: // Betelgeuse +20%
+            if (this.monster.data.name === 'Betelgeuse') {
+              valNum = 20;
+            } else
+              valNum = 0;
+            break;
         }
-        if (attr === 'p_final' || attr === 'm_final')
-          valdummy = 20;
-        const valNum = Number(valdummy);
 
         // Betelgeuse one one
         if (attr === 'p_final') {
-          this.finalPhyMultipliers.push(valNum);
+            this.finalPhyMultipliers.push(valNum);
           continue;
         }
         if (attr === 'm_final') {
-          this.finalMagicMultipliers.push(valNum);
+            this.finalMagicMultipliers.push(valNum);
           continue;
         }
 
