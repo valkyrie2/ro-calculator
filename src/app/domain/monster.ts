@@ -51,6 +51,7 @@ interface PreparedMonsterModel {
   luk: number;
   res: number;
   mres: number;
+  dmgtaken: number;
 }
 
 export class Monster {
@@ -86,6 +87,7 @@ export class Monster {
     luk: 0,
     res: 0,
     mres: 0,
+    dmgtaken: 0
   };
 
   get data(): PreparedMonsterModel {
@@ -138,7 +140,7 @@ export class Monster {
     // "raceName": "Formless"
     const {
       name,
-      stats: { int, vit, agi, luk, str, dex, level, elementName, health, defense, magicDefense, res, mres, raceName, class: monsterTypeId, scaleName, mvp },
+      stats: { int, vit, agi, luk, str, dex, level, elementName, health, defense, magicDefense, res, mres, dmgtaken, raceName, class: monsterTypeId, scaleName, mvp },
     } = monster;
 
     const [pureElement, eleLvl] = elementName.split(' ');
@@ -176,6 +178,7 @@ export class Monster {
       luk,
       res,
       mres,
+      dmgtaken,
     };
 
     return this;

@@ -245,6 +245,7 @@ export class Calculator {
 
   private res = 0;
   private mres = 0;
+  private dmgtaken = 0;
 
   private damageSummary = {} as BasicDamageSummaryModel & Partial<SkillDamageSummaryModel>;
   private miscSummary = {} as MiscModel;

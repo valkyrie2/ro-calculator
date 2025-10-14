@@ -15,6 +15,10 @@
     Req.Hit100
     <span class="summary_monster_value px-1 font-semibold">{{ totalSummary?.monster?.hitRequireFor100 }}</span>
   </div>
+  <div class="col-12">
+    Dmg.Taken
+    <span class="summary_monster_value px-1 font-semibold" style="color: var(--green-300)">{{ totalSummary?.monster?.dmgtaken > 0 ? totalSummary?.monster?.dmgtaken + '%' : '100%' }}</span>
+  </div>
   <div class="col-12 flex justify-content-around">
     <div>
       Res

@@ -46,6 +46,7 @@ export interface Stats {
   attr: number;
   res: number;
   mres: number;
+  dmgtaken: number;
 }
 
 export interface Attack {

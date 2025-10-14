@@ -890,6 +890,10 @@ export class DamageCalculator {
 
       total = floor(total * debuffMultiplier);
 
+      if (this.monster.data.dmgtaken > 0) {
+        total = floor(total * this.toPercent(this.monster.data.dmgtaken));
+      }
+
       total = this.toPreventNegativeDmg(total);
 
       if (!!finalDmgFormula && typeof finalDmgFormula === 'function') {
@@ -1024,6 +1028,10 @@ export class DamageCalculator {
       total = this.applyFinalMultiplier(total, 'magic');
       total = floor(total * debuffMultiplier);
 
+      if (this.monster.data.dmgtaken > 0) {
+        total = floor(total * this.toPercent(this.monster.data.dmgtaken));
+      }
+
       if (!!finalDmgFormula && typeof finalDmgFormula === 'function') {
         return finalDmgFormula({ damage: total, ...formulaParams });
       }
@@ -1108,6 +1116,10 @@ export class DamageCalculator {
       total = floor(total * advKatarMultiplier);
       total = floor(total * debuffMultiplier);
 
+      if (this.monster.data.dmgtaken > 0) {
+        total = floor(total * this.toPercent(this.monster.data.dmgtaken));
+      }
+
       return this.toPreventNegativeDmg(total);
     };
 
@@ -1146,6 +1158,10 @@ export class DamageCalculator {
       if (isCalcDef) total = total - softDef;
       total = floor(total * this.criMultiplier);
       total = floor(total * debuffMultiplier);
+
+      if (this.monster.data.dmgtaken > 0) {
+        total = floor(total * this.toPercent(this.monster.data.dmgtaken));
+      }
 
       return this.toPreventNegativeDmg(total);
     };

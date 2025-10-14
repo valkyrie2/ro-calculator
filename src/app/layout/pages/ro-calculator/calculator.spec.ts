@@ -77,6 +77,7 @@ describe('Calculator', () => {
         softMdef: 0,
         res: 0,
         mres: 0,
+        dmgtaken: 0,
       },
       data: {
         def: 0,
@@ -87,6 +88,7 @@ describe('Calculator', () => {
         softDef: 0,
         res: 0,
         mres: 0,
+        dmgtaken: 0,
       },
     } as any;
 
