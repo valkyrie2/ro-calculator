@@ -206,6 +206,14 @@ export class AppTopBarComponent implements OnInit, OnDestroy {
 
   updates: { v: string; date: string; logs: string[]; }[] = [
     {
+      v: 'Extra 1.0.20',
+      date: '10-10-2568',
+      logs: [
+        "เพิ่มระบบออร่าเขียว แต่ละมอนสเตอร์จะมีออร่า 10% , 1% ที่ถูกต้องตามที่ควรจะเป็น สามารถดูได้ที่ Status monster หัวข้อ Dmg.Taken",
+        "เพิ่มตัวเลือก HP Lv. (0-5) และ DEF Lv. (0-5) ของมอนสเตอร์ Betelgeuse",
+      ],
+    },
+    {
       v: 'Extra 1.0.19',
       date: '10-10-2568',
       logs: [

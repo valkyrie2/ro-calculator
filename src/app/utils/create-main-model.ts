@@ -173,4 +173,6 @@ export const createMainModel = (): MainModel => ({
   consumables2: [],
   aspdPotion: undefined,
   aspdPotions: [],
+  defStars: 0,
+  hpStars: 0,
 });

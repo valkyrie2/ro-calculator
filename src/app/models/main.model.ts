@@ -47,4 +47,6 @@ export interface MainModel extends Partial<EquipmentModel> {
   consumables2: number[];
   aspdPotion?: number;
   aspdPotions: number[];
+  defStars?: number;
+  hpStars?: number;
 }

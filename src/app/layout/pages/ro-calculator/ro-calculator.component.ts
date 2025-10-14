@@ -242,6 +242,11 @@ export class RoCalculatorComponent implements OnInit, OnDestroy {
   isShowMonsterEle = false;
   allSelectedMonsterIds: number[];
 
+  get isBetelgeuse(): boolean {
+    const normalize = (s: string | undefined) => (s || '').toString().replace(/[^a-z0-9]/gi, '').toLowerCase();
+    return normalize(this.selectedMonsterName).includes('betelgeuse');
+  }
+
   chanceList = [] as ChanceModel[];
   selectedChances = [] as string[];
 
@@ -351,7 +356,18 @@ export class RoCalculatorComponent implements OnInit, OnDestroy {
         }),
       )
       .subscribe(() => {
-        //
+        // Apply saved HP/DEF star overrides (e.g., Betelgeuse) after initial data + model load
+        try {
+          // model.hpStars / model.defStars are populated by loadItemSet
+          if (this.model?.hpStars !== undefined && this.model.hpStars !== null) {
+            this.onhpStarsChange();
+          }
+          if (this.model?.defStars !== undefined && this.model.defStars !== null) {
+            this.ondefStarsChange();
+          }
+        } catch (err) {
+          console.error('Failed to apply hp/def star overrides on init', err);
+        }
       });
 
     const laySub = this.layoutService.configUpdate$.pipe(debounceTime(300)).subscribe((c) => {
@@ -527,6 +543,49 @@ export class RoCalculatorComponent implements OnInit, OnDestroy {
         this.isCalculatingEvent.next(false);
       });
     this.allSubs.push(cObs);
+  }
+
+  onhpStarsChange () {
+    // If selected monster is Betelgeuse, override its health according to star selection
+    const hpMap = [500_000_000, 800_000_000, 1100_000_000, 1400_000_000, 1700_000_000, 2000_000_000];
+    const star = Number(this.model.hpStars) || 0;
+
+    // Update all monster entries that match Betelgeuse (dbname or name)
+    for (const [id, mon] of Object.entries(this.monsterDataMap)) {
+      const name = (mon?.name || '').toString();
+      if (name.includes('Betelgeuse')) {
+        if (!mon.stats) mon.stats = { ...mon.stats } as any;
+        mon.stats.health = hpMap[Math.max(0, Math.min(5, star))];
+        // if this is the currently selected monster update selectedMonsterName
+        if (Number(id) === this.selectedMonster) {
+          this.selectedMonsterName = mon.name;
+        }
+      }
+    }
+
+    this.updateItemEvent.next(1);
+    this.updateMonsterListEvent.next(1);
+  }
+
+  ondefStarsChange () {
+    // Map def stars to damage taken percent (dmgtaken expected as percent value)
+    const defMap = [1, 0.9, 0.8, 0.7, 0.6, 0.5];
+    const star = Number(this.model.defStars) || 0;
+
+    for (const [id, mon] of Object.entries(this.monsterDataMap)) {
+      const name = (mon?.name || '').toString();
+      if (name.includes('Betelgeuse')) {
+        if (!mon.stats) mon.stats = { ...mon.stats } as any;
+        // set dmgtaken as percent value (100 means 100%)
+        mon.stats.dmgtaken = defMap[Math.max(0, Math.min(5, star))];
+        if (Number(id) === this.selectedMonster) {
+          this.selectedMonsterName = mon.name;
+        }
+      }
+    }
+
+    this.updateItemEvent.next(1);
+    this.updateMonsterListEvent.next(1);
   }
 
   ngOnDestroy(): void {
