@@ -6,6 +6,7 @@ import { Ranger } from './Ranger';
 import { ActiveSkillModel, AtkSkillFormulaInput, AtkSkillModel, PassiveSkillModel } from './_character-base.abstract';
 import { ClassName } from './_class-name';
 import { genSkillList } from '../utils';
+import { ElementType } from '../constants/element-type.const';
 
 const jobBonusTable: Record<number, [number, number, number, number, number, number]> = {
   1: [0, 0, 0, 0, 1, 0],
@@ -244,6 +245,78 @@ export class Windhawk extends Ranger {
         return (skillLevel * 500 + status.totalCon * 5) * (1 + 0.1 * natureFrieldlyLv) * (baseLevel / 100);
       },
     },
+    {
+      name: 'Solid Trap',
+      label: '[V3] Solid Trap Lv5',
+      value: 'Solid Trap==5',
+      acd: 0.5,
+      fct: 1,
+      vct: 1,
+      cd: 2.5,
+      isMelee: true,
+      element: ElementType.Earth,
+      formula: (input: AtkSkillFormulaInput): number => {
+        const { model, skillLevel, status } = input;
+        const baseLevel = model.level;
+        const advancedTrapLv = this.learnLv('Advanced Trap');
+
+        return (skillLevel * 850 + status.totalCon * 5) * (1 + 0.2 * advancedTrapLv) * (baseLevel / 100);
+      },
+    },
+    {
+      name: 'Flame Trap',
+      label: '[V3] Flame Trap Lv5',
+      value: 'Flame Trap==5',
+      acd: 0.5,
+      fct: 1,
+      vct: 1,
+      cd: 2.5,
+      isMelee: true,
+      element: ElementType.Fire,
+      formula: (input: AtkSkillFormulaInput): number => {
+        const { model, skillLevel, status } = input;
+        const baseLevel = model.level;
+        const advancedTrapLv = this.learnLv('Advanced Trap');
+
+        return (skillLevel * 850 + status.totalCon * 5) * (1 + 0.2 * advancedTrapLv) * (baseLevel / 100);
+      },
+    },
+    {
+      name: 'Deep Blind Trap',
+      label: '[V3] Deep Blind Trap Lv5',
+      value: 'Deep Blind Trap==5',
+      acd: 0.5,
+      fct: 1,
+      vct: 1,
+      cd: 2.5,
+      isMelee: true,
+      element: ElementType.Dark,
+      formula: (input: AtkSkillFormulaInput): number => {
+        const { model, skillLevel, status } = input;
+        const baseLevel = model.level;
+        const advancedTrapLv = this.learnLv('Advanced Trap');
+
+        return (skillLevel * 850 + status.totalCon * 5) * (1 + 0.2 * advancedTrapLv) * (baseLevel / 100);
+      },
+    },
+    {
+      name: 'Swift Trap',
+      label: '[V3] Swift Trap Lv5',
+      value: 'Swift Trap==5',
+      acd: 0.5,
+      fct: 1,
+      vct: 1,
+      cd: 2.5,
+      isMelee: true,
+      element: ElementType.Wind,
+      formula: (input: AtkSkillFormulaInput): number => {
+        const { model, skillLevel, status } = input;
+        const baseLevel = model.level;
+        const advancedTrapLv = this.learnLv('Advanced Trap');
+
+        return (skillLevel * 850 + status.totalCon * 5) * (1 + 0.2 * advancedTrapLv) * (baseLevel / 100);
+      },
+    },
   ];
   private readonly activeSkillList4th: ActiveSkillModel[] = [
     {
@@ -279,6 +352,12 @@ export class Windhawk extends Ranger {
     {
       name: 'Wind Sign',
       label: 'Wind Sign',
+      inputType: 'dropdown',
+      dropdown: genSkillList(5),
+    },
+    {
+      name: 'Advanced Trap',
+      label: 'Advanced Trap',
       inputType: 'dropdown',
       dropdown: genSkillList(5),
     },

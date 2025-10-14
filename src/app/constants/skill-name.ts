@@ -26,6 +26,7 @@ const ACTIVE_PASSIVE_SKILL_NAMES = [
   'War Book Mastery',
   'Advanced Book',
   'Advanced Katar Mastery',
+  'Advanced Trap',
   'Arclouse Dash',
   'Ardor',
   'Competentia',
