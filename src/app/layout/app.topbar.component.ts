@@ -206,7 +206,14 @@ export class AppTopBarComponent implements OnInit, OnDestroy {
 
   updates: { v: string; date: string; logs: string[]; }[] = [
     {
-      v: 'Extra 1.0.20',
+      v: 'Extra v22',
+      date: '15-10-2568',
+      logs: [
+        "Add New GGT Item",
+      ],
+    },
+    {
+      v: 'Extra v21',
       date: '14-10-2568',
       logs: [
         "เพิ่มระบบออร่าเขียว แต่ละมอนสเตอร์จะมีออร่า 10% , 1% ที่ถูกต้องตามที่ควรจะเป็น สามารถดูได้ที่ Status monster หัวข้อ Dmg.Taken",
@@ -215,28 +222,28 @@ export class AppTopBarComponent implements OnInit, OnDestroy {
       ],
     },
     {
-      v: 'Extra 1.0.19',
+      v: 'Extra v20',
       date: '10-10-2568',
       logs: [
         "Add One One Fried Chicken buff",
       ],
     },
     {
-      v: 'Extra 1.0.18',
+      v: 'Extra v19',
       date: '03-10-2568',
       logs: [
         "Increase max job to 60 (KRO)",
       ],
     },
     {
-      v: 'Extra 1.0.17',
+      v: 'Extra v18',
       date: '02-10-2568',
       logs: [
         "Add Wireless Drone-LT",
       ],
     },
     {
-      v: 'Extra 1.0.16',
+      v: 'Extra v17',
       date: '01-10-2568',
       logs: [
         "Add GGT official item",
@@ -244,21 +251,21 @@ export class AppTopBarComponent implements OnInit, OnDestroy {
       ],
     },
     {
-      v: 'Extra 1.0.15',
+      v: 'Extra v16',
       date: '28-09-2568',
       logs: [
         "Add Mystery Powder, Dust Explosion, Radiant Spear, Explosive Powder (KRO Version)",
       ],
     },
     {
-      v: 'Extra 1.0.14',
+      v: 'Extra v15',
       date: '27-09-2568',
       logs: [
         "KRO: Add Zero Cell monster F1-4",
       ],
     },
     {
-      v: 'Extra 1.0.13',
+      v: 'Extra v14',
       date: '23-09-2568',
       logs: [
         "Add Clock Tower Unknown Basement (GGT Version)",
@@ -267,21 +274,21 @@ export class AppTopBarComponent implements OnInit, OnDestroy {
       ],
     },
     {
-      v: 'Extra 1.0.12',
+      v: 'Extra v13',
       date: '21-09-2568',
       logs: [
         "KRO: Add Frontier Weapon, Frontier Crown, 2nd Dimension Weapon",
       ],
     },
     {
-      v: 'Extra 1.0.11',
+      v: 'Extra v12',
       date: '20-09-2568',
       logs: [
         "Fix Triple Laser Cd, Acd, VCT",
       ],
     },
     {
-      v: 'Extra 1.0.10',
+      v: 'Extra v11',
       date: '19-09-2568',
       logs: [
         "Fix Jupitel Thunderstorm formula",
@@ -291,21 +298,21 @@ export class AppTopBarComponent implements OnInit, OnDestroy {
       ],
     },
     {
-      v: 'Extra 1.0.9',
+      v: 'Extra v10',
       date: '19-09-2568',
       logs: [
         "Add monster Varmund Biosphere, Biosphere Deep F1, Biosphere Deep Abyss, Oz Dungeon F1-2",
       ],
     },
     {
-      v: 'Extra 1.0.8',
+      v: 'Extra v9',
       date: '18-09-2568',
       logs: [
         "Add Jack Frost Nova, Crystal Impact skill",
       ],
     },
     {
-      v: 'Extra 1.0.7',
+      v: 'Extra v8',
       date: '18-09-2568',
       logs: [
         "KRO: Add Chapter 1 Item",
@@ -314,7 +321,7 @@ export class AppTopBarComponent implements OnInit, OnDestroy {
       ],
     },
     {
-      v: 'Extra 1.0.6',
+      v: 'Extra v7',
       date: '17-09-2568',
       logs: [
         "Update GGT official item",
@@ -323,7 +330,7 @@ export class AppTopBarComponent implements OnInit, OnDestroy {
       ],
     },
     {
-      v: 'Extra 1.0.5',
+      v: 'Extra v6',
       date: '15-09-2568',
       logs: [
         "Add Skill KRO version",
@@ -334,14 +341,14 @@ export class AppTopBarComponent implements OnInit, OnDestroy {
       ],
     },
     {
-      v: 'Extra 1.0.4',
+      v: 'Extra v5',
       date: '14-09-2568',
       logs: [
         "Add Soul Ascetic buff.",
       ],
     },
     {
-      v: 'Extra 1.0.3',
+      v: 'Extra v4',
       date: '13-09-2568',
       logs: [
         "GGT: Costume Autumn Piece (Thankgiving event 2025)",
@@ -349,7 +356,7 @@ export class AppTopBarComponent implements OnInit, OnDestroy {
       ],
     },
     {
-      v: 'Extra 1.0.2',
+      v: 'Extra v3',
       date: '12-09-2568',
       logs: [
         "Update Enchant stone to Box 40",
@@ -359,14 +366,14 @@ export class AppTopBarComponent implements OnInit, OnDestroy {
       ],
     },
     {
-      v: 'Extra 1.0.1',
+      v: 'Extra v2',
       date: '10-09-2568',
       logs: [
         "GGT Update Nebula shadow + enchant",
       ],
     },
     {
-      v: 'Extra 1.0',
+      v: 'Extra v1',
       date: '09-09-2568',
       logs: [
         "KRO Skill version > Cardinal, Shinkiro-Shiranui, Archmage, EM, Shadowcross, Imperial Guard, Troubadour-vere, Soul Ascetic",

@@ -8,6 +8,8 @@ import { ActiveSkillModel, AtkSkillFormulaInput, AtkSkillModel, PassiveSkillMode
 import { ClassName } from './_class-name';
 import { genSkillList } from '../utils';
 import { WeaponTypeName } from '../constants';
+import { InfoForClass } from '../models/info-for-class.model';
+import { floor } from '../utils';
 
 
 const jobBonusTable: Record<number, [number, number, number, number, number, number]> = {
@@ -314,6 +316,15 @@ export class ImperialGuard extends RoyalGuard {
         { label: 'No', value: 0, isUse: false },
       ],
     },
+    {
+      label: 'Power (Good&Evil Set)',
+      name: 'Power',
+      inputType: 'dropdown',
+      dropdown: [
+        { label: '-', value: 0, isUse: false },
+        { label: 'Lv 4', value: 4, isUse: true },
+      ],
+    },
   ];
   private readonly passiveSkillList4th: PassiveSkillModel[] = [
     {
@@ -382,5 +393,14 @@ export class ImperialGuard extends RoyalGuard {
     }
 
     return totalBonus;
+  }
+
+  override modifyFinalAtk(currentAtk: number, _params: InfoForClass) {
+    const powerLv = this.bonuses.usedSkillMap.get('Power');
+
+    let totalAtk = currentAtk;
+    if (powerLv >= 1) totalAtk = totalAtk + floor(totalAtk * (powerLv * 15 + 10) * 0.01);
+
+    return totalAtk;
   }
 }

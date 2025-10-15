@@ -328,6 +328,15 @@ export class Windhawk extends Ranger {
         { label: 'No', value: 0, isUse: false },
       ],
     },
+    {
+      name: 'Dagger & Bow Mastery',
+      label: 'Dagger&Bow M. Lv10',
+      inputType: 'selectButton',
+      dropdown: [
+        { label: 'Yes', value: 10, isUse: true, bonus: { p_size_s: 10, p_size_m: 15, p_size_l: 20 } },
+        { label: 'No', value: 0, isUse: false },
+      ],
+    },
   ];
   private readonly passiveSkillList4th: PassiveSkillModel[] = [
     {
