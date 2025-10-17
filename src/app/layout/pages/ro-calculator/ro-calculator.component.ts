@@ -1793,7 +1793,7 @@ export class RoCalculatorComponent implements OnInit, OnDestroy {
       const { id, name, spawn, stats } = mon;
       const { level, health, mvp, class: _class, elementShortName, raceName, scaleName } = stats;
 
-      const spawnMap = mvp === 1 ? ' Boss' : getMonsterSpawnMap(spawn) || (_class === 1 ? ' Boss' : 'Etc');
+      const spawnMap = getMonsterSpawnMap(spawn) ? getMonsterSpawnMap(spawn) : mvp === 1 ? ' Boss' : (_class === 1 ? ' Boss' : 'Etc');
       const group = groupMap.get(spawnMap);
       const monster: DropdownModel = {
         label: `${level} ${name} (${raceName} ${scaleName.at(0)})`,

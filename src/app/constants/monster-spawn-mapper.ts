@@ -57,6 +57,9 @@ const Mapper = {
   ch1zero2: 'Zero Cell - Nox',
   ch1zero3: 'Zero Cell - Vita',
   ch1zero4: 'Zero Cell - Ark',
+  "1@f_lake": 'Lake of Fire',
+  jor_tail: 'episode 19',
+  clock_01: 'Clock Tower Unknown Basement',
 } as const;
 
 export const MonsterGroupNames = [...new Set(Object.values(Mapper))].sort((a, b) => (a > b ? 1 : -1));

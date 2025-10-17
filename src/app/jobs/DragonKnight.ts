@@ -185,13 +185,20 @@ export class DragonKnight extends RuneKnight {
     },
     {
       name: 'Hack and Slasher',
-      label: '[V3] Hack and Slasher Lv10',
+      label: '[K] Hack and Slasher Lv10',
       value: 'Hack and Slasher==10',
       acd: 0.25,
       fct: 0,
       vct: 0,
       cd: 0.7,
       totalHit: 2,
+      canCri: () => {
+        if (this.isSkillActive('GGT Skill')) return false;
+
+        return true;
+      },
+      criDmgPercentage: 0.5,
+      baseCriPercentage: 1,
       verifyItemFn: ({ weapon }) => {
         const requires: WeaponTypeName[] = ['twohandSword', 'twohandSpear'];
         if (requires.some(wType => weapon.isType(wType))) return '';
@@ -206,17 +213,24 @@ export class DragonKnight extends RuneKnight {
         const { totalPow } = status;
         const baseLevel = model.level;
 
-        return (300 + skillLevel * 700 + totalPow * 7) * (baseLevel / 100);
+        if (this.isSkillActive('GGT Skill'))
+          return (300 + skillLevel * 700 + totalPow * 7) * (baseLevel / 100);
+        else
+          return (350 + skillLevel * 820 + totalPow * 7) * (baseLevel / 100);
       },
     },
     {
       name: 'Storm Slash',
-      label: '[V3] Storm Slash Lv5',
+      label: '[K] Storm Slash Lv5',
       value: 'Storm Slash==5',
       acd: 0.5,
       fct: 0,
       vct: 0,
-      cd: 0.3,
+      cd: () => {
+        if (this.isSkillActive('GGT Skill')) return 0.3;
+
+        return 0.35;
+      },
       canCri: true,
       baseCriPercentage: 1,
       criDmgPercentage: 0.5,
@@ -233,7 +247,10 @@ export class DragonKnight extends RuneKnight {
         const { totalPow } = status;
         const baseLevel = model.level;
 
-        return (100 + skillLevel * 170 + totalPow * 5) * (baseLevel / 100);
+        if (this.isSkillActive('GGT Skill'))
+          return (100 + skillLevel * 170 + totalPow * 5) * (baseLevel / 100);
+        else
+          return (300 + skillLevel * 750 + totalPow * 5) * (baseLevel / 100);
       },
     },
     {
@@ -275,7 +292,7 @@ export class DragonKnight extends RuneKnight {
         const { model, skillLevel, status, maxHp, maxSp } = input;
         const { totalPow } = status;
         const baseLevel = model.level;
-        
+
         if (this.isSkillActive('GGT Skill')) {
           if (this.activeSkillLv('Dragonic Aura')) {
             return (50 + skillLevel * (350 + 0.07 * (maxHp / 8 + maxSp / 4)) + totalPow * 10) * (baseLevel / 100);
