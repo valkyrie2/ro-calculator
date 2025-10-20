@@ -206,6 +206,13 @@ export class AppTopBarComponent implements OnInit, OnDestroy {
 
   updates: { v: string; date: string; logs: string[]; }[] = [
     {
+      v: 'Extra v24',
+      date: '20-10-2568',
+      logs: [
+        "Fix Good&Evil Ring Metallic Fury cooldown",
+      ],
+    },
+    {
       v: 'Extra v23',
       date: '17-10-2568',
       logs: [
