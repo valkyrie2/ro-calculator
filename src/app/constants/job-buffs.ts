@@ -206,7 +206,7 @@ export const JobBuffs: ActiveSkillModel[] = [
     label: 'Talisman Five Ele 5',
     inputType: 'selectButton',
     dropdown: [
-	  { label: 'Yes', isUse: true, value: 5, bonus: { m_element_water: 20, m_element_fire: 20, m_element_wind: 20, m_element_earth: 20, m_element_neutral: 20, p_element_water: 20, p_element_fire: 20, p_element_wind: 20, p_element_earth: 20, p_element_neutral: 20 } },
+      { label: 'Yes', isUse: true, value: 5, bonus: { m_element_water: 20, m_element_fire: 20, m_element_wind: 20, m_element_earth: 20, m_element_neutral: 20, p_element_water: 20, p_element_fire: 20, p_element_wind: 20, p_element_earth: 20, p_element_neutral: 20 } },
       { label: 'No', isUse: false, value: 0 },
     ],
   },
@@ -215,7 +215,7 @@ export const JobBuffs: ActiveSkillModel[] = [
     label: 'Soul of Heaven 10',
     inputType: 'selectButton',
     dropdown: [
-	  { label: 'Yes', isUse: true, value: 5, bonus: { melee: 25, range: 25, m_my_element_all: 25 } },
+      { label: 'Yes', isUse: true, value: 5, bonus: { melee: 25, range: 25, m_my_element_all: 25 } },
       { label: 'No', isUse: false, value: 0 },
     ],
   },
@@ -392,12 +392,37 @@ export const JobBuffs: ActiveSkillModel[] = [
     inputType: 'dropdown',
     isDebuff: true,
     dropdown: [
-	  { label: '-', value: 0, isUse: false },
+      { label: '-', value: 0, isUse: false },
       { label: '10%', isUse: true, value: 1, bonus: { comet: 10 } },
       { label: '20%', isUse: true, value: 2, bonus: { comet: 20 } },
     ],
   },
   {
+    name: '_Land_Sage',
+    label: 'พื้น Sage',
+    inputType: 'dropdown',
+    isDebuff: true,
+    dropdown: [
+      { label: '-', value: 0, isUse: false },
+      { label: 'Volcano', isUse: true, value: 1, bonus: { land_sage: 1, atk: 30, matk: 30 } },
+      { label: 'Deluge', isUse: true, value: 2, bonus: { land_sage: 2, hpPercent: 15 } },
+      { label: 'Violent Gale', isUse: true, value: 3, bonus: { land_sage: 3 } },
+    ],
+  },
+  {
+    name: '_Insignia',
+    label: 'Insignia',
+    inputType: 'dropdown',
+    isDebuff: true,
+    dropdown: [
+      { label: '-', value: 0, isUse: false },
+      { label: 'Fire', isUse: true, value: 1, bonus: { insignia: 1 } },
+      { label: 'Water', isUse: true, value: 2, bonus: { insignia: 2 } },
+      { label: 'Wind', isUse: true, value: 3, bonus: { insignia: 3 } },
+      { label: 'Earth', isUse: true, value: 4, bonus: { insignia: 4 } },
+    ],
+  },
+  /*{
     name: '_Trouvere_Troubadour_ignore_res_mres',
     label: 'Res/MRes -100',
     inputType: 'selectButton',
@@ -406,7 +431,7 @@ export const JobBuffs: ActiveSkillModel[] = [
       { label: 'Yes', isUse: true, value: 10, bonus: { monster_res: -10 * 10, monster_mres: -10 * 10 } },
       { label: 'No', isUse: false, value: 0 },
     ],
-  },
+  },*/
   {
     name: 'Ep21 Race',
     label: 'Ep21 Race +15%',

@@ -293,6 +293,20 @@ export class DamageCalculator {
     return this.toPercent(100 + (this.totalBonus['comet'] || 0));
   }
 
+  private getInsigniaMultiplier(propertyAtk: ElementType) {
+
+    if (propertyAtk === ElementType.Fire && this.totalBonus['insignia'] === 4)
+      return this.toPercent(150);
+    if (propertyAtk === ElementType.Water && this.totalBonus['insignia'] === 1)
+      return this.toPercent(150);
+    if (propertyAtk === ElementType.Wind && this.totalBonus['insignia'] === 2)
+      return this.toPercent(150);
+    if (propertyAtk === ElementType.Earth && this.totalBonus['insignia'] === 3)
+      return this.toPercent(150);
+
+    return this.toPercent(100);
+  }
+
   /**
    *
    * @returns Final damage multiplier
@@ -386,6 +400,14 @@ export class DamageCalculator {
     if (propertyAtk !== ElementType.Poison) return 1;
 
     return this.toPercent((this.totalBonus['vi'] || 0) + 100);
+  }
+
+  private getLandSage(propertyAtk: ElementType) {
+    if (propertyAtk === ElementType.Fire && this.totalBonus['land_sage'] === 1) return 20;
+    if (propertyAtk === ElementType.Water && this.totalBonus['land_sage'] === 2) return 20;
+    if (propertyAtk === ElementType.Wind && this.totalBonus['land_sage'] === 3) return 20;
+
+    return 0;
   }
 
   private isIncludingOverUpgrade() {
@@ -765,6 +787,7 @@ export class DamageCalculator {
     // Neutral 1
     let pMultiplier = ElementMapper[this.monster.elementName][propertyAtk];
     pMultiplier = pMultiplier * this.getVIAmp(propertyAtk);
+    pMultiplier = pMultiplier + this.getLandSage(propertyAtk);
 
     return round(this.toPercent(pMultiplier), 2);
   }
@@ -889,6 +912,9 @@ export class DamageCalculator {
       }
 
       total = floor(total * debuffMultiplier);
+      
+      // Insignia bonus
+      total = floor(total * this.getInsigniaMultiplier(weaponPropertyAtk));
 
       if (this.monster.data.dmgtaken > 0) {
         total = floor(total * this.toPercent(this.monster.data.dmgtaken));
@@ -1027,6 +1053,9 @@ export class DamageCalculator {
       total = floor(total * finalDmgMultiplier);
       total = this.applyFinalMultiplier(total, 'magic');
       total = floor(total * debuffMultiplier);
+
+      // Insignia bonus
+      total = floor(total * this.getInsigniaMultiplier(skillPropertyAtk));
 
       if (this.monster.data.dmgtaken > 0) {
         total = floor(total * this.toPercent(this.monster.data.dmgtaken));
