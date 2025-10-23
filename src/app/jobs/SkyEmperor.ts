@@ -322,6 +322,12 @@ export class SkyEmperor extends StarEmperor {
       inputType: 'dropdown',
       dropdown: genSkillList(10)
     },
+    {
+      name: 'Enchanting Sky',
+      label: 'Enchanting Sky',
+      inputType: 'dropdown',
+      dropdown: genSkillList(10)
+    },
   ];
 
   constructor() {
