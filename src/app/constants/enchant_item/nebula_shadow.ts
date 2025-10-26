@@ -1,11 +1,11 @@
-import { Agi, Dex, Int, Luk, Str } from "./_basic";
+import { Agi, Dex, Int, Luk, Str, Vit } from "./_basic";
 
 export const nebulaShadow4 = [
   Str._5,
   Int._5,
   Dex._5,
   Agi._5,
-  Dex._5,
+  Vit._5,
   Luk._5,
   "M_Pow3",
   "M_Sta3",
@@ -20,7 +20,7 @@ export const nebulaShadow3 = [
   Int._5,
   Dex._5,
   Agi._5,
-  Dex._5,
+  Vit._5,
   Luk._5,
   "M_Pow3",
   "M_Sta3",
