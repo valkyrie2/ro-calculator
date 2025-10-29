@@ -58,7 +58,7 @@ const Mapper = {
   ch1zero3: 'Zero Cell - Vita',
   ch1zero4: 'Zero Cell - Ark',
   "1@f_lake": 'Lake of Fire',
-  jor_tail: 'episode 19',
+  jor_tail: 'Episode 19 Monster',
   clock_01: 'Clock Tower Unknown Basement',
 } as const;
 
