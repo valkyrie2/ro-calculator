@@ -415,6 +415,11 @@ export class RoCalculatorComponent implements OnInit, OnDestroy {
           this.model.shield = undefined;
           this.onSelectItem(ItemTypeEnum.shield);
           this.onClearItem(ItemTypeEnum.shield);
+          // Remove shield from compare list when it's hidden
+          if (this.compareItemNames?.includes(ItemTypeEnum.shield)) {
+            this.compareItemNames = this.compareItemNames.filter(item => item !== ItemTypeEnum.shield);
+            this.onListItemComparingChange();
+          }
           return;
         }
 
@@ -2373,6 +2378,14 @@ export class RoCalculatorComponent implements OnInit, OnDestroy {
     if (itemType === ItemTypeEnum.weapon) {
       this.calculator.setWeapon({ itemId, refine });
       this.isWeaponCanGrade = this.items[itemId]?.canGrade || false;
+    }
+
+    // Remove shield from compare list when leftWeapon is selected
+    if (itemType === ItemTypeEnum.leftWeapon && itemId) {
+      if (this.compareItemNames?.includes(ItemTypeEnum.shield)) {
+        this.compareItemNames = this.compareItemNames.filter(item => item !== ItemTypeEnum.shield);
+        this.onListItemComparingChange();
+      }
     }
 
     this.updateItemEvent.next(itemType);

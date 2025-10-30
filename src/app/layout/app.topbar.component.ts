@@ -212,6 +212,7 @@ export class AppTopBarComponent implements OnInit, OnDestroy {
         "Add Abyss Dagger/Deft Stab KRO Version",
         "Add ep19 Boss Simulation Juncea/ Aquila (Economy/Business/First Class mode)",
         "Fix Weapon penalty of Hyper Novice and Spirit Handler",
+        "Add Compare Shield Function",
       ],
     },
     {
