@@ -110,4 +110,7 @@ export const AspdTable: Partial<Record<ClassName, XX>> = {
   [ClassName.Kagerou]: { base: 156, shield: -3, Dagger: -5, Shuriken: -10, 'left-Dagger': -10, 'left-Sword': -10 },
   [ClassName.Shinkiro]: { base: 156, shield: -3, Dagger: -5, Shuriken: -10, 'left-Dagger': -10, 'left-Sword': -10 },
   [ClassName.Shiranui]: { base: 156, shield: -3, Dagger: -5, Shuriken: -10, 'left-Dagger': -10, 'left-Sword': -10 },
+
+  [ClassName.HyperNovice]: { base: 156, shield: -10, Dagger: -15, Sword: -17, Axe: -10, Mace: -10, Rod: -25 },
+  [ClassName.SpiritHandler]: { base: 156, shield: -7, Rod: -20 },
 } as const;

@@ -247,6 +247,18 @@ export class RoCalculatorComponent implements OnInit, OnDestroy {
     return normalize(this.selectedMonsterName).includes('betelgeuse');
   }
 
+  get isAquila(): boolean {
+    const normalize = (s: string | undefined) => (s || '').toString().replace(/[^a-z0-9]/gi, '').toLowerCase();
+    return normalize(this.selectedMonsterName).includes('aquila');
+  }
+
+  get monsterImageId(): number {
+    if (this.isAquila) {
+      return 21531;
+    }
+    return this.selectedMonster;
+  }
+
   chanceList = [] as ChanceModel[];
   selectedChances = [] as string[];
 

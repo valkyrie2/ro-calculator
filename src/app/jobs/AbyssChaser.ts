@@ -165,12 +165,16 @@ export class AbyssChaser extends ShadowChaser {
   private readonly atkSkillList4th: AtkSkillModel[] = [
     {
       name: 'Abyss Dagger',
-      label: '[V3] Abyss Dagger Lv5',
+      label: '[K] Abyss Dagger Lv5',
       value: 'Abyss Dagger==5',
       acd: 0.5,
       fct: 0,
       vct: 0,
-      cd: 0.3,
+      cd: () => {
+        if (this.isSkillActive('GGT Skill')) return 0.3;
+
+        return 0.4;
+      },
       isMelee: true,
       totalHit: 2,
       verifyItemFn: ({ weapon }) => {
@@ -184,7 +188,11 @@ export class AbyssChaser extends ShadowChaser {
         const { totalPow } = status;
         const { level: baseLevel } = model;
 
-        return (100 + skillLevel * 500 + totalPow * 5) * (baseLevel / 100);
+        if (this.isSkillActive('GGT Skill')) {
+          return (100 + skillLevel * 500 + totalPow * 5) * (baseLevel / 100);
+        }
+
+        return (350 + skillLevel * 1400 + totalPow * 5) * (baseLevel / 100);
       },
     },
     {
@@ -206,20 +214,27 @@ export class AbyssChaser extends ShadowChaser {
     },
     {
       name: 'Deft Stab',
-      label: '[V3] Deft Stab Lv10',
+      label: '[K] Deft Stab Lv10',
       value: 'Deft Stab==10',
       acd: 0.5,
       fct: 0,
       vct: 0,
       cd: 0.3,
       isMelee: true,
-      hit: 5,
+      totalHit: () => {
+        if (this.isSkillActive('GGT Skill')) return 1;
+
+        return 5;
+      },
       formula: (input: AtkSkillFormulaInput): number => {
         const { model, skillLevel, status } = input;
         const { totalPow } = status;
         const { level: baseLevel } = model;
 
-        return (350 + skillLevel * 550 + totalPow * 5) * (baseLevel / 100);
+        if (this.isSkillActive('GGT Skill')) {
+          return (350 + skillLevel * 550 + totalPow * 5) * (baseLevel / 100);
+        }
+        return (700 + skillLevel * 550 + totalPow * 7) * (baseLevel / 100);
       },
     },
     {
