@@ -5,6 +5,8 @@ import { Mechanic } from './Mechanic';
 import { ActiveSkillModel, AtkSkillFormulaInput, AtkSkillModel, PassiveSkillModel } from './_character-base.abstract';
 import { ClassName } from './_class-name';
 import { genMeisterMonsterSkillList } from './summons';
+import { InfoForClass } from '../models/info-for-class.model';
+import { floor } from '../utils';
 
 const jobBonusTable: Record<number, [number, number, number, number, number, number]> = {
   1: [1, 0, 0, 0, 0, 0],
@@ -287,6 +289,15 @@ export class Meister extends Mechanic {
         { label: 'No', value: 0, isUse: false },
       ],
     },
+    {
+      label: 'Power (Good&Evil)',
+      name: 'Power',
+      inputType: 'dropdown',
+      dropdown: [
+        { label: '-', value: 0, isUse: false },
+        { label: 'Lv 4', value: 4, isUse: true },
+      ],
+    },
   ];
   private passiveSkillList4th: PassiveSkillModel[] = [
     {
@@ -313,4 +324,13 @@ export class Meister extends Mechanic {
       classNames: this.classNames4th,
     });
   }
+
+  override modifyFinalAtk(currentAtk: number, _params: InfoForClass) {
+      const powerLv = this.bonuses.usedSkillMap.get('Power');
+  
+      let totalAtk = currentAtk;
+      if (powerLv >= 1) totalAtk = totalAtk + floor(totalAtk * (powerLv * 15 + 10) * 0.01);
+  
+      return totalAtk;
+    }
 }

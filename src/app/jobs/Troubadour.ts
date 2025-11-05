@@ -8,6 +8,7 @@ import { Minstrel } from './Minstrel';
 import { ActiveSkillModel, AtkSkillFormulaInput, AtkSkillModel, PassiveSkillModel } from './_character-base.abstract';
 import { ClassName } from './_class-name';
 import { genSkillList } from '../utils';
+import { NoLimitFn } from '../constants/share-active-skills';
 
 const jobBonusTable: Record<number, [number, number, number, number, number, number]> = {
   1: [0, 0, 0, 1, 0, 0],
@@ -324,7 +325,8 @@ export class Troubadour extends Minstrel {
         { label: 'No', value: 0, isUse: false },
       ],
     },
-    MysticSymphonyFn()
+    MysticSymphonyFn(),
+    NoLimitFn(),
   ];
   private readonly passiveSkillList4th: PassiveSkillModel[] = [
     {

@@ -317,7 +317,7 @@ export class ImperialGuard extends RoyalGuard {
       ],
     },
     {
-      label: 'Power (Good&Evil Set)',
+      label: 'Power (Good&Evil)',
       name: 'Power',
       inputType: 'dropdown',
       dropdown: [

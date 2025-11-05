@@ -121,6 +121,7 @@ export const ExtraOptionTable = {
   Body_Power_Up_Ring: 2,
 
   Bloody_Knight_Shield_: 2,
+  Bloody_Knight_Shield__: 3,
   Gambler_Seal: 2,
   Droop_Gunslinger: 2,
   Cat_Lace_Hairband_K: 2,
@@ -135,5 +136,8 @@ export const ExtraOptionTable = {
   Ear_Of_Abyss_TH: 3,
  
   Gambler_Seal_KR_: 3,
+
+  MD_Geffen_Shield: 3,
+  MD_Geffen_Shield2: 3,
   //Spade_Ace_Melee: 2,
 } as const;
