@@ -210,6 +210,7 @@ export class AppTopBarComponent implements OnInit, OnDestroy {
       date: '05-11-2568',
       logs: [
         "Add new GGT item",
+        "Add Random option to Geffen night arena shield , Purified Shield",
       ],
     },
 	{
