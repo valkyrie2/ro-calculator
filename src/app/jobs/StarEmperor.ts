@@ -333,7 +333,10 @@ export class StarEmperor extends StarGladiator {
     const { size } = monster;
     const bonusSize = size === 'l' ? totalStr : 0;
 
-    return Math.floor((level + totalLuk + totalDex + bonusSize) / 3);
+    if (this.activeSkillLv('Skill Version') === 0) // GGT
+      return Math.floor((level + totalLuk + totalDex + bonusSize) / 3);
+
+    return Math.min(Math.floor((level + totalLuk + totalDex + bonusSize) / 3), 75);
   }
 
   override modifyFinalAtk(currentAtk: number, _params: InfoForClass) {
@@ -341,7 +344,13 @@ export class StarEmperor extends StarGladiator {
     const wratBonus = (100 + this.getWrathAtkBonus(_params)) / 100;
 
     let totalAtk = currentAtk;
-    if (powerLv >= 1) totalAtk = totalAtk + floor(totalAtk * (powerLv * 15 + 10) * 0.01);
+    if (powerLv >= 1) {
+      if (this.activeSkillLv('Skill Version') === 0) { // GGT
+        totalAtk = totalAtk + floor(totalAtk * (powerLv * 15 + 10) * 0.01);
+      }
+      else
+        totalAtk = totalAtk + floor(totalAtk * (powerLv * 20) * 0.01);
+    }
     totalAtk = totalAtk * wratBonus;
 
     return totalAtk;

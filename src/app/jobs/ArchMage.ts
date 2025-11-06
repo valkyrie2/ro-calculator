@@ -165,7 +165,7 @@ export class ArchMage extends Warlock {
   private readonly atkSkillList4th: AtkSkillModel[] = [
     {
       name: 'Soul Vulcan Strike',
-      label: '[K] Soul Vulcan Strike Lv5',
+      label: 'Soul Vulcan Strike Lv5',
       value: 'Soul Vulcan Strike==5',
       acd: 0.5,
       fct: 1,
@@ -179,20 +179,20 @@ export class ArchMage extends Warlock {
         const { totalSpl } = status;
         const { level: baseLevel } = model;
 
-        if (this.isSkillActive('GGT Skill'))
-          return (skillLevel * 250 + totalSpl * 3) * (baseLevel / 100);
-        else
+        if (this.activeSkillLv('Skill Version') === 1) // KRO
           return (skillLevel * 300 + totalSpl * 3) * (baseLevel / 100);
+        else
+          return (skillLevel * 250 + totalSpl * 3) * (baseLevel / 100);
       }
     },
     {
       name: 'Mystery Illusion',
-      label: '[K] Mystery Illusion Lv5',
+      label: 'Mystery Illusion Lv5',
       value: 'Mystery Illusion==5',
       acd: () => {
-        if (this.isSkillActive('GGT Skill')) return 0.5;
+        if (this.activeSkillLv('Skill Version')==1) return 0.75;
 
-        return 0.75;
+        return 0.5;
       },
       fct: 1.5,
       vct: 4,
@@ -210,9 +210,13 @@ export class ArchMage extends Warlock {
     },
     {
       name: 'Floral Flare Road',
-      label: '[V3] Floral Flare Road Lv5',
+      label: 'Floral Flare Road Lv5',
       value: 'Floral Flare Road==5',
-      acd: 0.25,
+      acd: () => {
+        if (this.activeSkillLv('Skill Version')==1) return 0.75;
+
+        return 0.25;
+      },
       fct: 1.5,
       vct: 3,
       cd: 5,
@@ -229,9 +233,13 @@ export class ArchMage extends Warlock {
     },
     {
       name: 'Rain of Crystal',
-      label: '[V3] Rain of Crystal Lv5',
+      label: 'Rain of Crystal Lv5',
       value: 'Rain of Crystal==5',
-      acd: 0.25,
+      acd: () => {
+        if (this.activeSkillLv('Skill Version')==1) return 0.75;
+
+        return 0.25;
+      },
       fct: 1.5,
       vct: 3,
       cd: 5,
@@ -248,9 +256,13 @@ export class ArchMage extends Warlock {
     },
     {
       name: 'Tornado Storm',
-      label: '[V3] Tornado Storm Lv5',
+      label: 'Tornado Storm Lv5',
       value: 'Tornado Storm==5',
-      acd: 0.25,
+      acd: () => {
+        if (this.activeSkillLv('Skill Version')==1) return 0.75;
+
+        return 0.25;
+      },
       fct: 1.5,
       vct: 3,
       cd: 5,
@@ -267,9 +279,13 @@ export class ArchMage extends Warlock {
     },
     {
       name: 'Stratum Tremor',
-      label: '[V3] Stratum Tremor Lv5',
+      label: 'Stratum Tremor Lv5',
       value: 'Stratum Tremor==5',
-      acd: 0.25,
+      acd: () => {
+        if (this.activeSkillLv('Skill Version')==1) return 0.75;
+
+        return 0.25;
+      },
       fct: 1.5,
       vct: 3,
       cd: 4,
@@ -286,7 +302,7 @@ export class ArchMage extends Warlock {
     },
     {
       name: 'Crimson Arrow',
-      label: '[K] Crimson Arrow Lv5',
+      label: 'Crimson Arrow Lv5',
       value: 'Crimson Arrow==5',
       acd: 0.5,
       fct: 1.5,
@@ -299,14 +315,20 @@ export class ArchMage extends Warlock {
         const { totalSpl } = status;
         const { level: baseLevel } = model;
 
-        if (this.isSkillActive('GGT Skill')) {
+        if (this.activeSkillLv('Skill Version')==0) { // GGT
           const blimaxBonus = this.isSkillActive('Climax') ? 600 : 0;
           const directDmg = floor((skillLevel * 300 + totalSpl * 3) * (baseLevel / 100));
           const bomDmg = floor((skillLevel * (600 + blimaxBonus) + totalSpl * 5) * (baseLevel / 100));
 
           return directDmg + bomDmg;
         }
-        else {
+        else if (this.activeSkillLv('Skill Version')==2) { // 260
+          const blimaxBonus = this.isSkillActive('Climax') ? 750 : 0;
+          const directDmg = floor((skillLevel * 350 + totalSpl * 3) * (baseLevel / 100));
+          const bomDmg = floor((skillLevel * (700 + blimaxBonus) + totalSpl * 5) * (baseLevel / 100));
+
+          return directDmg + bomDmg;
+        } else {
           const blimaxBonus = this.isSkillActive('Climax') ? 750 : 0;
           const directDmg = floor((skillLevel * 400 + totalSpl * 3) * (baseLevel / 100));
           const bomDmg = floor((skillLevel * (750 + blimaxBonus) + totalSpl * 5) * (baseLevel / 100));
@@ -317,7 +339,7 @@ export class ArchMage extends Warlock {
     },
     {
       name: 'Frozen Slash',
-      label: '[K] Frozen Slash Lv5',
+      label: 'Frozen Slash Lv5',
       value: 'Frozen Slash==5',
       acd: 0.5,
       fct: 1.5,
@@ -331,25 +353,32 @@ export class ArchMage extends Warlock {
         const { totalSpl } = status;
         const { level: baseLevel } = model;
 
-        if (this.isSkillActive('GGT Skill')) {
-          if (this.isSkillActive('Climax')) {
-            return (400 + skillLevel * 1250 + totalSpl * 5) * (baseLevel / 100);
-          }
-
-          return (250 + skillLevel * 900 + totalSpl * 5) * (baseLevel / 100);
-        } else {
+        if (this.activeSkillLv('Skill Version')==1) { // KRO
           if (this.isSkillActive('Climax')) {
             return (600 + skillLevel * 1300 + totalSpl * 5) * (baseLevel / 100);
           }
 
           return (450 + skillLevel * 950 + totalSpl * 5) * (baseLevel / 100);
         }
+        if (this.activeSkillLv('Skill Version')==2) { // 260
+          if (this.isSkillActive('Climax')) {
+            return (550 + skillLevel * 1250 + totalSpl * 5) * (baseLevel / 100);
+          }
 
+          return (400 + skillLevel * 900 + totalSpl * 5) * (baseLevel / 100);
+        }
+        else {
+          if (this.isSkillActive('Climax')) {
+            return (400 + skillLevel * 1250 + totalSpl * 5) * (baseLevel / 100);
+          }
+
+          return (250 + skillLevel * 900 + totalSpl * 5) * (baseLevel / 100);
+        }
       },
     },
     {
       name: 'Storm Cannon',
-      label: '[K] Storm Cannon Lv5',
+      label: 'Storm Cannon Lv5',
       value: 'Storm Cannon==5',
       acd: 0.5,
       fct: 1.5,
@@ -363,24 +392,30 @@ export class ArchMage extends Warlock {
         const { totalSpl } = status;
         const { level: baseLevel } = model;
 
-        if (this.isSkillActive('GGT Skill')) {
+        if (this.activeSkillLv('Skill Version')==0) { // GGT
           if (this.isSkillActive('Climax')) {
             return (skillLevel * 1250 + totalSpl * 5) * (baseLevel / 100);
           }
 
           return (skillLevel * 950 + totalSpl * 5) * (baseLevel / 100);
-        } else {
+        } else if (this.activeSkillLv('Skill Version')==1) { // KRO
           if (this.isSkillActive('Climax')) {
             return (skillLevel * 1850 + totalSpl * 5) * (baseLevel / 100);
           }
 
           return (skillLevel * 1550 + totalSpl * 5) * (baseLevel / 100);
+        } else { // 260
+          if (this.isSkillActive('Climax')) {
+            return (skillLevel * 1500 + totalSpl * 5) * (baseLevel / 100);
+          }
+
+          return (skillLevel * 1200 + totalSpl * 5) * (baseLevel / 100);
         }
       },
     },
     {
       name: 'Rock Down',
-      label: '[K] Rock Down Lv5',
+      label: 'Rock Down Lv5',
       value: 'Rock Down==5',
       acd: 0.5,
       fct: 1.5,
@@ -393,29 +428,35 @@ export class ArchMage extends Warlock {
         const { model, skillLevel, status } = input;
         const { totalSpl } = status;
         const { level: baseLevel } = model;
-        if (this.isSkillActive('GGT Skill')) {
+        if (this.activeSkillLv('Skill Version')==0) { // GGT
           if (this.isSkillActive('Climax')) {
             return (skillLevel * 1250 + totalSpl * 5) * (baseLevel / 100);
           }
 
           return (skillLevel * 950 + totalSpl * 5) * (baseLevel / 100);
-        } else {
+        } else if (this.activeSkillLv('Skill Version')==1) { // KRO
           if (this.isSkillActive('Climax')) {
             return (skillLevel * 1850 + totalSpl * 5) * (baseLevel / 100);
           }
 
           return (skillLevel * 1550 + totalSpl * 5) * (baseLevel / 100);
+        } else { // 260
+          if (this.isSkillActive('Climax')) {
+            return (skillLevel * 1500 + totalSpl * 5) * (baseLevel / 100);
+          }
+
+          return (skillLevel * 1200 + totalSpl * 5) * (baseLevel / 100);
         }
       },
     },
     {
       name: 'All Bloom',
-      label: '[K] All Bloom Lv5 (1 hit)',
+      label: 'All Bloom Lv5 (1 hit)',
       value: 'All Bloom==5',
       acd: () => {
-        if (this.isSkillActive('GGT Skill')) return 0.5;
+        if (this.activeSkillLv('Skill Version')==1) return 1;
 
-        return 1;
+        return 0.5;
       },
       fct: 1.5,
       vct: 4,
@@ -433,12 +474,12 @@ export class ArchMage extends Warlock {
     },
     {
       name: 'Violent Quake',
-      label: '[K] Violent Quake Lv5 (1 hit)',
+      label: 'Violent Quake Lv5 (1 hit)',
       value: 'Violent Quake==5',
       acd: () => {
-        if (this.isSkillActive('GGT Skill')) return 0.5;
+        if (this.activeSkillLv('Skill Version')==1) return 1;
 
-        return 1;
+        return 0.5;
       },
       fct: 1.5,
       vct: 4,
@@ -456,7 +497,7 @@ export class ArchMage extends Warlock {
     },
     {
       name: 'Crystal Impact',
-      label: '[V3] Crystal Impact Lv5',
+      label: 'Crystal Impact Lv5',
       value: 'Crystal Impact==5',
       acd: 0.5,
       fct: 1.5,

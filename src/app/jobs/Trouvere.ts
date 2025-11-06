@@ -168,13 +168,13 @@ export class Trouvere extends Wanderer {
   private readonly atkSkillList4th: AtkSkillModel[] = [
     {
       name: 'Rhythm Shooting',
-      label: '[K] Rhythm Shooting Lv5',
+      label: 'Rhythm Shooting Lv5',
       value: 'Rhythm Shooting==5',
       acd: 0,
       fct: 0,
       vct: 2,
       cd: () => {
-        if (this.isSkillActive('GGT Skill')) return 0.15;
+        if (this.activeSkillLv('Skill Version') === 0) return 0.15; // GGT
 
         return 0.35;
       },
@@ -190,24 +190,31 @@ export class Trouvere extends Wanderer {
         const baseLevel = model.level;
         const stageMannerLv = this.learnLv('Stage Manner');
 
-        // if (this.isSkillActive('Sonic Brand'))
-        if (this.isSkillActive('GGT Skill')) {
+        if (this.activeSkillLv('Skill Version') === 0) { // GGT
           if (this.isSkillActive('Sound Blend')) {
             return (300 + skillLevel * 220 + status.totalCon * 3 * stageMannerLv) * (baseLevel / 100);
           }
 
           return (200 + skillLevel * 100 + status.totalCon * 3 * stageMannerLv) * (baseLevel / 100);
-        } else {
+        }
+        else if (this.activeSkillLv('Skill Version') === 2) { // 260
           if (this.isSkillActive('Sound Blend')) {
-            return (850 + skillLevel * 1050 + status.totalCon * 3 * stageMannerLv) * (baseLevel / 100);
+            return (800 + skillLevel * 750 + status.totalCon * 7 * stageMannerLv) * (baseLevel / 100);
           }
-          return (550 + skillLevel * 950 + status.totalCon * 3 * stageMannerLv) * (baseLevel / 100);
+
+          return (450 + skillLevel * 650 + status.totalCon * 5 * stageMannerLv) * (baseLevel / 100);
+        }
+        else {
+          if (this.isSkillActive('Sound Blend')) {
+            return (850 + skillLevel * 1050 + status.totalCon * 7 * stageMannerLv) * (baseLevel / 100);
+          }
+          return (550 + skillLevel * 950 + status.totalCon * 5 * stageMannerLv) * (baseLevel / 100);
         }
       },
     },
     {
       name: 'Metallic Fury',
-      label: '[K] Metallic Fury Lv5',
+      label: 'Metallic Fury Lv5',
       value: 'Metallic Fury==5',
       acd: 0.5,
       fct: 0,
@@ -226,22 +233,23 @@ export class Trouvere extends Wanderer {
         const baseLevel = model.level;
         const stageMannerLv = this.learnLv('Stage Manner');
 
-        if (this.isSkillActive('GGT Skill')) {
+        if (this.activeSkillLv('Skill Version') === 1) { // KRO
           if (this.isSkillActive('Sound Blend')) {
-            return (skillLevel * 3600 + status.totalSpl * 3 * stageMannerLv / 2) * (baseLevel / 100);
-          }
-          return (skillLevel * 2600 + status.totalSpl * 3 * stageMannerLv / 2) * (baseLevel / 100);
-        } else {
-          if (this.isSkillActive('Sound Blend')) {
-            return (skillLevel * 4650 + status.totalSpl * 3 * stageMannerLv / 2) * (baseLevel / 100);
+            return (skillLevel * 4650 + status.totalSpl * 2 * stageMannerLv) * (baseLevel / 100);
           }
           return (skillLevel * 3850 + status.totalSpl * 3 * stageMannerLv / 2) * (baseLevel / 100);
+        }
+        else {
+          if (this.isSkillActive('Sound Blend')) { // GGT , 260 is same
+            return (skillLevel * 3600 + status.totalSpl * 2 * stageMannerLv) * (baseLevel / 100);
+          }
+          return (skillLevel * 2600 + status.totalSpl * 3 * stageMannerLv / 2) * (baseLevel / 100);
         }
       },
     },
     {
       name: 'Rhythmical Wave',
-      label: '[K] Rhythmical Wave Lv5',
+      label: 'Rhythmical Wave Lv5',
       value: 'Rhythmical Wave==5',
       acd: 1,
       fct: 1,
@@ -268,7 +276,7 @@ export class Trouvere extends Wanderer {
     },
     {
       name: 'Rose Blossom',
-      label: '[K] Rose Blossom Lv5',
+      label: 'Rose Blossom Lv5',
       value: 'Rose Blossom==5',
       acd: 0.15,
       fct: 0.5,
@@ -285,32 +293,16 @@ export class Trouvere extends Wanderer {
         const baseLevel = model.level;
         const stageMannerLv = this.learnLv('Stage Manner');
 
-        // if (this.isSkillActive('Sonic Brand'))
+        if (this.isSkillActive('Sound Blend')) {
+          const primaryDmg = (200 + skillLevel * 2200 + status.totalCon * 3 * stageMannerLv) * (baseLevel / 100);
+          const secondaryDmg = (250 + skillLevel * 3000 + status.totalCon * 3 * stageMannerLv) * (baseLevel / 100);
 
-        if (this.isSkillActive('GGT Skill')) {
-          if (this.isSkillActive('Sound Blend')) {
-            const primaryDmg = (200 + skillLevel * 2200 + status.totalCon * 3 * stageMannerLv) * (baseLevel / 100);
-            const secondaryDmg = (250 + skillLevel * 3000 + status.totalCon * 3 * stageMannerLv) * (baseLevel / 100);
-
-            return primaryDmg + secondaryDmg;
-          } else {
-            const primaryDmg = (200 + skillLevel * 2000 + status.totalCon * 3 * stageMannerLv) * (baseLevel / 100);
-            const secondaryDmg = (250 + skillLevel * 2800 + status.totalCon * 3 * stageMannerLv) * (baseLevel / 100);
-
-            return primaryDmg + secondaryDmg;
-          }
+          return primaryDmg + secondaryDmg;
         } else {
-          if (this.isSkillActive('Sound Blend')) {
-            const primaryDmg = (200 + skillLevel * 2200 + status.totalCon * 3 * stageMannerLv) * (baseLevel / 100);
-            const secondaryDmg = (250 + skillLevel * 3000 + status.totalCon * 3 * stageMannerLv) * (baseLevel / 100);
+          const primaryDmg = (200 + skillLevel * 2000 + status.totalCon * 3 * stageMannerLv) * (baseLevel / 100);
+          const secondaryDmg = (250 + skillLevel * 2800 + status.totalCon * 3 * stageMannerLv) * (baseLevel / 100);
 
-            return primaryDmg + secondaryDmg;
-          } else {
-            const primaryDmg = (200 + skillLevel * 2000 + status.totalCon * 3 * stageMannerLv) * (baseLevel / 100);
-            const secondaryDmg = (250 + skillLevel * 2800 + status.totalCon * 3 * stageMannerLv) * (baseLevel / 100);
-
-            return primaryDmg + secondaryDmg;
-          }
+          return primaryDmg + secondaryDmg;
         }
       },
     },

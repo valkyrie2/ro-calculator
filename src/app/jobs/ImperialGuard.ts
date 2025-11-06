@@ -170,7 +170,7 @@ export class ImperialGuard extends RoyalGuard {
   private readonly atkSkillList4th: AtkSkillModel[] = [
     {
       name: 'Overslash',
-      label: '[V3] Overslash Lv10 (1 hit)',
+      label: 'Overslash Lv10 (1 hit)',
       value: 'Overslash==10',
       acd: 0.5,
       fct: 0.5,
@@ -183,12 +183,17 @@ export class ImperialGuard extends RoyalGuard {
         const baseLevel = model.level;
         const ssMastLv = this.learnLv('Spear & Sword Mastery');
 
-        return (skillLevel * (120 + ssMastLv * 10) + totalPow * 5) * (baseLevel / 100);
+        if (this.activeSkillLv('Skill Version') === 0) // GGT
+          return (skillLevel * (120 + ssMastLv * 10) + totalPow * 5) * (baseLevel / 100);
+        else if (this.activeSkillLv('Skill Version') === 2) // 260
+          return (skillLevel * (160 + ssMastLv * 25) + totalPow * 7) * (baseLevel / 100);
+        else // KRO
+          return (skillLevel * (220 + ssMastLv * 50) + totalPow * 7) * (baseLevel / 100);
       },
     },
     {
       name: 'Shield Shooting',
-      label: '[V3] Shield Shooting Lv5',
+      label: 'Shield Shooting Lv5',
       value: 'Shield Shooting==5',
       acd: 0.5,
       fct: 0.5,
@@ -203,37 +208,54 @@ export class ImperialGuard extends RoyalGuard {
         const { level: baseLevel } = model;
         const shieldMastLv = this.learnLv('Shield Mastery');
 
-        return (200 + skillLevel * (1300 + shieldMastLv * 15) + totalPow * 5 + weight + refine * 4) * (baseLevel / 100);
+        if (this.activeSkillLv('Skill Version') === 0) // GGT
+          return (200 + skillLevel * (1300 + shieldMastLv * 15) + totalPow * 5 + weight + refine * 4) * (baseLevel / 100);
+        else if (this.activeSkillLv('Skill Version') === 2) // 260
+          return (650 + skillLevel * (2850 + shieldMastLv * 50) + totalPow * 7 + weight + refine * 25) * (baseLevel / 100);
+        else // KRO
+          return (1000 + skillLevel * (3500 + shieldMastLv * 150) + totalPow * 10 + weight + refine * 100) * (baseLevel / 100);
       },
     },
     {
       name: 'Cross Rain',
-      label: '[K] Cross Rain Lv10',
+      label: 'Cross Rain Lv10',
       value: 'Cross Rain==10',
       acd: 0.15,
       fct: 1.5,
       vct: 4,
       cd: () => {
-        if (this.isSkillActive('GGT Skill')) return 4.5;
+        if (this.activeSkillLv('Skill Version') === 0) return 4.5;
 
         return 2.4;
       },
       isMatk: true,
       element: ElementType.Holy,
-      totalHit: 15,
+      totalHit: () => {
+        if (this.activeSkillLv('Skill Version') === 0) return 15;
+
+        return 8;
+      },
       formula: (input: AtkSkillFormulaInput): number => {
         const { model, skillLevel, status } = input;
         const { totalSpl } = status;
         const baseLevel = model.level;
         const ssMastLv = this.learnLv('Spear & Sword Mastery');
 
-        if (this.isSkillActive('GGT Skill')) {
+        if (this.activeSkillLv('Skill Version') === 0) { // GGT
           if (this.isSkillActive('Holy Shield')) {
             return (skillLevel * (450 + ssMastLv * 10) + totalSpl * 5) * (baseLevel / 100);
           }
 
           return (skillLevel * (320 + ssMastLv * 5) + totalSpl * 2) * (baseLevel / 100);
-        } else {
+        }
+        else if (this.activeSkillLv('Skill Version') === 2) { // 260
+          if (this.isSkillActive('Holy Shield')) {
+            return (skillLevel * (450 + ssMastLv * 15) + totalSpl * 5) * (baseLevel / 100);
+          }
+
+          return (skillLevel * (320 + ssMastLv * 10) + totalSpl * 2) * (baseLevel / 100);
+        }
+        else { // KRO
           if (this.isSkillActive('Holy Shield')) {
             return (skillLevel * (650 + ssMastLv * 15) + totalSpl * 5) * (baseLevel / 100);
           }
@@ -244,7 +266,7 @@ export class ImperialGuard extends RoyalGuard {
     },
     {
       name: 'Radiant Spear',
-      label: '[K] Radiant Spear Lv10',
+      label: 'Radiant Spear Lv10',
       value: 'Radiant Spear==10',
       acd: 1.2,
       fct: 1,
@@ -399,7 +421,13 @@ export class ImperialGuard extends RoyalGuard {
     const powerLv = this.bonuses.usedSkillMap.get('Power');
 
     let totalAtk = currentAtk;
-    if (powerLv >= 1) totalAtk = totalAtk + floor(totalAtk * (powerLv * 15 + 10) * 0.01);
+    if (powerLv >= 1) {
+      if (this.activeSkillLv('Skill Version') === 0) { // GGT
+        totalAtk = totalAtk + floor(totalAtk * (powerLv * 15 + 10) * 0.01);
+      }
+      else
+        totalAtk = totalAtk + floor(totalAtk * (powerLv * 20) * 0.01);
+    }
 
     return totalAtk;
   }

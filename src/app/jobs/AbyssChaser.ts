@@ -165,13 +165,13 @@ export class AbyssChaser extends ShadowChaser {
   private readonly atkSkillList4th: AtkSkillModel[] = [
     {
       name: 'Abyss Dagger',
-      label: '[K] Abyss Dagger Lv5',
+      label: 'Abyss Dagger Lv5',
       value: 'Abyss Dagger==5',
       acd: 0.5,
       fct: 0,
       vct: 0,
       cd: () => {
-        if (this.isSkillActive('GGT Skill')) return 0.3;
+        if (this.activeSkillLv('Skill Version') === 0) return 0.3;
 
         return 0.4;
       },
@@ -188,16 +188,21 @@ export class AbyssChaser extends ShadowChaser {
         const { totalPow } = status;
         const { level: baseLevel } = model;
 
-        if (this.isSkillActive('GGT Skill')) {
+        if (this.activeSkillLv('Skill Version') === 0) { // GGT
           return (100 + skillLevel * 500 + totalPow * 5) * (baseLevel / 100);
         }
 
+        if (this.activeSkillLv('Skill Version') === 2) { // 260
+          return (100 + skillLevel * 900 + totalPow * 5) * (baseLevel / 100);
+        }
+
+        // KRO
         return (350 + skillLevel * 1400 + totalPow * 5) * (baseLevel / 100);
       },
     },
     {
       name: 'Unlucky Rush',
-      label: '[V3] Unlucky Rush Lv5',
+      label: 'Unlucky Rush Lv5',
       value: 'Unlucky Rush==5',
       acd: 0.5,
       fct: 0,
@@ -214,15 +219,19 @@ export class AbyssChaser extends ShadowChaser {
     },
     {
       name: 'Deft Stab',
-      label: '[K] Deft Stab Lv10',
+      label: 'Deft Stab Lv10',
       value: 'Deft Stab==10',
       acd: 0.5,
       fct: 0,
       vct: 0,
-      cd: 0.3,
+      cd: () => {
+        if (this.activeSkillLv('Skill Version') === 0) return 0.3;
+
+        return 0.7;
+      },
       isMelee: true,
       totalHit: () => {
-        if (this.isSkillActive('GGT Skill')) return 1;
+        if (this.activeSkillLv('Skill Version') === 0) return 1;
 
         return 5;
       },
@@ -231,15 +240,21 @@ export class AbyssChaser extends ShadowChaser {
         const { totalPow } = status;
         const { level: baseLevel } = model;
 
-        if (this.isSkillActive('GGT Skill')) {
+        if (this.activeSkillLv('Skill Version') === 0) {  // GGT
           return (350 + skillLevel * 550 + totalPow * 5) * (baseLevel / 100);
         }
+
+        if (this.activeSkillLv('Skill Version') === 2) {  // 260
+          return (250 + skillLevel * 350 + totalPow * 5) * (baseLevel / 100);
+        }
+
+        // KRO
         return (700 + skillLevel * 550 + totalPow * 7) * (baseLevel / 100);
       },
     },
     {
       name: 'Chain Reaction Shot',
-      label: '[V3] Chain Reaction Shot Lv5',
+      label: 'Chain Reaction Shot Lv5',
       value: 'Chain Reaction Shot==5',
       acd: 0,
       fct: 1,
@@ -264,12 +279,16 @@ export class AbyssChaser extends ShadowChaser {
     },
     {
       name: 'Frenzy Shot',
-      label: '[V3] Frenzy Shot Lv10 (1 hit)',
+      label: 'Frenzy Shot Lv10 (1 hit)',
       value: 'Frenzy Shot==10',
       acd: 0.5,
       fct: 0,
       vct: 0,
-      cd: 0.2,
+      cd: () => {
+        if (this.activeSkillLv('Skill Version') === 0) return 0.2;
+
+        return 0.35;
+      },
       canCri: true,
       baseCriPercentage: 1,
       criDmgPercentage: 0.5,
@@ -284,31 +303,50 @@ export class AbyssChaser extends ShadowChaser {
         const { totalCon } = status;
         const { level: baseLevel } = model;
 
-        return (skillLevel * 400 + totalCon * 5) * (baseLevel / 100);
+        if (this.activeSkillLv('Skill Version') === 0) // GGT
+         return (skillLevel * 400 + totalCon * 5) * (baseLevel / 100);
+
+        if (this.activeSkillLv('Skill Version') === 2) // 260
+         return (150 + skillLevel * 600 + totalCon * 15) * (baseLevel / 100);
+
+        // KRO
+        return (250 + skillLevel * 800 + totalCon * 15) * (baseLevel / 100);
       },
     },
     {
       name: 'From the Abyss',
-      label: '[V3] From the Abyss Lv5',
+      label: 'From the Abyss Lv5',
       value: 'From the Abyss==5',
       acd: 0,
       fct: 0,
       vct: 0,
-      cd: 60,
+      cd: () => {
+        if (this.activeSkillLv('Skill Version') === 1) return 30;
+
+        return 60;
+      },
       isMatk: true,
       element: ElementType.Neutral,
-      totalHit: 2,
+      totalHit: () => {
+        if (this.activeSkillLv('Skill Version') === 1) return 5;
+
+        return 2;
+      },
       formula: (input: AtkSkillFormulaInput): number => {
         const { model, skillLevel, status } = input;
         const { totalSpl } = status;
         const { level: baseLevel } = model;
+
+        if (this.activeSkillLv('Skill Version') === 1) { // KRO
+          return (150 + skillLevel * 650 + totalSpl * 5) * (baseLevel / 100);
+        }
 
         return (100 + skillLevel * 500 + totalSpl * 5) * (baseLevel / 100);
       },
     },
     {
       name: 'Abyss Square',
-      label: '[V3] Abyss Square Lv5 (อยู่นอกพื้นที่สกิล)',
+      label: 'Abyss Square Lv5 (นอกพื้นที่สกิล)',
       value: 'Abyss Square==5',
       acd: 0.5,
       fct: 1.5,
@@ -323,26 +361,110 @@ export class AbyssChaser extends ShadowChaser {
         const { level: baseLevel } = model;
         const magicSwordMasLv = this.learnLv('Magic Sword Mastery');
 
+        if (this.activeSkillLv('Skill Version') === 1) { // KRO
+          return (skillLevel * (750 + magicSwordMasLv * 40) + totalSpl * 5) * (baseLevel / 100);
+        }
         return (skillLevel * (570 + magicSwordMasLv * 20) + totalSpl * 5) * (baseLevel / 100);
       },
     },
     {
-      name: 'Omega Abyss Strike',
-      label: '[V3] Omega Abyss Strike Lv10',
-      value: 'Omega Abyss Strike==10',
+      name: 'Abyss Square',
+      label: 'Abyss Square Lv5 (ในพื้นที่สกิล)',
+      value: 'Abyss Square==6',
       acd: 0.5,
       fct: 1.5,
-      vct: 4,
+      vct: 5,
       cd: 3,
+      totalHit: 10,
       isMatk: true,
       element: ElementType.Neutral,
+      formula: (input: AtkSkillFormulaInput): number => {
+        const { model, skillLevel, status } = input;
+        const { totalSpl } = status;
+        const { level: baseLevel } = model;
+        const magicSwordMasLv = this.learnLv('Magic Sword Mastery');
+
+        if (this.activeSkillLv('Skill Version') === 1) { // KRO
+          return (Math.min(5,skillLevel) * (750 + magicSwordMasLv * 40) + totalSpl * 5) * 2 * (baseLevel / 100);
+        }
+          return (Math.min(5,skillLevel) * (570 + magicSwordMasLv * 20) + totalSpl * 5) * 2 * (baseLevel / 100);
+      },
+    },
+    {
+      name: 'Omega Abyss Strike',
+      label: 'Omega Abyss Strike Lv10',
+      value: 'Omega Abyss Strike==10',
+      acd: 0.5,
+      fct: () => {
+        if (this.activeSkillLv('Skill Version') === 1) return 1;
+
+        return 1.5;
+      },
+      vct: 4,
+      cd: () => {
+        if (this.activeSkillLv('Skill Version') === 1) return 0.7;
+
+        return 3;
+      },
+      isMatk: true,
+      getElement: () => {
+        if (this.activeSkillLv('Skill Version') === 1) return ElementType.Fire;
+
+        return ElementType.Neutral;
+      },
       formula: (input: AtkSkillFormulaInput): number => {
         const { model, skillLevel, status, monster } = input;
         const { totalSpl } = status;
         const { level: baseLevel } = model;
         const raceBonus = monster.isRace('angel', 'demon') ? 150 : 0;
-
+        
+        if (this.activeSkillLv('Skill Version') === 1) { // KRO
+          if (monster.isRace('angel', 'demon')) {
+            return (skillLevel * 2850 + totalSpl * 10) * (baseLevel / 100);
+          }
+          return (skillLevel * 2650 + totalSpl * 10) * (baseLevel / 100);
+        }
         return (skillLevel * (2200 + raceBonus) + totalSpl * 10) * (baseLevel / 100);
+      },
+    },
+    {
+      name: 'Abyss Flame',
+      label: 'Abyss Flame Lv5 (รอบเป้าหมาย)',
+      value: 'Abyss Flame==5',
+      acd: 1,
+      fct: 1.5,
+      vct: 3,
+      cd: 0.7,
+      isMatk: true,
+      totalHit: 5,
+      element: ElementType.Fire,
+      formula: (input: AtkSkillFormulaInput): number => {
+        const { model, skillLevel, status } = input;
+        const { totalSpl } = status;
+        const { level: baseLevel } = model;
+        const magicSwordMasLv = this.learnLv('Magic Sword Mastery');
+
+        return (skillLevel * (500 + magicSwordMasLv * 15) + totalSpl * 5) * (baseLevel / 100);
+      },
+    },
+    {
+      name: 'Abyss Flame',
+      label: 'Abyss Flame Lv5 (รอบผู้ใช้)',
+      value: 'Abyss Flame==6',
+      acd: 1,
+      fct: 1.5,
+      vct: 3,
+      cd: 0.7,
+      isMatk: true,
+      totalHit: 3,
+      element: ElementType.Fire,
+      formula: (input: AtkSkillFormulaInput): number => {
+        const { model, skillLevel, status } = input;
+        const { totalSpl } = status;
+        const { level: baseLevel } = model;
+        const magicSwordMasLv = this.learnLv('Magic Sword Mastery');
+
+        return ((skillLevel - 1) * (820 + magicSwordMasLv * 30) + totalSpl * 5) * (baseLevel / 100);
       },
     },
   ];

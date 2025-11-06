@@ -175,7 +175,7 @@ export class SkyEmperor extends StarEmperor {
   private readonly atkSkillList4th: AtkSkillModel[] = [
     {
       name: 'Noon Blast',
-      label: '[V2] Noon Blast Lv5',
+      label: 'Noon Blast Lv5',
       value: 'Noon Blast==5',
       acd: 0.5,
       fct: 0,
@@ -197,7 +197,7 @@ export class SkyEmperor extends StarEmperor {
     },
     {
       name: 'Sunset Blast',
-      label: '[V2] Sunset Blast Lv5',
+      label: 'Sunset Blast Lv5',
       value: 'Sunset Blast==5',
       acd: 0.5,
       fct: 0,
@@ -219,7 +219,7 @@ export class SkyEmperor extends StarEmperor {
     },
     {
       name: 'Midnight Kick',
-      label: '[V2] Midnight Kick Lv5',
+      label: 'Midnight Kick Lv5',
       value: 'Midnight Kick==5',
       acd: 0,
       fct: 0.5,
@@ -234,6 +234,14 @@ export class SkyEmperor extends StarEmperor {
         const baseLevel = model.level;
         const skillBonusLv = this.learnLv('Sky Mastery');
 
+        if (this.activeSkillLv('Skill Version') === 1) { // KRO
+          if (this.activeSkillLv('_SkyEmperor_Rising_Moon') === RisingMoon.Midnight) {
+            return (1750 + skillLevel * (1750 + skillBonusLv * 5) + totalPow * 5) * (baseLevel / 100);
+          }
+
+          return (800 + skillLevel * (1500 + skillBonusLv * 5) + totalPow * 5) * (baseLevel / 100);
+        }
+
         if (this.activeSkillLv('_SkyEmperor_Rising_Moon') === RisingMoon.Midnight) {
           return (1550 + skillLevel * (1450 + skillBonusLv * 5) + totalPow * 5) * (baseLevel / 100);
         }
@@ -243,7 +251,7 @@ export class SkyEmperor extends StarEmperor {
     },
     {
       name: 'Dawn Break',
-      label: '[V2] Dawn Break Lv5',
+      label: 'Dawn Break Lv5',
       value: 'Dawn Break==5',
       acd: 0,
       fct: 0.5,
@@ -258,6 +266,14 @@ export class SkyEmperor extends StarEmperor {
         const baseLevel = model.level;
         const skillBonusLv = this.learnLv('Sky Mastery');
 
+        if (this.activeSkillLv('Skill Version') === 1) { // KRO
+          if (this.activeSkillLv('_SkyEmperor_Rising_Moon') === RisingMoon.Moonset) {
+            return (600 + skillLevel * (900 + skillBonusLv * 5) + totalPow * 5) * (baseLevel / 100);
+          }
+
+          return (600 + skillLevel * (700 + skillBonusLv * 5) + totalPow * 5) * (baseLevel / 100);
+        }
+
         if (this.activeSkillLv('_SkyEmperor_Rising_Moon') === RisingMoon.Moonset) {
           return (400 + skillLevel * (600 + skillBonusLv * 5) + totalPow * 5) * (baseLevel / 100);
         }
@@ -267,12 +283,16 @@ export class SkyEmperor extends StarEmperor {
     },
     {
       name: 'Star Cannon',
-      label: '[V2] Star Cannon Lv5 (1 hit)',
+      label: 'Star Cannon Lv5 (1 hit)',
       value: 'Star Cannon==5',
       acd: 0,
       fct: 0.5,
       vct: 1,
-      cd: 0.3,
+      cd: () => {
+        if (this.activeSkillLv('Skill Version') === 0) return 0.3; // GGT
+
+        return 0.5;
+      },
       isMelee: true,
       criDmgPercentage: 0.5,
       formula: (input: AtkSkillFormulaInput): number => {
@@ -281,7 +301,34 @@ export class SkyEmperor extends StarEmperor {
         const baseLevel = model.level;
         const skillBonusLv = this.learnLv('Sky Mastery');
 
-        return (200 + skillLevel * (500 + skillBonusLv * 5) + totalPow * 5) * (baseLevel / 100);
+        if (this.activeSkillLv('Skill Version') === 0) // GGT
+          return (200 + skillLevel * (500 + skillBonusLv * 5) + totalPow * 5) * (baseLevel / 100);
+
+        return (250 + skillLevel * (550 + skillBonusLv * 5) + totalPow * 5) * (baseLevel / 100);
+      },
+    },
+    {
+      name: 'All in the Sky',
+      label: 'All in the Sky (1 Hit)',
+      value: 'All in the Sky==10',
+      acd: 0,
+      fct: 1,
+      vct: 0,
+      cd: 2,
+      isMelee: true,
+      canCri: true,
+      criDmgPercentage: 0.5,
+      baseCriPercentage: 1,
+      formula: (input: AtkSkillFormulaInput): number => {
+        const { model, skillLevel, status } = input;
+        const { totalPow } = status;
+        const baseLevel = model.level;
+        const skillBonusLv = this.learnLv('Sky Mastery');
+
+        if (this.activeSkillLv('Skill Version') === 0) // GGT
+          return (3000 + skillLevel * 2000 + totalPow * 10) * (baseLevel / 100);
+
+          return (250 + skillLevel * 1200 + totalPow * 10) * (baseLevel / 100);
       },
     },
   ];

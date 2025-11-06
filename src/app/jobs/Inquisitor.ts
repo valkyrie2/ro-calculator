@@ -170,7 +170,7 @@ export class Inquisitor extends Sura {
   private readonly atkSkillList4th: AtkSkillModel[] = [
     {
       name: 'First Brand',
-      label: '[V3] First Brand Lv5',
+      label: 'First Brand Lv5',
       value: 'First Brand==5',
       acd: 0,
       fct: 0,
@@ -187,7 +187,7 @@ export class Inquisitor extends Sura {
     },
     {
       name: 'Second Faith',
-      label: '[V3] Second Faith Lv5',
+      label: 'Second Faith Lv5',
       value: 'Second Faith==5',
       acd: 0,
       fct: 0,
@@ -205,12 +205,20 @@ export class Inquisitor extends Sura {
     },
     {
       name: 'Third Punish',
-      label: '[V3] Third Punish Lv5',
+      label: 'Third Punish Lv5',
       value: 'Third Punish==5',
-      acd: 0,
+      acd: () => {
+        if (this.activeSkillLv('Skill Version') === 1) return 0.5; // KRO
+
+        return 0;
+      },
       fct: 0,
       vct: 0,
-      cd: 1,
+      cd: () => {
+        if (this.activeSkillLv('Skill Version') === 1) return 0.7; // KRO
+
+        return 1;
+      },
       isMelee: true,
       canCri: true,
       baseCriPercentage: 1,
@@ -221,12 +229,15 @@ export class Inquisitor extends Sura {
         const { totalPow } = status;
         const baseLevel = model.level;
 
+        if (this.activeSkillLv('Skill Version') === 1) { // KRO
+          return (450 + skillLevel * 1800 + totalPow * 10) * (baseLevel / 100);
+        }
         return (350 + skillLevel * 1500 + totalPow * 10) * (baseLevel / 100);
       },
     },
     {
       name: 'Second Judgement',
-      label: '[V3] Second Judgement Lv5',
+      label: 'Second Judgement Lv5',
       value: 'Second Judgement==5',
       acd: 0,
       fct: 0,
@@ -244,7 +255,7 @@ export class Inquisitor extends Sura {
     },
     {
       name: 'Third Consecration',
-      label: '[V3] Third Consecration Lv5',
+      label: 'Third Consecration Lv5',
       value: 'Third Consecration==5',
       acd: 0,
       fct: 0,
@@ -262,7 +273,7 @@ export class Inquisitor extends Sura {
     },
     {
       name: 'Second Flame',
-      label: '[V3] Second Flame Lv5',
+      label: 'Second Flame Lv5',
       value: 'Second Flame==5',
       acd: 0,
       fct: 0,
@@ -279,10 +290,10 @@ export class Inquisitor extends Sura {
     },
     {
       name: 'Third Flame Bomb',
-      label: '[K] Third Flame Bomb Lv5',
+      label: 'Third Flame Bomb Lv5',
       value: 'Third Flame Bomb==5',
       acd: () => {
-        if (this.isSkillActive('GGT Skill')) return 0;
+        if (this.activeSkillLv('Skill Version') === 0) return 0;
 
         return 0.7;
       },
@@ -302,10 +313,10 @@ export class Inquisitor extends Sura {
     },
     {
       name: 'Explosion Blaster',
-      label: '[K] Explosion Blaster Lv5',
+      label: 'Explosion Blaster Lv5',
       value: 'Explosion Blaster==5',
       acd: () => {
-        if (this.isSkillActive('GGT Skill')) return 0;
+        if (this.activeSkillLv('Skill Version') === 0) return 0; // GGT
 
         return 1;
       },
@@ -321,23 +332,31 @@ export class Inquisitor extends Sura {
         const baseLevel = model.level;
 
         if (this.isSkillActive('Oleum Sanctum')) {
-          if (this.isSkillActive('GGT Skill'))
+          if (this.activeSkillLv('Skill Version') === 0) // GGT
             return (skillLevel * 3200 + totalPow * 15) * (baseLevel / 100);
-          else
+          else if (this.activeSkillLv('Skill Version') === 2) // 260
+            return (350 + skillLevel * 3450 + totalPow * 15) * (baseLevel / 100);
+          else if (this.activeSkillLv('Skill Version') === 1) // KRO
             return (450 + skillLevel * 3550 + totalPow * 15) * (baseLevel / 100);
         }
 
-        if (this.isSkillActive('GGT Skill'))
+        if (this.activeSkillLv('Skill Version') === 0) // GGT
           return (skillLevel * 2800 + totalPow * 15) * (baseLevel / 100);
-        else
+        else if (this.activeSkillLv('Skill Version') === 2) // 260
+          return (skillLevel * 2400 + totalPow * 10) * (baseLevel / 100);
+        else // KRO
           return (450 + skillLevel * 2600 + totalPow * 10) * (baseLevel / 100);
       },
     },
     {
       name: 'Massive Flame Blaster',
-      label: '[V3] Massive Flame Blaster Lv10',
+      label: 'Massive Flame Blaster Lv10',
       value: 'Massive Flame Blaster==10',
-      acd: 1,
+      acd: () => {
+        if (this.activeSkillLv('Skill Version') === 0) return 0; // GGT
+
+        return 0.5;
+      },
       fct: 0,
       vct: 0,
       cd: 5,
@@ -348,14 +367,24 @@ export class Inquisitor extends Sura {
         const { model, skillLevel, status, monster } = input;
         const { totalPow } = status;
         const baseLevel = model.level;
-        const raceBonus = monster.isRace('demihuman', 'brute') ? 150 : 0;
 
-        return (skillLevel * (2150 + raceBonus) + totalPow * 15) * (baseLevel / 100);
+        if (this.activeSkillLv('Skill Version') === 0) { // GGT
+
+          if (monster.isRace('demihuman', 'brute')) {
+            return (skillLevel * (2300) + totalPow * 15) * (baseLevel / 100);
+          }
+          return (skillLevel * (2150) + totalPow * 15) * (baseLevel / 100);
+        }
+
+        if (monster.isRace('demihuman', 'brute')) {
+          return (skillLevel * (2450) + totalPow * 15) * (baseLevel / 100);
+        }
+        return (skillLevel * (2300) + totalPow * 15) * (baseLevel / 100);
       },
     },
-	{
+    {
       name: 'Blazing Flame Blast',
-      label: '[K] Blazing Flame Blast Lv5',
+      label: 'Blazing Flame Blast Lv5',
       value: 'Blazing Flame Blast==5',
       acd: 1,
       fct: 0.5,
@@ -403,7 +432,7 @@ export class Inquisitor extends Sura {
         // { label: 'Lv 4', value: 4, isUse: true, bonus: { oleumSanctum: 4 * 3 } },
       ],
     },
-	{
+    {
       name: 'Massive Flame Blaster',
       label: 'Massive F Blaster 5',
       inputType: 'selectButton',

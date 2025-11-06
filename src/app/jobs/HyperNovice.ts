@@ -163,7 +163,7 @@ export class HyperNovice extends SuperNovice {
   private readonly atkSkillList4th: AtkSkillModel[] = [
     {
       name: 'Double Bowling Bash',
-      label: '[V2] Double Bowling Bash Lv10',
+      label: 'Double Bowling Bash Lv10',
       value: 'Double Bowling Bash==10',
       acd: 1,
       fct: 0,
@@ -177,21 +177,41 @@ export class HyperNovice extends SuperNovice {
         const baseLevel = model.level;
         const skillBonusLv = this.learnLv('Self Study Tactics');
 
-        if (this.isSkillActive('Breaking Limit')) {
-          return (150 + skillLevel * (250 + skillBonusLv * 3) + totalPow * 2) * (baseLevel / 100) * 150 / 100;
-        }
+        if (this.activeSkillLv('Skill Version') === 0) { // GGT
+          if (this.isSkillActive('Breaking Limit')) {
+            return (150 + skillLevel * (250 + skillBonusLv * 3) + totalPow * 2) * (baseLevel / 100) * 150 / 100;
+          }
 
-        return (150 + skillLevel * (250 + skillBonusLv * 3) + totalPow * 2) * (baseLevel / 100);
+          return (150 + skillLevel * (250 + skillBonusLv * 3) + totalPow * 2) * (baseLevel / 100);
+        }
+        else if (this.activeSkillLv('Skill Version') === 2) { // 260
+          if (this.isSkillActive('Breaking Limit')) {
+            return (200 + skillLevel * (300 + skillBonusLv * 3) + totalPow * 2) * (baseLevel / 100) * 170 / 100;
+          }
+
+          return (200 + skillLevel * (300 + skillBonusLv * 3) + totalPow * 2) * (baseLevel / 100);
+        }
+        else { // KRO
+          if (this.isSkillActive('Breaking Limit')) {
+            return (250 + skillLevel * (400 + skillBonusLv * 3) + totalPow * 2) * (baseLevel / 100) * 220 / 100;
+          }
+
+          return (250 + skillLevel * (400 + skillBonusLv * 3) + totalPow * 2) * (baseLevel / 100);
+        }
       },
     },
     {
       name: 'Mega Sonic Blow',
-      label: '[V2] Mega Sonic Blow Lv10',
+      label: 'Mega Sonic Blow Lv10',
       value: 'Mega Sonic Blow==10',
       acd: 0.5,
       fct: 0,
       vct: 0,
-      cd: 0.3,
+      cd: () => {
+        if (this.activeSkillLv('Skill Version') === 0) return 0.3; // GGT
+
+        return 0.35;
+      },
       hit: 8,
       isMelee: true,
       canCri: true,
@@ -203,20 +223,32 @@ export class HyperNovice extends SuperNovice {
         const baseLevel = model.level;
         const skillBonusLv = this.learnLv('Self Study Tactics');
 
-        if (this.isSkillActive('Breaking Limit'))
-          return (850 + skillLevel * (450 + skillBonusLv * 5) + totalPow * 4) * (baseLevel / 100) * 170 / 100;
+        if (this.activeSkillLv('Skill Version') === 0) { // GGT
+          if (this.isSkillActive('Breaking Limit'))
+            return (850 + skillLevel * (450 + skillBonusLv * 5) + totalPow * 4) * (baseLevel / 100) * 170 / 100;
 
-        return (850 + skillLevel * (450 + skillBonusLv * 5) + totalPow * 4) * (baseLevel / 100);
+          return (850 + skillLevel * (450 + skillBonusLv * 5) + totalPow * 4) * (baseLevel / 100);
+        }
+        else {
+          if (this.isSkillActive('Breaking Limit'))
+            return (900 + skillLevel * (750 + skillBonusLv * 5) + totalPow * 4) * (baseLevel / 100) * 200 / 100;
+
+          return (900 + skillLevel * (750 + skillBonusLv * 5) + totalPow * 4) * (baseLevel / 100);
+        }
       },
     },
     {
       name: 'Shield Chain Rush',
-      label: '[V2] Shield Chain Rush Lv10',
+      label: 'Shield Chain Rush Lv10',
       value: 'Shield Chain Rush==10',
       acd: 0.5,
       fct: 0.3,
       vct: 1.2,
-      cd: 0.3,
+      cd: () => {
+        if (this.activeSkillLv('Skill Version') === 0) return 0.3; // GGT
+
+        return 0.35;
+      },
       hit: 5,
       verifyItemFn: ({ model }) => !model.shield ? 'Shield' : '',
       formula: (input: AtkSkillFormulaInput): number => {
@@ -225,20 +257,36 @@ export class HyperNovice extends SuperNovice {
         const baseLevel = model.level;
         const skillBonusLv = this.learnLv('Self Study Tactics');
 
-        if (this.isSkillActive('Breaking Limit'))
-          return (600 + skillLevel * (450 + skillBonusLv * 3) + totalPow * 3) * (baseLevel / 100) * 150 / 100;
+        if (this.activeSkillLv('Skill Version') === 0) { // GGT
+          if (this.isSkillActive('Breaking Limit'))
+            return (600 + skillLevel * (450 + skillBonusLv * 3) + totalPow * 3) * (baseLevel / 100) * 150 / 100;
 
-        return (600 + skillLevel * (450 + skillBonusLv * 3) + totalPow * 3) * (baseLevel / 100);
+          return (600 + skillLevel * (450 + skillBonusLv * 3) + totalPow * 3) * (baseLevel / 100);
+        } else if (this.activeSkillLv('Skill Version') === 2) { // 260
+          if (this.isSkillActive('Breaking Limit'))
+            return (700 + skillLevel * (500 + skillBonusLv * 3) + totalPow * 3) * (baseLevel / 100) * 170 / 100;
+
+          return (700 + skillLevel * (500 + skillBonusLv * 3) + totalPow * 3) * (baseLevel / 100);
+        } else { // KRO
+          if (this.isSkillActive('Breaking Limit'))
+            return (850 + skillLevel * (1050 + skillBonusLv * 3) + totalPow * 3) * (baseLevel / 100) * 220 / 100;
+
+          return (850 + skillLevel * (1050 + skillBonusLv * 3) + totalPow * 3) * (baseLevel / 100);
+        }
       },
     },
     {
       name: 'Spiral Pierce Max',
-      label: '[V2] Spiral Pierce Max Lv10',
+      label: 'Spiral Pierce Max Lv10',
       value: 'Spiral Pierce Max==10',
       acd: 0.5,
       fct: 0.3,
       vct: 1,
-      cd: 0.3,
+      cd: () => {
+        if (this.activeSkillLv('Skill Version') === 0) return 0.3; // GGT
+
+        return 0.35;
+      },
       hit: 5,
       verifyItemFn: ({ model }) => !model.shield ? 'Shield' : '',
       formula: (input: AtkSkillFormulaInput): number => {
@@ -253,15 +301,27 @@ export class HyperNovice extends SuperNovice {
         };
         const sizeModifier = sizeMap[monster.size];
 
-        if (this.isSkillActive('Breaking Limit'))
-          return (550 + skillLevel * (350 + skillBonusLv * 3) * sizeModifier + totalPow * 3) * (baseLevel / 100) * 170 / 100;
+        if (this.activeSkillLv('Skill Version') === 0) { // GGT
+          if (this.isSkillActive('Breaking Limit'))
+            return (550 + skillLevel * (350 + skillBonusLv * 3) * sizeModifier + totalPow * 3) * (baseLevel / 100) * 170 / 100;
 
-        return (550 + skillLevel * (350 + skillBonusLv * 3) * sizeModifier + totalPow * 3) * (baseLevel / 100);
+          return (550 + skillLevel * (350 + skillBonusLv * 3) * sizeModifier + totalPow * 3) * (baseLevel / 100);
+        } else if (this.activeSkillLv('Skill Version') === 2) { // 260
+          if (this.isSkillActive('Breaking Limit'))
+            return (700 + skillLevel * (800 + skillBonusLv * 3) * sizeModifier + totalPow * 3) * (baseLevel / 100) * 200 / 100;
+
+          return (700 + skillLevel * (800 + skillBonusLv * 3) * sizeModifier + totalPow * 3) * (baseLevel / 100);
+        } else { // KRO
+          if (this.isSkillActive('Breaking Limit'))
+            return (1000 + skillLevel * (1500 + skillBonusLv * 3) * sizeModifier + totalPow * 3) * (baseLevel / 100) * 200 / 100;
+
+          return (1000 + skillLevel * (1500 + skillBonusLv * 3) * sizeModifier + totalPow * 3) * (baseLevel / 100);
+        }
       },
     },
     {
       name: 'Napalm Vulcan Strike',
-      label: '[V2] Napalm Vulcan Strike Lv10',
+      label: 'Napalm Vulcan Strike Lv10',
       value: 'Napalm Vulcan Strike==10',
       acd: 0.5,
       fct: 1,
@@ -284,7 +344,7 @@ export class HyperNovice extends SuperNovice {
     },
     {
       name: 'Jupitel Thunderstorm',
-      label: '[V2] Jupitel Thunderstorm Lv10',
+      label: 'Jupitel Thunderstorm Lv10',
       value: 'Jupitel Thunderstorm==10',
       acd: 0.5,
       fct: 1,
@@ -306,7 +366,7 @@ export class HyperNovice extends SuperNovice {
     },
     {
       name: 'Jack Frost Nova',
-      label: '[V2] Jack Frost Nova Lv10',
+      label: 'Jack Frost Nova Lv10',
       value: 'Jack Frost Nova==10',
       acd: 0.3,
       fct: 1.5,
@@ -314,7 +374,7 @@ export class HyperNovice extends SuperNovice {
       cd: 3,
       isMatk: true,
       totalHit: () => {
-        if (this.activeSkillLv('Jack Frost Nova Type')===1) {
+        if (this.activeSkillLv('Jack Frost Nova Type') === 1) {
           return 1;
         } else {
           return 10;
@@ -327,7 +387,7 @@ export class HyperNovice extends SuperNovice {
         const baseLevel = model.level;
         const skillBonusLv = this.learnLv('Self Study Sorcery');
 
-        if (this.activeSkillLv('Jack Frost Nova Type')===1) {
+        if (this.activeSkillLv('Jack Frost Nova Type') === 1) {
 
           if (this.isSkillActive('Rule Break'))
             return (skillLevel * (200 + skillBonusLv * 3) + totalSpl * 2) * (baseLevel / 100) * 170 / 100;
@@ -344,7 +404,7 @@ export class HyperNovice extends SuperNovice {
     },
     {
       name: "Hell's Drive",
-      label: "[V2] Hell's Drive Lv10",
+      label: "Hell's Drive Lv10",
       value: "Hell's Drive==10",
       acd: 1,
       fct: 1,
@@ -358,6 +418,13 @@ export class HyperNovice extends SuperNovice {
         const { totalSpl } = status;
         const baseLevel = model.level;
         const skillBonusLv = this.learnLv('Self Study Sorcery');
+
+        if (this.activeSkillLv('Skill Version') === 1) { // KRO
+          if (this.isSkillActive('Rule Break'))
+            return (1700 + skillLevel * (900 + skillBonusLv * 4) + totalSpl * 3) * (baseLevel / 100) * 170 / 100;
+
+          return (1700 + skillLevel * (900 + skillBonusLv * 4) + totalSpl * 3) * (baseLevel / 100);
+        }
 
         if (this.isSkillActive('Rule Break'))
           return (1500 + skillLevel * (700 + skillBonusLv * 4) + totalSpl * 3) * (baseLevel / 100) * 170 / 100;

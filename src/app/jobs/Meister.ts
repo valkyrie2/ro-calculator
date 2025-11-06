@@ -166,9 +166,13 @@ export class Meister extends Mechanic {
   private atkSkillList4th: AtkSkillModel[] = [
     {
       name: 'Axe Stomp',
-      label: '[V3] Axe Stomp Lv5',
+      label: 'Axe Stomp Lv5',
       value: 'Axe Stomp==5',
-      acd: 0.25,
+      acd: () => {
+        if (this.activeSkillLv('Skill Version') === 1) return 0.7; // KRO
+
+        return 0.25;
+      },
       fct: 0,
       vct: 0,
       cd: 0.7,
@@ -179,7 +183,13 @@ export class Meister extends Mechanic {
         const baseLevel = model.level;
         const { totalPow } = status;
 
-        return (350 + skillLevel * 850 + totalPow * 5) * (baseLevel / 100);
+        if (this.activeSkillLv('Skill Version') === 0) // GGT
+          return (350 + skillLevel * 850 + totalPow * 5) * (baseLevel / 100);
+        else if (this.activeSkillLv('Skill Version') === 2) // 260
+          return (350 + skillLevel * 950 + totalPow * 5) * (baseLevel / 100);
+        else // KRO
+          return (450 + skillLevel * 1150 + totalPow * 5) * (baseLevel / 100);
+
       },
     },
     // {
@@ -202,12 +212,16 @@ export class Meister extends Mechanic {
     // },
     {
       name: 'Spark Blaster',
-      label: '[V3] Spark Blaster Lv10',
+      label: 'Spark Blaster Lv10',
       value: 'Spark Blaster==10',
       acd: 0.25,
       fct: 0.5,
       vct: 1.5,
-      cd: 0.7,
+      cd: () => {
+        if (this.activeSkillLv('Skill Version') === 0) return 0.7; // GGT
+
+        return 0.5;
+      },
       totalHit: 2,
       isIgnoreDef: true,
       isIgnoreSDef: true,
@@ -216,17 +230,30 @@ export class Meister extends Mechanic {
         const baseLevel = model.level;
         const { totalPow } = status;
 
-        return (250 + skillLevel * 750 + totalPow * 7) * (baseLevel / 100);
+        if (this.activeSkillLv('Skill Version') === 0) // GGT
+          return (250 + skillLevel * 750 + totalPow * 7) * (baseLevel / 100);
+        else if (this.activeSkillLv('Skill Version') === 2) // 260
+          return (250 + skillLevel * 900 + totalPow * 7) * (baseLevel / 100);
+        else // KRO
+          return (600 + skillLevel * 1400 + totalPow * 7) * (baseLevel / 100);
       },
     },
     {
       name: 'Triple Laser',
-      label: '[V3] Triple Laser Lv5',
+      label: 'Triple Laser Lv5',
       value: 'Triple Laser==5',
-      acd: 0,
+      acd: () => {
+        if (this.activeSkillLv('Skill Version') === 0) return 0; // GGT
+
+        return 0.25;
+      },
       fct: 0.5,
       vct: 1,
-      cd: 0.25,
+      cd: () => {
+        if (this.activeSkillLv('Skill Version') === 0) return 0.25; // GGT
+
+        return 0.35;
+      },
       totalHit: 3,
       canCri: true,
       criDmgPercentage: 0.5,
@@ -236,19 +263,37 @@ export class Meister extends Mechanic {
         const baseLevel = model.level;
         const { totalPow } = status;
 
-        return (300 + skillLevel * 600 + totalPow * 10) * (baseLevel / 100);
+        if (this.activeSkillLv('Skill Version') === 0) // GGT
+          return (300 + skillLevel * 600 + totalPow * 10) * (baseLevel / 100);
+        else if (this.activeSkillLv('Skill Version') === 2) // 260
+          return (550 + skillLevel * 900 + totalPow * 12) * (baseLevel / 100);
+        else // KRO
+          return (650 + skillLevel * 1150 + totalPow * 12) * (baseLevel / 100);
       },
     },
     {
       name: 'Mighty Smash',
-      label: '[V3] Mighty Smash Lv10',
+      label: 'Mighty Smash Lv10',
       value: 'Mighty Smash==10',
-      acd: 0,
+      acd: () => {
+        if (this.activeSkillLv('Skill Version') === 0) return 0; // GGT
+        else if (this.activeSkillLv('Skill Version') === 2) return 0.25; // 260
+
+        return 0.7;
+      },
       fct: 0,
       vct: 0,
-      cd: 0.3,
+      cd: () => {
+        if (this.activeSkillLv('Skill Version') === 0) return 0.3; // GGT
+
+        return 0.5;
+      },
       isMelee: true,
-      totalHit: () => this.isSkillActive('Axe Stomp') ? 5 : 3,
+      totalHit: () => {
+        if (this.activeSkillLv('Skill Version') === 0) return this.isSkillActive('Axe Stomp') ? 5 : 3; // GGT
+
+        return this.isSkillActive('Axe Stomp') ? 7 : 5;
+      },
       verifyItemFn: ({ weapon }) => {
         const requires: WeaponTypeName[] = ['axe', 'twohandAxe'];
         if (requires.some(wType => weapon.isType(wType))) return '';
@@ -260,7 +305,22 @@ export class Meister extends Mechanic {
         const baseLevel = model.level;
         const { totalPow } = status;
 
-        return (100 + skillLevel * 300 + totalPow * 7) * (baseLevel / 100);
+        if (this.activeSkillLv('Skill Version') === 0) { // GGT
+          if (this.isSkillActive('Axe Stomp'))
+            return (150 + skillLevel * 300 + totalPow * 7) * (baseLevel / 100);
+          else
+            return (100 + skillLevel * 300 + totalPow * 7) * (baseLevel / 100);
+        } else if (this.activeSkillLv('Skill Version') === 2) { // 260
+          if (this.isSkillActive('Axe Stomp'))
+            return (50 + skillLevel * 180 + totalPow * 10) * (baseLevel / 100);
+          else
+            return (25 + skillLevel * 180 + totalPow * 7) * (baseLevel / 100);
+        } else { // KRO
+          if (this.isSkillActive('Axe Stomp'))
+            return (100 + skillLevel * 240 + totalPow * 10) * (baseLevel / 100);
+          else
+            return (80 + skillLevel * 240 + totalPow * 7) * (baseLevel / 100);
+        }
       },
     },
   ];
@@ -326,11 +386,17 @@ export class Meister extends Mechanic {
   }
 
   override modifyFinalAtk(currentAtk: number, _params: InfoForClass) {
-      const powerLv = this.bonuses.usedSkillMap.get('Power');
-  
-      let totalAtk = currentAtk;
-      if (powerLv >= 1) totalAtk = totalAtk + floor(totalAtk * (powerLv * 15 + 10) * 0.01);
-  
-      return totalAtk;
+    const powerLv = this.bonuses.usedSkillMap.get('Power');
+
+    let totalAtk = currentAtk;
+    if (powerLv >= 1) {
+      if (this.activeSkillLv('Skill Version') === 0) { // GGT
+        totalAtk = totalAtk + floor(totalAtk * (powerLv * 15 + 10) * 0.01);
+      }
+      else
+        totalAtk = totalAtk + floor(totalAtk * (powerLv * 20) * 0.01);
     }
+
+    return totalAtk;
+  }
 }

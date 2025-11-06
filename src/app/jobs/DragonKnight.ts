@@ -164,7 +164,7 @@ export class DragonKnight extends RuneKnight {
   private readonly atkSkillList4th: AtkSkillModel[] = [
     {
       name: 'Servant Weapon',
-      label: '[V3] Servant Weapon Lv5',
+      label: 'Servant Weapon Lv5',
       value: 'Servant Weapon==5',
       acd: 0,
       fct: 0,
@@ -174,18 +174,25 @@ export class DragonKnight extends RuneKnight {
       criDmgPercentage: 0.5,
       baseCriPercentage: 1,
       isMelee: true,
-      totalHit: 2,
+      totalHit: () => {
+        if (this.activeSkillLv('Skill Version') === 1) return 3;
+
+        return 2;
+      },
       formula: (input: AtkSkillFormulaInput): number => {
         const { model, skillLevel, status } = input;
         const { totalPow } = status;
         const baseLevel = model.level;
+
+        if (this.activeSkillLv('Skill Version') === 1) // KRO
+          return (600 + skillLevel * 850 + totalPow * 5) * (baseLevel / 100);
 
         return (500 + skillLevel * 400 + totalPow * 5) * (baseLevel / 100);
       },
     },
     {
       name: 'Hack and Slasher',
-      label: '[K] Hack and Slasher Lv10',
+      label: 'Hack and Slasher Lv10',
       value: 'Hack and Slasher==10',
       acd: 0.25,
       fct: 0,
@@ -193,7 +200,7 @@ export class DragonKnight extends RuneKnight {
       cd: 0.7,
       totalHit: 2,
       canCri: () => {
-        if (this.isSkillActive('GGT Skill')) return false;
+        if (this.activeSkillLv('Skill Version') === 0) return false;
 
         return true;
       },
@@ -213,21 +220,23 @@ export class DragonKnight extends RuneKnight {
         const { totalPow } = status;
         const baseLevel = model.level;
 
-        if (this.isSkillActive('GGT Skill'))
+        if (this.activeSkillLv('Skill Version') === 0) // GGT
           return (300 + skillLevel * 700 + totalPow * 7) * (baseLevel / 100);
-        else
+        else if (this.activeSkillLv('Skill Version') === 2) // 260
+          return (200 + skillLevel * 750 + totalPow * 7) * (baseLevel / 100);
+        else// KRO
           return (350 + skillLevel * 820 + totalPow * 7) * (baseLevel / 100);
       },
     },
     {
       name: 'Storm Slash',
-      label: '[K] Storm Slash Lv5',
+      label: 'Storm Slash Lv5',
       value: 'Storm Slash==5',
       acd: 0.5,
       fct: 0,
       vct: 0,
       cd: () => {
-        if (this.isSkillActive('GGT Skill')) return 0.3;
+        if (this.activeSkillLv('Skill Version') === 0) return 0.3;
 
         return 0.35;
       },
@@ -247,15 +256,17 @@ export class DragonKnight extends RuneKnight {
         const { totalPow } = status;
         const baseLevel = model.level;
 
-        if (this.isSkillActive('GGT Skill'))
+        if (this.activeSkillLv('Skill Version') === 0) // GGT
           return (100 + skillLevel * 170 + totalPow * 5) * (baseLevel / 100);
-        else
+        else if (this.activeSkillLv('Skill Version') === 2) // 260
+          return (200 + skillLevel * 400 + totalPow * 5) * (baseLevel / 100);
+        else // KRO
           return (300 + skillLevel * 750 + totalPow * 5) * (baseLevel / 100);
       },
     },
     {
       name: 'Madness Crusher',
-      label: '[V3] Madness Crusher Lv5',
+      label: 'Madness Crusher Lv5',
       value: 'Madness Crusher==5',
       acd: 0.5,
       fct: 0.5,
@@ -273,12 +284,17 @@ export class DragonKnight extends RuneKnight {
         const baseLevel = model.level;
         const { weight, baseWeaponLevel } = weapon.data;
 
-        return (400 + skillLevel * 600 + totalPow * 5 + weight * baseWeaponLevel) * (baseLevel / 100);
+        if (this.activeSkillLv('Skill Version') === 0) // GGT
+          return (400 + skillLevel * 600 + totalPow * 7 + weight * baseWeaponLevel) * (baseLevel / 100);
+        else if (this.activeSkillLv('Skill Version') === 2) // 260
+          return (350 + skillLevel * 1600 + totalPow * 10 + weight * baseWeaponLevel) * (baseLevel / 100);
+        else // KRO
+          return (1000 + skillLevel * 3800 + totalPow * 10 + weight * baseWeaponLevel) * (baseLevel / 100);
       },
     },
     {
       name: 'Dragonic Breath',
-      label: '[K] Dragonic Breath Lv10',
+      label: 'Dragonic Breath Lv10',
       value: 'Dragonic Breath==10',
       acd: 0.15,
       fct: 0.5,
@@ -293,19 +309,19 @@ export class DragonKnight extends RuneKnight {
         const { totalPow } = status;
         const baseLevel = model.level;
 
-        if (this.isSkillActive('GGT Skill')) {
-          if (this.activeSkillLv('Dragonic Aura')) {
-            return (50 + skillLevel * (350 + 0.07 * (maxHp / 8 + maxSp / 4)) + totalPow * 10) * (baseLevel / 100);
-          }
-
-          return (50 + skillLevel * (350 + 0.05 * (maxHp / 8 + maxSp / 4)) + totalPow * 7) * (baseLevel / 100);
-        } else {
+        if (this.activeSkillLv('Skill Version') === 1) { // KRO
           if (this.activeSkillLv('Dragonic Aura')) {
             return (50 + skillLevel * (350 + 0.07 * (maxHp / 4 + maxSp / 2)) + totalPow * 10) * (baseLevel / 100);
           }
 
           return (50 + skillLevel * (350 + 0.05 * (maxHp / 4 + maxSp / 2)) + totalPow * 7) * (baseLevel / 100);
         }
+
+        if (this.activeSkillLv('Dragonic Aura')) {
+          return (50 + skillLevel * (350 + 0.07 * (maxHp / 8 + maxSp / 4)) + totalPow * 10) * (baseLevel / 100);
+        }
+
+        return (50 + skillLevel * (350 + 0.05 * (maxHp / 8 + maxSp / 4)) + totalPow * 7) * (baseLevel / 100);
       },
     },
   ];

@@ -166,17 +166,17 @@ export class Windhawk extends Ranger {
   private readonly atkSkillList4th: AtkSkillModel[] = [
     {
       name: 'Crescive Bolt',
-      label: '[K] Crescive Bolt Lv10',
+      label: 'Crescive Bolt Lv10',
       value: 'Crescive Bolt==10',
       acd: () => {
-        if (this.isSkillActive('GGT Skill')) return 0.3;
+        if (this.activeSkillLv('Skill Version') === 0) return 0.3; // GGT
 
         return 0.7;
       },
       fct: 1,
       vct: 1,
       cd: () => {
-        if (this.isSkillActive('GGT Skill')) return 0.15;
+        if (this.activeSkillLv('Skill Version') === 0) return 0.15; // GGT
 
         return 0.35;
       },
@@ -189,22 +189,25 @@ export class Windhawk extends Ranger {
         const baseLevel = model.level;
         const totalStack = stack;
         const calaBonus = this.isSkillActive('Calamity Gale') ? 1.2 : 1;
-        
-        if (this.isSkillActive('GGT Skill'))
+
+        if (this.activeSkillLv('Skill Version') === 0) // GGT
           return (skillLevel * 340 + status.totalCon * 10) * (baseLevel / 100) * (1 + 0.1 * totalStack) * calaBonus;
-        else
+        else if (this.activeSkillLv('Skill Version') === 2) // 260
+          return (400 + skillLevel * 900 + status.totalCon * 10) * (baseLevel / 100) * (1 + 0.1 * totalStack) * calaBonus;
+        else // KRO
           return (500 + skillLevel * 1300 + status.totalCon * 10) * (baseLevel / 100) * (1 + 0.2 * totalStack) * calaBonus;
       },
     },
     {
       name: 'Gale Storm',
-      label: '[K] Gale Storm Lv10',
+      label: 'Gale Storm Lv10',
       value: 'Gale Storm==10',
       acd: 0.15,
       fct: 0.5,
       vct: 1,
       cd: () => {
-        if (this.isSkillActive('GGT Skill')) return 1.5;
+        if (this.activeSkillLv('Skill Version') === 0) return 1.5; // GGT
+        else if (this.activeSkillLv('Skill Version') === 2) return 1.2; // 260
 
         return 0.7;
       },
@@ -213,16 +216,18 @@ export class Windhawk extends Ranger {
       formula: (input: AtkSkillFormulaInput): number => {
         const { model, skillLevel, status } = input;
         const baseLevel = model.level;
-        
-        if (this.isSkillActive('GGT Skill'))
+
+        if (this.activeSkillLv('Skill Version') === 0) // GGT
           return (skillLevel * 950 + status.totalCon * 5) * (baseLevel / 100);
-        else
+        else if (this.activeSkillLv('Skill Version') === 2) // 260
+          return (skillLevel * 1000 + status.totalCon * 10) * (baseLevel / 100);
+        else // KRO
           return (skillLevel * 1350 + status.totalCon * 10) * (baseLevel / 100);
       },
     },
     {
       name: 'Hawk Rush',
-      label: '[V3] Hawk Rush Lv5',
+      label: 'Hawk Rush Lv5',
       value: 'Hawk Rush==5',
       acd: 0,
       fct: 0,
@@ -247,7 +252,7 @@ export class Windhawk extends Ranger {
     },
     {
       name: 'Solid Trap',
-      label: '[V3] Solid Trap Lv5',
+      label: 'Solid Trap Lv5',
       value: 'Solid Trap==5',
       acd: 0.5,
       fct: 1,
@@ -265,7 +270,7 @@ export class Windhawk extends Ranger {
     },
     {
       name: 'Flame Trap',
-      label: '[V3] Flame Trap Lv5',
+      label: 'Flame Trap Lv5',
       value: 'Flame Trap==5',
       acd: 0.5,
       fct: 1,
@@ -283,7 +288,7 @@ export class Windhawk extends Ranger {
     },
     {
       name: 'Deep Blind Trap',
-      label: '[V3] Deep Blind Trap Lv5',
+      label: 'Deep Blind Trap Lv5',
       value: 'Deep Blind Trap==5',
       acd: 0.5,
       fct: 1,
@@ -301,7 +306,7 @@ export class Windhawk extends Ranger {
     },
     {
       name: 'Swift Trap',
-      label: '[V3] Swift Trap Lv5',
+      label: 'Swift Trap Lv5',
       value: 'Swift Trap==5',
       acd: 0.5,
       fct: 1,

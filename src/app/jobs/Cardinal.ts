@@ -165,7 +165,7 @@ export class Cardinal extends ArchBishop {
   private readonly atkSkillList4th: AtkSkillModel[] = [
     {
       name: 'Framen',
-      label: '[V3] Framen Lv5',
+      label: 'Framen Lv5',
       value: 'Framen==5',
       acd: 0.5,
       fct: 1.5,
@@ -179,22 +179,36 @@ export class Cardinal extends ArchBishop {
         const baseLevel = model.level;
         const fidusLv = this.learnLv('Fidus Animus');
 
-        if (monster.isRace('demon', 'undead')) {
-          return (skillLevel * (900 + fidusLv * 5) + totalSpl * 5) * (baseLevel / 100);
-        }
+        if (this.activeSkillLv('Skill Version') === 0) { // GGT
+          if (monster.isRace('demon', 'undead')) {
+            return (skillLevel * (900 + fidusLv * 5) + totalSpl * 5) * (baseLevel / 100);
+          }
 
-        return (skillLevel * (800 + fidusLv * 5) + totalSpl * 3) * (baseLevel / 100);
+          return (skillLevel * (800 + fidusLv * 5) + totalSpl * 3) * (baseLevel / 100);
+        } else if (this.activeSkillLv('Skill Version') === 2) { // 260
+          if (monster.isRace('demon', 'undead')) {
+            return (skillLevel * (1050 + fidusLv * 5) + totalSpl * 5) * (baseLevel / 100);
+          }
+
+          return (skillLevel * (950 + fidusLv * 5) + totalSpl * 3) * (baseLevel / 100);
+        } else { // KRO
+          if (monster.isRace('demon', 'undead')) {
+            return (skillLevel * (1350 + fidusLv * 5) + totalSpl * 5) * (baseLevel / 100);
+          }
+
+          return (skillLevel * (1300 + fidusLv * 5) + totalSpl * 3) * (baseLevel / 100);
+        }
       },
     },
     {
       name: 'Arbitrium',
-      label: '[K] Arbitrium Lv10',
+      label: 'Arbitrium Lv10',
       value: 'Arbitrium==10',
       acd: 0.5,
       fct: 1.5,
       vct: 4,
       cd: () => {
-        if (this.isSkillActive('GGT Skill')) return 1.5;
+        if (this.activeSkillLv('Skill Version') === 0) return 1.5; // GGT
 
         return 1;
       },
@@ -206,14 +220,14 @@ export class Cardinal extends ArchBishop {
         const baseLevel = model.level;
         const fidusLv = this.learnLv('Fidus Animus');
 
-        if (this.isSkillActive('GGT Skill')) {
+        if (this.activeSkillLv('Skill Version') === 0) { // GGT
           const primaryDmg = (skillLevel * (1250 + fidusLv * 10) + totalSpl * 7) * (baseLevel / 100);
           const secondaryDmg = (skillLevel * (1000 + fidusLv * 10) + totalSpl * 7) * (baseLevel / 100);
 
           return primaryDmg + secondaryDmg;
         } else {
-          const primaryDmg = (skillLevel * (1750 + fidusLv * 50) + totalSpl * 7) * (baseLevel / 100);
-          const secondaryDmg = (skillLevel * (1000 + fidusLv * 10) + totalSpl * 7) * (baseLevel / 100);
+          const primaryDmg = (skillLevel * (1750 + fidusLv * 50) + totalSpl * 10) * (baseLevel / 100);
+          const secondaryDmg = (skillLevel * (1000 + fidusLv * 10) + totalSpl * 10) * (baseLevel / 100);
 
           return primaryDmg + secondaryDmg;
         }
@@ -221,7 +235,7 @@ export class Cardinal extends ArchBishop {
     },
     {
       name: 'Divinus Flos',
-      label: '[K] Divinus Flos Lv5',
+      label: 'Divinus Flos Lv5',
       value: 'Divinus Flos==5',
       acd: 0.85,
       fct: 1.5,
@@ -240,7 +254,7 @@ export class Cardinal extends ArchBishop {
     },
     {
       name: 'Petitio',
-      label: '[V3] Petitio Lv10',
+      label: 'Petitio Lv10',
       value: 'Petitio==10',
       acd: 0.5,
       fct: 0,
@@ -263,7 +277,11 @@ export class Cardinal extends ArchBishop {
         const baseLevel = model.level;
         const mAndBookLv = this.learnLv('Mace & Book Mastery');
 
-        return (skillLevel * (1050 + mAndBookLv * 10) + totalPow * 5) * (baseLevel / 100);
+        if (this.activeSkillLv('Skill Version') === 0) { // GGT
+          return (skillLevel * (1050 + mAndBookLv * 10) + totalPow * 5) * (baseLevel / 100);
+        }
+
+        return (skillLevel * (1050 + mAndBookLv * 50) + totalPow * 5) * (baseLevel / 100);
       },
     },
   ];

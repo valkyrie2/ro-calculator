@@ -206,6 +206,21 @@ export class AppTopBarComponent implements OnInit, OnDestroy {
 
   updates: { v: string; date: string; logs: string[]; }[] = [
     {
+      v: 'Extra v29',
+      date: '06-11-2568',
+      logs: [
+        "เอาตัวเลือก GGT Skill ออก เปลี่ยนเป็นตัวเลือก Skill Version แทน โดยจะมีสามเวอร์ชั่นให้เลือก GGT / Lv260 Patch / Lv275-KRO Patch",
+        "หากไม่ได้เลือกอะไร จะเป็นเวอร์ชั่น GGT เสมอ",
+        "เพิ่มสกิลเวอร์ชั่น Rebalance ครบทุกสกิล เท่าที่ในเว็บมีแล้ว",
+        "บัพสกิล Power และ จำมอนของ Star/Sky Emperor จะแสดงผลตาม Skill Version ที่เลือก",
+        "บัพสกิล Power ของ Meister, Imperial Guard (Good&Evil set) จะแสดงผลตาม Skill Version ที่เลือก",
+        "แก้บัค Cross Rain Rebalance ให้ทำดาเมจ 8 hit สัมพันธ์กับ Duration 2.4 วินาที",
+        "แก้สคริปไอเทม Kafra Uniform-LT กรณีเลเวลต่ำกว่า 99 ให้ได้รับผลไอเทม ที่จะทำงานหากเลเวลต่ำกว่า 200",
+        "",
+        "*** หมายเหตุ *** หากเจอบัคหรือสิ่งผิดปกติ รบกวนแจ้งเข้ามาได้เลยครับ",
+      ],
+    },
+    {
       v: 'Extra v28',
       date: '05-11-2568',
       logs: [
@@ -213,7 +228,7 @@ export class AppTopBarComponent implements OnInit, OnDestroy {
         "Add Random option to Geffen night arena shield , Purified Shield",
       ],
     },
-	{
+    {
       v: 'Extra v27',
       date: '30-10-2568',
       logs: [

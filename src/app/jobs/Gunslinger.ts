@@ -82,15 +82,16 @@ export class Gunslinger extends CharacterBase {
   protected readonly classNames = [ClassName.Gunslinger];
   protected readonly _atkSkillList: AtkSkillModel[] = [];
   protected readonly _activeSkillList: ActiveSkillModel[] = [
-	{
-      inputType: 'selectButton',
-      label: 'GGT Skill',
-      name: 'GGT Skill',
+    {
+      inputType: 'dropdown',
+      label: 'Skill Version',
+      name: 'Skill Version',
       dropdown: [
-        { label: 'Yes', value: 1, isUse: true },
-        { label: 'No', value: 0, isUse: false },
+        { label: 'GGT', value: 0, isUse: false },
+        { label: 'Lv260 Rebalance', value: 2, isUse: true },
+        { label: 'Lv275 KRO', value: 1, isUse: true },
       ],
-    }
+    },
   ];
   protected readonly _passiveSkillList: PassiveSkillModel[] = [];
 }

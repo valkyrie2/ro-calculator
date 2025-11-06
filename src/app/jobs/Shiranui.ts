@@ -164,7 +164,7 @@ export class Shiranui extends Oboro {
   private readonly atkSkillList4th: AtkSkillModel[] = [
     {
       name: 'Shadow Hunting',
-      label: '[V2] Shadow Hunting Lv10',
+      label: 'Shadow Hunting Lv10',
       value: 'Shadow Hunting==10',
       acd: 0.15,
       fct: 0,
@@ -177,17 +177,25 @@ export class Shiranui extends Oboro {
         const baseLevel = model.level;
         const skillBonusLv = this.learnLv('Shadow Flash');
 
-        return (500 + skillLevel * (400 + skillBonusLv * 5) + totalPow * 3) * (baseLevel / 100);
+        if (this.activeSkillLv('Skill Version') === 0) { // GGT
+          return (500 + skillLevel * (400 + skillBonusLv * 5) + totalPow * 3) * (baseLevel / 100);
+        }
+
+        return (600 + skillLevel * (900 + skillBonusLv * 5) + totalPow * 3) * (baseLevel / 100);
       },
     },
     {
       name: 'Shadow Dance',
-      label: '[V2] Shadow Dance Lv10',
+      label: 'Shadow Dance Lv10',
       value: 'Shadow Dance==10',
       acd: 0.25,
       fct: 1,
       vct: 1,
-      cd: 0.5,
+      cd: () => {
+        if (this.activeSkillLv('Skill Version') === 0) return 0.5; // GGT
+
+        return 0.4;
+      },
       isMelee: true,
       hit: 5,
       formula: (input: AtkSkillFormulaInput): number => {
@@ -196,30 +204,48 @@ export class Shiranui extends Oboro {
         const baseLevel = model.level;
         const skillBonusLv = this.learnLv('Shadow Hunting');
 
-        return (400 + skillLevel * (550 + skillBonusLv * 50) + totalPow * 4) * (baseLevel / 100);
+        if (this.activeSkillLv('Skill Version') === 0) // GGT
+          return (400 + skillLevel * (550 + skillBonusLv * 50) + totalPow * 4) * (baseLevel / 100);
+        else if (this.activeSkillLv('Skill Version') === 2) // 260
+          return (550 + skillLevel * (750 + skillBonusLv * 50) + totalPow * 4) * (baseLevel / 100);
+        else // KRO
+          return (750 + skillLevel * (900 + skillBonusLv * 70) + totalPow * 4) * (baseLevel / 100);
       },
     },
     {
       name: 'Shadow Flash',
-      label: '[V2] Shadow Flash Lv10',
+      label: 'Shadow Flash Lv10',
       value: 'Shadow Flash==10',
       acd: 0.25,
       fct: 0,
       vct: 0,
       cd: 1,
       isMelee: true,
+      canCri: () => {
+        if (this.activeSkillLv('Skill Version') === 0) return false;
+
+        return true;
+      },
+      criDmgPercentage: 0.5,
+      baseCriPercentage: 1,
       formula: (input: AtkSkillFormulaInput): number => {
         const { model, skillLevel, status } = input;
         const { totalPow } = status;
         const baseLevel = model.level;
         const skillBonusLv = this.learnLv('Shadow Dance');
 
-        return (1600 + skillLevel * (700 + skillBonusLv * 100) + totalPow * 5) * (baseLevel / 100);
+        if (this.activeSkillLv('Skill Version') === 0) // GGT
+          return (1600 + skillLevel * (700 + skillBonusLv * 100) + totalPow * 5) * (baseLevel / 100);
+        else if (this.activeSkillLv('Skill Version') === 2) // 260
+          return (1500 + skillLevel * (750 + skillBonusLv * 50) + totalPow * 5) * (baseLevel / 100);
+        else // KRO
+          return (1500 + skillLevel * (950 + skillBonusLv * 150) + totalPow * 5) * (baseLevel / 100);
+
       },
     },
     {
       name: 'Huuma Shuriken - Grasp',
-      label: '[V2] Huuma Shuriken - Grasp Lv10',
+      label: 'Huuma Shuriken - Grasp Lv10',
       value: 'Huuma Shuriken - Grasp==10',
       acd: 0,
       fct: 1,
@@ -232,32 +258,69 @@ export class Shiranui extends Oboro {
         const baseLevel = model.level;
         const skillBonusLv = this.learnLv('Huuma Shuriken - Construct');
 
-        return (700 + skillLevel * (200 + skillBonusLv * 5) + totalPow * 3) * (baseLevel / 100);
+        if (this.activeSkillLv('Skill Version') === 0) // GGT
+          return (700 + skillLevel * (200 + skillBonusLv * 5) + totalPow * 3) * (baseLevel / 100);
+
+        return (850 + skillLevel * (350 + skillBonusLv * 5) + totalPow * 3) * (baseLevel / 100);
       },
     },
     {
       name: 'Huuma Shuriken - Construct',
-      label: '[V2] Huuma Shuriken - Construct Lv10',
+      label: 'Huuma Shuriken - Construct Lv10 (Main)',
       value: 'Huuma Shuriken - Construct==10',
       acd: 0,
       fct: 1,
       vct: 1.2,
-      cd: 1,
+      cd: () => {
+        if (this.activeSkillLv('Skill Version') === 1) return 0.7;
+
+        return 1;
+      },
       hit: 20,
       formula: (input: AtkSkillFormulaInput): number => {
         const { model, skillLevel, status } = input;
         const { totalPow } = status;
         const baseLevel = model.level;
         const skillBonusLv = this.learnLv('Huuma Shuriken - Grasp');
-        const primary = (600 + skillLevel * (400 + skillBonusLv * 30) + totalPow * 5) * (baseLevel / 100);
-        const secondary = (800 + skillLevel * (600 + skillBonusLv * 30) + totalPow * 5) * (baseLevel / 100);
 
-        return primary + secondary;
+        if (this.activeSkillLv('Skill Version') === 0) // GGT
+          return (600 + skillLevel * (400 + skillBonusLv * 30) + totalPow * 5) * (baseLevel / 100);
+        else if (this.activeSkillLv('Skill Version') === 2) // 260
+          return (600 + skillLevel * (1200 + skillBonusLv * 30) + totalPow * 5) * (baseLevel / 100);
+        else // KRO
+          return (900 + skillLevel * (1750 + skillBonusLv * 100) + totalPow * 5) * (baseLevel / 100);
+      },
+    },
+    {
+      name: 'Huuma Shuriken - Construct',
+      label: 'Huuma Shuriken - Construct Lv10 (Explosion)',
+      value: 'Huuma Shuriken - Construct==11',
+      acd: 0,
+      fct: 1,
+      vct: 1.2,
+      cd: () => {
+        if (this.activeSkillLv('Skill Version') === 1) return 0.7;
+
+        return 1;
+      },
+      hit: 20,
+      formula: (input: AtkSkillFormulaInput): number => {
+        const { model, skillLevel, status } = input;
+        const { totalPow } = status;
+        const baseLevel = model.level;
+        const skillBonusLv = this.learnLv('Huuma Shuriken - Grasp');
+
+        if (this.activeSkillLv('Skill Version') === 0) // GGT
+          return (800 + (skillLevel - 1) * (600 + skillBonusLv * 30) + totalPow * 5) * (baseLevel / 100);
+        else if (this.activeSkillLv('Skill Version') === 2) // 260
+          return (600 + (skillLevel - 1) * (1500 + skillBonusLv * 30) + totalPow * 5) * (baseLevel / 100);
+        else // KRO
+          return (900 + (skillLevel - 1) * (1750 + skillBonusLv * 100) + totalPow * 5) * (baseLevel / 100);
       },
     },
     {
       name: 'Kunai - Distortion',
-      label: '[V2] Kunai - Distortion Lv10',
+      label: 'Kunai - Distortion Lv10',
       value: 'Kunai - Distortion==10',
       acd: 0,
       fct: 0,
@@ -275,7 +338,7 @@ export class Shiranui extends Oboro {
     },
     {
       name: 'Kunai - Rotation',
-      label: '[V2] Kunai - Rotation Lv5',
+      label: 'Kunai - Rotation Lv5',
       value: 'Kunai - Rotation==5',
       acd: 0.5,
       fct: 0,
@@ -288,12 +351,15 @@ export class Shiranui extends Oboro {
         const baseLevel = model.level;
         const skillBonusLv = this.learnLv('Kunai - Distortion');
 
+        if (this.activeSkillLv('Skill Version') === 1) // KRO
+          return (950 + skillLevel * (1050 + skillBonusLv * 100) + totalPow * 4) * (baseLevel / 100);
+
         return (800 + skillLevel * (700 + skillBonusLv * 70) + totalPow * 4) * (baseLevel / 100);
       },
     },
     {
       name: 'Kunai - Refraction',
-      label: '[V2] Kunai - Refraction Lv10',
+      label: 'Kunai - Refraction Lv10',
       value: 'Kunai - Refraction==10',
       acd: 0.5,
       fct: 0.5,
@@ -306,12 +372,15 @@ export class Shiranui extends Oboro {
         const baseLevel = model.level;
         const skillBonusLv = this.learnLv('Kunai - Rotation');
 
+        if (this.activeSkillLv('Skill Version') === 1) // KRO
+          return (250 + skillLevel * (420 + skillBonusLv * 10) + totalPow * 5) * (baseLevel / 100);
+
         return (200 + skillLevel * (360 + skillBonusLv * 10) + totalPow * 5) * (baseLevel / 100);
       },
     },
     {
       name: 'Red Flame Cannon',
-      label: '[K] Red Flame Cannon Lv10',
+      label: 'Red Flame Cannon Lv10',
       value: 'Red Flame Cannon==10',
       acd: 0,
       fct: 1,
@@ -326,22 +395,23 @@ export class Shiranui extends Oboro {
         const baseLevel = model.level;
         const skillBonusLv = this.learnLv('Darkening Cannon');
 
-        if (this.isSkillActive('GGT Skill')) {
+        if (this.activeSkillLv('Skill Version') === 0) { // GGT
           return (850 + skillLevel * (1250 + skillBonusLv * 70) + totalSpl * 5) * (baseLevel / 100);
-        } else {
+        }
+        else if (this.activeSkillLv('Skill Version') === 2) { // 260
+          return (500 + skillLevel * (1000 + skillBonusLv * 70) + totalSpl * 5) * (baseLevel / 100);
+        }
+        else { // KRO
           if (this.isSkillActive('Fire Colors Charm'))
             return (600 + 8500 + skillLevel * (1100 + skillBonusLv * 70) + totalSpl * 5) * (baseLevel / 100);
           else
-            if (this.isSkillActive('Fire Colors Charm'))
-              return (600 + 8500 + skillLevel * (1100 + skillBonusLv * 70) + totalSpl * 5) * (baseLevel / 100);
-            else
-              return (600 + skillLevel * (1100 + skillBonusLv * 70) + totalSpl * 5) * (baseLevel / 100);
+            return (600 + skillLevel * (1100 + skillBonusLv * 70) + totalSpl * 5) * (baseLevel / 100);
         }
       },
     },
     {
       name: 'Cold Blooded Cannon',
-      label: '[V2] Cold Blooded Cannon Lv10',
+      label: 'Cold Blooded Cannon Lv10',
       value: 'Cold Blooded Cannon==10',
       acd: 0,
       fct: 1,
@@ -356,12 +426,21 @@ export class Shiranui extends Oboro {
         const baseLevel = model.level;
         const skillBonusLv = this.learnLv('Darkening Cannon');
 
-        return (250 + skillLevel * (550 + skillBonusLv * 40) + totalSpl * 5) * (baseLevel / 100);
+        if (this.activeSkillLv('Skill Version') === 0) // GGT
+          return (250 + skillLevel * (550 + skillBonusLv * 40) + totalSpl * 5) * (baseLevel / 100);
+        else if (this.activeSkillLv('Skill Version') === 2) // 260
+          return (350 + skillLevel * (850 + skillBonusLv * 40) + totalSpl * 5) * (baseLevel / 100);
+        else { // KRO
+          if (this.isSkillActive('Water Colors Charm'))
+            return (450 + 7000 + skillLevel * (950 + skillBonusLv * 40) + totalSpl * 5) * (baseLevel / 100);
+          else
+            return (450 + skillLevel * (950 + skillBonusLv * 40) + totalSpl * 5) * (baseLevel / 100);
+        }
       },
     },
     {
       name: 'Thundering Cannon',
-      label: '[K] Thundering Cannon Lv10',
+      label: 'Thundering Cannon Lv10',
       value: 'Thundering Cannon==10',
       acd: 0,
       fct: 1,
@@ -376,9 +455,13 @@ export class Shiranui extends Oboro {
         const baseLevel = model.level;
         const skillBonusLv = this.learnLv('Darkening Cannon');
 
-        if (this.isSkillActive('GGT Skill')) {
+        if (this.activeSkillLv('Skill Version') === 0) { // GGT
           return (600 + skillLevel * (1300 + skillBonusLv * 70) + totalSpl * 5) * (baseLevel / 100);
-        } else {
+        }
+        else if (this.activeSkillLv('Skill Version') === 2) { // 260
+          return (500 + skillLevel * (950 + skillBonusLv * 70) + totalSpl * 5) * (baseLevel / 100);
+        }
+        else { // KRO
           if (this.isSkillActive('Wind Colors Charm'))
             return (600 + 8500 + skillLevel * (1100 + skillBonusLv * 70) + totalSpl * 5) * (baseLevel / 100);
           else
@@ -388,7 +471,7 @@ export class Shiranui extends Oboro {
     },
     {
       name: 'Golden Dragon Cannon',
-      label: '[V2] Golden Dragon Cannon Lv10',
+      label: 'Golden Dragon Cannon Lv10',
       value: 'Golden Dragon Cannon==10',
       acd: 0,
       fct: 1,
@@ -402,12 +485,23 @@ export class Shiranui extends Oboro {
         const baseLevel = model.level;
         const skillBonusLv = this.learnLv('Darkening Cannon');
 
-        return (300 + skillLevel * (400 + skillBonusLv * 15) + totalSpl * 5) * (baseLevel / 100);
+        if (this.activeSkillLv('Skill Version') === 0) { // GGT
+          return (300 + skillLevel * (400 + skillBonusLv * 15) + totalSpl * 5) * (baseLevel / 100);
+        }
+        else if (this.activeSkillLv('Skill Version') === 2) { // 260
+          return (450 + skillLevel * (950 + skillBonusLv * 15) + totalSpl * 5) * (baseLevel / 100);
+        }
+        else { // KRO
+          if (this.isSkillActive('Earth Colors Charm'))
+            return (800 + 5500 + skillLevel * (1500 + skillBonusLv * 15) + totalSpl * 5) * (baseLevel / 100);
+          else
+            return (800 + skillLevel * (1500 + skillBonusLv * 15) + totalSpl * 5) * (baseLevel / 100);
+        }
       },
     },
     {
       name: 'Darkening Cannon',
-      label: '[V2] Darkening Cannon Lv10',
+      label: 'Darkening Cannon Lv10',
       value: 'Darkening Cannon==10',
       acd: 0,
       fct: 1,

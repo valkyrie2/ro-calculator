@@ -174,7 +174,7 @@ export class ElementalMaster extends Sorcerer {
   private readonly atkSkillList4th: AtkSkillModel[] = [
     {
       name: 'Diamond Storm',
-      label: '[K] Diamond Storm Lv5',
+      label: 'Diamond Storm Lv5',
       value: 'Diamond Storm==5',
       acd: 0.5,
       fct: 1.5,
@@ -188,26 +188,31 @@ export class ElementalMaster extends Sorcerer {
         const { totalSpl } = status;
         const { level: baseLevel } = model;
 
-        if (this.isSkillActive('GGT Skill')) {
-          if (this.isSpirit('Divulio')) {
-            return (5400 + skillLevel * 1800 + totalSpl * 10) * (baseLevel / 100);
-          }
-
-          return (400 + skillLevel * 1550 + totalSpl * 5) * (baseLevel / 100);
-        } else {
+        if (this.activeSkillLv('Skill Version') === 1) { // KRO
           if (this.isSpirit('Divulio')) {
             return (7800 + skillLevel * 2600 + totalSpl * 10) * (baseLevel / 100);
           }
 
           return (500 + skillLevel * 2400 + totalSpl * 5) * (baseLevel / 100);
         }
+        else {
+          if (this.isSpirit('Divulio')) {
+            return (5400 + skillLevel * 1800 + totalSpl * 10) * (baseLevel / 100);
+          }
+
+          return (400 + skillLevel * 1550 + totalSpl * 5) * (baseLevel / 100);
+        }
       },
     },
     {
       name: 'Conflagration',
-      label: '[K] Conflagration Lv5',
+      label: 'Conflagration Lv5',
       value: 'Conflagration==5',
-      acd: 0.5,
+      acd: () => {
+        if (this.activeSkillLv('Skill Version') === 1) return 0.7; // KRO
+
+        return 0.5;
+      },
       fct: 1.5,
       vct: 5,
       cd: 2,
@@ -219,27 +224,31 @@ export class ElementalMaster extends Sorcerer {
         const { totalSpl } = status;
         const { level: baseLevel } = model;
 
-        if (this.isSkillActive('GGT Skill')) {
-          if (this.isSpirit('Ardor')) {
-            return (500 + skillLevel * 1050 + totalSpl * 7) * (baseLevel / 100);
-          }
-
-          return (500 + skillLevel * 650 + totalSpl * 5) * (baseLevel / 100);
-        }
-        else {
+        if (this.activeSkillLv('Skill Version') === 1) { // KRO
           if (this.isSpirit('Ardor')) {
             return (700 + skillLevel * 1300 + totalSpl * 7) * (baseLevel / 100);
           }
 
           return (700 + skillLevel * 1100 + totalSpl * 5) * (baseLevel / 100);
         }
+        else {
+          if (this.isSpirit('Ardor')) {
+            return (500 + skillLevel * 1050 + totalSpl * 7) * (baseLevel / 100);
+          }
+
+          return (500 + skillLevel * 650 + totalSpl * 5) * (baseLevel / 100);
+        }
       },
     },
     {
       name: 'Lightning Land',
-      label: '[K] Lightning Land Lv5',
+      label: 'Lightning Land Lv5',
       value: 'Lightning Land==5',
-      acd: 0.5,
+      acd: () => {
+        if (this.activeSkillLv('Skill Version') === 1) return 0.7; // KRO
+
+        return 0.5;
+      },
       fct: 1.5,
       vct: 5,
       cd: 2,
@@ -251,25 +260,25 @@ export class ElementalMaster extends Sorcerer {
         const { totalSpl } = status;
         const { level: baseLevel } = model;
 
-        if (this.isSkillActive('GGT Skill')) {
-          if (this.isSpirit('Procella')) {
-            return (500 + skillLevel * 1050 + totalSpl * 7) * (baseLevel / 100);
-          }
-
-          return (500 + skillLevel * 650 + totalSpl * 5) * (baseLevel / 100);
-        }
-        else {
+        if (this.activeSkillLv('Skill Version') === 1) { // KRO
           if (this.isSpirit('Procella')) {
             return (700 + skillLevel * 1300 + totalSpl * 7) * (baseLevel / 100);
           }
 
           return (700 + skillLevel * 1100 + totalSpl * 5) * (baseLevel / 100);
         }
+        else {
+          if (this.isSpirit('Procella')) {
+            return (500 + skillLevel * 1050 + totalSpl * 7) * (baseLevel / 100);
+          }
+
+          return (500 + skillLevel * 650 + totalSpl * 5) * (baseLevel / 100);
+        }
       },
     },
     {
       name: 'Terra Drive',
-      label: '[K] Terra Drive Lv5',
+      label: 'Terra Drive Lv5',
       value: 'Terra Drive==5',
       acd: 0.5,
       fct: 1.5,
@@ -283,26 +292,31 @@ export class ElementalMaster extends Sorcerer {
         const { totalSpl } = status;
         const { level: baseLevel } = model;
 
-        if (this.isSkillActive('GGT Skill')) {
-          if (this.isSpirit('Terramotus')) {
-            return (5400 + skillLevel * 1800 + totalSpl * 10) * (baseLevel / 100);
-          }
-
-          return (400 + skillLevel * 1550 + totalSpl * 5) * (baseLevel / 100);
-        } else {
+        if (this.activeSkillLv('Skill Version') === 1) { // KRO
           if (this.isSpirit('Terramotus')) {
             return (7800 + skillLevel * 2600 + totalSpl * 10) * (baseLevel / 100);
           }
 
           return (500 + skillLevel * 2400 + totalSpl * 5) * (baseLevel / 100);
         }
+        else {
+          if (this.isSpirit('Terramotus')) {
+            return (5400 + skillLevel * 1800 + totalSpl * 10) * (baseLevel / 100);
+          }
+
+          return (400 + skillLevel * 1550 + totalSpl * 5) * (baseLevel / 100);
+        }
       },
     },
     {
       name: 'Venom Swamp',
-      label: '[K] Venom Swamp Lv5',
+      label: 'Venom Swamp Lv5',
       value: 'Venom Swamp==5',
-      acd: 0.5,
+      acd: () => {
+        if (this.activeSkillLv('Skill Version') === 1) return 0.7; // KRO
+
+        return 0.5;
+      },
       fct: 1.5,
       vct: 5,
       cd: 2,
@@ -314,30 +328,34 @@ export class ElementalMaster extends Sorcerer {
         const { totalSpl } = status;
         const { level: baseLevel } = model;
 
-        if (this.isSkillActive('GGT Skill')) {
-          if (this.isSpirit('Serpens')) {
-            return (500 + skillLevel * 1050 + totalSpl * 7) * (baseLevel / 100);
-          }
-
-          return (500 + skillLevel * 650 + totalSpl * 5) * (baseLevel / 100);
-        }
-        else {
+        if (this.activeSkillLv('Skill Version') === 1) { // KRO
           if (this.isSpirit('Serpens')) {
             return (700 + skillLevel * 1300 + totalSpl * 7) * (baseLevel / 100);
           }
 
           return (700 + skillLevel * 1100 + totalSpl * 5) * (baseLevel / 100);
         }
+        else {
+          if (this.isSpirit('Serpens')) {
+            return (500 + skillLevel * 1050 + totalSpl * 7) * (baseLevel / 100);
+          }
+
+          return (500 + skillLevel * 650 + totalSpl * 5) * (baseLevel / 100);
+        }
       },
     },
     {
       name: 'Elemental Buster',
-      label: '[K] Elemental Buster Lv10',
+      label: 'Elemental Buster Lv10',
       value: 'Elemental Buster==10',
       acd: 0.5,
       fct: 1.5,
       vct: 4,
-      cd: 5,
+      cd: () => {
+        if (this.activeSkillLv('Skill Version') === 1) return 2; // KRO
+
+        return 5;
+      },
       isMatk: true,
       hit: 3,
       getElement: () => {
@@ -350,17 +368,17 @@ export class ElementalMaster extends Sorcerer {
         const { totalSpl } = status;
         const { level: baseLevel } = model;
 
-        if (this.isSkillActive('GGT Skill')) {
-          if (monster.isRace('dragon', 'formless')) {
-            return (500 + skillLevel * 2350 + totalSpl * 10) * (baseLevel / 100);
-          }
-          return (500 + skillLevel * 2200 + totalSpl * 10) * (baseLevel / 100);
-        }
-        else {
+        if (this.activeSkillLv('Skill Version') === 1) { // KRO
           if (monster.isRace('dragon', 'formless')) {
             return (550 + skillLevel * 2800 + totalSpl * 10) * (baseLevel / 100);
           }
           return (550 + skillLevel * 2650 + totalSpl * 10) * (baseLevel / 100);
+        }
+        else {
+          if (monster.isRace('dragon', 'formless')) {
+            return (500 + skillLevel * 2350 + totalSpl * 10) * (baseLevel / 100);
+          }
+          return (500 + skillLevel * 2200 + totalSpl * 10) * (baseLevel / 100);
         }
       },
     },
@@ -380,10 +398,10 @@ export class ElementalMaster extends Sorcerer {
         const { totalSpl } = status;
         const { level: baseLevel } = model;
 
-        if (this.isSkillActive('GGT Skill'))
-          return (skillLevel * 250 + totalSpl * 3) * (baseLevel / 100);
-        else
+        if (this.activeSkillLv('Skill Version') === 1) // KRO
           return (skillLevel * 300 + totalSpl * 3) * (baseLevel / 100);
+        else
+          return (skillLevel * 250 + totalSpl * 3) * (baseLevel / 100);
       }
     },
   ];

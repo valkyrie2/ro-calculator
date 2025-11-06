@@ -99,7 +99,7 @@ export class StarGladiator extends Taekwondo {
       ],
     },
     {
-      label: 'Wrath of',
+      label: 'Wrath of ± (Rebalance)',
       name: 'Wrath of',
       inputType: 'selectButton',
       dropdown: [

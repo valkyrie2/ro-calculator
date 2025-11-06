@@ -172,7 +172,7 @@ export class SoulAscetic extends SoulReaper {
   private readonly atkSkillList4th: AtkSkillModel[] = [
     {
       name: 'Exorcism of Malicious Soul',
-      label: '[V2] Exorcism of Malicious Soul Lv5',
+      label: 'Exorcism of Malicious Soul Lv5',
       value: 'Exorcism of Malicious Soul==5',
       acd: 0,
       fct: 1.5,
@@ -197,7 +197,7 @@ export class SoulAscetic extends SoulReaper {
     },
     {
       name: 'Talisman of Blue Dragon',
-      label: '[K] Talisman of Blue Dragon Lv5',
+      label: 'Talisman of Blue Dragon Lv5',
       value: 'Talisman of Blue Dragon==5',
       acd: 0,
       fct: 1.5,
@@ -210,14 +210,20 @@ export class SoulAscetic extends SoulReaper {
         const baseLevel = model.level;
         const talisMaster = this.learnLv('Talisman Mastery');
 
-        if (this.isSkillActive('GGT Skill')) {
+        if (this.activeSkillLv('Skill Version') === 0) { // GGT
           if (this.activeSkillLv('_SoulAscetic_Blessing') === BlessingValue.Four_Directions) {
             return (350 + skillLevel * (1650 + talisMaster * 15) + totalSpl * 5) * (baseLevel / 100);
           }
 
           return (250 + skillLevel * (1450 + talisMaster * 15) + totalSpl * 5) * (baseLevel / 100);
+        } else if (this.activeSkillLv('Skill Version') === 2) { // 260
+          if (this.activeSkillLv('_SoulAscetic_Blessing') === BlessingValue.Four_Directions) {
+            return (600 + skillLevel * (2200 + talisMaster * 15) + totalSpl * 5) * (baseLevel / 100);
+          }
+
+          return (600 + skillLevel * (1700 + talisMaster * 15) + totalSpl * 5) * (baseLevel / 100);
         }
-        else {
+        else { // KRO
           if (this.activeSkillLv('_SoulAscetic_Blessing') === BlessingValue.Four_Directions) {
             return (950 + skillLevel * (2950 + talisMaster * 15) + totalSpl * 5) * (baseLevel / 100);
           }
@@ -228,7 +234,7 @@ export class SoulAscetic extends SoulReaper {
     },
     {
       name: 'Talisman of White Tiger',
-      label: '[K] Talisman of White Tiger Lv5',
+      label: 'Talisman of White Tiger Lv5',
       value: 'Talisman of White Tiger==5',
       acd: 0,
       fct: 1.5,
@@ -242,14 +248,13 @@ export class SoulAscetic extends SoulReaper {
         const baseLevel = model.level;
         const talisMaster = this.learnLv('Talisman Mastery');
 
-        if (this.isSkillActive('GGT Skill')) {
+        if (this.activeSkillLv('Skill Version') === 0) { // GGT
           if (this.activeSkillLv('_SoulAscetic_Blessing') === BlessingValue.Four_Directions) {
             return (350 + skillLevel * (1350 + talisMaster * 15) + totalSpl * 5) * (baseLevel / 100);
           }
 
           return (350 + skillLevel * (950 + talisMaster * 15) + totalSpl * 5) * (baseLevel / 100);
-        }
-        else {
+        } else {
           if (this.activeSkillLv('_SoulAscetic_Blessing') === BlessingValue.Four_Directions) {
             return (400 + skillLevel * (1400 + talisMaster * 15) + totalSpl * 5) * (baseLevel / 100);
           }
@@ -260,7 +265,7 @@ export class SoulAscetic extends SoulReaper {
     },
     {
       name: 'Talisman of Red Phoenix',
-      label: '[K] Talisman of Red Phoenix Lv5',
+      label: 'Talisman of Red Phoenix Lv5',
       value: 'Talisman of Red Phoenix==5',
       acd: 0,
       fct: 1.5,
@@ -274,27 +279,31 @@ export class SoulAscetic extends SoulReaper {
         const baseLevel = model.level;
         const talisMaster = this.learnLv('Talisman Mastery');
 
-        if (this.isSkillActive('GGT Skill')) {
+        if (this.activeSkillLv('Skill Version') === 0) { // GGT
           if (this.activeSkillLv('_SoulAscetic_Blessing') === BlessingValue.Four_Directions) {
             return (1200 + skillLevel * (1300 + talisMaster * 15) + totalSpl * 5) * (baseLevel / 100);
 
           }
-
           return (1000 + skillLevel * (900 + talisMaster * 15) + totalSpl * 5) * (baseLevel / 100);
+        } else if (this.activeSkillLv('Skill Version') === 2) { // 260
+          if (this.activeSkillLv('_SoulAscetic_Blessing') === BlessingValue.Four_Directions) {
+            return (1400 + skillLevel * (1650 + talisMaster * 15) + totalSpl * 5) * (baseLevel / 100);
+
+          }
+          return (1200 + skillLevel * (1250 + talisMaster * 15) + totalSpl * 5) * (baseLevel / 100);
         }
-        else {
+        else { // KRO
           if (this.activeSkillLv('_SoulAscetic_Blessing') === BlessingValue.Four_Directions) {
             return (1600 + skillLevel * (1850 + talisMaster * 15) + totalSpl * 5) * (baseLevel / 100);
 
           }
-
           return (1400 + skillLevel * (1450 + talisMaster * 15) + totalSpl * 5) * (baseLevel / 100);
         }
       },
     },
     {
       name: 'Talisman of Black Tortoise',
-      label: '[K] Talisman of Black Tortoise Lv5',
+      label: 'Talisman of Black Tortoise Lv5',
       value: 'Talisman of Black Tortoise==5',
       acd: 0,
       fct: 1.5,
@@ -308,13 +317,14 @@ export class SoulAscetic extends SoulReaper {
         const baseLevel = model.level;
         const talisMaster = this.learnLv('Talisman Mastery');
 
-        if (this.isSkillActive('GGT Skill')) {
+        if (this.activeSkillLv('Skill Version') === 1) { // GGT
           if (this.activeSkillLv('_SoulAscetic_Blessing') === BlessingValue.Four_Directions) {
             return (1850 + skillLevel * (1850 + talisMaster * 15) + totalSpl * 5) * (baseLevel / 100);
 
           }
 
           return (2150 + skillLevel * (1450 + talisMaster * 15) + totalSpl * 5) * (baseLevel / 100);
+
         }
         else {
           if (this.activeSkillLv('_SoulAscetic_Blessing') === BlessingValue.Four_Directions) {
@@ -328,7 +338,7 @@ export class SoulAscetic extends SoulReaper {
     },
     {
       name: 'Talisman of Four Bearing God',
-      label: '[K] Talisman of Four Bearing God Lv5',
+      label: 'Talisman of Four Bearing God Lv5',
       value: 'Talisman of Four Bearing God==5',
       acd: 0,
       fct: 1.5,
