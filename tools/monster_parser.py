@@ -13,7 +13,7 @@ BASE_URL = "https://www.divine-pride.net/api/database/monster/{monster_id}?apiKe
 
 RACE_LIST = [
     "Formless", "Undead", "Brute", "Plant", "Insect",
-    "Fish", "Demon", "Demihuman", "Angel", "Dragon"
+    "Fish", "Demon", "DemiHuman", "Angel", "Dragon"
 ]
 
 ELEMENT_LIST = [

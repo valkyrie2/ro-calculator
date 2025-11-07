@@ -58,7 +58,11 @@ const Mapper = {
   ch1zero3: 'Zero Cell - Vita',
   ch1zero4: 'Zero Cell - Ark',
   "1@f_lake": 'Lake of Fire',
-  jor_tail: 'Episode 19 Monster',
+  jor_tail: 'Ep19 - Field',
+  jor_tail2: 'Ep19 - Boss',
+  jor_ab01: 'Ep19 - Abandoned Pit 1',
+  jor_ab02: 'Ep19 - Abandoned Pit 2',
+  jor_dun01: 'Ep19 - Warmth Snake God',
   clock_01: 'Clock Tower Unknown Basement',
 } as const;
 
