@@ -206,6 +206,13 @@ export class AppTopBarComponent implements OnInit, OnDestroy {
 
   updates: { v: string; date: string; logs: string[]; }[] = [
     {
+      v: 'Extra v31',
+      date: '07-11-2568',
+      logs: [
+        "แก้บัคสกิล Gale Storm เวลาติดคริ ให้ใช้ค่าคริดาเมจหาร 2",
+      ],
+    },
+    {
       v: 'Extra v30',
       date: '07-11-2568',
       logs: [
@@ -213,7 +220,7 @@ export class AppTopBarComponent implements OnInit, OnDestroy {
         "เพิ่มมอนสเตอร์ episode 19",
       ],
     },
-	{
+    {
       v: 'Extra v29',
       date: '06-11-2568',
       logs: [

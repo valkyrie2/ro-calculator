@@ -213,6 +213,8 @@ export class Windhawk extends Ranger {
       },
       hit: 5,
       canCri: () => this.isSkillActive('Calamity Gale'),
+      criDmgPercentage: 0.5,
+      baseCriPercentage: 1,
       formula: (input: AtkSkillFormulaInput): number => {
         const { model, skillLevel, status } = input;
         const baseLevel = model.level;
