@@ -210,6 +210,7 @@ export class AppTopBarComponent implements OnInit, OnDestroy {
       date: '13-11-2568',
       logs: [
         "เพิ่มไอเทม GGT 13/11/2025",
+        "แก้บัค Perfect hit ให้ไม่เพิ่มตามค่า Luk ผู้ใช้อีกต่อไป",
       ],
     },
     {
