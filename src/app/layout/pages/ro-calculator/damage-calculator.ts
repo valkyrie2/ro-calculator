@@ -472,7 +472,7 @@ export class DamageCalculator {
     };
 
     const totalHit = formula();
-    const totalPerfectHit = floor(totalLuk / 10) + perfectHit;
+    const totalPerfectHit = perfectHit;
 
     const { hitRequireFor100 } = this.monster.data;
 
