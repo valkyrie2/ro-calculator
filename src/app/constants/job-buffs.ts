@@ -422,6 +422,21 @@ export const JobBuffs: ActiveSkillModel[] = [
       { label: 'Earth', isUse: true, value: 4, bonus: { insignia: 4 } },
     ],
   },
+  {
+      inputType: 'dropdown',
+      label: 'Venom Imp',
+      name: 'Venom Impression',
+      isEquipAtk: true,
+      isDebuff: true,
+      dropdown: [
+        { label: '-', value: 0, isUse: false },
+        { label: 'Lv 1', value: 1, isUse: true, bonus: { vi: 10 } },
+        { label: 'Lv 2', value: 2, isUse: true, bonus: { vi: 20 } },
+        { label: 'Lv 3', value: 3, isUse: true, bonus: { vi: 30 } },
+        { label: 'Lv 4', value: 4, isUse: true, bonus: { vi: 40 } },
+        { label: 'Lv 5', value: 5, isUse: true, bonus: { vi: 50 } },
+      ],
+    },
   /*{
     name: '_Trouvere_Troubadour_ignore_res_mres',
     label: 'Res/MRes -100',

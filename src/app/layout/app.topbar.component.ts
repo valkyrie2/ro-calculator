@@ -206,6 +206,14 @@ export class AppTopBarComponent implements OnInit, OnDestroy {
 
   updates: { v: string; date: string; logs: string[]; }[] = [
     {
+      v: 'Extra v33',
+      date: '17-11-2568',
+      logs: [
+        "เพิ่มไอเทม [Event] New Adventure Clover",
+        "แก้บัพ Venom impression สำหรับอาชีพอื่นๆที่ไม่ใช่สาย Guillotine cross",
+      ],
+    },
+    {
       v: 'Extra v32',
       date: '13-11-2568',
       logs: [
