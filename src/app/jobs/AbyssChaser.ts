@@ -6,6 +6,7 @@ import { addBonus, floor, genSkillList } from '../utils';
 import { ShadowChaser } from './ShadowChaser';
 import { ActiveSkillModel, AtkSkillFormulaInput, AtkSkillModel, PassiveSkillModel } from './_character-base.abstract';
 import { ClassName } from './_class-name';
+import { InfoForClass } from '../models/info-for-class.model';
 
 const jobBonusTable: Record<number, [number, number, number, number, number, number]> = {
   1: [0, 0, 0, 0, 0, 1],
@@ -304,10 +305,10 @@ export class AbyssChaser extends ShadowChaser {
         const { level: baseLevel } = model;
 
         if (this.activeSkillLv('Skill Version') === 0) // GGT
-         return (skillLevel * 400 + totalCon * 5) * (baseLevel / 100);
+          return (skillLevel * 400 + totalCon * 5) * (baseLevel / 100);
 
         if (this.activeSkillLv('Skill Version') === 2) // 260
-         return (150 + skillLevel * 600 + totalCon * 15) * (baseLevel / 100);
+          return (150 + skillLevel * 600 + totalCon * 15) * (baseLevel / 100);
 
         // KRO
         return (250 + skillLevel * 800 + totalCon * 15) * (baseLevel / 100);
@@ -385,9 +386,9 @@ export class AbyssChaser extends ShadowChaser {
         const magicSwordMasLv = this.learnLv('Magic Sword Mastery');
 
         if (this.activeSkillLv('Skill Version') === 1) { // KRO
-          return (Math.min(5,skillLevel) * (750 + magicSwordMasLv * 40) + totalSpl * 5) * 2 * (baseLevel / 100);
+          return (Math.min(5, skillLevel) * (750 + magicSwordMasLv * 40) + totalSpl * 5) * 2 * (baseLevel / 100);
         }
-          return (Math.min(5,skillLevel) * (570 + magicSwordMasLv * 20) + totalSpl * 5) * 2 * (baseLevel / 100);
+        return (Math.min(5, skillLevel) * (570 + magicSwordMasLv * 20) + totalSpl * 5) * 2 * (baseLevel / 100);
       },
     },
     {
@@ -417,7 +418,7 @@ export class AbyssChaser extends ShadowChaser {
         const { totalSpl } = status;
         const { level: baseLevel } = model;
         const raceBonus = monster.isRace('angel', 'demon') ? 150 : 0;
-        
+
         if (this.activeSkillLv('Skill Version') === 1) { // KRO
           if (monster.isRace('angel', 'demon')) {
             return (skillLevel * 2850 + totalSpl * 10) * (baseLevel / 100);
@@ -494,6 +495,15 @@ export class AbyssChaser extends ShadowChaser {
         { label: 'No', value: 0, isUse: false },
       ],
     },
+    {
+      label: 'Power (Good&Evil)',
+      name: 'Power',
+      inputType: 'dropdown',
+      dropdown: [
+        { label: '-', value: 0, isUse: false },
+        { label: 'Lv 4', value: 4, isUse: true },
+      ],
+    },
   ];
   private readonly passiveSkillList4th: PassiveSkillModel[] = [
     {
@@ -546,5 +556,20 @@ export class AbyssChaser extends ShadowChaser {
     }
 
     return totalBonus;
+  }
+
+  override modifyFinalAtk(currentAtk: number, _params: InfoForClass) {
+    const powerLv = this.bonuses.usedSkillMap.get('Power');
+
+    let totalAtk = currentAtk;
+    if (powerLv >= 1) {
+      if (this.activeSkillLv('Skill Version') === 0) { // GGT
+        totalAtk = totalAtk + floor(totalAtk * (powerLv * 15 + 10) * 0.01);
+      }
+      else
+        totalAtk = totalAtk + floor(totalAtk * (powerLv * 20) * 0.01);
+    }
+
+    return totalAtk;
   }
 }

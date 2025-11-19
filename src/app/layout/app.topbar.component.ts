@@ -206,6 +206,15 @@ export class AppTopBarComponent implements OnInit, OnDestroy {
 
   updates: { v: string; date: string; logs: string[]; }[] = [
     {
+      v: 'Extra v34',
+      date: '19-11-2568',
+      logs: [
+        "เพิ่มไอเทม GGT 19/11/2025",
+        "แก้สกิล Rising Dragon ให้ได้รับ Critical +20 จากบัพ Vigor Gxplosion",
+        "เพิ่มสกิล Mayhemic Thorn ให้ Meister",
+      ],
+    },
+    {
       v: 'Extra v33',
       date: '17-11-2568',
       logs: [

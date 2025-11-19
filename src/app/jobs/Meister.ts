@@ -323,6 +323,47 @@ export class Meister extends Mechanic {
         }
       },
     },
+    {
+      name: 'Mayhemic Thorns',
+      label: 'Mayhemic Thorns Lv10',
+      value: 'Mayhemic Thorns==10',
+      acd: 0.25,
+      fct: 0.5,
+      vct: 1.5,
+      cd: 0.7,
+      totalHit: () => {
+        if (this.activeSkillLv('Skill Version') === 0) { // GGT
+          if (this.isSkillActive('Research Report'))
+            return 5;
+          else
+            return 3;
+        } else {
+          if (this.isSkillActive('Research Report'))
+            return 4;
+          else
+            return 3;
+        }
+      },
+      canCri: true,
+      baseCriPercentage: 1,
+      criDmgPercentage: 0.5,
+      formula: (input: AtkSkillFormulaInput): number => {
+        const { model, skillLevel, status } = input;
+        const { totalPow } = status;
+        const baseLevel = model.level;
+        if (this.isSkillActive('Research Report')) {
+          if (this.activeSkillLv('Skill Version') === 0)
+            return (250 + skillLevel * 300 + totalPow * 10) * (baseLevel / 100);
+          else
+            return (350 + skillLevel * 300 + totalPow * 10) * (baseLevel / 100);
+        }
+
+        if (this.activeSkillLv('Skill Version') === 0)
+          return (200 + skillLevel * 250 + totalPow * 7) * (baseLevel / 100);
+        else
+          return (200 + skillLevel * 300 + totalPow * 7) * (baseLevel / 100);
+      },
+    },
   ];
   private activeSkillList4th: ActiveSkillModel[] = [
     {
