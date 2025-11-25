@@ -207,7 +207,7 @@ export class AppTopBarComponent implements OnInit, OnDestroy {
   updates: { v: string; date: string; logs: string[]; }[] = [
     {
       v: 'Extra v36',
-      date: '20-11-2568',
+      date: '25-11-2568',
       logs: [
         "แก้บัครองเท้า Thanos ให้เป็นเกราะ Lv2",
       ],
