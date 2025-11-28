@@ -313,6 +313,7 @@ const ACTIVE_PASSIVE_SKILL_NAMES = [
   '_Land_Sage',
   '_Insignia',
   'Enchanting Sky',
+  'VIP',
 ] as const;
 
 export const OFFENSIVE_SKILL_NAMES = [

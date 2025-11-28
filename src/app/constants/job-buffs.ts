@@ -3,12 +3,22 @@ import { BragisPoemFn, DarkClawFn, ShieldSpellFn, SwingDanceFn } from './share-a
 
 export const JobBuffs: ActiveSkillModel[] = [
   {
+    name: 'VIP',
+    label: 'VIP Stat+7 Trait+3',
+    inputType: 'selectButton',
+    dropdown: [
+      { label: 'Yes', isUse: true, value: 5, bonus: { allStatus: 7, allTrait: 3 } },
+      { label: 'No', isUse: false, value: 0 },
+    ],
+  },
+  {
     name: 'Cantocandidus',
     label: 'Agi Up',
     inputType: 'dropdown',
     dropdown: [
       { label: '-', value: 0, isUse: false },
       { label: 'Lv 3', value: 3, isUse: true, bonus: { agi: 5, aspdPercent: 3 } },
+      { label: 'Lv 5', value: 5, isUse: true, bonus: { agi: 7, aspdPercent: 5 } },
       { label: 'Lv 10', value: 10, isUse: true, bonus: { agi: 12, aspdPercent: 10 } },
       { label: 'Job 20', value: 12, isUse: true, bonus: { agi: 14, aspdPercent: 12 } },
       { label: 'Job 30', value: 13, isUse: true, bonus: { agi: 15, aspdPercent: 13 } },
@@ -24,6 +34,7 @@ export const JobBuffs: ActiveSkillModel[] = [
     inputType: 'dropdown',
     dropdown: [
       { label: '-', value: 0, isUse: false },
+      { label: 'Lv 5', value: 5, isUse: true, bonus: { str: 5, int: 5, dex: 5, hit: 10 } },
       { label: 'Lv 10', value: 10, isUse: true, bonus: { str: 10, int: 10, dex: 10, hit: 20 } },
       { label: 'Job 20', value: 12, isUse: true, bonus: { str: 12, int: 12, dex: 12, hit: 22 } },
       { label: 'Job 30', value: 13, isUse: true, bonus: { str: 13, int: 13, dex: 13, hit: 23 } },
@@ -81,11 +92,12 @@ export const JobBuffs: ActiveSkillModel[] = [
   },
   {
     name: '_Argutus Vita_Telum',
-    label: '[บิC4] เจาะ Res/MRes 25',
-    inputType: 'selectButton',
+    label: '[บิC4] เจาะ Res/MRes',
+    inputType: 'dropdown',
     dropdown: [
-      { label: 'Yes', isUse: true, value: 5, bonus: { pene_res: 25, pene_mres: 25 } },
-      { label: 'No', isUse: false, value: 0 },
+      { label: 'Lv5 (25%)', isUse: true, value: 5, bonus: { pene_res: 25, pene_mres: 25 } },
+      { label: 'Lv3 (15%)', isUse: true, value: 3, bonus: { pene_res: 15, pene_mres: 15 } },
+      { label: '-', isUse: false, value: 0 },
     ],
   },
   // {
@@ -423,20 +435,20 @@ export const JobBuffs: ActiveSkillModel[] = [
     ],
   },
   {
-      inputType: 'dropdown',
-      label: 'Venom Imp',
-      name: 'Venom Impression',
-      isEquipAtk: true,
-      isDebuff: true,
-      dropdown: [
-        { label: '-', value: 0, isUse: false },
-        { label: 'Lv 1', value: 1, isUse: true, bonus: { vi: 10 } },
-        { label: 'Lv 2', value: 2, isUse: true, bonus: { vi: 20 } },
-        { label: 'Lv 3', value: 3, isUse: true, bonus: { vi: 30 } },
-        { label: 'Lv 4', value: 4, isUse: true, bonus: { vi: 40 } },
-        { label: 'Lv 5', value: 5, isUse: true, bonus: { vi: 50 } },
-      ],
-    },
+    inputType: 'dropdown',
+    label: 'Venom Imp',
+    name: 'Venom Impression',
+    isEquipAtk: true,
+    isDebuff: true,
+    dropdown: [
+      { label: '-', value: 0, isUse: false },
+      { label: 'Lv 1', value: 1, isUse: true, bonus: { vi: 10 } },
+      { label: 'Lv 2', value: 2, isUse: true, bonus: { vi: 20 } },
+      { label: 'Lv 3', value: 3, isUse: true, bonus: { vi: 30 } },
+      { label: 'Lv 4', value: 4, isUse: true, bonus: { vi: 40 } },
+      { label: 'Lv 5', value: 5, isUse: true, bonus: { vi: 50 } },
+    ],
+  },
   /*{
     name: '_Trouvere_Troubadour_ignore_res_mres',
     label: 'Res/MRes -100',

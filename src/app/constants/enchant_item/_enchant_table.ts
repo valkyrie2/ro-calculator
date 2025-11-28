@@ -142,6 +142,7 @@ import { vivatusHead3, vivatusHead4 } from './vivatus';
 import { whiteKnight2, whiteKnight34 } from './white_knigh_man';
 import { yorscalpAcc2, yorscalpAcc3, yorscalpAcc4, yorscalpArmor2, yorscalpArmor3, yorscalpArmor4, yorscalpBoot2, yorscalpBoot3, yorscalpBoot4, yorscalpGarment2, yorscalpGarment3, yorscalpGarment4, yorscalpHeadUpper2, yorscalpHeadUpper3, yorscalpHeadUpper4 } from './yorscalp';
 import { ch1Armor2,  ch1Armor3, ch1Armor4, ch1Boot2, ch1Boot3, ch1Boot4, ch1Garment2, ch1Garment3, ch1Garment4, ch1DimenBoot2, ch1DimenBoot3, ch1DimenBoot4 } from './chapter1';
+import { snowfox3, snowfox4 } from './snowfox';
 
 enum TimeJewel {
   Str2 = 'aegis_313347',
@@ -1856,6 +1857,8 @@ export const EnchantTable: EntTable[] = [
   { name: "S_BP8_Range_S", enchants: [null, nebulaShadow2, nebulaShadow3, nebulaShadow4] },
   { name: "S_BP8_Magic_W", enchants: [null, nebulaShadow2, nebulaShadow3, nebulaShadow4] },
   { name: "S_BP8_Magic_S", enchants: [null, nebulaShadow2, nebulaShadow3, nebulaShadow4] },
+
+  { name: "Snow_Fox_TH", enchants: [null, ['NY_Enchant_2026'], snowfox3, snowfox4] },
 ];
 
 Object.freeze(EnchantTable);

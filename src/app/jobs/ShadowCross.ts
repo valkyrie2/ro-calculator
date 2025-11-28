@@ -408,7 +408,7 @@ export class ShadowCross extends GuillotineCross {
       name: 'Potent Venom',
       label: 'Potent Venom',
       inputType: 'dropdown',
-      dropdown: genSkillList(10, (lv) => ({ pene_res: lv * 3 })),
+      dropdown: genSkillList(10, (lv) => ({ pene_res: lv * 2 })),
     },
     {
       name: 'Shadow Exceed',
