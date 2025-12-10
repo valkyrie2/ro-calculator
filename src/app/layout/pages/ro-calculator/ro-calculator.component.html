@@ -1139,8 +1139,16 @@
             (selectItemChange)="onSelectItem('costumeEnchantUpper', $event.itemId)"
           ></app-equipment-cos-enchant>
         </div>
-
-        <div class="col-3 col-offset-3 item_label_pet">
+        <div class="col-3">
+          <app-equipment-cos-enchant
+            [itemType]="'costumeEnchantUpper2'"
+            [placeholder]="'Upper Enchant 2'"
+            [itemList]="costumeEnhUpper2List"
+            [(itemId)]="model.costumeEnchantUpper2"
+            (selectItemChange)="onSelectItem('costumeEnchantUpper2', $event.itemId)"
+          ></app-equipment-cos-enchant>
+        </div>
+        <div class="col-3 item_label_pet">
           <p-dropdown
             inputId="pet"
             [autoDisplayFirst]="false"
@@ -1255,14 +1263,25 @@
       </div>
 
       <div class="col-9 col-offset-3 grid grid-nogutter item_label_costume flex flex-column">
-        <div class="col-4 item_label_compare" *ngIf="showCompareItemMap.costumeEnchantUpper">
-          <app-equipment-cos-enchant
-            [itemType]="'costumeEnchantUpper'"
-            [placeholder]="'Upper Enchant'"
-            [itemList]="costumeEnhUpperList"
-            [(itemId)]="model2.costumeEnchantUpper"
-            (selectItemChange)="onCompareItemChange()"
-          ></app-equipment-cos-enchant>
+        <div class="col-12 grid grid-nogutter item_label_compare">
+          <div class="col-4" *ngIf="showCompareItemMap.costumeEnchantUpper">
+            <app-equipment-cos-enchant
+              [itemType]="'costumeEnchantUpper'"
+              [placeholder]="'Upper Enchant'"
+              [itemList]="costumeEnhUpperList"
+              [(itemId)]="model2.costumeEnchantUpper"
+              (selectItemChange)="onCompareItemChange()"
+            ></app-equipment-cos-enchant>
+          </div>
+          <div class="col-4" *ngIf="showCompareItemMap.costumeEnchantUpper2">
+            <app-equipment-cos-enchant
+              [itemType]="'costumeEnchantUpper2'"
+             [placeholder]="'Upper Enchant 2'"
+             [itemList]="costumeEnhUpper2List"
+              [(itemId)]="model2.costumeEnchantUpper2"
+             (selectItemChange)="onCompareItemChange()"
+           ></app-equipment-cos-enchant>
+          </div>
         </div>
         <div class="col-4 item_label_compare" *ngIf="showCompareItemMap.costumeEnchantMiddle">
           <app-equipment-cos-enchant

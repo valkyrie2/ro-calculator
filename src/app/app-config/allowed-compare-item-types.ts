@@ -11,6 +11,7 @@ export const AllowedCompareItemTypes = [
   'accLeft',
 
   'costumeEnchantUpper',
+  'costumeEnchantUpper2',
   'costumeEnchantMiddle',
   'costumeEnchantLower',
   'costumeEnchantGarment',

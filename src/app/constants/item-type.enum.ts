@@ -94,6 +94,7 @@ export enum ItemTypeEnum {
   costumeGarment = 'costumeGarment',
 
   costumeEnchantUpper = 'costumeEnchantUpper',
+  costumeEnchantUpper2 = 'costumeEnchantUpper2',
   costumeEnchantMiddle = 'costumeEnchantMiddle',
   costumeEnchantLower = 'costumeEnchantLower',
   costumeEnchantGarment = 'costumeEnchantGarment',
@@ -206,6 +207,7 @@ export const MainItemWithRelations: Partial<Record<ItemTypeEnum, ItemTypeEnum[]>
   [ItemTypeEnum.costumeGarment]: [],
 
   [ItemTypeEnum.costumeEnchantUpper]: [],
+  [ItemTypeEnum.costumeEnchantUpper2]: [],
   [ItemTypeEnum.costumeEnchantMiddle]: [],
   [ItemTypeEnum.costumeEnchantLower]: [],
   [ItemTypeEnum.costumeEnchantGarment]: [],

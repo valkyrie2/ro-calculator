@@ -425,6 +425,7 @@
 :host ::ng-deep .item_label_costumeLower,
 :host ::ng-deep .item_label_costumeGarment,
 :host ::ng-deep .item_label_costumeEnchantUpper,
+:host ::ng-deep .item_label_costumeEnchantUpper2,
 :host ::ng-deep .item_label_costumeEnchantMiddle,
 :host ::ng-deep .item_label_costumeEnchantLower,
 :host ::ng-deep .item_label_costumeEnchantGarment,

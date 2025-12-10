@@ -209,8 +209,10 @@ export class AppTopBarComponent implements OnInit, OnDestroy {
       v: 'Extra v39',
       date: '10-12-2568',
       logs: [
+        "เพิ่มไอเทม GGT 10/12/2025 + Ro Festa",
         "แก้บัคดีบัพ Comet เวลาใช้กับการโจมตีกายภาพ จะคูณเข้าไปที่ final damage แล้ว",
         "แก้บัคดีบัพ Venom Impression ให้เป็นกลุ่มเดียวกันกับ Comet หากใช้ทั้ง 2 บัพ จะจับบวกกันเป็นเพิ่มดาเมจ 50% + 50% = 100%",
+        "แก้คอสตูม Costume Festa Rainbow Hair ลด Fix cast 1 วิ",
         "แก้บัค CD Terra Drive เหลือ 1 วินาที",
         "เพิ่มสกิล Soul Vulcan Strike ให้ Abyss Chaser เพื่อดูดาเมจจาก autospell",
       ],

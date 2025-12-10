@@ -99,9 +99,11 @@ export interface PresetModel {
   pet: number;
 
   costumeEnchantUpper: number;
+  costumeEnchantUpper2: number;
   costumeEnchantMiddle: number;
   costumeEnchantLower: number;
   costumeEnchantGarment: number;
+  costumeEnchantGarment2: number;
   costumeEnchantGarment4: number;
 
   shadowWeapon: number;

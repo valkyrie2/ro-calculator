@@ -200,6 +200,7 @@ export class RoCalculatorComponent implements OnInit, OnDestroy {
   costumeGarmentList: DropdownModel[] = [];
 
   costumeEnhUpperList: DropdownModel[] = [];
+  costumeEnhUpper2List: DropdownModel[] = [];
   costumeEnhMiddleList: DropdownModel[] = [];
   costumeEnhLowerList: DropdownModel[] = [];
   costumeEnhGarmentList: DropdownModel[] = [];
@@ -1875,6 +1876,7 @@ export class RoCalculatorComponent implements OnInit, OnDestroy {
     const costumeLowerList = [];
     const costumeGarmentList = [];
     const costumeEnhUpperList = [];
+    const costumeEnhUpper2List = [];
     const costumeEnhMiddleList = [];
     const costumeEnhLowerList = [];
     const costumeEnhGarmentList = [];
@@ -2032,6 +2034,9 @@ export class RoCalculatorComponent implements OnInit, OnDestroy {
         case ItemSubTypeId.CostumeEnhUpper:
           costumeEnhUpperList.push(item);
           continue;
+        case ItemSubTypeId.CostumeEnhUpper2:
+          costumeEnhUpper2List.push(item);
+          continue;
         case ItemSubTypeId.CostumeEnhMiddle:
           costumeEnhMiddleList.push(item);
           continue;
@@ -2124,6 +2129,7 @@ export class RoCalculatorComponent implements OnInit, OnDestroy {
     this.itemList.costumeGarmentList = toDropdownList(costumeGarmentList, 'name', 'id');
 
     this.itemList.costumeEnhUpperList = toDropdownList(costumeEnhUpperList, 'name', 'id');
+    this.itemList.costumeEnhUpper2List = toDropdownList(costumeEnhUpper2List, 'name', 'id');
     this.itemList.costumeEnhMiddleList = toDropdownList(costumeEnhMiddleList, 'name', 'id');
     this.itemList.costumeEnhLowerList = toDropdownList(costumeEnhLowerList, 'name', 'id');
     this.itemList.costumeEnhGarmentList = toDropdownList(costumeEnhGarmentList, 'name', 'id');
@@ -2223,6 +2229,7 @@ export class RoCalculatorComponent implements OnInit, OnDestroy {
     this.costumeGarmentList = this.itemList.costumeGarmentList.filter(onlyMe);
 
     this.costumeEnhUpperList = this.itemList.costumeEnhUpperList.map((a) => a);
+    this.costumeEnhUpper2List = this.itemList.costumeEnhUpper2List.map((a) => a);
     this.costumeEnhMiddleList = this.itemList.costumeEnhMiddleList.map((a) => a);
     this.costumeEnhLowerList = this.itemList.costumeEnhLowerList.map((a) => a);
     this.costumeEnhGarmentList = this.itemList.costumeEnhGarmentList.map((a) => a);
@@ -2269,6 +2276,7 @@ export class RoCalculatorComponent implements OnInit, OnDestroy {
       { position: 'costumeList', values: this.costumeLowerList },
       { position: 'costumeList', values: this.costumeGarmentList },
       { position: 'costumeList', values: this.costumeEnhUpperList },
+      { position: 'costumeList', values: this.costumeEnhUpper2List },
       { position: 'costumeList', values: this.costumeEnhMiddleList },
       { position: 'costumeList', values: this.costumeEnhLowerList },
       { position: 'costumeList', values: this.costumeEnhGarmentList },
