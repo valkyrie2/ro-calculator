@@ -206,6 +206,16 @@ export class AppTopBarComponent implements OnInit, OnDestroy {
 
   updates: { v: string; date: string; logs: string[]; }[] = [
     {
+      v: 'Extra v39',
+      date: '10-12-2568',
+      logs: [
+        "แก้บัคดีบัพ Comet เวลาใช้กับการโจมตีกายภาพ จะคูณเข้าไปที่ final damage แล้ว",
+        "แก้บัคดีบัพ Venom Impression ให้เป็นกลุ่มเดียวกันกับ Comet หากใช้ทั้ง 2 บัพ จะจับบวกกันเป็นเพิ่มดาเมจ 50% + 50% = 100%",
+        "แก้บัค CD Terra Drive เหลือ 1 วินาที",
+        "เพิ่มสกิล Soul Vulcan Strike ให้ Abyss Chaser เพื่อดูดาเมจจาก autospell",
+      ],
+    },
+    {
       v: 'Extra v38.1',
       date: '03-12-2568',
       logs: [

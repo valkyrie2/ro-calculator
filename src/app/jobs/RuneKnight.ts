@@ -565,6 +565,10 @@ export class RuneKnight extends LordKnight {
     return maxHp * curHp * 0.01;
   }
 
+  private toPercent(n: number) {
+    return round(n * 0.01, 4);
+  }
+
   private calcDragonBreathFormula(input: AtkSkillFormulaInput) {
     const { model, skillLevel, currentHp, maxSp, status, totalBonus } = input;
     const baseLevel = model.level;
@@ -635,7 +639,7 @@ export class RuneKnight extends LordKnight {
     totalDamage = floor(totalDamage * (100 + (totalBonus[skillName] || 0)) * 0.01);
     totalDamage = floor(totalDamage * propertyMultiplier);
 
-    totalDamage = floor(totalDamage * cometMultiplier);
+    totalDamage = floor(totalDamage * this.toPercent(cometMultiplier + 100));
     totalDamage = floor(totalDamage * getDebuffMultiplier());
     // if (this.isSkillActive('Dragonic Aura')) {
     //   totalDamage += (totalDamage * this.learnLv('Dragonic Aura')) / 10;

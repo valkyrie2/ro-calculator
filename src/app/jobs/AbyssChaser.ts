@@ -468,6 +468,28 @@ export class AbyssChaser extends ShadowChaser {
         return ((skillLevel - 1) * (820 + magicSwordMasLv * 30) + totalSpl * 5) * (baseLevel / 100);
       },
     },
+    {
+      name: 'Soul Vulcan Strike',
+      label: 'Soul Vulcan Strike Lv5',
+      value: 'Soul Vulcan Strike==5',
+      acd: 0.5,
+      fct: 1,
+      vct: 3,
+      cd: 0.7,
+      isMatk: true,
+      element: ElementType.Ghost,
+      totalHit: ({ skillLevel }) => skillLevel + 2,
+      formula: (input: AtkSkillFormulaInput): number => {
+        const { model, skillLevel, status } = input;
+        const { totalSpl } = status;
+        const { level: baseLevel } = model;
+
+        if (this.activeSkillLv('Skill Version') === 1) // KRO
+          return (skillLevel * 300 + totalSpl * 3) * (baseLevel / 100);
+        else
+          return (skillLevel * 250 + totalSpl * 3) * (baseLevel / 100);
+      }
+    },
   ];
   private readonly activeSkillList4th: ActiveSkillModel[] = [
     {

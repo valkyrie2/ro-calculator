@@ -359,7 +359,7 @@ export class HyperNovice extends SuperNovice {
         const skillBonusLv = this.learnLv('Self Study Sorcery');
 
         if (this.isSkillActive('Rule Break'))
-          return (skillLevel * (1800 + skillBonusLv * 3) + totalSpl * 3) * baseLevel / 100 * 170 / 100;
+          return ((skillLevel * (1800 + skillBonusLv * 3) + totalSpl * 3) * baseLevel / 100) * 170 / 100;
 
         return (skillLevel * (1800 + skillBonusLv * 3) + totalSpl * 3) * baseLevel / 100;
       },
@@ -483,6 +483,7 @@ export class HyperNovice extends SuperNovice {
         sMatk: lv,
         'Jupitel Thunderstorm': lv,
         "Hell's Drive": lv,
+        'Jack Frost Nova': lv,
         'Napalm Vulcan Strike': lv * 2,
       }))
     },

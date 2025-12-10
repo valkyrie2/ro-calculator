@@ -283,7 +283,7 @@ export class ElementalMaster extends Sorcerer {
       acd: 0.5,
       fct: 1.5,
       vct: 5,
-      cd: 2,
+      cd: 1,
       hit: 5,
       isMatk: true,
       element: ElementType.Earth,

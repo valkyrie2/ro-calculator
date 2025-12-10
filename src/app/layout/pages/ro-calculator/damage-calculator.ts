@@ -290,7 +290,15 @@ export class DamageCalculator {
   }
 
   private getCometMultiplier() {
-    return this.toPercent(100 + (this.totalBonus['comet'] || 0));
+    return (this.totalBonus['comet'] || 0);
+  }
+
+  private getVIMultiplier(propertyAtk: ElementType) {
+
+    if (propertyAtk === ElementType.Poison)
+      return (this.totalBonus['vi'] || 0);
+  
+    return 0;
   }
 
   private getInsigniaMultiplier(propertyAtk: ElementType) {
@@ -396,11 +404,11 @@ export class DamageCalculator {
     return weaponLvl * 18 + endowLearnedLv * 5;
   }
 
-  private getVIAmp(propertyAtk: ElementType) {
+  /*private getVIAmp(propertyAtk: ElementType) {
     if (propertyAtk !== ElementType.Poison) return 1;
 
     return this.toPercent((this.totalBonus['vi'] || 0) + 100);
-  }
+  }*/
 
   private getLandSage(propertyAtk: ElementType) {
     if (propertyAtk === ElementType.Fire && this.totalBonus['land_sage'] === 1) return 20;
@@ -605,14 +613,13 @@ export class DamageCalculator {
     const size = this.toPercent(this.getSizeMultiplier('p'));
     const element = this.toPercent(this.getElementMultiplier('p'));
     const monsterType = this.toPercent(this.getMonsterTypeMultiplier('p'));
-    const comet = this.getCometMultiplier();
-    // console.log({ race, size, element, monsterType, comet, monster: this.monster.name });
+    // console.log({ race, size, element, monsterType, monster: this.monster.name });
 
     let total = floor(totalAtk * race);
     total = floor(total * size);
     total = floor(total * element); // tested
     total = floor(total * monsterType); // tested
-    total = floor(total * comet);
+
     total = this.applyFinalMultiplier(total, 'phy');
 
     return total;
@@ -786,7 +793,7 @@ export class DamageCalculator {
   private getPropertyMultiplier(propertyAtk: ElementType) {
     // Neutral 1
     let pMultiplier = ElementMapper[this.monster.elementName][propertyAtk];
-    pMultiplier = pMultiplier * this.getVIAmp(propertyAtk);
+    //pMultiplier = pMultiplier * this.getVIAmp(propertyAtk);
     pMultiplier = pMultiplier + this.getLandSage(propertyAtk);
 
     return round(this.toPercent(pMultiplier), 2);
@@ -829,9 +836,14 @@ export class DamageCalculator {
 
     const pAtkMultiplier = 1 + this.traitBonus.pAtk / 100;
 
-    const totalMin = (statusAtk + floor((aMin + bMin) * propertyMultiplier)) * pAtkMultiplier + masteryAtk;
-    const totalMax = (statusAtk + floor((aMax + bMax) * propertyMultiplier)) * pAtkMultiplier + masteryAtk;
-    const totalMaxOver = (statusAtk + floor((aMaxOver + bMaxOver) * propertyMultiplier)) * pAtkMultiplier + masteryAtk;
+    // Element Amplifier
+    const cometMultiplier = this.getCometMultiplier();
+    const viMultiplier = this.getVIMultiplier(propertyAtk);
+    const elementAmplifier = this.toPercent(cometMultiplier + viMultiplier + 100);
+
+    const totalMin = ((statusAtk + floor((aMin + bMin) * propertyMultiplier)) * pAtkMultiplier + masteryAtk) * elementAmplifier;
+    const totalMax = ((statusAtk + floor((aMax + bMax) * propertyMultiplier)) * pAtkMultiplier + masteryAtk) * elementAmplifier;
+    const totalMaxOver = ((statusAtk + floor((aMaxOver + bMaxOver) * propertyMultiplier)) * pAtkMultiplier + masteryAtk) * elementAmplifier;
 
     return { totalMin, totalMax, totalMaxOver, propertyMultiplier };
   }
@@ -1025,6 +1037,7 @@ export class DamageCalculator {
 
     const sMatkMultiplier = 1 + this.traitBonus.sMatk * 0.01;
     const cometMultiplier = this.getCometMultiplier();
+    const viMultiplier = this.getVIMultiplier(skillPropertyAtk);
     const raceMultiplier = this.toPercent(this.getRaceMultiplier('m'));
     const sizeMultiplier = this.toPercent(this.getSizeMultiplier('m'));
     const elementMultiplier = this.toPercent(this.getElementMultiplier('m'));
@@ -1040,7 +1053,9 @@ export class DamageCalculator {
       total = floor(total * elementMultiplier); //tested
       total = floor(total * monsterTypeMultiplier);
       total = floor(total * matkPercentMultiplier); //tested
-      total = floor(total * cometMultiplier);
+
+      // Comet + Venom Impress
+      total = floor(total * this.toPercent(100 + (cometMultiplier + viMultiplier)));
 
       total = floor(total * baseSkillMultiplier); //tested
 
@@ -1158,7 +1173,7 @@ export class DamageCalculator {
     return { basicMinDamage, basicMaxDamage };
   }
 
-  private calcBasicCriDamage(params: { totalMaxAtk: number; totalMaxAtkOver: number; }) {
+  private calcBasicCriDamage(params: { totalMaxAtk: number; totalMaxAtkOver: number; propertyAtk: ElementType; }) {
     const { totalMaxAtk, totalMaxAtkOver } = params;
     const { range, melee, criDmg, dmg } = this.totalBonus;
 
@@ -1176,6 +1191,7 @@ export class DamageCalculator {
     const { finalDmgReduction, finalSoftDef, resReduction } = this.getPhisicalDefData();
     const hardDef = finalDmgReduction;
     const softDef = finalSoftDef;
+    const propertyAtk = params.propertyAtk;
 
     const formula = (totalAtk: number, isCalcDef = true) => {
       let total = floor(totalAtk * bonusCriDmgMultiplier);
@@ -1195,8 +1211,12 @@ export class DamageCalculator {
       return this.toPreventNegativeDmg(total);
     };
 
-    const criMinDamage = formula(totalMaxAtk) + extraDmg + formula(extraBasic, false);
-    const criMaxDamage = formula(totalMaxAtkOver) + extraDmg + formula(extraBasic, false);
+    const cometMultiplier = this.getCometMultiplier();
+    const viMultiplier = this.getVIMultiplier(propertyAtk);
+    const elementAmplifier = this.toPercent(cometMultiplier + viMultiplier + 100);
+
+    const criMinDamage = (formula(totalMaxAtk) + extraDmg + formula(extraBasic, false)) * elementAmplifier;
+    const criMaxDamage = (formula(totalMaxAtkOver) + extraDmg + formula(extraBasic, false)) * elementAmplifier;
 
     return { criMinDamage, criMaxDamage, sizePenalty: 100 };
   }
@@ -1215,6 +1235,7 @@ export class DamageCalculator {
     const { criMinDamage, criMaxDamage } = this.calcBasicCriDamage({
       totalMaxAtk: totalMax,
       totalMaxAtkOver: totalMaxOver,
+      propertyAtk: propertyAtk,
     });
 
     const criShield = this.monster.data.criShield;
