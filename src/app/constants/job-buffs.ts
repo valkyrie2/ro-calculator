@@ -233,11 +233,12 @@ export const JobBuffs: ActiveSkillModel[] = [
   },
   {
     name: 'Mystical Amplification',
-    label: 'Mystical Amp 10',
-    inputType: 'selectButton',
+    label: 'Mystical Amp',
+    inputType: 'dropdown',
     dropdown: [
-      { label: 'Yes', isUse: true, value: 1, bonus: { mysticAmp: 50 } },
-      { label: 'No', isUse: false, value: 0 },
+      { label: '-', isUse: false, value: 0 },
+      { label: 'Lv. 10', isUse: true, value: 1, bonus: { mysticAmp: 50 } },
+      { label: 'Lv. 5', isUse: true, value: 5, bonus: { mysticAmp: 25 } },
     ],
   },
   {
@@ -394,7 +395,7 @@ export const JobBuffs: ActiveSkillModel[] = [
     inputType: 'selectButton',
     isDebuff: true,
     dropdown: [
-      { label: 'Yes', isUse: true, value: 1, bonus: { comet: 100 } },
+      { label: 'Yes', isUse: true, value: 1, bonus: { bloom: 100 } },
       { label: 'No', isUse: false, value: 0 },
     ],
   },

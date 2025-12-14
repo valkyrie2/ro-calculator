@@ -16,6 +16,7 @@ export interface InfoForClass {
   equipmentBonus: Partial<Record<ItemTypeEnum, EquipmentSummaryModel>>;
   skillName: SKILL_NAME;
   cometMultiplier: number;
+  bloomMultiplier: number;
 }
 
 export interface AdditionalBonusInput {
