@@ -1862,6 +1862,7 @@ export const EnchantTable: EntTable[] = [
   { name: "S_BP8_Magic_S", enchants: [null, nebulaShadow2, nebulaShadow3, nebulaShadow4] },
 
   { name: "Snow_Fox_TH", enchants: [null, ['NY_Enchant_2026'], snowfox3, snowfox4] },
+  { name: "Snow_Fox_TH_LT", enchants: [null, ['NY_Enchant_2026'], snowfox3, snowfox4] },
 
   { name: "Temporal_Ring_LT_TH", enchants: [null, temringLT2, temringLT3, temringLT4] },
 
