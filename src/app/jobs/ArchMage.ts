@@ -536,6 +536,44 @@ export class ArchMage extends Warlock {
         }
       },
     },
+    {
+      name: 'Destructive Hurricane',
+      label: 'Destructive Hurricane Lv5',
+      value: 'Destructive Hurricane==5',
+      acd: () => {
+        if (this.activeSkillLv('Skill Version')==0) return 0.5; // GGT
+
+        return 1;
+      },
+      fct: 1.5,
+      vct: 4,
+      cd: () => {
+        if (this.activeSkillLv('Skill Version')==0) return 2; // GGT
+
+        return 2.5;
+      },
+      isMatk: true,
+      element: ElementType.Wind,
+      formula: (input: AtkSkillFormulaInput): number => {
+        const { model, skillLevel, status } = input;
+        const { totalSpl } = status;
+        const { level: baseLevel } = model;
+        //const climaxBonus = this.activeSkillLv('Climax') === 3 ? 200 : 0;
+
+        if (this.activeSkillLv('Skill Version')==0) { // GGT
+
+          if (this.activeSkillLv('Climax') === 1)
+            return ((250 + skillLevel * 2800 + totalSpl * 5) * (baseLevel / 100)) + 12500;
+          else
+            return (250 + skillLevel * 2800 + totalSpl * 5) * (baseLevel / 100);
+        }
+
+        if (this.activeSkillLv('Climax') === 1)
+          return ((600 + skillLevel * 2850 + totalSpl * 5) * (baseLevel / 100)) + 12500;
+        else
+          return (600 + skillLevel * 2850 + totalSpl * 5) * (baseLevel / 100);
+      },
+    },
     // {
     //   name: 'Astral Strike',
     //   label: '[V2] Astral Strike Lv10',
