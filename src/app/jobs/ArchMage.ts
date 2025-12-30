@@ -618,8 +618,8 @@ export class ArchMage extends Warlock {
       label: 'Climax 4 Des Hurricane',
       inputType: 'selectButton',
       dropdown: [
-        { label: 'No', value: 0, isUse: false },
         { label: 'Yes', value: 1, isUse: true, bonus: { "matk": 100, "m_my_element_wind": 30 } },
+        { label: 'No', value: 0, isUse: false },
       ],
     },
     {
@@ -627,8 +627,8 @@ export class ArchMage extends Warlock {
       label: 'Climax 1 Crys Impact',
       inputType: 'selectButton',
       dropdown: [
-        { label: 'No', value: 0, isUse: false },
         { label: 'Yes', value: 1, isUse: true, bonus: { "m_my_element_water": 30 } },
+        { label: 'No', value: 0, isUse: false },
       ],
     },
   ];
