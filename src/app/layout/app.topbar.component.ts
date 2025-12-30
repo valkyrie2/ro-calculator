@@ -206,6 +206,16 @@ export class AppTopBarComponent implements OnInit, OnDestroy {
 
   updates: { v: string; date: string; logs: string[]; }[] = [
     {
+      v: 'Extra v43',
+      date: '30-12-2568',
+      logs: [
+        "แก้ Fix cast ของ Cat Paw Growth , Potential ให้ถูกต้อง",
+        "เพิ่มสกิล Destructive Hurricane",
+        "เพิ่มตัวเลือก Climax Lv3 และ Lv5 (หลัง Rebalance 260)",
+        "เพิ่มบัพ Crystal Impact (Climax Lv1) และ Destructive Hurricane (Climax Lv5) ให้ Archmage",
+      ],
+    },
+    {
       v: 'Extra v42',
       date: '24-12-2568',
       logs: [

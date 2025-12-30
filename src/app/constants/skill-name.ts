@@ -314,6 +314,8 @@ const ACTIVE_PASSIVE_SKILL_NAMES = [
   '_Insignia',
   'Enchanting Sky',
   'VIP',
+  'Climax 4 Des Hurricane',
+  'Climax 1 Crys Impact',
 ] as const;
 
 export const OFFENSIVE_SKILL_NAMES = [
