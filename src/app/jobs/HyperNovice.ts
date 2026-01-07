@@ -4,6 +4,8 @@ import { genSkillList } from '../utils';
 import { SuperNovice } from './SuperNovice';
 import { ActiveSkillModel, AtkSkillFormulaInput, AtkSkillModel, PassiveSkillModel } from './_character-base.abstract';
 import { ClassName } from './_class-name';
+import { InfoForClass } from '../models/info-for-class.model';
+import { floor } from '../utils';
 
 const jobBonusTable: Record<number, [number, number, number, number, number, number]> = {
   1: [1, 1, 0, 0, 0, 0],
@@ -461,6 +463,24 @@ export class HyperNovice extends SuperNovice {
         { label: 'No', value: 0, isUse: false },
       ],
     },
+    {
+      inputType: 'selectButton',
+      label: 'Recogn Spell (GE Set))',
+      name: 'Recognized Spell',
+      dropdown: [
+        { label: 'Yes', isUse: true, value: 1, bonus: { spell_maximize: 1 } },
+        { label: 'No', isUse: false, value: 0 },
+      ],
+    },
+    {
+      label: 'Power (Good&Evil)',
+      name: 'Power',
+      inputType: 'dropdown',
+      dropdown: [
+        { label: '-', value: 0, isUse: false },
+        { label: 'Lv 4', value: 4, isUse: true },
+      ],
+    },
   ];
   private readonly passiveSkillList4th: PassiveSkillModel[] = [
     {
@@ -511,4 +531,19 @@ export class HyperNovice extends SuperNovice {
       classNames: this.classNames4th,
     });
   }
+
+  override modifyFinalAtk(currentAtk: number, _params: InfoForClass) {
+      const powerLv = this.bonuses.usedSkillMap.get('Power');
+  
+      let totalAtk = currentAtk;
+      if (powerLv >= 1) {
+        if (this.activeSkillLv('Skill Version') === 0) { // GGT
+          totalAtk = totalAtk + floor(totalAtk * (powerLv * 15 + 10) * 0.01);
+        }
+        else
+          totalAtk = totalAtk + floor(totalAtk * (powerLv * 20) * 0.01);
+      }
+  
+      return totalAtk;
+    }
 }
