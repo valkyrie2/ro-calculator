@@ -206,6 +206,15 @@ export class AppTopBarComponent implements OnInit, OnDestroy {
 
   updates: { v: string; date: string; logs: string[]; }[] = [
     {
+      v: 'Extra v46',
+      date: '21-01-2569',
+      logs: [
+        "เพิ่มไอเทม GGT 21/01/2026",
+        "เพิ่มสคริปลดคูลดาวน์ Exorcism Malicious Soul ให้กับ Lumora Spirit Ring เพื่อใช้คำนวณ DPS ได้ถูกต้อง",
+        "เพิ่มสคริปลดคูลดาวน์ Hogogong Strike ให้กับเซต Good Spirit Handler เพื่อใช้คำนวณ DPS ได้ถูกต้อง",
+      ],
+    },
+    {
       v: 'Extra v45',
       date: '07-01-2569',
       logs: [
