@@ -183,7 +183,7 @@ export class SkyEmperor extends StarEmperor {
       cd: 0.7,
       isMelee: true,
       hit: 2,
-      canCri: () => this.activeSkillLv('_SkyEmperor_Rising_Sun') === RisingSun.Noon,
+      canCri: () => (this.activeSkillLv('_SkyEmperor_Rising_Sun') === RisingSun.Noon || this.isSkillActive('Enchanting Sky')),
       criDmgPercentage: 0.5,
       baseCriPercentage: 1,
       formula: (input: AtkSkillFormulaInput): number => {
@@ -205,7 +205,7 @@ export class SkyEmperor extends StarEmperor {
       cd: 0.3,
       isMelee: true,
       hit: 2,
-      canCri: () => this.activeSkillLv('_SkyEmperor_Rising_Sun') === RisingSun.Sunset,
+      canCri: () => (this.activeSkillLv('_SkyEmperor_Rising_Sun') === RisingSun.Sunset || this.isSkillActive('Enchanting Sky')),
       criDmgPercentage: 0.5,
       baseCriPercentage: 1,
       formula: (input: AtkSkillFormulaInput): number => {
@@ -235,14 +235,14 @@ export class SkyEmperor extends StarEmperor {
         const skillBonusLv = this.learnLv('Sky Mastery');
 
         if (this.activeSkillLv('Skill Version') === 1) { // KRO
-          if (this.activeSkillLv('_SkyEmperor_Rising_Moon') === RisingMoon.Midnight) {
+          if (this.activeSkillLv('_SkyEmperor_Rising_Moon') === RisingMoon.Midnight || this.isSkillActive('Enchanting Sky')) {
             return (1750 + skillLevel * (1750 + skillBonusLv * 5) + totalPow * 5) * (baseLevel / 100);
           }
 
           return (800 + skillLevel * (1500 + skillBonusLv * 5) + totalPow * 5) * (baseLevel / 100);
         }
 
-        if (this.activeSkillLv('_SkyEmperor_Rising_Moon') === RisingMoon.Midnight) {
+        if (this.activeSkillLv('_SkyEmperor_Rising_Moon') === RisingMoon.Midnight || this.isSkillActive('Enchanting Sky')) {
           return (1550 + skillLevel * (1450 + skillBonusLv * 5) + totalPow * 5) * (baseLevel / 100);
         }
 
@@ -267,14 +267,14 @@ export class SkyEmperor extends StarEmperor {
         const skillBonusLv = this.learnLv('Sky Mastery');
 
         if (this.activeSkillLv('Skill Version') === 1) { // KRO
-          if (this.activeSkillLv('_SkyEmperor_Rising_Moon') === RisingMoon.Moonset) {
+          if (this.activeSkillLv('_SkyEmperor_Rising_Moon') === RisingMoon.Moonset || this.isSkillActive('Enchanting Sky')) {
             return (600 + skillLevel * (900 + skillBonusLv * 5) + totalPow * 5) * (baseLevel / 100);
           }
 
           return (600 + skillLevel * (700 + skillBonusLv * 5) + totalPow * 5) * (baseLevel / 100);
         }
 
-        if (this.activeSkillLv('_SkyEmperor_Rising_Moon') === RisingMoon.Moonset) {
+        if (this.activeSkillLv('_SkyEmperor_Rising_Moon') === RisingMoon.Moonset || this.isSkillActive('Enchanting Sky')) {
           return (400 + skillLevel * (600 + skillBonusLv * 5) + totalPow * 5) * (baseLevel / 100);
         }
 
@@ -354,6 +354,15 @@ export class SkyEmperor extends StarEmperor {
         { label: 'Midnight', value: RisingMoon.Midnight, isUse: true },
         { label: 'Moonset', value: RisingMoon.Moonset, isUse: true },
       ]
+    },
+    {
+      name: 'Enchanting Sky',
+      label: 'Enchanting Sky',
+      inputType: 'dropdown',
+      dropdown: [
+        { label: 'No', value: 0, isUse: false },
+        { label: 'Yes', value: 1, isUse: true },
+      ],
     },
   ];
   private readonly passiveSkillList4th: PassiveSkillModel[] = [

@@ -213,6 +213,7 @@ export class AppTopBarComponent implements OnInit, OnDestroy {
         "เพิ่มสกิล Jack Frost Nova ให้ Abyss Chaser (เลือกได้ ดาเมจบ่อ/ระเบิด)",
         "เพิ่ม Enchant Lucky Ring-LT",
         "เพิ่มดีบัพ Evil Soul Curse ให้สาย Soul Reaper",
+        "เพิ่มบัพ Enchanting Sky ให้ Sky Emperor",
         "แก้ไขดีบัพ Oratio ให้มีผลเฉพาะธาตุ Holy",
         "แก้ไขสคริป Super Novice Middle ให้ทำงานถูกต้อง",
         "แก้ไขสคริป Super Novice Garment/Garment II ให้ทำงานถูกต้อง",
