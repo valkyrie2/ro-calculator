@@ -160,6 +160,17 @@ export class SoulReaper extends SoulLinker {
         { label: '20', value: 20, skillLv: 20, isUse: true, bonus: { x_matk: 20 * 3 } },
       ],
     },
+    {
+      name: 'Evil Soul Curse',
+      label: 'Evil Soul Curse',
+      inputType: 'dropdown',
+      isDebuff: true,
+      dropdown: [
+        { label: '-', value: 0, isUse: false },
+        { label: '20%', isUse: true, value: 1, bonus: { evil: 20 } },
+        { label: '100%', isUse: true, value: 2, bonus: { evil: 100 } },
+      ],
+    },
   ];
   protected readonly passiveSkillList3rd: PassiveSkillModel[] = [
     {

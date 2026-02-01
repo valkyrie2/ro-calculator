@@ -187,7 +187,7 @@ export class SoulAscetic extends SoulReaper {
         const soulMasteryLv = this.learnLv('Soul Mastery');
         const totalSoul = this.activeSkillLv('Total Soul') || 1;
 
-        if (this.isSkillActive('Totem of Tutelary')) {
+        if (this.isSkillActive('Totem of Tutelary') || this.isSkillActive('Evil Soul Curse')) {
           return (250 * skillLevel + soulMasteryLv * 2 + totalSpl) * totalSoul * (baseLevel / 100);
 
         }

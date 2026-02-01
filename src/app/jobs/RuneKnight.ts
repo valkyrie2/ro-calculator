@@ -592,6 +592,8 @@ export class RuneKnight extends LordKnight {
     const { baseSkillDamage, propertyMultiplier, totalBonus, reducedHardDef, finalSoftDef, monster } = input;
     const { cometMultiplier } = input;
     const { bloomMultiplier } = input;
+    const { evilMultiplier } = input;
+    const { oratioMultiplier } = input;
     const _getRaidMultiplier = (): number => {
       if (!totalBonus['raid']) return 0;
 
@@ -640,7 +642,11 @@ export class RuneKnight extends LordKnight {
     totalDamage = floor(totalDamage * (100 + (totalBonus[skillName] || 0)) * 0.01);
     totalDamage = floor(totalDamage * propertyMultiplier);
 
-    if (skillName == 'Dragon Breath' && !this.isSkillActive('Lux Anima Runestone') && !this.isSkillActive('Turisus Runestone'))
+    if (skillName == 'Dragon Breath' && this.isSkillActive('Lux Anima Runestone')) // Dark
+      totalDamage = floor(totalDamage * this.toPercent(cometMultiplier + evilMultiplier + 100));
+    else if (skillName == 'Dragon Breath' && !this.isSkillActive('Lux Anima Runestone') && this.isSkillActive('Turisus Runestone')) // Holy
+      totalDamage = floor(totalDamage * this.toPercent(cometMultiplier + oratioMultiplier + 100));
+    else if (skillName == 'Dragon Breath' && !this.isSkillActive('Lux Anima Runestone') && !this.isSkillActive('Turisus Runestone')) // Fire
       totalDamage = floor(totalDamage * this.toPercent(cometMultiplier + bloomMultiplier + 100));
     else
       totalDamage = floor(totalDamage * this.toPercent(cometMultiplier + 100));

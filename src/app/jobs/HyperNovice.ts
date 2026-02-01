@@ -434,12 +434,59 @@ export class HyperNovice extends SuperNovice {
         return (1500 + skillLevel * (700 + skillBonusLv * 4) + totalSpl * 3) * (baseLevel / 100);
       },
     },
+    {
+      name: 'Ground Gravitation',
+      label: 'Ground Gravitation Lv10',
+      value: 'Ground Gravitation==10',
+      acd: 1,
+      fct: 1.5,
+      vct: 5,
+      cd: 5,
+      isMatk: true,
+      totalHit: () => {
+        if (this.activeSkillLv('Gravitation Type') === 1) {
+          return 1;
+        } else {
+          return 10;
+        }
+      },
+      element: ElementType.Neutral,
+      formula: (input: AtkSkillFormulaInput): number => {
+        const { model, skillLevel, status } = input;
+        const { totalSpl } = status;
+        const baseLevel = model.level;
+        const skillBonusLv = this.learnLv('Self Study Sorcery');
+
+        if (this.activeSkillLv('Gravitation Type') === 1) {
+
+          if (this.isSkillActive('Rule Break'))
+            return (3000 + skillLevel * (1500 + skillBonusLv * 4) + totalSpl * 10) * (baseLevel / 100) * 150 / 100;
+
+          return (3000 + skillLevel * (1500 + skillBonusLv * 4) + totalSpl * 10) * (baseLevel / 100);
+        } else {
+
+          if (this.isSkillActive('Rule Break'))
+            return (800 + skillLevel * (700 + skillBonusLv * 4) + totalSpl * 2) * (baseLevel / 100) * 150 / 100;
+
+          return (800 + skillLevel * (700 + skillBonusLv * 4) + totalSpl * 2) * (baseLevel / 100);
+        }
+      },
+    },
   ];
   private readonly activeSkillList4th: ActiveSkillModel[] = [
     {
       inputType: 'selectButton',
-      label: 'Jack Frost Damage',
+      label: 'Jack Frost Nova',
       name: 'Jack Frost Nova Type',
+      dropdown: [
+        { label: 'ระเบิด', value: 1, isUse: true },
+        { label: 'บ่อ', value: 0, isUse: false },
+      ],
+    },
+    {
+      inputType: 'selectButton',
+      label: 'Ground Gravity.',
+      name: 'Gravitation Type',
       dropdown: [
         { label: 'ระเบิด', value: 1, isUse: true },
         { label: 'บ่อ', value: 0, isUse: false },
@@ -505,6 +552,7 @@ export class HyperNovice extends SuperNovice {
         "Hell's Drive": lv,
         'Jack Frost Nova': lv,
         'Napalm Vulcan Strike': lv * 2,
+        'Ground Gravitation': lv,
       }))
     },
     {

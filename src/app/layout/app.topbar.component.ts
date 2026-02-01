@@ -206,6 +206,21 @@ export class AppTopBarComponent implements OnInit, OnDestroy {
 
   updates: { v: string; date: string; logs: string[]; }[] = [
     {
+      v: 'Extra v47',
+      date: '01-02-2569',
+      logs: [
+        "เพิ่มสกิล Ground Gravitation ให้ Hyper Novice (เลือกได้ ดาเมจบ่อ/ระเบิด)",
+        "เพิ่มสกิล Jack Frost Nova ให้ Abyss Chaser (เลือกได้ ดาเมจบ่อ/ระเบิด)",
+        "เพิ่ม Enchant Lucky Ring-LT",
+        "เพิ่มดีบัพ Evil Soul Curse ให้สาย Soul Reaper",
+        "แก้ไขดีบัพ Oratio ให้มีผลเฉพาะธาตุ Holy",
+        "แก้ไขสคริป Super Novice Middle ให้ทำงานถูกต้อง",
+        "แก้ไขสคริป Super Novice Garment/Garment II ให้ทำงานถูกต้อง",
+        "แก้ไขหมวก Cat Paw Growth/Potential ให้ลด Fix cast ถูกต้อง",
+        "แก้ไขจำนวน Hit/s ของสกิลให้ตันที่ 5 ครั้ง/วินาที",
+      ],
+    },
+    {
       v: 'Extra v46',
       date: '21-01-2569',
       logs: [

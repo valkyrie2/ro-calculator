@@ -490,6 +490,44 @@ export class AbyssChaser extends ShadowChaser {
           return (skillLevel * 250 + totalSpl * 3) * (baseLevel / 100);
       }
     },
+    {
+      name: 'Jack Frost Nova',
+      label: 'Jack Frost Nova Lv10',
+      value: 'Jack Frost Nova==10',
+      acd: 0.3,
+      fct: 1.5,
+      vct: 2.5,
+      cd: 3,
+      isMatk: true,
+      totalHit: () => {
+        if (this.activeSkillLv('Jack Frost Nova Type') === 1) {
+          return 1;
+        } else {
+          return 10;
+        }
+      },
+      element: ElementType.Water,
+      formula: (input: AtkSkillFormulaInput): number => {
+        const { model, skillLevel, status } = input;
+        const { totalSpl } = status;
+        const baseLevel = model.level;
+        const skillBonusLv = this.learnLv('Self Study Sorcery');
+
+        if (this.activeSkillLv('Jack Frost Nova Type') === 1) {
+
+          if (this.isSkillActive('Rule Break'))
+            return (skillLevel * (200 + skillBonusLv * 3) + totalSpl * 2) * (baseLevel / 100) * 170 / 100;
+
+          return (skillLevel * (200 + skillBonusLv * 3) + totalSpl * 2) * (baseLevel / 100);
+        } else {
+
+          if (this.isSkillActive('Rule Break'))
+            return (400 + skillLevel * (500 + skillBonusLv * 3) + totalSpl * 2) * (baseLevel / 100) * 170 / 100;
+
+          return (400 + skillLevel * (500 + skillBonusLv * 3) + totalSpl * 2) * (baseLevel / 100);
+        }
+      },
+    },
   ];
   private readonly activeSkillList4th: ActiveSkillModel[] = [
     {
@@ -524,6 +562,15 @@ export class AbyssChaser extends ShadowChaser {
       dropdown: [
         { label: '-', value: 0, isUse: false },
         { label: 'Lv 4', value: 4, isUse: true },
+      ],
+    },
+    {
+      inputType: 'selectButton',
+      label: 'Jack Frost Nova',
+      name: 'Jack Frost Nova Type',
+      dropdown: [
+        { label: 'ระเบิด', value: 1, isUse: true },
+        { label: 'บ่อ', value: 0, isUse: false },
       ],
     },
   ];

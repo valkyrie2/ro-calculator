@@ -17,6 +17,8 @@ export interface InfoForClass {
   skillName: SKILL_NAME;
   cometMultiplier: number;
   bloomMultiplier: number;
+  oratioMultiplier: number;
+  evilMultiplier: number;
 }
 
 export interface AdditionalBonusInput {

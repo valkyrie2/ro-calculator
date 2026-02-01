@@ -147,6 +147,7 @@ import { temringLT2, temringLT3, temringLT4 } from './temporal_ring_lt';
 import { type_c_LT2, type_c_LT3, type_c_LT4 } from './type_c_lt';
 import { dim_ring_LT4, dim_ring_LT3 } from './dim_glacier_ring';
 import { snow_shadow2, snow_shadow3, snow_shadow4 } from './snow_shadow';
+import { luckyringLT2, luckyringLT3, luckyringLT4 } from './lucky_ring';
 
 enum TimeJewel {
   Str2 = 'aegis_313347',
@@ -1879,6 +1880,8 @@ export const EnchantTable: EntTable[] = [
   { name: "S_BP9_Range_S", enchants: [null, snow_shadow2, snow_shadow3, snow_shadow4] },
   { name: "S_BP9_Magic_A", enchants: [null, snow_shadow2, snow_shadow3, snow_shadow4] },
   { name: "S_BP9_Magic_S", enchants: [null, snow_shadow2, snow_shadow3, snow_shadow4] },
+  
+  { name: "Lucky_Ring_LT", enchants: [null, luckyringLT2, luckyringLT3, luckyringLT4] },
 ];
 
 Object.freeze(EnchantTable);

@@ -406,8 +406,8 @@ export const JobBuffs: ActiveSkillModel[] = [
     isDebuff: true,
     dropdown: [
       { label: '-', value: 0, isUse: false },
-      { label: '10%', isUse: true, value: 1, bonus: { comet: 10 } },
-      { label: '20%', isUse: true, value: 2, bonus: { comet: 20 } },
+      { label: '10%', isUse: true, value: 1, bonus: { oratio: 10 } },
+      { label: '20%', isUse: true, value: 2, bonus: { oratio: 20 } },
     ],
   },
   {

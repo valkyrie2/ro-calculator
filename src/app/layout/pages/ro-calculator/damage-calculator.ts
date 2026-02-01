@@ -256,6 +256,8 @@ export class DamageCalculator {
       ammoElement: this.ammoPropertyAtk,
       cometMultiplier: this.getCometMultiplier(),
       bloomMultiplier: this.getBloomMultiplier(ElementType.Fire),
+      evilMultiplier: this.getEvilMultiplier(ElementType.Dark),
+      oratioMultiplier: this.getOratioMultiplier(ElementType.Holy),
     };
   }
 
@@ -306,6 +308,22 @@ export class DamageCalculator {
 
     if (propertyAtk === ElementType.Fire)
       return (this.totalBonus['bloom'] || 0);
+
+    return 0;
+  }
+
+  private getOratioMultiplier(propertyAtk: ElementType) {
+
+    if (propertyAtk === ElementType.Holy)
+      return (this.totalBonus['oratio'] || 0);
+
+    return 0;
+  }
+
+  private getEvilMultiplier(propertyAtk: ElementType) {
+
+    if (propertyAtk === ElementType.Dark)
+      return (this.totalBonus['evil'] || 0);
 
     return 0;
   }
@@ -849,7 +867,9 @@ export class DamageCalculator {
     const cometMultiplier = this.getCometMultiplier();
     const viMultiplier = this.getVIMultiplier(propertyAtk);
     const bloomMultiplier = this.getBloomMultiplier(propertyAtk);
-    const elementAmplifier = this.toPercent(cometMultiplier + viMultiplier + bloomMultiplier + 100);
+    const evilMultiplier = this.getEvilMultiplier(propertyAtk);
+    const oratioMultiplier = this.getOratioMultiplier(propertyAtk);
+    const elementAmplifier = this.toPercent(cometMultiplier + viMultiplier + bloomMultiplier + oratioMultiplier + evilMultiplier + 100);
 
     const totalMin = ((statusAtk + floor((aMin + bMin) * propertyMultiplier)) * pAtkMultiplier + masteryAtk) * elementAmplifier;
     const totalMax = ((statusAtk + floor((aMax + bMax) * propertyMultiplier)) * pAtkMultiplier + masteryAtk) * elementAmplifier;
@@ -1049,6 +1069,8 @@ export class DamageCalculator {
     const cometMultiplier = this.getCometMultiplier();
     const viMultiplier = this.getVIMultiplier(skillPropertyAtk);
     const bloomMultiplier = this.getBloomMultiplier(skillPropertyAtk);
+    const oratioMultiplier = this.getOratioMultiplier(skillPropertyAtk);
+    const evilMultiplier = this.getEvilMultiplier(skillPropertyAtk);
     const raceMultiplier = this.toPercent(this.getRaceMultiplier('m'));
     const sizeMultiplier = this.toPercent(this.getSizeMultiplier('m'));
     const elementMultiplier = this.toPercent(this.getElementMultiplier('m'));
@@ -1066,7 +1088,7 @@ export class DamageCalculator {
       total = floor(total * matkPercentMultiplier); //tested
 
       // Comet + Venom Impress
-      total = floor(total * this.toPercent(100 + (cometMultiplier + viMultiplier + bloomMultiplier)));
+      total = floor(total * this.toPercent(100 + (cometMultiplier + viMultiplier + bloomMultiplier + oratioMultiplier + evilMultiplier))); //tested
 
       total = floor(total * baseSkillMultiplier); //tested
 
@@ -1225,8 +1247,10 @@ export class DamageCalculator {
     const cometMultiplier = this.getCometMultiplier();
     const viMultiplier = this.getVIMultiplier(propertyAtk);
     const bloomMultiplier = this.getBloomMultiplier(propertyAtk);
+    const oratioMultiplier = this.getOratioMultiplier(propertyAtk);
+    const evilMultiplier = this.getEvilMultiplier(propertyAtk);
 
-    const elementAmplifier = this.toPercent(cometMultiplier + viMultiplier + bloomMultiplier + 100);
+    const elementAmplifier = this.toPercent(cometMultiplier + viMultiplier + bloomMultiplier + oratioMultiplier + evilMultiplier + 100);
 
     const criMinDamage = (formula(totalMaxAtk) + extraDmg + formula(extraBasic, false)) * elementAmplifier;
     const criMaxDamage = (formula(totalMaxAtkOver) + extraDmg + formula(extraBasic, false)) * elementAmplifier;
