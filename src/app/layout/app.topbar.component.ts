@@ -210,6 +210,7 @@ export class AppTopBarComponent implements OnInit, OnDestroy {
       date: '05-02-2569',
       logs: [
         "เพิ่มไอเทม GGT 04/02/2026",
+        "แก้บัครองเท้า Exotic Boots-LT grade B ให้เพิ่มตีทุกขนาด แทนทุกเผ่า ตามคำอธิบาย",
       ],
     },
     {
