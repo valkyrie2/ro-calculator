@@ -286,17 +286,18 @@ export class Cardinal extends ArchBishop {
       },
     },
   ];
-  private readonly activeSkillList4th: ActiveSkillModel[] = [
-    {
-      label: 'Power (Dim Crystal)',
-      name: 'Power',
-      inputType: 'dropdown',
-      dropdown: [
-        { label: '-', value: 0, isUse: false },
-        { label: 'Lv 4', value: 4, isUse: true },
-      ],
-    }
-  ];
+  private readonly activeSkillList4th: ActiveSkillModel[] = [];
+  //private readonly activeSkillList4th: ActiveSkillModel[] = [
+  //  {
+  //    label: 'Power (Dim Crystal)',
+  //    name: 'Power',
+  //    inputType: 'dropdown',
+  //    dropdown: [
+  //      { label: '-', value: 0, isUse: false },
+  //      { label: 'Lv 4', value: 4, isUse: true },
+  //    ],
+  //  }
+  //];
   
   private readonly passiveSkillList4th: PassiveSkillModel[] = [
     {
