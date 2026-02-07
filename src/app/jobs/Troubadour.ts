@@ -2,8 +2,8 @@ import { JOB_4_MAX_JOB_LEVEL, JOB_4_MIN_MAX_LEVEL } from '../app-config';
 import { WeaponTypeName } from '../constants';
 import { MysticSymphonyFn, StageMannerFn } from '../constants/share-passive-skills';
 import { EquipmentSummaryModel } from '../models/equipment-summary.model';
-import { AdditionalBonusInput } from '../models/info-for-class.model';
-import { addBonus } from '../utils';
+import { AdditionalBonusInput, InfoForClass } from '../models/info-for-class.model';
+import { addBonus, floor } from '../utils';
 import { Minstrel } from './Minstrel';
 import { ActiveSkillModel, AtkSkillFormulaInput, AtkSkillModel, PassiveSkillModel } from './_character-base.abstract';
 import { ClassName } from './_class-name';
@@ -317,6 +317,15 @@ export class Troubadour extends Minstrel {
         { label: 'No', value: 0, isUse: false },
       ],
     },
+    {
+      label: 'Power (Dim Crystal)',
+      name: 'Power',
+      inputType: 'dropdown',
+      dropdown: [
+        { label: '-', value: 0, isUse: false },
+        { label: 'Lv 4', value: 4, isUse: true },
+      ],
+    },
     MysticSymphonyFn(),
     NoLimitFn(),
   ];
@@ -366,5 +375,20 @@ export class Troubadour extends Minstrel {
     }
 
     return totalBonus;
+  }
+
+  override modifyFinalAtk(currentAtk: number, _params: InfoForClass) {
+    const powerLv = this.bonuses.usedSkillMap.get('Power');
+
+    let totalAtk = currentAtk;
+    if (powerLv >= 1) {
+      if (this.activeSkillLv('Skill Version') === 0) { // GGT
+        totalAtk = totalAtk + floor(totalAtk * (powerLv * 15 + 10) * 0.01);
+      }
+      else
+        totalAtk = totalAtk + floor(totalAtk * (powerLv * 20) * 0.01);
+    }
+
+    return totalAtk;
   }
 }

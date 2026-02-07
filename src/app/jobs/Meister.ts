@@ -391,7 +391,7 @@ export class Meister extends Mechanic {
       ],
     },
     {
-      label: 'Power (Good&Evil)',
+      label: 'Power (Good&Evil) / (Dim Crystal)',
       name: 'Power',
       inputType: 'dropdown',
       dropdown: [

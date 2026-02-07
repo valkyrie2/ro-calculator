@@ -141,7 +141,7 @@ import { corruptedPoisonArmor2, corruptedPoisonArmor3, corruptedPoisonArmor4, fi
 import { vivatusHead3, vivatusHead4 } from './vivatus';
 import { whiteKnight2, whiteKnight34 } from './white_knigh_man';
 import { yorscalpAcc2, yorscalpAcc3, yorscalpAcc4, yorscalpArmor2, yorscalpArmor3, yorscalpArmor4, yorscalpBoot2, yorscalpBoot3, yorscalpBoot4, yorscalpGarment2, yorscalpGarment3, yorscalpGarment4, yorscalpHeadUpper2, yorscalpHeadUpper3, yorscalpHeadUpper4 } from './yorscalp';
-import { ch1Armor2,  ch1Armor3, ch1Armor4, ch1Boot2, ch1Boot3, ch1Boot4, ch1Garment2, ch1Garment3, ch1Garment4, ch1DimenBoot2, ch1DimenBoot3, ch1DimenBoot4 } from './chapter1';
+import { ch1Armor2, ch1Armor3, ch1Armor4, ch1Boot2, ch1Boot3, ch1Boot4, ch1Garment2, ch1Garment3, ch1Garment4, ch1DimenBoot2, ch1DimenBoot3, ch1DimenBoot4 } from './chapter1';
 import { snowfox3, snowfox4 } from './snowfox';
 import { temringLT2, temringLT3, temringLT4 } from './temporal_ring_lt';
 import { type_c_LT2, type_c_LT3, type_c_LT4 } from './type_c_lt';
@@ -665,36 +665,36 @@ const nebular3 = [
   'Nebula_Of_HP3',
 ];
 const nebular5 = [
-    Str._2,
-    Str._3,
-    Str._4,
-    Str._5,
-    Int._2,
-    Int._3,
-    Int._4,
-    Int._5,
-    Dex._2,
-    Dex._3,
-    Dex._4,
-    Dex._5,
-    Agi._2,
-    Agi._3,
-    Agi._4,
-    Agi._5,
-    Vit._2,
-    Vit._3,
-    Vit._4,
-    Vit._5,
-    Luk._2,
-    Luk._3,
-    Luk._4,
-    Luk._5,
-	RuneStr._1,
-    RuneDex._1,
-    RuneInt._1,
-    RuneLuk._1,
-    RuneAgi._1,
-    RuneVit._1,
+  Str._2,
+  Str._3,
+  Str._4,
+  Str._5,
+  Int._2,
+  Int._3,
+  Int._4,
+  Int._5,
+  Dex._2,
+  Dex._3,
+  Dex._4,
+  Dex._5,
+  Agi._2,
+  Agi._3,
+  Agi._4,
+  Agi._5,
+  Vit._2,
+  Vit._3,
+  Vit._4,
+  Vit._5,
+  Luk._2,
+  Luk._3,
+  Luk._4,
+  Luk._5,
+  RuneStr._1,
+  RuneDex._1,
+  RuneInt._1,
+  RuneLuk._1,
+  RuneAgi._1,
+  RuneVit._1,
 ];
 const nebular4 = [...str(3, 5), ...int(3, 5), ...dex(2, 4), ...agi(3, 5), ...vit(3, 5)];
 
@@ -1873,6 +1873,10 @@ export const EnchantTable: EntTable[] = [
 
   { name: "ABC_Dim_Ring_TH", enchants: [null, ['DimAcc_ABC'], dim_ring_LT3, dim_ring_LT4] },
   { name: "IQ_Dim_Ring_TH", enchants: [null, ['DimAcc_IQ'], dim_ring_LT3, dim_ring_LT4] },
+  { name: "WH_Dim_Ring_TH", enchants: [null, ['DimAcc_WH'], dim_ring_LT3, dim_ring_LT4] },
+  { name: "CD_Dim_Ring_TH", enchants: [null, ['DimAcc_CD'], dim_ring_LT3, dim_ring_LT4] },
+  { name: "MT_Dim_Ring_TH", enchants: [null, ['DimAcc_MT'], dim_ring_LT3, dim_ring_LT4] },
+  { name: "TR_Dim_Ring_TH", enchants: [null, ['DimAcc_TR'], dim_ring_LT3, dim_ring_LT4] },
 
   { name: "S_BP9_Melee_A", enchants: [null, snow_shadow2, snow_shadow3, snow_shadow4] },
   { name: "S_BP9_Melee_S", enchants: [null, snow_shadow2, snow_shadow3, snow_shadow4] },
@@ -1880,7 +1884,7 @@ export const EnchantTable: EntTable[] = [
   { name: "S_BP9_Range_S", enchants: [null, snow_shadow2, snow_shadow3, snow_shadow4] },
   { name: "S_BP9_Magic_A", enchants: [null, snow_shadow2, snow_shadow3, snow_shadow4] },
   { name: "S_BP9_Magic_S", enchants: [null, snow_shadow2, snow_shadow3, snow_shadow4] },
-  
+
   { name: "Lucky_Ring_LT", enchants: [null, luckyringLT2, luckyringLT3, luckyringLT4] },
 ];
 

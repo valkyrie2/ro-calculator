@@ -5,6 +5,7 @@ import { AdditionalBonusInput } from '../models/info-for-class.model';
 import { addBonus, floor } from '../utils';
 import { ArchBishop } from './ArchBishop';
 import { ActiveSkillModel, AtkSkillFormulaInput, AtkSkillModel, PassiveSkillModel } from './_character-base.abstract';
+import { InfoForClass } from '../models/info-for-class.model';
 import { ClassName } from './_class-name';
 
 const jobBonusTable: Record<number, [number, number, number, number, number, number]> = {
@@ -285,7 +286,18 @@ export class Cardinal extends ArchBishop {
       },
     },
   ];
-  private readonly activeSkillList4th: ActiveSkillModel[] = [];
+  private readonly activeSkillList4th: ActiveSkillModel[] = [
+    {
+      label: 'Power (Dim Crystal)',
+      name: 'Power',
+      inputType: 'dropdown',
+      dropdown: [
+        { label: '-', value: 0, isUse: false },
+        { label: 'Lv 4', value: 4, isUse: true },
+      ],
+    }
+  ];
+  
   private readonly passiveSkillList4th: PassiveSkillModel[] = [
     {
       name: 'Mace & Book Mastery',
@@ -322,7 +334,7 @@ export class Cardinal extends ArchBishop {
         { label: 'Lv 9', value: 9, isUse: true },
         { label: 'Lv 10', value: 10, isUse: true },
       ],
-    },
+    }
   ];
 
   constructor() {
@@ -358,5 +370,20 @@ export class Cardinal extends ArchBishop {
     }
 
     return totalBonus;
+  }
+
+  override modifyFinalAtk(currentAtk: number, _params: InfoForClass) {
+    const powerLv = this.bonuses.usedSkillMap.get('Power');
+
+    let totalAtk = currentAtk;
+    if (powerLv >= 1) {
+      if (this.activeSkillLv('Skill Version') === 0) { // GGT
+        totalAtk = totalAtk + floor(totalAtk * (powerLv * 15 + 10) * 0.01);
+      }
+      else
+        totalAtk = totalAtk + floor(totalAtk * (powerLv * 20) * 0.01);
+    }
+
+    return totalAtk;
   }
 }

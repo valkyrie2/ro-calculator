@@ -64,6 +64,9 @@ const Mapper = {
   jor_ab02: 'Ep19 - Abandoned Pit 2',
   jor_dun01: 'Ep19 - Warmth Snake God',
   clock_01: 'Clock Tower Unknown Basement',
+  // corridor_1: 'Corridor of Pantom 1',
+  // corridor_2: 'Corridor of Pantom 2',
+  corridor_3: 'Corridor of Pantom 3',
 } as const;
 
 export const MonsterGroupNames = [...new Set(Object.values(Mapper))].sort((a, b) => (a > b ? 1 : -1));
