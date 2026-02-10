@@ -206,6 +206,13 @@ export class AppTopBarComponent implements OnInit, OnDestroy {
 
   updates: { v: string; date: string; logs: string[]; }[] = [
     {
+      v: 'Extra v50',
+      date: '10-02-2569',
+      logs: [
+        "เพิ่มมอนสเตอร์ COP ชั้น 4 เวอร์ชั่นแรก เดา stat เอาคร่าวๆเท่าที่มีข้อมูล RES/MRES 1500 ออร่าเขียว 1% เลือด 1000m (เดาจาก xxxx)",
+      ],
+    },
+    {
       v: 'Extra v49',
       date: '08-02-2569',
       logs: [
