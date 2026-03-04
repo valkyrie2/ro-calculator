@@ -563,7 +563,7 @@ export class RoCalculatorComponent implements OnInit, OnDestroy {
     this.allSubs.push(cObs);
   }
 
-  onhpStarsChange () {
+  onhpStarsChange() {
     // If selected monster is Betelgeuse, override its health according to star selection
     const hpMap = [500_000_000, 800_000_000, 1100_000_000, 1400_000_000, 1700_000_000, 2000_000_000];
     const star = Number(this.model.hpStars) || 0;
@@ -585,7 +585,7 @@ export class RoCalculatorComponent implements OnInit, OnDestroy {
     this.updateMonsterListEvent.next(1);
   }
 
-  ondefStarsChange () {
+  ondefStarsChange() {
     // Map def stars to damage taken percent (dmgtaken expected as percent value)
     const defMap = [1, 0.9, 0.8, 0.7, 0.6, 0.5];
     const star = Number(this.model.defStars) || 0;
@@ -2088,6 +2088,11 @@ export class RoCalculatorComponent implements OnInit, OnDestroy {
               name: '[Right] ' + item.name,
               isHilight: true,
             });
+            accCardList.push(item);
+            continue;
+          case CardPosition.Acc:
+            accLeftCardList.push(item);
+            accRightCardList.push(item);
             accCardList.push(item);
             continue;
           case CardPosition.All:
