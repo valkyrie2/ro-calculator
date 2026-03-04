@@ -1877,6 +1877,7 @@ export const EnchantTable: EntTable[] = [
   { name: "CD_Dim_Ring_TH", enchants: [null, ['DimAcc_CD'], dim_ring_LT3, dim_ring_LT4] },
   { name: "MT_Dim_Ring_TH", enchants: [null, ['DimAcc_MT'], dim_ring_LT3, dim_ring_LT4] },
   { name: "TR_Dim_Ring_TH", enchants: [null, ['DimAcc_TR'], dim_ring_LT3, dim_ring_LT4] },
+  { name: "AG_Dim_Ring_TH", enchants: [null, ['DimAcc_AG'], dim_ring_LT3, dim_ring_LT4] },
 
   { name: "S_BP9_Melee_A", enchants: [null, snow_shadow2, snow_shadow3, snow_shadow4] },
   { name: "S_BP9_Melee_S", enchants: [null, snow_shadow2, snow_shadow3, snow_shadow4] },
