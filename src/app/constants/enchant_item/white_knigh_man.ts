@@ -18,3 +18,17 @@ export const whiteKnight2 = [
   "Spirit_Of_Star_07_CN",
   ...whiteKnight34
 ]
+export const whiteKnight4 = [
+  ...ef35,
+  ...ea35,
+  ...em35,
+  ...sp35,
+  ...fatal24,
+  ...delay13,
+  'Neev_STR_1',
+  'Neev_AGI_1',
+  'Neev_INT_1',
+  'Neev_VIT_1',
+  'Neev_DEX_1',
+  'Neev_LUK_1',
+]
