@@ -163,7 +163,6 @@ export class Merchant extends CharacterBase {
       name: 'Skill Version',
       dropdown: [
         { label: 'GGT', value: 0, isUse: false },
-        { label: 'Lv260 Rebalance', value: 2, isUse: true },
         { label: 'Lv275 KRO', value: 1, isUse: true },
       ],
     },

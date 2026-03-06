@@ -319,6 +319,25 @@ export class SuperNovice extends CharacterBase {
         return damage + bonusDamge;
       },
     },
+    {
+      name: 'Judex',
+      label: 'Judex Lv10',
+      value: 'Judex==10',
+      values: ['Judex==10'],
+      fct: 0.5,
+      vct: 2,
+      acd: 0.5,
+      cd: 0,
+      isMatk: true,
+      element: ElementType.Holy,
+      hit: 3,
+      formula: (input: AtkSkillFormulaInput): number => {
+        const { model, skillLevel } = input;
+        const baseLevel = model.level;
+
+        return (300 + skillLevel * 70) * (baseLevel / 100);
+      },
+    },
   ];
   protected readonly _activeSkillList: ActiveSkillModel[] = [
     {
@@ -327,7 +346,6 @@ export class SuperNovice extends CharacterBase {
       name: 'Skill Version',
       dropdown: [
         { label: 'GGT', value: 0, isUse: false },
-        { label: 'Lv260 Rebalance', value: 2, isUse: true },
         { label: 'Lv275 KRO', value: 1, isUse: true },
       ],
     },

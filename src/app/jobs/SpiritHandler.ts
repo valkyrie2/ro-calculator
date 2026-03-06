@@ -255,6 +255,7 @@ export class SpiritHandler extends Doram {
       vct: 3,
       cd: 4.5,
       isMatk: true,
+      totalHit: 15,
       getElement: () => ColorOfHyunrokValue[this.activeSkillLv('Colors of Hyunrok')] || ElementType.Neutral,
       formula: (input: AtkSkillFormulaInput): number => {
         const { model, skillLevel, status } = input;

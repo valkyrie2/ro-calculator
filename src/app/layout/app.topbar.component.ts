@@ -206,6 +206,16 @@ export class AppTopBarComponent implements OnInit, OnDestroy {
 
   updates: { v: string; date: string; logs: string[]; }[] = [
     {
+      v: 'Extra v54',
+      date: '06-03-2569',
+      logs: [
+        "เพิ่มสกิล Judex ให้สาย Super Novice (หินอาชีพ Garment)",
+        "แก้บัคคอมโบ Reaper of Tomb-LT กับ Raven of Tomb ไม่ทำงาน",
+        "แก้ไขสกิล Version หลัก ให้เป็นเวอร์ชั่นตาม GGT และเอาสกิลรุ่นเก่าออก",
+        "ลบความสามารถ Event Blue Unicorn และ Snow Energy Booster ออก",
+      ],
+    },
+    {
       v: 'Extra v53',
       date: '04-03-2569',
       logs: [
