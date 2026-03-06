@@ -202,11 +202,7 @@ export class NightWatch extends Rebellion {
       acd: 0.5,
       fct: 1,
       vct: 0,
-      cd: () => {
-        if (this.activeSkillLv('Skill Version') === 0) return 0.3; // GGT
-
-        return 0.35;
-      },
+      cd: 0.35,
       isIgnoreDef: ({ weapon }) => weapon.isSubType('Revolver'),
       verifyItemFn: ({ weapon }) => {
         const requires: WeaponSubTypeName[] = ['Rifle', 'Revolver'];
@@ -222,14 +218,6 @@ export class NightWatch extends Rebellion {
         const { totalCon } = status;
         const baseLevel = model.level;
         const aimningCnt = this.activeSkillLv('_NightWatch_Aiming Count');
-
-        if (this.activeSkillLv('Skill Version') === 0) { // GGT
-          if (weapon.isSubType('Revolver')) {
-            return (800 + skillLevel * (1500 + aimningCnt * 350) + totalCon * 3) * (baseLevel / 100);
-          }
-
-          return (800 + skillLevel * (1350 + aimningCnt * 350) + totalCon * 3) * (baseLevel / 100);
-        }
 
         if (weapon.isSubType('Revolver')) {
           return (1200 + skillLevel * (3400 + aimningCnt * 350) + totalCon * 3) * (baseLevel / 100);
@@ -262,14 +250,6 @@ export class NightWatch extends Rebellion {
         const baseLevel = model.level;
         const aimningCnt = this.activeSkillLv('_NightWatch_Aiming Count');
 
-        if (this.activeSkillLv('Skill Version') === 0) { // GGT
-          if (weapon.isSubType('Rifle')) {
-            return (1200 + skillLevel * (1700 + aimningCnt * 150) + totalCon * 3) * (baseLevel / 100);
-          }
-
-          return (1000 + skillLevel * (1500 + aimningCnt * 150) + totalCon * 3) * (baseLevel / 100);
-        }
-
         if (weapon.isSubType('Rifle')) {
           return (1400 + skillLevel * (2800 + aimningCnt * 150) + totalCon * 3) * (baseLevel / 100);
         }
@@ -300,14 +280,6 @@ export class NightWatch extends Rebellion {
         const baseLevel = model.level;
         const aimningCnt = this.activeSkillLv('_NightWatch_Aiming Count');
 
-        if (this.activeSkillLv('Skill Version') === 0) { // GGT
-          if (weapon.isSubType('Revolver')) {
-            return (150 + skillLevel * (450 + aimningCnt * 100) + totalCon * 2) * (baseLevel / 100);
-          }
-
-          return (200 + skillLevel * (350 + aimningCnt * 100) + totalCon * 2) * (baseLevel / 100);
-        }
-
         if (weapon.isSubType('Revolver')) {
           return (300 + skillLevel * (800 + aimningCnt * 100) + totalCon * 2) * (baseLevel / 100);
         }
@@ -336,14 +308,6 @@ export class NightWatch extends Rebellion {
         const baseLevel = model.level;
         const aimningCnt = this.activeSkillLv('_NightWatch_Aiming Count');
 
-        if (this.activeSkillLv('Skill Version') === 0) { // GGT
-          if (weapon.isSubType('Shotgun')) {
-            return (1000 + skillLevel * (2450 + aimningCnt * 500) + totalCon * 3) * (baseLevel / 100);
-          }
-
-          return (1000 + skillLevel * (2300 + aimningCnt * 500) + totalCon * 3) * (baseLevel / 100);
-        }
-
         if (weapon.isSubType('Shotgun')) {
           return (1500 + skillLevel * (3200 + aimningCnt * 500) + totalCon * 3) * (baseLevel / 100);
         }
@@ -367,9 +331,6 @@ export class NightWatch extends Rebellion {
 
         const grenadeMaster = this.learnLv('Grenade Mastery');
 
-        if (this.activeSkillLv('Skill Version') === 0) // GGT
-          return (1000 + skillLevel * 950 + grenadeMaster * 50 + totalCon * 5) * (baseLevel / 100);
-
         return (1500 + skillLevel * 2100 + grenadeMaster * 50 + totalCon * 5) * (baseLevel / 100);
       },
     },
@@ -388,9 +349,6 @@ export class NightWatch extends Rebellion {
         const baseLevel = model.level;
 
         const grenadeMaster = this.learnLv('Grenade Mastery');
-
-        if (this.activeSkillLv('Skill Version') === 0) // GGT
-          return (1500 + skillLevel * 1050 + grenadeMaster * 20 + totalCon * 3) * (baseLevel / 100);
 
         return (1500 + skillLevel * 1500 + grenadeMaster * 20 + totalCon * 3) * (baseLevel / 100);
       },
@@ -609,17 +567,13 @@ export class NightWatch extends Rebellion {
   }
 
   override modifyFinalAtk(currentAtk: number, _params: InfoForClass) {
-      const powerLv = this.bonuses.usedSkillMap.get('Power');
-  
-      let totalAtk = currentAtk;
-      if (powerLv >= 1) {
-        if (this.activeSkillLv('Skill Version') === 0) { // GGT
-          totalAtk = totalAtk + floor(totalAtk * (powerLv * 15 + 10) * 0.01);
-        }
-        else
-          totalAtk = totalAtk + floor(totalAtk * (powerLv * 20) * 0.01);
-      }
-  
-      return totalAtk;
+    const powerLv = this.bonuses.usedSkillMap.get('Power');
+
+    let totalAtk = currentAtk;
+    if (powerLv >= 1) {
+      totalAtk = totalAtk + floor(totalAtk * (powerLv * 20) * 0.01);
     }
+
+    return totalAtk;
+  }
 }

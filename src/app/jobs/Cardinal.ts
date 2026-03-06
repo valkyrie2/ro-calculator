@@ -182,12 +182,6 @@ export class Cardinal extends ArchBishop {
 
         if (this.activeSkillLv('Skill Version') === 0) { // GGT
           if (monster.isRace('demon', 'undead')) {
-            return (skillLevel * (900 + fidusLv * 5) + totalSpl * 5) * (baseLevel / 100);
-          }
-
-          return (skillLevel * (800 + fidusLv * 5) + totalSpl * 3) * (baseLevel / 100);
-        } else if (this.activeSkillLv('Skill Version') === 2) { // 260
-          if (monster.isRace('demon', 'undead')) {
             return (skillLevel * (1050 + fidusLv * 5) + totalSpl * 5) * (baseLevel / 100);
           }
 
@@ -208,11 +202,7 @@ export class Cardinal extends ArchBishop {
       acd: 0.5,
       fct: 1.5,
       vct: 4,
-      cd: () => {
-        if (this.activeSkillLv('Skill Version') === 0) return 1.5; // GGT
-
-        return 1;
-      },
+      cd: 1,
       isMatk: true,
       element: ElementType.Holy,
       formula: (input: AtkSkillFormulaInput): number => {
@@ -221,17 +211,10 @@ export class Cardinal extends ArchBishop {
         const baseLevel = model.level;
         const fidusLv = this.learnLv('Fidus Animus');
 
-        if (this.activeSkillLv('Skill Version') === 0) { // GGT
-          const primaryDmg = (skillLevel * (1250 + fidusLv * 10) + totalSpl * 7) * (baseLevel / 100);
-          const secondaryDmg = (skillLevel * (1000 + fidusLv * 10) + totalSpl * 7) * (baseLevel / 100);
+        const primaryDmg = (skillLevel * (1750 + fidusLv * 50) + totalSpl * 10) * (baseLevel / 100);
+        const secondaryDmg = (skillLevel * (1000 + fidusLv * 10) + totalSpl * 10) * (baseLevel / 100);
 
-          return primaryDmg + secondaryDmg;
-        } else {
-          const primaryDmg = (skillLevel * (1750 + fidusLv * 50) + totalSpl * 10) * (baseLevel / 100);
-          const secondaryDmg = (skillLevel * (1000 + fidusLv * 10) + totalSpl * 10) * (baseLevel / 100);
-
-          return primaryDmg + secondaryDmg;
-        }
+        return primaryDmg + secondaryDmg;
       },
     },
     {
@@ -278,10 +261,6 @@ export class Cardinal extends ArchBishop {
         const baseLevel = model.level;
         const mAndBookLv = this.learnLv('Mace & Book Mastery');
 
-        if (this.activeSkillLv('Skill Version') === 0) { // GGT
-          return (skillLevel * (1050 + mAndBookLv * 10) + totalPow * 5) * (baseLevel / 100);
-        }
-
         return (skillLevel * (1050 + mAndBookLv * 50) + totalPow * 5) * (baseLevel / 100);
       },
     },
@@ -298,7 +277,7 @@ export class Cardinal extends ArchBishop {
   //    ],
   //  }
   //];
-  
+
   private readonly passiveSkillList4th: PassiveSkillModel[] = [
     {
       name: 'Mace & Book Mastery',
@@ -378,11 +357,7 @@ export class Cardinal extends ArchBishop {
 
     let totalAtk = currentAtk;
     if (powerLv >= 1) {
-      if (this.activeSkillLv('Skill Version') === 0) { // GGT
-        totalAtk = totalAtk + floor(totalAtk * (powerLv * 15 + 10) * 0.01);
-      }
-      else
-        totalAtk = totalAtk + floor(totalAtk * (powerLv * 20) * 0.01);
+      totalAtk = totalAtk + floor(totalAtk * (powerLv * 20) * 0.01);
     }
 
     return totalAtk;

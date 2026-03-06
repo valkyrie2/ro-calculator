@@ -179,15 +179,11 @@ export class Biolo extends Genetic {
         const baseLevel = model.level;
         if (this.isSkillActive('Research Report')) {
           if (this.activeSkillLv('Skill Version') === 0) // GGT
-            return (400 + skillLevel * 550 + totalPow * 10) * (baseLevel / 100);
-          else if (this.activeSkillLv('Skill Version') === 2) // 260
             return (400 + skillLevel * 650 + totalPow * 10) * (baseLevel / 100);
           else // KRO
             return (500 + skillLevel * 750 + totalPow * 10) * (baseLevel / 100);
         } else {
           if (this.activeSkillLv('Skill Version') === 0) // GGT
-            return (400 + skillLevel * 450 + totalPow * 7) * (baseLevel / 100);
-          else if (this.activeSkillLv('Skill Version') === 2) // 260
             return (400 + skillLevel * 550 + totalPow * 7) * (baseLevel / 100);
           else // KRO
             return (500 + skillLevel * 650 + totalPow * 7) * (baseLevel / 100);
@@ -203,17 +199,10 @@ export class Biolo extends Genetic {
       vct: 1.5,
       cd: 0.7,
       totalHit: () => {
-        if (this.activeSkillLv('Skill Version') === 0) { // GGT
-          if (this.isSkillActive('Research Report'))
-            return 5;
-          else
-            return 3;
-        } else {
-          if (this.isSkillActive('Research Report'))
-            return 4;
-          else
-            return 3;
-        }
+        if (this.isSkillActive('Research Report'))
+          return 4;
+        else
+          return 3;
       },
       canCri: true,
       baseCriPercentage: 1,
@@ -223,16 +212,10 @@ export class Biolo extends Genetic {
         const { totalPow } = status;
         const baseLevel = model.level;
         if (this.isSkillActive('Research Report')) {
-          if (this.activeSkillLv('Skill Version') === 0)
-            return (250 + skillLevel * 300 + totalPow * 10) * (baseLevel / 100);
-          else
-            return (350 + skillLevel * 300 + totalPow * 10) * (baseLevel / 100);
+          return (350 + skillLevel * 300 + totalPow * 10) * (baseLevel / 100);
         }
 
-        if (this.activeSkillLv('Skill Version') === 0)
-          return (200 + skillLevel * 250 + totalPow * 7) * (baseLevel / 100);
-        else
-          return (200 + skillLevel * 300 + totalPow * 7) * (baseLevel / 100);
+        return (200 + skillLevel * 300 + totalPow * 7) * (baseLevel / 100);
       },
     },
     {
@@ -337,17 +320,13 @@ export class Biolo extends Genetic {
   }
 
   override modifyFinalAtk(currentAtk: number, _params: InfoForClass) {
-      const powerLv = this.bonuses.usedSkillMap.get('Power');
-  
-      let totalAtk = currentAtk;
-      if (powerLv >= 1) {
-        if (this.activeSkillLv('Skill Version') === 0) { // GGT
-          totalAtk = totalAtk + floor(totalAtk * (powerLv * 15 + 10) * 0.01);
-        }
-        else
-          totalAtk = totalAtk + floor(totalAtk * (powerLv * 20) * 0.01);
-      }
-  
-      return totalAtk;
+    const powerLv = this.bonuses.usedSkillMap.get('Power');
+
+    let totalAtk = currentAtk;
+    if (powerLv >= 1) {
+      totalAtk = totalAtk + floor(totalAtk * (powerLv * 20) * 0.01);
     }
+
+    return totalAtk;
+  }
 }

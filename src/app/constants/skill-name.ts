@@ -716,6 +716,7 @@ export const OFFENSIVE_SKILL_NAMES = [
   'Chasing Shot',
   'Soul Gathering',
   'Soul of Heaven and Earth',
+  'Judgement Cross',
 ] as const;
 
 const dup = [];

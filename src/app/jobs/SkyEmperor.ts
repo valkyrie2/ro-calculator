@@ -288,11 +288,7 @@ export class SkyEmperor extends StarEmperor {
       acd: 0,
       fct: 0.5,
       vct: 1,
-      cd: () => {
-        if (this.activeSkillLv('Skill Version') === 0) return 0.3; // GGT
-
-        return 0.5;
-      },
+      cd: 0.5,
       isMelee: true,
       criDmgPercentage: 0.5,
       formula: (input: AtkSkillFormulaInput): number => {
@@ -300,9 +296,6 @@ export class SkyEmperor extends StarEmperor {
         const { totalPow } = status;
         const baseLevel = model.level;
         const skillBonusLv = this.learnLv('Sky Mastery');
-
-        if (this.activeSkillLv('Skill Version') === 0) // GGT
-          return (200 + skillLevel * (500 + skillBonusLv * 5) + totalPow * 5) * (baseLevel / 100);
 
         return (250 + skillLevel * (550 + skillBonusLv * 5) + totalPow * 5) * (baseLevel / 100);
       },
@@ -325,10 +318,7 @@ export class SkyEmperor extends StarEmperor {
         const baseLevel = model.level;
         const skillBonusLv = this.learnLv('Sky Mastery');
 
-        if (this.activeSkillLv('Skill Version') === 0) // GGT
-          return (3000 + skillLevel * 2000 + totalPow * 10) * (baseLevel / 100);
-
-          return (250 + skillLevel * 1200 + totalPow * 10) * (baseLevel / 100);
+        return (250 + skillLevel * 1200 + totalPow * 10) * (baseLevel / 100);
       },
     },
   ];

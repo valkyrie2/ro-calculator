@@ -173,11 +173,7 @@ export class Trouvere extends Wanderer {
       acd: 0,
       fct: 0,
       vct: 2,
-      cd: () => {
-        if (this.activeSkillLv('Skill Version') === 0) return 0.15; // GGT
-
-        return 0.35;
-      },
+      cd: 0.35,
       totalHit: 3,
       verifyItemFn: ({ weapon }) => {
         const requires: WeaponTypeName[] = ['bow', 'instrument', 'whip'];
@@ -191,13 +187,6 @@ export class Trouvere extends Wanderer {
         const stageMannerLv = this.learnLv('Stage Manner');
 
         if (this.activeSkillLv('Skill Version') === 0) { // GGT
-          if (this.isSkillActive('Sound Blend')) {
-            return (300 + skillLevel * 220 + status.totalCon * 3 * stageMannerLv) * (baseLevel / 100);
-          }
-
-          return (200 + skillLevel * 100 + status.totalCon * 3 * stageMannerLv) * (baseLevel / 100);
-        }
-        else if (this.activeSkillLv('Skill Version') === 2) { // 260
           if (this.isSkillActive('Sound Blend')) {
             return (800 + skillLevel * 750 + status.totalCon * 7 * stageMannerLv) * (baseLevel / 100);
           }
@@ -240,7 +229,7 @@ export class Trouvere extends Wanderer {
           return (skillLevel * 3850 + status.totalSpl * 3 * stageMannerLv / 2) * (baseLevel / 100);
         }
         else {
-          if (this.isSkillActive('Sound Blend')) { // GGT , 260 is same
+          if (this.isSkillActive('Sound Blend')) { // GGT
             return (skillLevel * 3600 + status.totalSpl * 2 * stageMannerLv) * (baseLevel / 100);
           }
           return (skillLevel * 2600 + status.totalSpl * 3 * stageMannerLv / 2) * (baseLevel / 100);
@@ -382,11 +371,7 @@ export class Trouvere extends Wanderer {
 
     let totalAtk = currentAtk;
     if (powerLv >= 1) {
-      if (this.activeSkillLv('Skill Version') === 0) { // GGT
-        totalAtk = totalAtk + floor(totalAtk * (powerLv * 15 + 10) * 0.01);
-      }
-      else
-        totalAtk = totalAtk + floor(totalAtk * (powerLv * 20) * 0.01);
+      totalAtk = totalAtk + floor(totalAtk * (powerLv * 20) * 0.01);
     }
 
     return totalAtk;

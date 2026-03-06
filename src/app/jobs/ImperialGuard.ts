@@ -184,8 +184,6 @@ export class ImperialGuard extends RoyalGuard {
         const ssMastLv = this.learnLv('Spear & Sword Mastery');
 
         if (this.activeSkillLv('Skill Version') === 0) // GGT
-          return (skillLevel * (120 + ssMastLv * 10) + totalPow * 5) * (baseLevel / 100);
-        else if (this.activeSkillLv('Skill Version') === 2) // 260
           return (skillLevel * (160 + ssMastLv * 25) + totalPow * 7) * (baseLevel / 100);
         else // KRO
           return (skillLevel * (220 + ssMastLv * 50) + totalPow * 7) * (baseLevel / 100);
@@ -209,8 +207,6 @@ export class ImperialGuard extends RoyalGuard {
         const shieldMastLv = this.learnLv('Shield Mastery');
 
         if (this.activeSkillLv('Skill Version') === 0) // GGT
-          return (200 + skillLevel * (1300 + shieldMastLv * 15) + totalPow * 5 + weight + refine * 4) * (baseLevel / 100);
-        else if (this.activeSkillLv('Skill Version') === 2) // 260
           return (650 + skillLevel * (2850 + shieldMastLv * 50) + totalPow * 7 + weight + refine * 25) * (baseLevel / 100);
         else // KRO
           return (1000 + skillLevel * (3500 + shieldMastLv * 150) + totalPow * 10 + weight + refine * 100) * (baseLevel / 100);
@@ -223,18 +219,10 @@ export class ImperialGuard extends RoyalGuard {
       acd: 0.15,
       fct: 1.5,
       vct: 4,
-      cd: () => {
-        if (this.activeSkillLv('Skill Version') === 0) return 4.5;
-
-        return 2.4;
-      },
+      cd: 2.4,
       isMatk: true,
       element: ElementType.Holy,
-      totalHit: () => {
-        if (this.activeSkillLv('Skill Version') === 0) return 15;
-
-        return 8;
-      },
+      totalHit: 8,
       formula: (input: AtkSkillFormulaInput): number => {
         const { model, skillLevel, status } = input;
         const { totalSpl } = status;
@@ -242,13 +230,6 @@ export class ImperialGuard extends RoyalGuard {
         const ssMastLv = this.learnLv('Spear & Sword Mastery');
 
         if (this.activeSkillLv('Skill Version') === 0) { // GGT
-          if (this.isSkillActive('Holy Shield')) {
-            return (skillLevel * (450 + ssMastLv * 10) + totalSpl * 5) * (baseLevel / 100);
-          }
-
-          return (skillLevel * (320 + ssMastLv * 5) + totalSpl * 2) * (baseLevel / 100);
-        }
-        else if (this.activeSkillLv('Skill Version') === 2) { // 260
           if (this.isSkillActive('Holy Shield')) {
             return (skillLevel * (450 + ssMastLv * 15) + totalSpl * 5) * (baseLevel / 100);
           }
@@ -290,6 +271,32 @@ export class ImperialGuard extends RoyalGuard {
         }
 
         return (3500 + skillLevel * 1150 + ssMastLv * 50 + totalPow * 5) * (baseLevel / 100);
+      },
+    },
+    {
+      name: 'Judgement Cross',
+      label: 'Judgement Cross Lv10',
+      value: 'Judgement Cross==10',
+      acd: 0,
+      fct: 1.5,
+      vct: 4,
+      cd: 0.5,
+      isMatk: true,
+      getElement: () => {
+        if (this.activeSkillLv('Skill Version') === 1) // KRO
+          return ElementType.Neutral;
+
+        return ElementType.Holy;
+      },
+      formula: (input: AtkSkillFormulaInput): number => {
+        const { model, skillLevel, status, monster } = input;
+        const { totalSpl } = status;
+        const baseLevel = model.level;
+
+        if (monster.isRace('plant', 'insect')) {
+          return (skillLevel * (2100) + totalSpl * 10) * (baseLevel / 100);
+        }
+        return (skillLevel * (1950) + totalSpl * 10) * (baseLevel / 100);
       },
     },
   ];
@@ -422,11 +429,7 @@ export class ImperialGuard extends RoyalGuard {
 
     let totalAtk = currentAtk;
     if (powerLv >= 1) {
-      if (this.activeSkillLv('Skill Version') === 0) { // GGT
-        totalAtk = totalAtk + floor(totalAtk * (powerLv * 15 + 10) * 0.01);
-      }
-      else
-        totalAtk = totalAtk + floor(totalAtk * (powerLv * 20) * 0.01);
+      totalAtk = totalAtk + floor(totalAtk * (powerLv * 20) * 0.01);
     }
 
     return totalAtk;

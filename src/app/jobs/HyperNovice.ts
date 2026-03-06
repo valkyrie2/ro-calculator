@@ -181,13 +181,6 @@ export class HyperNovice extends SuperNovice {
 
         if (this.activeSkillLv('Skill Version') === 0) { // GGT
           if (this.isSkillActive('Breaking Limit')) {
-            return (150 + skillLevel * (250 + skillBonusLv * 3) + totalPow * 2) * (baseLevel / 100) * 150 / 100;
-          }
-
-          return (150 + skillLevel * (250 + skillBonusLv * 3) + totalPow * 2) * (baseLevel / 100);
-        }
-        else if (this.activeSkillLv('Skill Version') === 2) { // 260
-          if (this.isSkillActive('Breaking Limit')) {
             return (200 + skillLevel * (300 + skillBonusLv * 3) + totalPow * 2) * (baseLevel / 100) * 170 / 100;
           }
 
@@ -209,11 +202,7 @@ export class HyperNovice extends SuperNovice {
       acd: 0.5,
       fct: 0,
       vct: 0,
-      cd: () => {
-        if (this.activeSkillLv('Skill Version') === 0) return 0.3; // GGT
-
-        return 0.35;
-      },
+      cd: 0.35,
       hit: 8,
       isMelee: true,
       canCri: true,
@@ -225,18 +214,10 @@ export class HyperNovice extends SuperNovice {
         const baseLevel = model.level;
         const skillBonusLv = this.learnLv('Self Study Tactics');
 
-        if (this.activeSkillLv('Skill Version') === 0) { // GGT
-          if (this.isSkillActive('Breaking Limit'))
-            return (850 + skillLevel * (450 + skillBonusLv * 5) + totalPow * 4) * (baseLevel / 100) * 170 / 100;
+        if (this.isSkillActive('Breaking Limit'))
+          return (900 + skillLevel * (750 + skillBonusLv * 5) + totalPow * 4) * (baseLevel / 100) * 200 / 100;
 
-          return (850 + skillLevel * (450 + skillBonusLv * 5) + totalPow * 4) * (baseLevel / 100);
-        }
-        else {
-          if (this.isSkillActive('Breaking Limit'))
-            return (900 + skillLevel * (750 + skillBonusLv * 5) + totalPow * 4) * (baseLevel / 100) * 200 / 100;
-
-          return (900 + skillLevel * (750 + skillBonusLv * 5) + totalPow * 4) * (baseLevel / 100);
-        }
+        return (900 + skillLevel * (750 + skillBonusLv * 5) + totalPow * 4) * (baseLevel / 100);
       },
     },
     {
@@ -246,11 +227,7 @@ export class HyperNovice extends SuperNovice {
       acd: 0.5,
       fct: 0.3,
       vct: 1.2,
-      cd: () => {
-        if (this.activeSkillLv('Skill Version') === 0) return 0.3; // GGT
-
-        return 0.35;
-      },
+      cd: 0.35,
       hit: 5,
       verifyItemFn: ({ model }) => !model.shield ? 'Shield' : '',
       formula: (input: AtkSkillFormulaInput): number => {
@@ -260,11 +237,6 @@ export class HyperNovice extends SuperNovice {
         const skillBonusLv = this.learnLv('Self Study Tactics');
 
         if (this.activeSkillLv('Skill Version') === 0) { // GGT
-          if (this.isSkillActive('Breaking Limit'))
-            return (600 + skillLevel * (450 + skillBonusLv * 3) + totalPow * 3) * (baseLevel / 100) * 150 / 100;
-
-          return (600 + skillLevel * (450 + skillBonusLv * 3) + totalPow * 3) * (baseLevel / 100);
-        } else if (this.activeSkillLv('Skill Version') === 2) { // 260
           if (this.isSkillActive('Breaking Limit'))
             return (700 + skillLevel * (500 + skillBonusLv * 3) + totalPow * 3) * (baseLevel / 100) * 170 / 100;
 
@@ -284,11 +256,7 @@ export class HyperNovice extends SuperNovice {
       acd: 0.5,
       fct: 0.3,
       vct: 1,
-      cd: () => {
-        if (this.activeSkillLv('Skill Version') === 0) return 0.3; // GGT
-
-        return 0.35;
-      },
+      cd: 0.35,
       hit: 5,
       verifyItemFn: ({ model }) => !model.shield ? 'Shield' : '',
       formula: (input: AtkSkillFormulaInput): number => {
@@ -304,11 +272,6 @@ export class HyperNovice extends SuperNovice {
         const sizeModifier = sizeMap[monster.size];
 
         if (this.activeSkillLv('Skill Version') === 0) { // GGT
-          if (this.isSkillActive('Breaking Limit'))
-            return (550 + skillLevel * (350 + skillBonusLv * 3) * sizeModifier + totalPow * 3) * (baseLevel / 100) * 170 / 100;
-
-          return (550 + skillLevel * (350 + skillBonusLv * 3) * sizeModifier + totalPow * 3) * (baseLevel / 100);
-        } else if (this.activeSkillLv('Skill Version') === 2) { // 260
           if (this.isSkillActive('Breaking Limit'))
             return (700 + skillLevel * (800 + skillBonusLv * 3) * sizeModifier + totalPow * 3) * (baseLevel / 100) * 200 / 100;
 
@@ -581,17 +544,13 @@ export class HyperNovice extends SuperNovice {
   }
 
   override modifyFinalAtk(currentAtk: number, _params: InfoForClass) {
-      const powerLv = this.bonuses.usedSkillMap.get('Power');
-  
-      let totalAtk = currentAtk;
-      if (powerLv >= 1) {
-        if (this.activeSkillLv('Skill Version') === 0) { // GGT
-          totalAtk = totalAtk + floor(totalAtk * (powerLv * 15 + 10) * 0.01);
-        }
-        else
-          totalAtk = totalAtk + floor(totalAtk * (powerLv * 20) * 0.01);
-      }
-  
-      return totalAtk;
+    const powerLv = this.bonuses.usedSkillMap.get('Power');
+
+    let totalAtk = currentAtk;
+    if (powerLv >= 1) {
+      totalAtk = totalAtk + floor(totalAtk * (powerLv * 20) * 0.01);
     }
+
+    return totalAtk;
+  }
 }

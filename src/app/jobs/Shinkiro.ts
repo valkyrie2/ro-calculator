@@ -179,10 +179,6 @@ export class Shinkiro extends Kagerou {
         const baseLevel = model.level;
         const skillBonusLv = this.learnLv('Shadow Flash');
 
-        if (this.activeSkillLv('Skill Version') === 0) { // GGT
-          return (500 + skillLevel * (400 + skillBonusLv * 5) + totalPow * 3) * (baseLevel / 100);
-        }
-
         return (600 + skillLevel * (900 + skillBonusLv * 5) + totalPow * 3) * (baseLevel / 100);
       },
     },
@@ -193,11 +189,7 @@ export class Shinkiro extends Kagerou {
       acd: 0.25,
       fct: 1,
       vct: 1,
-      cd: () => {
-        if (this.activeSkillLv('Skill Version') === 0) return 0.5; // GGT
-
-        return 0.4;
-      },
+      cd: 0.4,
       isMelee: true,
       hit: 5,
       formula: (input: AtkSkillFormulaInput): number => {
@@ -207,8 +199,6 @@ export class Shinkiro extends Kagerou {
         const skillBonusLv = this.learnLv('Shadow Hunting');
 
         if (this.activeSkillLv('Skill Version') === 0) // GGT
-          return (400 + skillLevel * (550 + skillBonusLv * 50) + totalPow * 4) * (baseLevel / 100);
-        else if (this.activeSkillLv('Skill Version') === 2) // 260
           return (550 + skillLevel * (750 + skillBonusLv * 50) + totalPow * 4) * (baseLevel / 100);
         else // KRO
           return (750 + skillLevel * (900 + skillBonusLv * 70) + totalPow * 4) * (baseLevel / 100);
@@ -221,13 +211,9 @@ export class Shinkiro extends Kagerou {
       acd: 0.25,
       fct: 0,
       vct: 0,
-      cd: 1,
+      cd: 0.5,
       isMelee: true,
-      canCri: () => {
-        if (this.activeSkillLv('Skill Version') === 0) return false;
-
-        return true;
-      },
+      canCri: true,
       criDmgPercentage: 0.5,
       baseCriPercentage: 1,
       formula: (input: AtkSkillFormulaInput): number => {
@@ -237,8 +223,6 @@ export class Shinkiro extends Kagerou {
         const skillBonusLv = this.learnLv('Shadow Dance');
 
         if (this.activeSkillLv('Skill Version') === 0) // GGT
-          return (1600 + skillLevel * (700 + skillBonusLv * 100) + totalPow * 5) * (baseLevel / 100);
-        else if (this.activeSkillLv('Skill Version') === 2) // 260
           return (1500 + skillLevel * (750 + skillBonusLv * 50) + totalPow * 5) * (baseLevel / 100);
         else // KRO
           return (1500 + skillLevel * (950 + skillBonusLv * 150) + totalPow * 5) * (baseLevel / 100);
@@ -259,9 +243,6 @@ export class Shinkiro extends Kagerou {
         const { totalPow } = status;
         const baseLevel = model.level;
         const skillBonusLv = this.learnLv('Huuma Shuriken - Construct');
-
-        if (this.activeSkillLv('Skill Version') === 0) // GGT
-          return (700 + skillLevel * (200 + skillBonusLv * 5) + totalPow * 3) * (baseLevel / 100);
 
         return (850 + skillLevel * (350 + skillBonusLv * 5) + totalPow * 3) * (baseLevel / 100);
       },
@@ -286,8 +267,6 @@ export class Shinkiro extends Kagerou {
         const skillBonusLv = this.learnLv('Huuma Shuriken - Grasp');
 
         if (this.activeSkillLv('Skill Version') === 0) // GGT
-          return (600 + skillLevel * (400 + skillBonusLv * 30) + totalPow * 5) * (baseLevel / 100);
-        else if (this.activeSkillLv('Skill Version') === 2) // 260
           return (600 + skillLevel * (1200 + skillBonusLv * 30) + totalPow * 5) * (baseLevel / 100);
         else // KRO
           return (900 + skillLevel * (1750 + skillBonusLv * 100) + totalPow * 5) * (baseLevel / 100);
@@ -313,8 +292,6 @@ export class Shinkiro extends Kagerou {
         const skillBonusLv = this.learnLv('Huuma Shuriken - Grasp');
 
         if (this.activeSkillLv('Skill Version') === 0) // GGT
-          return (800 + (skillLevel - 1) * (600 + skillBonusLv * 30) + totalPow * 5) * (baseLevel / 100);
-        else if (this.activeSkillLv('Skill Version') === 2) // 260
           return (600 + (skillLevel - 1) * (1500 + skillBonusLv * 30) + totalPow * 5) * (baseLevel / 100);
         else // KRO
           return (900 + (skillLevel - 1) * (1750 + skillBonusLv * 100) + totalPow * 5) * (baseLevel / 100);
@@ -398,9 +375,6 @@ export class Shinkiro extends Kagerou {
         const skillBonusLv = this.learnLv('Darkening Cannon');
 
         if (this.activeSkillLv('Skill Version') === 0) { // GGT
-          return (850 + skillLevel * (1250 + skillBonusLv * 70) + totalSpl * 5) * (baseLevel / 100);
-        }
-        else if (this.activeSkillLv('Skill Version') === 2) { // 260
           return (500 + skillLevel * (1000 + skillBonusLv * 70) + totalSpl * 5) * (baseLevel / 100);
         }
         else { // KRO
@@ -429,8 +403,6 @@ export class Shinkiro extends Kagerou {
         const skillBonusLv = this.learnLv('Darkening Cannon');
 
         if (this.activeSkillLv('Skill Version') === 0) // GGT
-          return (250 + skillLevel * (550 + skillBonusLv * 40) + totalSpl * 5) * (baseLevel / 100);
-        else if (this.activeSkillLv('Skill Version') === 2) // 260
           return (350 + skillLevel * (850 + skillBonusLv * 40) + totalSpl * 5) * (baseLevel / 100);
         else { // KRO
           if (this.isSkillActive('Water Colors Charm'))
@@ -458,9 +430,6 @@ export class Shinkiro extends Kagerou {
         const skillBonusLv = this.learnLv('Darkening Cannon');
 
         if (this.activeSkillLv('Skill Version') === 0) { // GGT
-          return (600 + skillLevel * (1300 + skillBonusLv * 70) + totalSpl * 5) * (baseLevel / 100);
-        }
-        else if (this.activeSkillLv('Skill Version') === 2) { // 260
           return (500 + skillLevel * (950 + skillBonusLv * 70) + totalSpl * 5) * (baseLevel / 100);
         }
         else { // KRO
@@ -488,9 +457,6 @@ export class Shinkiro extends Kagerou {
         const skillBonusLv = this.learnLv('Darkening Cannon');
 
         if (this.activeSkillLv('Skill Version') === 0) { // GGT
-          return (300 + skillLevel * (400 + skillBonusLv * 15) + totalSpl * 5) * (baseLevel / 100);
-        }
-        else if (this.activeSkillLv('Skill Version') === 2) { // 260
           return (450 + skillLevel * (950 + skillBonusLv * 15) + totalSpl * 5) * (baseLevel / 100);
         }
         else { // KRO
@@ -630,11 +596,7 @@ export class Shinkiro extends Kagerou {
 
     let totalAtk = currentAtk;
     if (powerLv >= 1) {
-      if (this.activeSkillLv('Skill Version') === 0) { // GGT
-        totalAtk = totalAtk + floor(totalAtk * (powerLv * 15 + 10) * 0.01);
-      }
-      else
-        totalAtk = totalAtk + floor(totalAtk * (powerLv * 20) * 0.01);
+      totalAtk = totalAtk + floor(totalAtk * (powerLv * 20) * 0.01);
     }
 
     return totalAtk;

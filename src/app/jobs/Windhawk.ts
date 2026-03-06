@@ -168,18 +168,10 @@ export class Windhawk extends Ranger {
       name: 'Crescive Bolt',
       label: 'Crescive Bolt Lv10',
       value: 'Crescive Bolt==10',
-      acd: () => {
-        if (this.activeSkillLv('Skill Version') === 0) return 0.3; // GGT
-
-        return 0.7;
-      },
+      acd: 0.7,
       fct: 1,
       vct: 1,
-      cd: () => {
-        if (this.activeSkillLv('Skill Version') === 0) return 0.15; // GGT
-
-        return 0.35;
-      },
+      cd: 0.35,
       maxStack: 3,
       canCri: true,
       criDmgPercentage: 0.5,
@@ -191,8 +183,6 @@ export class Windhawk extends Ranger {
         const calaBonus = this.isSkillActive('Calamity Gale') ? 1.2 : 1;
 
         if (this.activeSkillLv('Skill Version') === 0) // GGT
-          return (skillLevel * 340 + status.totalCon * 10) * (baseLevel / 100) * (1 + 0.1 * totalStack) * calaBonus;
-        else if (this.activeSkillLv('Skill Version') === 2) // 260
           return (400 + skillLevel * 900 + status.totalCon * 10) * (baseLevel / 100) * (1 + 0.1 * totalStack) * calaBonus;
         else // KRO
           return (500 + skillLevel * 1300 + status.totalCon * 10) * (baseLevel / 100) * (1 + 0.2 * totalStack) * calaBonus;
@@ -206,10 +196,9 @@ export class Windhawk extends Ranger {
       fct: 0.5,
       vct: 1,
       cd: () => {
-        if (this.activeSkillLv('Skill Version') === 0) return 1.5; // GGT
-        else if (this.activeSkillLv('Skill Version') === 2) return 1.2; // 260
+        if (this.activeSkillLv('Skill Version') === 1) return 0.7; // KRO
 
-        return 0.7;
+        return 1.2; // GGT
       },
       hit: 5,
       canCri: () => this.isSkillActive('Calamity Gale'),
@@ -220,8 +209,6 @@ export class Windhawk extends Ranger {
         const baseLevel = model.level;
 
         if (this.activeSkillLv('Skill Version') === 0) // GGT
-          return (skillLevel * 950 + status.totalCon * 5) * (baseLevel / 100);
-        else if (this.activeSkillLv('Skill Version') === 2) // 260
           return (skillLevel * 1000 + status.totalCon * 10) * (baseLevel / 100);
         else // KRO
           return (skillLevel * 1350 + status.totalCon * 10) * (baseLevel / 100);

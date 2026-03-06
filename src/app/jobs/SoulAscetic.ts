@@ -212,12 +212,6 @@ export class SoulAscetic extends SoulReaper {
 
         if (this.activeSkillLv('Skill Version') === 0) { // GGT
           if (this.activeSkillLv('_SoulAscetic_Blessing') === BlessingValue.Four_Directions) {
-            return (350 + skillLevel * (1650 + talisMaster * 15) + totalSpl * 5) * (baseLevel / 100);
-          }
-
-          return (250 + skillLevel * (1450 + talisMaster * 15) + totalSpl * 5) * (baseLevel / 100);
-        } else if (this.activeSkillLv('Skill Version') === 2) { // 260
-          if (this.activeSkillLv('_SoulAscetic_Blessing') === BlessingValue.Four_Directions) {
             return (600 + skillLevel * (2200 + talisMaster * 15) + totalSpl * 5) * (baseLevel / 100);
           }
 
@@ -248,19 +242,11 @@ export class SoulAscetic extends SoulReaper {
         const baseLevel = model.level;
         const talisMaster = this.learnLv('Talisman Mastery');
 
-        if (this.activeSkillLv('Skill Version') === 0) { // GGT
-          if (this.activeSkillLv('_SoulAscetic_Blessing') === BlessingValue.Four_Directions) {
-            return (350 + skillLevel * (1350 + talisMaster * 15) + totalSpl * 5) * (baseLevel / 100);
-          }
-
-          return (350 + skillLevel * (950 + talisMaster * 15) + totalSpl * 5) * (baseLevel / 100);
-        } else {
-          if (this.activeSkillLv('_SoulAscetic_Blessing') === BlessingValue.Four_Directions) {
-            return (400 + skillLevel * (1400 + talisMaster * 15) + totalSpl * 5) * (baseLevel / 100);
-          }
-
-          return (400 + skillLevel * (1000 + talisMaster * 15) + totalSpl * 5) * (baseLevel / 100);
+        if (this.activeSkillLv('_SoulAscetic_Blessing') === BlessingValue.Four_Directions) {
+          return (400 + skillLevel * (1400 + talisMaster * 15) + totalSpl * 5) * (baseLevel / 100);
         }
+
+        return (400 + skillLevel * (1000 + talisMaster * 15) + totalSpl * 5) * (baseLevel / 100);
       },
     },
     {
@@ -280,12 +266,6 @@ export class SoulAscetic extends SoulReaper {
         const talisMaster = this.learnLv('Talisman Mastery');
 
         if (this.activeSkillLv('Skill Version') === 0) { // GGT
-          if (this.activeSkillLv('_SoulAscetic_Blessing') === BlessingValue.Four_Directions) {
-            return (1200 + skillLevel * (1300 + talisMaster * 15) + totalSpl * 5) * (baseLevel / 100);
-
-          }
-          return (1000 + skillLevel * (900 + talisMaster * 15) + totalSpl * 5) * (baseLevel / 100);
-        } else if (this.activeSkillLv('Skill Version') === 2) { // 260
           if (this.activeSkillLv('_SoulAscetic_Blessing') === BlessingValue.Four_Directions) {
             return (1400 + skillLevel * (1650 + talisMaster * 15) + totalSpl * 5) * (baseLevel / 100);
 
@@ -317,23 +297,12 @@ export class SoulAscetic extends SoulReaper {
         const baseLevel = model.level;
         const talisMaster = this.learnLv('Talisman Mastery');
 
-        if (this.activeSkillLv('Skill Version') === 1) { // GGT
-          if (this.activeSkillLv('_SoulAscetic_Blessing') === BlessingValue.Four_Directions) {
-            return (1850 + skillLevel * (1850 + talisMaster * 15) + totalSpl * 5) * (baseLevel / 100);
-
-          }
-
-          return (2150 + skillLevel * (1450 + talisMaster * 15) + totalSpl * 5) * (baseLevel / 100);
+        if (this.activeSkillLv('_SoulAscetic_Blessing') === BlessingValue.Four_Directions) {
+          return (2300 + skillLevel * (2100 + talisMaster * 15) + totalSpl * 5) * (baseLevel / 100);
 
         }
-        else {
-          if (this.activeSkillLv('_SoulAscetic_Blessing') === BlessingValue.Four_Directions) {
-            return (2300 + skillLevel * (2100 + talisMaster * 15) + totalSpl * 5) * (baseLevel / 100);
 
-          }
-
-          return (2150 + skillLevel * (1600 + talisMaster * 15) + totalSpl * 5) * (baseLevel / 100);
-        }
+        return (2150 + skillLevel * (1600 + talisMaster * 15) + totalSpl * 5) * (baseLevel / 100);
       },
     },
     {

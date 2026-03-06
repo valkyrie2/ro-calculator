@@ -171,11 +171,7 @@ export class AbyssChaser extends ShadowChaser {
       acd: 0.5,
       fct: 0,
       vct: 0,
-      cd: () => {
-        if (this.activeSkillLv('Skill Version') === 0) return 0.3;
-
-        return 0.4;
-      },
+      cd: 0.4,
       isMelee: true,
       totalHit: 2,
       verifyItemFn: ({ weapon }) => {
@@ -190,10 +186,6 @@ export class AbyssChaser extends ShadowChaser {
         const { level: baseLevel } = model;
 
         if (this.activeSkillLv('Skill Version') === 0) { // GGT
-          return (100 + skillLevel * 500 + totalPow * 5) * (baseLevel / 100);
-        }
-
-        if (this.activeSkillLv('Skill Version') === 2) { // 260
           return (100 + skillLevel * 900 + totalPow * 5) * (baseLevel / 100);
         }
 
@@ -225,27 +217,15 @@ export class AbyssChaser extends ShadowChaser {
       acd: 0.5,
       fct: 0,
       vct: 0,
-      cd: () => {
-        if (this.activeSkillLv('Skill Version') === 0) return 0.3;
-
-        return 0.7;
-      },
+      cd: 0.7,
       isMelee: true,
-      totalHit: () => {
-        if (this.activeSkillLv('Skill Version') === 0) return 1;
-
-        return 5;
-      },
+      totalHit: 5,
       formula: (input: AtkSkillFormulaInput): number => {
         const { model, skillLevel, status } = input;
         const { totalPow } = status;
         const { level: baseLevel } = model;
 
         if (this.activeSkillLv('Skill Version') === 0) {  // GGT
-          return (350 + skillLevel * 550 + totalPow * 5) * (baseLevel / 100);
-        }
-
-        if (this.activeSkillLv('Skill Version') === 2) {  // 260
           return (250 + skillLevel * 350 + totalPow * 5) * (baseLevel / 100);
         }
 
@@ -285,11 +265,7 @@ export class AbyssChaser extends ShadowChaser {
       acd: 0.5,
       fct: 0,
       vct: 0,
-      cd: () => {
-        if (this.activeSkillLv('Skill Version') === 0) return 0.2;
-
-        return 0.35;
-      },
+      cd: 0.35,
       canCri: true,
       baseCriPercentage: 1,
       criDmgPercentage: 0.5,
@@ -305,9 +281,6 @@ export class AbyssChaser extends ShadowChaser {
         const { level: baseLevel } = model;
 
         if (this.activeSkillLv('Skill Version') === 0) // GGT
-          return (skillLevel * 400 + totalCon * 5) * (baseLevel / 100);
-
-        if (this.activeSkillLv('Skill Version') === 2) // 260
           return (150 + skillLevel * 600 + totalCon * 15) * (baseLevel / 100);
 
         // KRO
@@ -632,11 +605,7 @@ export class AbyssChaser extends ShadowChaser {
 
     let totalAtk = currentAtk;
     if (powerLv >= 1) {
-      if (this.activeSkillLv('Skill Version') === 0) { // GGT
-        totalAtk = totalAtk + floor(totalAtk * (powerLv * 15 + 10) * 0.01);
-      }
-      else
-        totalAtk = totalAtk + floor(totalAtk * (powerLv * 20) * 0.01);
+      totalAtk = totalAtk + floor(totalAtk * (powerLv * 20) * 0.01);
     }
 
     return totalAtk;

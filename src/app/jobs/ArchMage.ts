@@ -316,13 +316,6 @@ export class ArchMage extends Warlock {
         const { level: baseLevel } = model;
 
         if (this.activeSkillLv('Skill Version') == 0) { // GGT
-          const blimaxBonus = this.isSkillActive('Climax') ? 600 : 0;
-          const directDmg = floor((skillLevel * 300 + totalSpl * 3) * (baseLevel / 100));
-          const bomDmg = floor((skillLevel * (600 + blimaxBonus) + totalSpl * 5) * (baseLevel / 100));
-
-          return directDmg + bomDmg;
-        }
-        else if (this.activeSkillLv('Skill Version') == 2) { // 260
           const blimaxBonus = this.isSkillActive('Climax') ? 750 : 0;
           const directDmg = floor((skillLevel * 350 + totalSpl * 3) * (baseLevel / 100));
           const bomDmg = floor((skillLevel * (700 + blimaxBonus) + totalSpl * 5) * (baseLevel / 100));
@@ -360,20 +353,12 @@ export class ArchMage extends Warlock {
 
           return (450 + skillLevel * 950 + totalSpl * 5) * (baseLevel / 100);
         }
-        if (this.activeSkillLv('Skill Version') == 2) { // 260
-          if (this.isSkillActive('Climax')) {
-            return (550 + skillLevel * 1250 + totalSpl * 5) * (baseLevel / 100);
-          }
 
-          return (400 + skillLevel * 900 + totalSpl * 5) * (baseLevel / 100);
+        if (this.isSkillActive('Climax')) {
+          return (550 + skillLevel * 1250 + totalSpl * 5) * (baseLevel / 100);
         }
-        else {
-          if (this.isSkillActive('Climax')) {
-            return (400 + skillLevel * 1250 + totalSpl * 5) * (baseLevel / 100);
-          }
 
-          return (250 + skillLevel * 900 + totalSpl * 5) * (baseLevel / 100);
-        }
+        return (400 + skillLevel * 900 + totalSpl * 5) * (baseLevel / 100);
       },
     },
     {
@@ -392,25 +377,19 @@ export class ArchMage extends Warlock {
         const { totalSpl } = status;
         const { level: baseLevel } = model;
 
-        if (this.activeSkillLv('Skill Version') == 0) { // GGT
-          if (this.isSkillActive('Climax')) {
-            return (skillLevel * 1250 + totalSpl * 5) * (baseLevel / 100);
-          }
-
-          return (skillLevel * 950 + totalSpl * 5) * (baseLevel / 100);
-        } else if (this.activeSkillLv('Skill Version') == 1) { // KRO
+        if (this.activeSkillLv('Skill Version') == 1) { // KRO
           if (this.isSkillActive('Climax')) {
             return (skillLevel * 1850 + totalSpl * 5) * (baseLevel / 100);
           }
 
           return (skillLevel * 1550 + totalSpl * 5) * (baseLevel / 100);
-        } else { // 260
-          if (this.isSkillActive('Climax')) {
-            return (skillLevel * 1500 + totalSpl * 5) * (baseLevel / 100);
-          }
-
-          return (skillLevel * 1200 + totalSpl * 5) * (baseLevel / 100);
         }
+
+        if (this.isSkillActive('Climax')) { // GGT
+          return (skillLevel * 1500 + totalSpl * 5) * (baseLevel / 100);
+        }
+
+        return (skillLevel * 1200 + totalSpl * 5) * (baseLevel / 100);
       },
     },
     {
@@ -428,25 +407,19 @@ export class ArchMage extends Warlock {
         const { model, skillLevel, status } = input;
         const { totalSpl } = status;
         const { level: baseLevel } = model;
-        if (this.activeSkillLv('Skill Version') == 0) { // GGT
-          if (this.isSkillActive('Climax')) {
-            return (skillLevel * 1250 + totalSpl * 5) * (baseLevel / 100);
-          }
-
-          return (skillLevel * 950 + totalSpl * 5) * (baseLevel / 100);
-        } else if (this.activeSkillLv('Skill Version') == 1) { // KRO
+        if (this.activeSkillLv('Skill Version') == 1) { // KRO
           if (this.isSkillActive('Climax')) {
             return (skillLevel * 1850 + totalSpl * 5) * (baseLevel / 100);
           }
 
           return (skillLevel * 1550 + totalSpl * 5) * (baseLevel / 100);
-        } else { // 260
-          if (this.isSkillActive('Climax')) {
-            return (skillLevel * 1500 + totalSpl * 5) * (baseLevel / 100);
-          }
-
-          return (skillLevel * 1200 + totalSpl * 5) * (baseLevel / 100);
         }
+
+        if (this.isSkillActive('Climax')) { // GGT
+          return (skillLevel * 1500 + totalSpl * 5) * (baseLevel / 100);
+        }
+
+        return (skillLevel * 1200 + totalSpl * 5) * (baseLevel / 100);
       },
     },
     {
@@ -540,18 +513,10 @@ export class ArchMage extends Warlock {
       name: 'Destructive Hurricane',
       label: 'Destructive Hurricane Lv5',
       value: 'Destructive Hurricane==5',
-      acd: () => {
-        if (this.activeSkillLv('Skill Version') == 0) return 0.5; // GGT
-
-        return 1;
-      },
+      acd: 1,
       fct: 1.5,
       vct: 4,
-      cd: () => {
-        if (this.activeSkillLv('Skill Version') == 0) return 2; // GGT
-
-        return 2.5;
-      },
+      cd: 2.5,
       isMatk: true,
       element: ElementType.Wind,
       formula: (input: AtkSkillFormulaInput): number => {
@@ -559,14 +524,6 @@ export class ArchMage extends Warlock {
         const { totalSpl } = status;
         const { level: baseLevel } = model;
         //const climaxBonus = this.activeSkillLv('Climax') === 3 ? 200 : 0;
-
-        if (this.activeSkillLv('Skill Version') == 0) { // GGT
-
-          if (this.activeSkillLv('Climax') === 1)
-            return ((250 + skillLevel * 2800 + totalSpl * 5) * (baseLevel / 100)) + 12500;
-          else
-            return (250 + skillLevel * 2800 + totalSpl * 5) * (baseLevel / 100);
-        }
 
         if (this.activeSkillLv('Climax') === 1)
           return ((600 + skillLevel * 2850 + totalSpl * 5) * (baseLevel / 100)) + 12500;
@@ -606,11 +563,9 @@ export class ArchMage extends Warlock {
         { label: '-', value: 0, isUse: false },
         { label: 'Lv 1', value: 1, isUse: true },
         { label: 'Lv 2', value: 2, isUse: true },
-        { label: 'Lv 3', value: 3, isUse: true, bonus: { "All Bloom": 300, "Violent Quake": 200, "Destructive Hurricane": 200 } },
+        { label: 'Lv 3', value: 3, isUse: true, bonus: { "All Bloom": 300, "Violent Quake": 200, "Destructive Hurricane": 150 } },
         { label: 'Lv 4', value: 4, isUse: true },
-        { label: 'Lv 5', value: 5, isUse: true, bonus: { "Destructive Hurricane": 50 } },
-        { label: '(Patch 260) Lv 3', value: -3, isUse: true, bonus: { "All Bloom": 300, "Violent Quake": 200, "Destructive Hurricane": 150 } },
-        { label: '(Patch 260) Lv 5', value: -5, isUse: true, bonus: { "Destructive Hurricane": 20 } },
+        { label: 'Lv 5', value: 5, isUse: true, bonus: { "Destructive Hurricane": 20 } },
       ],
     },
     {

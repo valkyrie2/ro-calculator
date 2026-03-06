@@ -293,9 +293,9 @@ export class Inquisitor extends Sura {
       label: 'Third Flame Bomb Lv5',
       value: 'Third Flame Bomb==5',
       acd: () => {
-        if (this.activeSkillLv('Skill Version') === 0) return 0;
+        if (this.activeSkillLv('Skill Version') === 1) return 0.7; // KRO
 
-        return 0.7;
+        return 0;
       },
       fct: 0,
       vct: 0,
@@ -315,11 +315,7 @@ export class Inquisitor extends Sura {
       name: 'Explosion Blaster',
       label: 'Explosion Blaster Lv5',
       value: 'Explosion Blaster==5',
-      acd: () => {
-        if (this.activeSkillLv('Skill Version') === 0) return 0; // GGT
-
-        return 1;
-      },
+      acd: 1,
       fct: 0,
       vct: 0,
       cd: 0.7,
@@ -333,16 +329,12 @@ export class Inquisitor extends Sura {
 
         if (this.isSkillActive('Oleum Sanctum')) {
           if (this.activeSkillLv('Skill Version') === 0) // GGT
-            return (skillLevel * 3200 + totalPow * 15) * (baseLevel / 100);
-          else if (this.activeSkillLv('Skill Version') === 2) // 260
             return (350 + skillLevel * 3450 + totalPow * 15) * (baseLevel / 100);
           else if (this.activeSkillLv('Skill Version') === 1) // KRO
             return (450 + skillLevel * 3550 + totalPow * 15) * (baseLevel / 100);
         }
 
         if (this.activeSkillLv('Skill Version') === 0) // GGT
-          return (skillLevel * 2800 + totalPow * 15) * (baseLevel / 100);
-        else if (this.activeSkillLv('Skill Version') === 2) // 260
           return (skillLevel * 2400 + totalPow * 10) * (baseLevel / 100);
         else // KRO
           return (450 + skillLevel * 2600 + totalPow * 10) * (baseLevel / 100);
@@ -352,11 +344,7 @@ export class Inquisitor extends Sura {
       name: 'Massive Flame Blaster',
       label: 'Massive Flame Blaster Lv10',
       value: 'Massive Flame Blaster==10',
-      acd: () => {
-        if (this.activeSkillLv('Skill Version') === 0) return 0; // GGT
-
-        return 0.5;
-      },
+      acd: 0.5,
       fct: 0,
       vct: 0,
       cd: 5,
@@ -367,14 +355,6 @@ export class Inquisitor extends Sura {
         const { model, skillLevel, status, monster } = input;
         const { totalPow } = status;
         const baseLevel = model.level;
-
-        if (this.activeSkillLv('Skill Version') === 0) { // GGT
-
-          if (monster.isRace('demihuman', 'brute')) {
-            return (skillLevel * (2300) + totalPow * 15) * (baseLevel / 100);
-          }
-          return (skillLevel * (2150) + totalPow * 15) * (baseLevel / 100);
-        }
 
         if (monster.isRace('demihuman', 'brute')) {
           return (skillLevel * (2450) + totalPow * 15) * (baseLevel / 100);

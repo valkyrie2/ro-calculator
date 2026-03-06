@@ -181,13 +181,6 @@ export class SpiritHandler extends Doram {
 
         if (this.activeSkillLv('Skill Version') === 0) { // GGT
           if (this.learnLv('Commune with Chulho')) {
-            return (500 + skillLevel * (850) + skillBonusLv * 100 + totalPow * 5) * (baseLevel / 100);
-          }
-
-          return (400 + skillLevel * (750) + skillBonusLv * 50 + totalPow * 5) * (baseLevel / 100);
-        }
-        else if (this.activeSkillLv('Skill Version') === 2) { // 260
-          if (this.learnLv('Commune with Chulho')) {
             return (850 + skillLevel * (2050) + skillBonusLv * 100 + totalPow * 5) * (baseLevel / 100);
           }
 
@@ -263,14 +256,6 @@ export class SpiritHandler extends Doram {
         const baseLevel = model.level;
         const skillBonusLv = this.learnLv('Mystical Creature Mastery');
 
-        if (this.activeSkillLv('Skill Version') === 0) { // GGT
-          if (this.learnLv('Commune with Hyunrok')) {
-            return (700 + skillLevel * 800 + skillBonusLv * 40 + totalSpl * 5) * (baseLevel / 100);
-          }
-
-          return (600 + skillLevel * 600 + skillBonusLv * 20 + totalSpl * 5) * (baseLevel / 100);
-        }
-
         if (this.learnLv('Commune with Hyunrok')) {
           return (750 + skillLevel * 950 + skillBonusLv * 40 + totalSpl * 5) * (baseLevel / 100);
         }
@@ -295,12 +280,6 @@ export class SpiritHandler extends Doram {
         const skillBonusLv = this.learnLv('Mystical Creature Mastery');
 
         if (this.activeSkillLv('Skill Version') === 0) { // GGT
-          if (this.learnLv('Commune with Hyunrok')) {
-            return (800 + skillLevel * 1100 + skillBonusLv * 75 + totalSpl * 5) * (baseLevel / 100);
-          }
-
-          return (700 + skillLevel * 950 + skillBonusLv * 50 + totalSpl * 5) * (baseLevel / 100);
-        } else if (this.activeSkillLv('Skill Version') === 2) { // 260
           if (this.learnLv('Commune with Hyunrok')) {
             return (1050 + skillLevel * 1850 + skillBonusLv * 75 + totalSpl * 5) * (baseLevel / 100);
           }

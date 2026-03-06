@@ -199,11 +199,7 @@ export class DragonKnight extends RuneKnight {
       vct: 0,
       cd: 0.7,
       totalHit: 2,
-      canCri: () => {
-        if (this.activeSkillLv('Skill Version') === 0) return false;
-
-        return true;
-      },
+      canCri: true,
       criDmgPercentage: 0.5,
       baseCriPercentage: 1,
       verifyItemFn: ({ weapon }) => {
@@ -221,8 +217,6 @@ export class DragonKnight extends RuneKnight {
         const baseLevel = model.level;
 
         if (this.activeSkillLv('Skill Version') === 0) // GGT
-          return (300 + skillLevel * 700 + totalPow * 7) * (baseLevel / 100);
-        else if (this.activeSkillLv('Skill Version') === 2) // 260
           return (200 + skillLevel * 750 + totalPow * 7) * (baseLevel / 100);
         else// KRO
           return (350 + skillLevel * 820 + totalPow * 7) * (baseLevel / 100);
@@ -235,11 +229,7 @@ export class DragonKnight extends RuneKnight {
       acd: 0.5,
       fct: 0,
       vct: 0,
-      cd: () => {
-        if (this.activeSkillLv('Skill Version') === 0) return 0.3;
-
-        return 0.35;
-      },
+      cd: 0.35,
       canCri: true,
       baseCriPercentage: 1,
       criDmgPercentage: 0.5,
@@ -257,8 +247,6 @@ export class DragonKnight extends RuneKnight {
         const baseLevel = model.level;
 
         if (this.activeSkillLv('Skill Version') === 0) // GGT
-          return (100 + skillLevel * 170 + totalPow * 5) * (baseLevel / 100);
-        else if (this.activeSkillLv('Skill Version') === 2) // 260
           return (200 + skillLevel * 400 + totalPow * 5) * (baseLevel / 100);
         else // KRO
           return (300 + skillLevel * 750 + totalPow * 5) * (baseLevel / 100);
@@ -285,8 +273,6 @@ export class DragonKnight extends RuneKnight {
         const { weight, baseWeaponLevel } = weapon.data;
 
         if (this.activeSkillLv('Skill Version') === 0) // GGT
-          return (400 + skillLevel * 600 + totalPow * 7 + weight * baseWeaponLevel) * (baseLevel / 100);
-        else if (this.activeSkillLv('Skill Version') === 2) // 260
           return (350 + skillLevel * 1600 + totalPow * 10 + weight * baseWeaponLevel) * (baseLevel / 100);
         else // KRO
           return (1000 + skillLevel * 3800 + totalPow * 10 + weight * baseWeaponLevel) * (baseLevel / 100);
