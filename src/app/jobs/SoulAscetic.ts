@@ -335,6 +335,26 @@ export class SoulAscetic extends SoulReaper {
         return (50 + skillLevel * (250 + talisMaster * 15) + totalSpl * 5) * (baseLevel / 100);
       },
     },
+    {
+      name: 'Talisman of Soul Stealing',
+      label: 'Talisman of Soul Stealing Lv5',
+      value: 'Talisman of Soul Stealing==5',
+      acd: 0,
+      fct: 1.5,
+      vct: 3,
+      cd: 1,
+      isMatk: true,
+      hit: 1,
+      formula: (input: AtkSkillFormulaInput): number => {
+        const { model, skillLevel, status } = input;
+        const { totalSpl } = status;
+        const baseLevel = model.level;
+        const soulMasteryLv = this.learnLv('Soul Mastery');
+        const talisMaster = this.learnLv('Talisman Mastery');
+
+        return (500 + skillLevel * (1250 + (talisMaster + soulMasteryLv) * 7) + totalSpl * 3) * (baseLevel / 100);
+      },
+    },
   ];
   private readonly activeSkillList4th: ActiveSkillModel[] = [
     {
