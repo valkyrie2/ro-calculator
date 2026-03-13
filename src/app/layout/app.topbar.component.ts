@@ -209,6 +209,7 @@ export class AppTopBarComponent implements OnInit, OnDestroy {
       v: 'Extra v55',
       date: '12-03-2569',
       logs: [
+        "เพิ่มไอเทม GGT 11/03/2569",
         "แก้บัคคอมโบปาก Starhall กับรองเท้า eden ให้เพิ่ม HP,SP ถูกต้อง",
         "แก้บัค Shadow Cross Stone Garment คอมโบเพิ่ม C.Rate ไม่ทำงาน",
         "เพิ่มสกิล Talisman of Soul Stealing",
