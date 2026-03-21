@@ -501,7 +501,7 @@
                       unit=" Hits/s"
                       styleClass="summary_highlight"
                       styleClass2="summary_compare"
-                      [max]="(_s.summary?.calcSkill?.totalHitPerSec) > 5 ? 5 : _s.summary?.calcSkill?.totalHitPerSec"
+                      [max]="_s.summary?.calcSkill?.totalHitPerSec"
                     ></app-calc-value>
                   </div>
                 </div>
