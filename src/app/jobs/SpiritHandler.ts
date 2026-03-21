@@ -180,14 +180,14 @@ export class SpiritHandler extends Doram {
         const skillBonusLv = this.learnLv('Mystical Creature Mastery');
 
         if (this.activeSkillLv('Skill Version') === 0) { // GGT
-          if (this.learnLv('Commune with Chulho')) {
+          if (this.learnLv('Commune with Chulho') || this.isSkillActive('Temporary Communion')) {
             return (850 + skillLevel * (2050) + skillBonusLv * 100 + totalPow * 5) * (baseLevel / 100);
           }
 
           return (850 + skillLevel * (1650) + skillBonusLv * 50 + totalPow * 5) * (baseLevel / 100);
         }
         else { // KRO
-          if (this.learnLv('Commune with Chulho')) {
+          if (this.learnLv('Commune with Chulho') || this.isSkillActive('Temporary Communion')) {
             return (1100 + skillLevel * (2600) + skillBonusLv * 100 + totalPow * 5) * (baseLevel / 100);
           }
 
@@ -208,7 +208,7 @@ export class SpiritHandler extends Doram {
         const { totalPow } = status;
         const baseLevel = model.level;
         const skillBonusLv = this.learnLv('Mystical Creature Mastery');
-        if (this.learnLv('Commune with Chulho')) {
+        if (this.learnLv('Commune with Chulho') || this.isSkillActive('Temporary Communion')) {
           return (700 + skillLevel * (1150) + skillBonusLv * 100 + totalPow * 5) * (baseLevel / 100);
         }
 
@@ -232,7 +232,7 @@ export class SpiritHandler extends Doram {
         const { totalPow } = status;
         const baseLevel = model.level;
         const skillBonusLv = this.learnLv('Mystical Creature Mastery');
-        if (this.learnLv('Commune with Chulho')) {
+        if (this.learnLv('Commune with Chulho') || this.isSkillActive('Temporary Communion')) {
           return (250 + skillLevel * (350) + skillBonusLv * 20 + totalPow * 5) * (baseLevel / 100);
         }
 
@@ -256,7 +256,7 @@ export class SpiritHandler extends Doram {
         const baseLevel = model.level;
         const skillBonusLv = this.learnLv('Mystical Creature Mastery');
 
-        if (this.learnLv('Commune with Hyunrok')) {
+        if (this.learnLv('Commune with Hyunrok') || this.isSkillActive('Temporary Communion')) {
           return (750 + skillLevel * 950 + skillBonusLv * 40 + totalSpl * 5) * (baseLevel / 100);
         }
 
@@ -280,7 +280,7 @@ export class SpiritHandler extends Doram {
         const skillBonusLv = this.learnLv('Mystical Creature Mastery');
 
         if (this.activeSkillLv('Skill Version') === 0) { // GGT
-          if (this.learnLv('Commune with Hyunrok')) {
+          if (this.learnLv('Commune with Hyunrok') || this.isSkillActive('Temporary Communion')) {
             return (1050 + skillLevel * 1850 + skillBonusLv * 75 + totalSpl * 5) * (baseLevel / 100);
           }
 
@@ -288,7 +288,7 @@ export class SpiritHandler extends Doram {
         }
 
         // KRO
-        if (this.learnLv('Commune with Hyunrok')) {
+        if (this.learnLv('Commune with Hyunrok') || this.isSkillActive('Temporary Communion')) {
           return (1100 + skillLevel * 2450 + skillBonusLv * 75 + totalSpl * 5) * (baseLevel / 100);
         }
 
@@ -310,6 +310,19 @@ export class SpiritHandler extends Doram {
         { label: 'Darkness', value: 5, isUse: true, },
         { label: 'Holy', value: 6, isUse: true, },
         { label: 'Nuetral', value: 7, isUse: true, },
+      ],
+    },
+    {
+      label: 'Temporary Communion',
+      name: 'Temporary Communion',
+      inputType: 'dropdown',
+      dropdown: [
+        { label: '-', isUse: false, value: 0 },
+        { label: 'Lv 1', isUse: true, value: 1, bonus: { pAtk: 3, sMatk: 3, hplus: 3 } },
+        { label: 'Lv 2', isUse: true, value: 2, bonus: { pAtk: 6, sMatk: 6, hplus: 6 } },
+        { label: 'Lv 3', isUse: true, value: 3, bonus: { pAtk: 9, sMatk: 9, hplus: 9 } },
+        { label: 'Lv 4', isUse: true, value: 4, bonus: { pAtk: 12, sMatk: 12, hplus: 12 } },
+        { label: 'Lv 5', isUse: true, value: 5, bonus: { pAtk: 15, sMatk: 15, hplus: 15 } },
       ],
     },
   ];

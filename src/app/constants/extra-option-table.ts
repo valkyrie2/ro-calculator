@@ -6,7 +6,7 @@ export const ExtraOptionTable = {
   Temporal_M_Dex: 1,
   Temporal_M_Luk: 1,
 
-  Temporal_Armor_TW: 2,
+  Temporal_Armor_TW: 3,
   Temporal_Cape_TW: 1,
 
   Imperial_Breath_Armor: 1,
@@ -140,4 +140,6 @@ export const ExtraOptionTable = {
   MD_Geffen_Shield: 3,
   MD_Geffen_Shield2: 3,
   //Spade_Ace_Melee: 2,
+  Temporal_Armor_TW_LT: 3,
+
 } as const;

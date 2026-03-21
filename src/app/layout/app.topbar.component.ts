@@ -206,6 +206,15 @@ export class AppTopBarComponent implements OnInit, OnDestroy {
 
   updates: { v: string; date: string; logs: string[]; }[] = [
     {
+      v: 'Extra v56',
+      date: '21-03-2569',
+      logs: [
+        "แก้ maximum hit/s ของสกิลให้เป็น 7 ครั้ง/วินาที",
+        "เพิ่มบัพ Temporary Communion ให้อาชีพ Spirit Handler",
+        "เพิ่มออฟ 3 แถวให้ Exotic Temporal Armor, Exotic Temporal Armor-LT",
+      ],
+    },
+    {
       v: 'Extra v55',
       date: '12-03-2569',
       logs: [
