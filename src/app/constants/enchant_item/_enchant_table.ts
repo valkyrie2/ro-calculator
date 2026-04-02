@@ -1876,7 +1876,7 @@ export const EnchantTable: EntTable[] = [
 
   { name: "ABC_Dim_Ring_TH", enchants: [null, ['DimAcc_ABC'], dim_ring_LT3, dim_ring_LT4] },
   { name: "IQ_Dim_Ring_TH", enchants: [null, ['DimAcc_IQ'], dim_ring_LT3, dim_ring_LT4] },
-  { name: "WH_Dim_Ring_TH", enchants: [null, ['DimAcc_WH'], dim_ring_LT3, dim_ring_LT4] },
+  { name: "WH_Dim_Ring_TH", enchants: [null, ['DimAcc_WH','DimAcc_WH_Gl'], dim_ring_LT3, dim_ring_LT4] },
   { name: "CD_Dim_Ring_TH", enchants: [null, ['DimAcc_CD'], dim_ring_LT3, dim_ring_LT4] },
   { name: "MT_Dim_Ring_TH", enchants: [null, ['DimAcc_MT'], dim_ring_LT3, dim_ring_LT4] },
   { name: "TR_Dim_Ring_TH", enchants: [null, ['DimAcc_TR'], dim_ring_LT3, dim_ring_LT4] },
@@ -1884,6 +1884,10 @@ export const EnchantTable: EntTable[] = [
   { name: "SHC_Dim_Ring_TH", enchants: [null, ['DimAcc_SHC'], dim_ring_LT3, dim_ring_LT4] },
   { name: "DK_Dim_Ring_TH", enchants: [null, ['DimAcc_DK'], dim_ring_LT3, dim_ring_LT4] },
   { name: "SS_Dim_Ring_TH", enchants: [null, ['DimAcc_SS'], dim_ring_LT3, dim_ring_LT4] },
+  { name: "IG_Dim_Ring_TH", enchants: [null, ['DimAcc_IG'], dim_ring_LT3, dim_ring_LT4] },
+  { name: "HN_Dim_Ring_TH", enchants: [null, ['DimAcc_HN'], dim_ring_LT3, dim_ring_LT4] },
+  { name: "SKE_Dim_Ring_TH", enchants: [null, ['DimAcc_SKE'], dim_ring_LT3, dim_ring_LT4] },
+  { name: "EM_Dim_Ring_TH", enchants: [null, ['DimAcc_EM'], dim_ring_LT3, dim_ring_LT4] },
 
   { name: "S_BP9_Melee_A", enchants: [null, snow_shadow2, snow_shadow3, snow_shadow4] },
   { name: "S_BP9_Melee_S", enchants: [null, snow_shadow2, snow_shadow3, snow_shadow4] },
