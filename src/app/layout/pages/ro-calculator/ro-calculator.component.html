@@ -1786,6 +1786,22 @@
               </div>
             </p-fieldset>
           </div>
+          <div class="col-12" [hidden]="!isEnableCompare || !chanceList2?.length">
+            <p-fieldset legend="Has a chance (Compare)" [toggleable]="true">
+              <div *ngFor="let category of chanceList2" class="field-checkbox my-2">
+                <p-checkbox
+                  name="groupCompare"
+                  [value]="category.name"
+                  [(ngModel)]="selectedChances2"
+                  [inputId]="category.name + '_compare'"
+                  (ngModelChange)="onSelectCompareChance($event)"
+                ></p-checkbox>
+                <label class="font-semibold summary_compare" [for]="category.name + '_compare'">{{ category.label }}</label
+                ><i class="pi pi-arrow-right px-1"></i>
+                <span>{{ category.label2 }}</span>
+              </div>
+            </p-fieldset>
+          </div>
 
           <!-- Monster -->
           <div class="col-5">
@@ -1907,6 +1923,7 @@
                   [isEnableCompare]="isEnableCompare"
                   [isInProcessingPreset]="isInProcessingPreset"
                   [selectedChances]="selectedChances"
+                  [selectedChances2]="selectedChances2"
                   [hideBasicAtk]="hideBasicAtk"
                   [showLeftWeapon]="showLeftWeapon"
                   (showElementTableClick)="onShowElementalTableClick()"

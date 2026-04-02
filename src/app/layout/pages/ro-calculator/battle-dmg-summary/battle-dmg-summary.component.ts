@@ -13,6 +13,7 @@ export class BattleDmgSummaryComponent {
   @Input({ required: true }) isEnableCompare: boolean;
   @Input({ required: true }) isInProcessingPreset: boolean;
   @Input({ required: true }) selectedChances: any[];
+  @Input({ required: true }) selectedChances2: any[];
   @Input({ required: true }) hideBasicAtk: boolean;
   @Input({ required: true }) showLeftWeapon: boolean;
 

@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ConfirmationService, MenuItem, MessageService, PrimeIcons, SelectItemGroup } from 'primeng/api';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
-import { Observable, Subject, Subscription, catchError, debounceTime, filter, finalize, forkJoin, mergeMap, of, switchMap, take, tap, throwError } from 'rxjs';
+import { Observable, Subject, Subscription, catchError, debounceTime, finalize, forkJoin, mergeMap, of, switchMap, take, tap, throwError } from 'rxjs';
 import { AuthService, PresetModel, PresetService } from 'src/app/api-services';
 import { RoService } from 'src/app/api-services/ro.service';
 import { AllowedCompareItemTypes } from 'src/app/app-config';
@@ -262,6 +262,8 @@ export class RoCalculatorComponent implements OnInit, OnDestroy {
 
   chanceList = [] as ChanceModel[];
   selectedChances = [] as string[];
+  chanceList2 = [] as ChanceModel[];
+  selectedChances2 = [] as string[];
 
   isCalculating = false;
   private calculator = new Calculator();
@@ -525,6 +527,8 @@ export class RoCalculatorComponent implements OnInit, OnDestroy {
           this.calcCompare();
         } else {
           this.resetModel2();
+          this.chanceList2 = [];
+          this.selectedChances2 = [];
         }
         this.onSelectItemDescription(this.isEnableCompare && Boolean(this.selectedCompareItemDesc));
 
@@ -536,24 +540,10 @@ export class RoCalculatorComponent implements OnInit, OnDestroy {
       .pipe(
         tap(() => (this.isCalculating = true)),
         debounceTime(300),
-        filter(() => {
-          const needCalc = this.selectedChances?.length > 0;
-          if (!needCalc) {
-            this.isCalculatingEvent.next(false);
-            this.calculator.setSelectedChances([]);
-            this.calculateToSelectedMonsters();
-          }
-
-          return needCalc;
-        }),
         tap(() => {
           this.calculator.setSelectedChances(this.selectedChances).recalcExtraBonus(this.model.selectedAtkSkill);
           this.totalSummary = this.calculator.getTotalSummary();
           this.calculateToSelectedMonsters();
-
-          if (this.isEnableCompare) {
-            this.onCompareItemChange();
-          }
         }),
         debounceTime(100),
       )
@@ -729,7 +719,7 @@ export class RoCalculatorComponent implements OnInit, OnDestroy {
     this.selectedColumns = defaultCols;
   }
 
-  private prepare(calculator: Calculator, compareModel?: any) {
+  private prepare(calculator: Calculator, compareModel?: any, selectedChanceList: string[] = this.selectedChances) {
     const { activeSkills, passiveSkills, selectedAtkSkill } = this.model;
     const { equipAtks, masteryAtks, activeSkillNames, learnedSkillMap } = this.selectedCharacter
       .setLearnSkills({
@@ -860,7 +850,7 @@ export class RoCalculatorComponent implements OnInit, OnDestroy {
       .setOffensiveSkill(selectedAtkSkill)
       .prepareAllItemBonus()
       .calcAllAtk()
-      .setSelectedChances(this.selectedChances)
+      .setSelectedChances(selectedChanceList)
       .calcAllDefs()
       .calculateHpSp({ isUseHpL: usedHpL })
       .calculateAllDamages(selectedAtkSkill);
@@ -898,9 +888,16 @@ export class RoCalculatorComponent implements OnInit, OnDestroy {
   private calcCompare() {
     if (this.compareItemNames?.length > 0) {
       const m2 = JSON.parse(JSON.stringify(this.model2));
-      const calc2 = this.prepare(this.calculator2, m2);
+      const calc2 = this.prepare(this.calculator2, m2, this.selectedChances2);
       this.totalSummary2 = calc2.getTotalSummary();
       this.compareItemSummaryModel = calc2.getItemSummary();
+
+      this.chanceList2 = calc2.chanceList;
+      this.selectedChances2 = this.chanceList2
+        .filter(({ name }) => {
+          return this.selectedChances2.includes(name);
+        })
+        .map(({ name }) => name);
     }
   }
 
@@ -2612,6 +2609,10 @@ export class RoCalculatorComponent implements OnInit, OnDestroy {
 
   onSelecteChance(_a: any) {
     this.updateChanceEvent.next(1);
+  }
+
+  onSelectCompareChance(_a: any) {
+    this.onCompareItemChange();
   }
 
   onJobPromotionClick() {
