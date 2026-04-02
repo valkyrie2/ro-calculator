@@ -210,7 +210,9 @@ export class AppTopBarComponent implements OnInit, OnDestroy {
       date: '2-04-2569',
       logs: [
         "เพิ่มไอเทม GGT 1/04/2569",
-        "แก้บัค Archmage Stone Garment คอมโบกับ Warlock Stone Lower ไม่ทำงาน"
+        "แก้บัค Archmage Stone Garment คอมโบกับ Warlock Stone Lower ไม่ทำงาน",
+        "แก้บัค Good&Evil Boot Abyss Chaser ไม่เพิ่มตีใกล้",
+        "เพิ่มสกิล Fire Ball lv5 ให้ทุกอาชีพ",
       ],
     },
     {
