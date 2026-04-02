@@ -323,6 +323,24 @@ export abstract class CharacterBase {
           return (2500 + skillLevel * 700) * (baseLevel / 100);
         },
       });
+      skills.push({
+        name: 'Fire Ball',
+        label: 'Fire Ball Lv5',
+        value: 'Fire Ball==5',
+        acd: 0.7,
+        fct: 0.2,
+        vct: 0.8,
+        cd: 0,
+        isMatk: true,
+        hit: 1,
+        element: ElementType.Fire,
+        formula: (input: AtkSkillFormulaInput): number => {
+          const { model, skillLevel } = input;
+          const baseLevel = model.level;
+
+          return (240);
+        },
+      });
     }
 
     if (environment.production) {
