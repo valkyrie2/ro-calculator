@@ -206,15 +206,25 @@ export class AppTopBarComponent implements OnInit, OnDestroy {
 
   updates: { v: string; date: string; logs: string[]; }[] = [
     {
+      v: 'Extra v58',
+      date: '06-04-2569',
+      logs: [
+        "เพิ่มสกิล Fire Ball Lv10 ให้สายอาชีพ Mage และ Super Novice",
+        "แก้คำอธิบายออฟอาวุธ Clock Tower ให้ตรงตาม GGT",
+        "แก้บัค Glacier Flower Spell Physical/Magical Lv5 ให้ได้ Patk และ Smatk ถูกต้อง",
+        "เพิ่ม Fire Condor Card และ Gatchaman Card (No Event)",
+      ],
+    },
+    {
       v: 'Extra v57.2',
-      date: '2-04-2569',
+      date: '02-04-2569',
       logs: [
         "สามารถเปรียบเทียบการติด proc ได้แล้ว",
       ],
     },
     {
       v: 'Extra v57',
-      date: '2-04-2569',
+      date: '02-04-2569',
       logs: [
         "เพิ่มไอเทม GGT 1/04/2569",
         "แก้บัค Archmage Stone Garment คอมโบกับ Warlock Stone Lower ไม่ทำงาน",

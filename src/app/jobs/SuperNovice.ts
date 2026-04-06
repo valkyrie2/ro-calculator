@@ -132,6 +132,21 @@ export class SuperNovice extends CharacterBase {
       },
     },
     {
+      label: 'Fire Ball Lv10',
+      name: 'Fire Ball',
+      value: 'Fire Ball==10',
+      acd: 0.7,
+      fct: 0.2,
+      vct: 0.8,
+      cd: 0,
+      isMatk: true,
+      hit: 1,
+      element: ElementType.Fire,
+      formula: (): number => {
+        return (340);
+      },
+    },
+    {
       label: "Heaven's Drive Lv5",
       name: "Heaven's Drive",
       value: "Heaven's Drive==5",

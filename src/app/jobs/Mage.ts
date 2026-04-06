@@ -215,6 +215,21 @@ export class Mage extends CharacterBase {
         return 100;
       },
     },
+    {
+      label: 'Fire Ball Lv10',
+      name: 'Fire Ball',
+      value: 'Fire Ball==10',
+      acd: 0.7,
+      fct: 0.2,
+      vct: 0.8,
+      cd: 0,
+      isMatk: true,
+      hit: 1,
+      element: ElementType.Fire,
+      formula: (): number => {
+        return (340);
+      },
+    },
   ];
   protected readonly _activeSkillList: ActiveSkillModel[] = [
     {
