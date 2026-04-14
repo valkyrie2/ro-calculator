@@ -2,6 +2,15 @@
   font-weight: 400 !important;
 }
 
+/* Equipment highlight on hover from formula breakdown */
+.equip-highlight {
+  outline: 2px solid var(--primary-color);
+  outline-offset: -1px;
+  background-color: rgba(76, 175, 80, 0.08);
+  border-radius: 4px;
+  transition: outline 0.15s, background-color 0.15s;
+}
+
 :host ::ng-deep .json_display .number-line {
   color: #adadaf !important;
 }

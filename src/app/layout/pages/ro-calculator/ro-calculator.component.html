@@ -498,7 +498,7 @@
     </div>
 
     <!-- Weapon + Ammo -->
-    <div class="grid grid-nogutter item_label_weapon_main">
+    <div class="grid grid-nogutter item_label_weapon_main" [class.equip-highlight]="highlightService.isEquipmentHighlighted('weapon')" (mouseenter)="highlightService.highlight('equipment', 'weapon')" (mouseleave)="highlightService.clear()">
       <div class="col-12">
         <app-equipment
           [itemType]="'weapon'"
@@ -592,7 +592,7 @@
         </app-equipment>
       </div>
     </div>
-    <div class="grid grid-nogutter item_label_leftWeapon_main">
+    <div class="grid grid-nogutter item_label_leftWeapon_main" [class.equip-highlight]="highlightService.isEquipmentHighlighted('leftWeapon')" (mouseenter)="highlightService.highlight('equipment', 'leftWeapon')" (mouseleave)="highlightService.clear()">
       <div class="col-12" [hidden]="!model.weapon || !showLeftWeapon || !!model.shield">
         <app-equipment
           [itemType]="'leftWeapon'"
@@ -657,7 +657,7 @@
     </div>
 
     <!-- Shield -->
-    <div class="grid grid-nogutter item_label_shield_main">
+    <div class="grid grid-nogutter item_label_shield_main" [class.equip-highlight]="highlightService.isEquipmentHighlighted('shield')" (mouseenter)="highlightService.highlight('equipment', 'shield')" (mouseleave)="highlightService.clear()">
       <div class="col-12" [hidden]="!model.weapon || hiddenMap.shield || !!model.leftWeapon">
         <app-equipment
           [itemType]="'shield'"
@@ -697,7 +697,7 @@
     </div>
 
     <!-- Head Upper -->
-    <div class="grid grid-nogutter item_label_head">
+    <div class="grid grid-nogutter item_label_head" [class.equip-highlight]="highlightService.isEquipmentHighlighted('headUpper')" (mouseenter)="highlightService.highlight('equipment', 'headUpper')" (mouseleave)="highlightService.clear()">
       <div class="col-12">
         <app-equipment
           [itemType]="'headUpper'"
@@ -752,7 +752,7 @@
     </div>
 
     <!-- Head Middle -->
-    <div class="grid grid-nogutter item_label_head">
+    <div class="grid grid-nogutter item_label_head" [class.equip-highlight]="highlightService.isEquipmentHighlighted('headMiddle')" (mouseenter)="highlightService.highlight('equipment', 'headMiddle')" (mouseleave)="highlightService.clear()">
       <div class="col-12">
         <app-equipment
           [itemType]="'headMiddle'"
@@ -805,7 +805,7 @@
     </div>
 
     <!-- Head Lower -->
-    <div class="grid grid-nogutter item_label_head">
+    <div class="grid grid-nogutter item_label_head" [class.equip-highlight]="highlightService.isEquipmentHighlighted('headLower')" (mouseenter)="highlightService.highlight('equipment', 'headLower')" (mouseleave)="highlightService.clear()">
       <div class="col-12">
         <app-equipment
           [itemType]="'headLower'"
@@ -847,7 +847,7 @@
     </div>
 
     <!-- Armor -->
-    <div class="grid grid-nogutter item_label_def">
+    <div class="grid grid-nogutter item_label_def" [class.equip-highlight]="highlightService.isEquipmentHighlighted('armor')" (mouseenter)="highlightService.highlight('equipment', 'armor')" (mouseleave)="highlightService.clear()">
       <div class="col-12">
         <app-equipment
           [itemType]="'armor'"
@@ -904,7 +904,7 @@
     </div>
 
     <!-- Garment -->
-    <div class="grid grid-nogutter item_label_def">
+    <div class="grid grid-nogutter item_label_def" [class.equip-highlight]="highlightService.isEquipmentHighlighted('garment')" (mouseenter)="highlightService.highlight('equipment', 'garment')" (mouseleave)="highlightService.clear()">
       <div class="col-12">
         <app-equipment
           [itemType]="'garment'"
@@ -959,7 +959,7 @@
     </div>
 
     <!-- Boot -->
-    <div class="grid grid-nogutter item_label_def">
+    <div class="grid grid-nogutter item_label_def" [class.equip-highlight]="highlightService.isEquipmentHighlighted('boot')" (mouseenter)="highlightService.highlight('equipment', 'boot')" (mouseleave)="highlightService.clear()">
       <div class="col-12">
         <app-equipment
           [itemType]="'boot'"
@@ -1008,7 +1008,7 @@
     </div>
 
     <!-- Acc Right -->
-    <div class="grid grid-nogutter item_label_acc">
+    <div class="grid grid-nogutter item_label_acc" [class.equip-highlight]="highlightService.isEquipmentHighlighted('accRight')" (mouseenter)="highlightService.highlight('equipment', 'accRight')" (mouseleave)="highlightService.clear()">
       <div class="col-12">
         <app-equipment
           [itemType]="'accRight'"
@@ -1064,7 +1064,7 @@
     </div>
 
     <!-- Acc Left -->
-    <div class="grid grid-nogutter item_label_acc">
+    <div class="grid grid-nogutter item_label_acc" [class.equip-highlight]="highlightService.isEquipmentHighlighted('accLeft')" (mouseenter)="highlightService.highlight('equipment', 'accLeft')" (mouseleave)="highlightService.clear()">
       <div class="col-12">
         <app-equipment
           [itemType]="'accLeft'"
@@ -1588,7 +1588,7 @@
 
   <!-- Right Side -->
   <div class="p-fluid col-5">
-    <p-accordion [multiple]="true" [activeIndex]="[2, 7]">
+    <p-accordion [multiple]="true" [activeIndex]="[2, 3, 8]">
       <p-accordionTab header="Consumables" class="consumable">
         <div class="grid grid-nogutter">
           <!-- Consumable -->
@@ -2000,6 +2000,15 @@
             </p-table>
           </div>
         </div>
+      </p-accordionTab>
+
+      <p-accordionTab header="Calculation Breakdown">
+        <app-calc-breakdown
+          [totalSummary]="totalSummary"
+          [breakdownData]="breakdownData"
+          [model]="model"
+          [isCalculating]="isCalculating"
+        ></app-calc-breakdown>
       </p-accordionTab>
 
       <p-accordionTab header="Skill bonus / Multiplier Summary">

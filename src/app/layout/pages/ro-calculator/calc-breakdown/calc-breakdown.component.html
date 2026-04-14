@@ -1,0 +1,22 @@
+<div class="grid grid-nogutter calc-breakdown">
+  <div class="loading_block" *ngIf="isCalculating">
+    <i class="pi pi-spin pi-spinner" style="font-size: 2rem"></i>
+  </div>
+
+  <div class="col-12" *ngIf="!steps.length">
+    <span class="text-500">Select a class and equipment to see the calculation breakdown.</span>
+  </div>
+
+  <div
+    *ngFor="let step of steps"
+    class="col-12 breakdown-step"
+    [class.breakdown-highlight]="step.isHighlighted"
+    [class.breakdown-result]="step.key === 'result'"
+    (mouseenter)="onStepMouseEnter(step)"
+    (mouseleave)="onStepMouseLeave()"
+  >
+    <div class="breakdown-label">{{ step.label }}</div>
+    <div class="breakdown-value">{{ step.value }}</div>
+    <div class="breakdown-detail" *ngIf="step.detail">{{ step.detail }}</div>
+  </div>
+</div>

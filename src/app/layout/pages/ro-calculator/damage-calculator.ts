@@ -1557,4 +1557,124 @@ export class DamageCalculator {
       totalStatusMatk: this.getStatusMatk(),
     };
   }
+
+  getBreakdownData(propertyAtk: ElementType) {
+    const sizePenalty = this.getSizePenalty();
+    const statusAtk = this.getStatusAtk();
+    const statusMatk = this.getStatusMatk();
+    const { equipAtk, skillAtk, ammoAtk, pseudoBuffATK, striking, total: extraAtkTotal } = this.getExtraAtk();
+    const { total: masteryTotal, skillAtk: masterySkillAtk, buffAtk: masteryBuffAtk, uiMastery, hiddenMastery } = this.getMasteryAtk();
+
+    const weaponData = this.weaponData?.data || {} as any;
+    const { baseWeaponAtk = 0, baseWeaponLevel = 0, refineBonus = 0, overUpgradeBonus = 0, highUpgradeBonus = 0 } = weaponData;
+    const variance = baseWeaponAtk * baseWeaponLevel * 0.05;
+
+    const atkPercent = this.totalBonus.atkPercent || 0;
+    const matkPercent = this.totalBonus.matkPercent || 0;
+
+    const raceP = this.getRaceMultiplier('p');
+    const sizeP = this.getSizeMultiplier('p');
+    const elementP = this.getElementMultiplier('p');
+    const classP = this.getMonsterTypeMultiplier('p');
+
+    const raceM = this.getRaceMultiplier('m');
+    const sizeM = this.getSizeMultiplier('m');
+    const elementM = this.getElementMultiplier('m');
+    const classM = this.getMonsterTypeMultiplier('m');
+
+    const propertyMultiplier = this.getPropertyMultiplier(propertyAtk);
+    const pAtkBonus = this.traitBonus.pAtk;
+    const sMatkBonus = this.traitBonus.sMatk;
+    const cRateBonus = this.traitBonus.cRate;
+
+    const { def, softDef, res } = this.monster?.data || { def: 0, softDef: 0, res: 0 };
+    const { mdef, mres } = this.monster?.data || { mdef: 0, mres: 0 };
+    const totalPhyPene = this.isActiveInfilltration ? 100 : this.getTotalPhysicalPene();
+    const totalMagPene = this.getTotalMagicalPene();
+    const { totalPeneRes, totalPeneMres } = this.getPeneResMres();
+    const { melee, range, criDmg, hitDmg } = this.totalBonus;
+
+    const { weaponMinMatk, weaponMaxMatk } = this.getWeaponMatk();
+    const extraMatk = this.getExtraMatk();
+
+    return {
+      // Status
+      statusAtk,
+      statusMatk,
+
+      // Weapon
+      weaponBaseAtk: baseWeaponAtk,
+      weaponLevel: baseWeaponLevel,
+      weaponRefine: refineBonus,
+      weaponOverUpgrade: overUpgradeBonus,
+      weaponHighUpgrade: highUpgradeBonus,
+      weaponVariance: round(variance, 1),
+      weaponTypeName: weaponData.typeName || '-',
+
+      // Extra ATK
+      equipAtk,
+      skillAtk,
+      ammoAtk,
+      pseudoBuffATK,
+      strikingAtk: striking,
+      extraAtkTotal,
+
+      // Mastery
+      masteryTotal,
+      masterySkillAtk,
+      masteryBuffAtk,
+      masteryUi: uiMastery,
+      masteryHidden: hiddenMastery,
+
+      // Multipliers (Physical)
+      atkPercent,
+      raceMultP: raceP,
+      sizeMultP: sizeP,
+      elementMultP: elementP,
+      classMultP: classP,
+
+      // Multipliers (Magical)
+      matkPercent,
+      raceMultM: raceM,
+      sizeMultM: sizeM,
+      elementMultM: elementM,
+      classMultM: classM,
+
+      // Property
+      propertyMultiplier,
+      sizePenalty: round(sizePenalty * 100, 1),
+
+      // Trait
+      pAtk: pAtkBonus,
+      sMatk: sMatkBonus,
+      cRate: cRateBonus,
+
+      // Defense
+      monsterDef: def,
+      monsterSoftDef: softDef,
+      monsterRes: res,
+      monsterMdef: mdef,
+      monsterMres: mres,
+      physicalPene: totalPhyPene,
+      magicalPene: totalMagPene,
+      peneRes: Math.min(totalPeneRes, 50),
+      peneMres: Math.min(totalPeneMres, 50),
+
+      // Range/Melee/Cri
+      meleePercent: melee,
+      rangePercent: range,
+      criDmgPercent: criDmg,
+      hitDmgPercent: hitDmg,
+
+      // MATK
+      weaponMinMatk,
+      weaponMaxMatk,
+      extraMatk,
+
+      // Final multipliers
+      finalMultipliers: [...this.finalMultipliers],
+      finalPhyMultipliers: [...this.finalPhyMultipliers],
+      finalMagicMultipliers: [...this.finalMagicMultipliers],
+    };
+  }
 }

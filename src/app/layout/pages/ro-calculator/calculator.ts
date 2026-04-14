@@ -1484,6 +1484,10 @@ export class Calculator {
     };
   }
 
+  getBreakdownData() {
+    return this.dmgCalculator.getBreakdownData(this.propertyBasicAtk);
+  }
+
   getTotalSummary() {
     const { baseWeaponAtk = 0, refineBonus = 0 } = this.leftWeaponData?.data || {};
     const { totalBuffAtk, totalEquipAtk, totalHideMasteryAtk, totalMasteryAtk, totalStatusAtk, totalStatusMatk } = this.dmgCalculator.atkSummaryForUI;

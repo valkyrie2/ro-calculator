@@ -59,6 +59,7 @@ import { MonsterModel } from '../../../models/monster.model';
 import { LayoutService } from '../../service/app.layout.service';
 import { BaseStateCalculator } from './base-state-calculator';
 import { Calculator } from './calculator';
+import { HighlightService } from './calc-breakdown/highlight.service';
 import { MonsterDataViewComponent } from './monster-data-view/monster-data-view.component';
 import { PresetTableComponent } from './preset-table/preset-table.component';
 
@@ -126,7 +127,7 @@ const HideHpSp = {
   selector: 'app-ro-calculator',
   templateUrl: './ro-calculator.component.html',
   styleUrls: ['./ro-calculator.component.css'],
-  providers: [ConfirmationService, MessageService, DialogService],
+  providers: [ConfirmationService, MessageService, DialogService, HighlightService],
 })
 export class RoCalculatorComponent implements OnInit, OnDestroy {
   updateItemEvent = new Subject();
@@ -275,6 +276,7 @@ export class RoCalculatorComponent implements OnInit, OnDestroy {
   itemSummary2: any;
   modelSummary: any;
   totalSummary: any;
+  breakdownData: any;
 
   elementTable: ElementDataModel[];
   raceTable: RaceDataModel[];
@@ -347,6 +349,7 @@ export class RoCalculatorComponent implements OnInit, OnDestroy {
     private readonly layoutService: LayoutService,
     private readonly authService: AuthService,
     private readonly presetService: PresetService,
+    public readonly highlightService: HighlightService,
   ) { }
 
   ngOnInit() {
@@ -543,6 +546,7 @@ export class RoCalculatorComponent implements OnInit, OnDestroy {
         tap(() => {
           this.calculator.setSelectedChances(this.selectedChances).recalcExtraBonus(this.model.selectedAtkSkill);
           this.totalSummary = this.calculator.getTotalSummary();
+          this.breakdownData = this.calculator.getBreakdownData();
           this.calculateToSelectedMonsters();
         }),
         debounceTime(100),
@@ -862,6 +866,7 @@ export class RoCalculatorComponent implements OnInit, OnDestroy {
     const calc = this.prepare(this.calculator);
 
     this.totalSummary = calc.getTotalSummary();
+    this.breakdownData = calc.getBreakdownData();
     const modelSummary = calc.getModelSummary() as any;
     this.modelSummary = { ...modelSummary, rawOptionTxts: modelSummary.rawOptionTxts.filter(Boolean) };
     const x = calc.getItemSummary();

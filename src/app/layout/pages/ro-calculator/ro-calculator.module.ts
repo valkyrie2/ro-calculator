@@ -47,6 +47,7 @@ import { BattleDmgSummaryComponent } from './battle-dmg-summary/battle-dmg-summa
 import { BattleMonsterSummaryComponent } from './battle-monster-summary/battle-monster-summary.component';
 import { EquipmentCosEnchantComponent } from './equipment-cos-enchant/equipment-cos-enchant.component';
 import { StatusInputComponent } from './status-input/status-input.component';
+import { CalcBreakdownComponent } from './calc-breakdown/calc-breakdown.component';
 
 @NgModule({
   imports: [
@@ -99,6 +100,7 @@ import { StatusInputComponent } from './status-input/status-input.component';
     BattleMonsterSummaryComponent,
     EquipmentCosEnchantComponent,
     StatusInputComponent,
+    CalcBreakdownComponent,
   ],
   exports: [CalcValueComponent],
 })
