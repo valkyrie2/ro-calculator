@@ -60,6 +60,7 @@ import { LayoutService } from '../../service/app.layout.service';
 import { BaseStateCalculator } from './base-state-calculator';
 import { Calculator } from './calculator';
 import { HighlightService } from './calc-breakdown/highlight.service';
+import { CustomBonusRow } from './custom-bonus/custom-bonus.component';
 import { MonsterDataViewComponent } from './monster-data-view/monster-data-view.component';
 import { PresetTableComponent } from './preset-table/preset-table.component';
 
@@ -166,6 +167,7 @@ export class RoCalculatorComponent implements OnInit, OnDestroy {
   propertyAtkList = ElementConverterList;
 
   optionList: any[] = createExtraOptionList();
+  customBonuses: CustomBonusRow[] = [];
   itemList: ItemListModel = {} as any;
 
   weaponList: DropdownModel[] = [];
@@ -848,7 +850,10 @@ export class RoCalculatorComponent implements OnInit, OnDestroy {
       .setMasterySkillAtk(masteryAtks)
       .setConsumables(consumeData)
       .setAspdPotion(aspdPotion)
-      .setExtraOptions(this.getOptionScripts(!compareModel ? this.model.rawOptionTxts : rawOptionTxts))
+      .setExtraOptions([
+        ...this.getOptionScripts(!compareModel ? this.model.rawOptionTxts : rawOptionTxts),
+        ...this.customBonuses.filter(b => b.attr && b.value !== 0).map(b => ({ [b.attr]: b.value })),
+      ])
       .setUsedSkillNames(activeSkillNames)
       .setLearnedSkills(learnedSkillMap)
       .setOffensiveSkill(selectedAtkSkill)
@@ -2460,6 +2465,11 @@ export class RoCalculatorComponent implements OnInit, OnDestroy {
   }
 
   onConsumableChange() {
+    this.updateItemEvent.next(1);
+  }
+
+  onCustomBonusChange(bonuses: CustomBonusRow[]) {
+    this.customBonuses = bonuses;
     this.updateItemEvent.next(1);
   }
 

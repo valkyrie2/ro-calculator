@@ -1,0 +1,13 @@
+.custom-bonus-container {
+  padding: 0.25rem;
+}
+
+.bonus-row {
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 4px;
+  padding: 0.25rem;
+}
+
+.bonus-row:hover {
+  background: rgba(255, 255, 255, 0.06);
+}

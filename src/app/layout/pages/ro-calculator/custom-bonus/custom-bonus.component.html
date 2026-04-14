@@ -1,0 +1,54 @@
+<div class="custom-bonus-container">
+  <div class="custom-bonus-header flex align-items-center justify-content-between mb-2">
+    <span class="text-sm font-bold">Custom Stat Modifiers</span>
+    <div class="flex gap-1">
+      <button pButton type="button" icon="pi pi-plus" label="Add" class="p-button-sm p-button-success" (click)="addRow()"></button>
+      <button pButton type="button" icon="pi pi-trash" label="Clear" class="p-button-sm p-button-danger p-button-outlined" (click)="clearAll()" *ngIf="rows.length > 0"></button>
+    </div>
+  </div>
+
+  <div class="custom-bonus-rows">
+    <div class="bonus-row flex align-items-center gap-2 mb-2" *ngFor="let row of rows; let i = index; trackBy: trackByIndex">
+      <p-dropdown
+        [options]="bonusGroups"
+        [(ngModel)]="row.attr"
+        [group]="true"
+        [filter]="true"
+        filterBy="label"
+        [showClear]="true"
+        placeholder="Select stat..."
+        [style]="{ width: '100%', minWidth: '0' }"
+        class="flex-grow-1"
+        appendTo="body"
+        (onChange)="onRowChange()"
+      >
+        <ng-template let-group pTemplate="group">
+          <div class="flex align-items-center">
+            <span class="font-bold text-sm">{{ group.label }}</span>
+          </div>
+        </ng-template>
+      </p-dropdown>
+      <p-inputNumber
+        [(ngModel)]="row.value"
+        [showButtons]="true"
+        [min]="-999"
+        [max]="999"
+        [style]="{ width: '120px' }"
+        [inputStyle]="{ width: '60px', textAlign: 'center' }"
+        (onInput)="onRowChange()"
+        (onBlur)="onRowChange()"
+      ></p-inputNumber>
+      <button
+        pButton
+        type="button"
+        icon="pi pi-times"
+        class="p-button-sm p-button-danger p-button-text"
+        (click)="removeRow(i)"
+      ></button>
+    </div>
+  </div>
+
+  <div *ngIf="rows.length === 0" class="text-center p-3 text-color-secondary text-sm">
+    No custom modifiers. Click <strong>Add</strong> to add free stat bonuses.
+  </div>
+</div>
