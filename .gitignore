@@ -5,6 +5,7 @@
 /tmp
 /out-tsc
 /bazel-out
+/tong-calc-ro-host
 
 # Node
 /node_modules
