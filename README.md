@@ -1,8 +1,8 @@
-# RO Calculator
+# Ragnarok Online Calculator
 
 A **Ragnarok Online damage/DPS calculator** built with Angular 16, PrimeNG, and PrimeFlex. Supports 55+ job classes, item/equipment systems with bonuses, skill-based damage calculations, user authentication, and shareable presets.
 
-**Live Site:** [https://attackjom.github.io/tong-calc-ro-host/#/](https://attackjom.github.io/tong-calc-ro-host/#/)
+**Live Site:** [https://valkyrie2.github.io/ro-calculator/#/](https://valkyrie2.github.io/ro-calculator/#/)
 
 ---
 
@@ -164,7 +164,7 @@ ro-calculator/
 │       ├── environment.model.ts      # Environment interface definition
 │       ├── environment.ts            # Development config
 │       └── environment.prod.ts       # Production config
-├── tong-calc-ro-host/                # GitHub Pages deployment output
+├── docs/                             # GitHub Pages deployment output (generated)
 ├── tools/                            # Python data scraping/parsing scripts
 │   ├── item_download.py              #   Download item data
 │   ├── item_parser.py                #   Parse items to JSON
@@ -306,7 +306,24 @@ During production build, `environment.ts` is replaced with `environment.prod.ts`
 
 ## Deployment
 
-The project is deployed to **GitHub Pages** under the [tong-calc-ro-host](https://github.com/attackjom/tong-calc-ro-host) repository.
+The project is deployed to **GitHub Pages** from the `docs/` folder in this repository.
+
+### One-Time Setup
+
+1. **Create a GitHub repository** named `ro-calculator` under your account.
+
+2. **Push your code:**
+   ```bash
+   git remote add origin https://github.com/valkyrie2/ro-calculator.git
+   git branch -M main
+   git push -u origin main
+   ```
+
+3. **Enable GitHub Pages:**
+   - Go to **Settings → Pages** in your repository.
+   - Under **Source**, select **Deploy from a branch**.
+   - Set branch to `main` and folder to `/docs`.
+   - Click **Save**.
 
 ### Deploy Steps
 
@@ -314,7 +331,7 @@ The project is deployed to **GitHub Pages** under the [tong-calc-ro-host](https:
    ```bash
    npm run predeploy
    ```
-   This builds the Angular app with output hashing and places it in `../tong-calc-ro-host/docs/`.
+   This builds the Angular app with output hashing and places it in the `docs/` folder with `--base-href /ro-calculator/`.
 
 2. **Copy index.html for SPA routing:**
    ```bash
@@ -322,9 +339,8 @@ The project is deployed to **GitHub Pages** under the [tong-calc-ro-host](https:
    ```
    Copies `index.html` to `404.html` so that GitHub Pages handles client-side routing correctly.
 
-3. **Push the host repo:**
+3. **Commit and push:**
    ```bash
-   cd ../tong-calc-ro-host
    git add .
    git commit -m "deploy"
    git push
@@ -335,6 +351,10 @@ Or use the one-click script on Windows:
 ```bash
 deploy.bat
 ```
+
+After pushing, your site will be live at **https://valkyrie2.github.io/ro-calculator/#/**.
+
+> **Note:** The first deployment may take a few minutes for GitHub Pages to activate.
 
 ---
 

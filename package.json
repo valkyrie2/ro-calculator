@@ -9,8 +9,8 @@
         "test": "ng test",
         "lint": "ng lint --fix",
         "e2e": "ng e2e",
-        "predeploy": "ng build --output-hashing all --output-path ../tong-calc-ro-host/docs --base-href ../tong-calc-ro-host/",
-        "deploy": "copy ..\\tong-calc-ro-host\\docs\\index.html ..\\tong-calc-ro-host\\docs\\404.html"
+        "predeploy": "ng build --output-hashing all --output-path docs --base-href /ro-calculator/",
+        "deploy": "copy docs\\index.html docs\\404.html"
     },
     "private": true,
     "dependencies": {
