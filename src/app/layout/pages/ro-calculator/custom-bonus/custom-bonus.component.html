@@ -1,4 +1,48 @@
 <div class="custom-bonus-container">
+  <!-- Compare Toggle -->
+  <div class="flex align-items-center gap-2 mb-3 compare-toggle">
+    <p-inputSwitch [(ngModel)]="isCompare" (onChange)="onCompareToggle()"></p-inputSwitch>
+    <span class="text-sm" [class.font-bold]="isCompare" [class.text-primary]="isCompare">
+      Compare mode
+    </span>
+    <span class="text-xs text-color-secondary" *ngIf="isCompare">(shows damage diff vs current equipment)</span>
+  </div>
+
+  <!-- Replace Slot & Card (when compare is on) -->
+  <div *ngIf="isCompare" class="slot-card-section mb-3">
+    <div class="flex align-items-center gap-2 mb-2">
+      <span class="text-sm white-space-nowrap">Replace slot:</span>
+      <p-dropdown
+        [options]="equipmentSlots"
+        [(ngModel)]="selectedSlot"
+        [showClear]="true"
+        placeholder="Select equipment slot..."
+        [style]="{ minWidth: '180px' }"
+        appendTo="body"
+        (onChange)="onSlotChange()"
+      ></p-dropdown>
+    </div>
+    <div class="flex align-items-center gap-2" *ngIf="selectedSlot && currentCardList.length > 0">
+      <span class="text-sm white-space-nowrap">Card:</span>
+      <p-dropdown
+        [options]="currentCardList"
+        [(ngModel)]="selectedCardId"
+        [filter]="true"
+        filterBy="label,cardPrefix"
+        [showClear]="true"
+        placeholder="Select card..."
+        [style]="{ minWidth: '180px' }"
+        appendTo="body"
+        scrollHeight="350px"
+        (onChange)="onCardChange()"
+      ></p-dropdown>
+    </div>
+    <div *ngIf="selectedSlot" class="text-xs text-color-secondary mt-1">
+      Custom item replaces <strong>{{ selectedSlot }}</strong> slot in comparison
+    </div>
+  </div>
+
+  <!-- Stat Modifiers -->
   <div class="custom-bonus-header flex align-items-center justify-content-between mb-2">
     <span class="text-sm font-bold">Custom Stat Modifiers</span>
     <div class="flex gap-1">
@@ -48,7 +92,31 @@
     </div>
   </div>
 
-  <div *ngIf="rows.length === 0" class="text-center p-3 text-color-secondary text-sm">
-    No custom modifiers. Click <strong>Add</strong> to add free stat bonuses.
+  <div *ngIf="rows.length === 0" class="text-center p-2 text-color-secondary text-sm">
+    No custom modifiers. Click <strong>Add</strong> to add stat / skill damage bonuses.
+  </div>
+
+  <p-divider></p-divider>
+
+  <!-- Item Script JSON -->
+  <div class="mb-2">
+    <span class="text-sm font-bold">Item Script (JSON)</span>
+    <span class="text-xs text-color-secondary ml-2">Paste item script to simulate a custom item</span>
+  </div>
+  <textarea
+    pInputTextarea
+    [(ngModel)]="itemScriptJson"
+    (input)="onItemScriptChange()"
+    [rows]="4"
+    [autoResize]="true"
+    placeholder='{ "atk": [10], "p_race_all": [5], "Bash": [15] }'
+    class="w-full item-script-input"
+    spellcheck="false"
+  ></textarea>
+  <div *ngIf="itemScriptError" class="text-xs mt-1" style="color: var(--red-400)">
+    {{ itemScriptError }}
+  </div>
+  <div *ngIf="parsedItemScript && !itemScriptError" class="text-xs mt-1" style="color: var(--green-400)">
+    Parsed {{ objectKeys(parsedItemScript).length }} attribute(s)
   </div>
 </div>

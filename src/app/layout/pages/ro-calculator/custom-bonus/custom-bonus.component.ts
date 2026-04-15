@@ -1,10 +1,58 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { SelectItemGroup } from 'primeng/api';
+import { OFFENSIVE_SKILL_NAMES } from 'src/app/constants/skill-name';
 
 export interface CustomBonusRow {
   attr: string;
   value: number;
 }
+
+export interface CustomItemScript {
+  script: Record<string, number[]>;
+  error: string;
+}
+
+export interface CustomBonusOutput {
+  rows: CustomBonusRow[];
+  itemScript: Record<string, number[]> | null;
+  isCompare: boolean;
+  replaceSlot: string | null;
+  cardId: number | null;
+}
+
+const EQUIPMENT_SLOTS = [
+  { label: 'Weapon', value: 'weapon' },
+  { label: 'Left Weapon', value: 'leftWeapon' },
+  { label: 'Shield', value: 'shield' },
+  { label: 'Head Upper', value: 'headUpper' },
+  { label: 'Head Middle', value: 'headMiddle' },
+  { label: 'Head Lower', value: 'headLower' },
+  { label: 'Armor', value: 'armor' },
+  { label: 'Garment', value: 'garment' },
+  { label: 'Boots', value: 'boot' },
+  { label: 'Acc Left', value: 'accLeft' },
+  { label: 'Acc Right', value: 'accRight' },
+];
+
+const SLOT_CARD_LIST_MAP: Record<string, string> = {
+  weapon: 'weaponCardList',
+  leftWeapon: 'weaponCardList',
+  shield: 'shieldCardList',
+  headUpper: 'headCardList',
+  headMiddle: 'headCardList',
+  armor: 'armorCardList',
+  garment: 'garmentCardList',
+  boot: 'bootCardList',
+  accLeft: 'accLeftCardList',
+  accRight: 'accRightCardList',
+};
+
+const SKILL_DAMAGE_GROUP: SelectItemGroup = {
+  label: 'Skill Damage %',
+  items: OFFENSIVE_SKILL_NAMES
+    .filter((name) => !name.startsWith('cri_') && !name.startsWith('dmg__'))
+    .map((name) => ({ label: name, value: name })),
+};
 
 const BONUS_GROUPS: SelectItemGroup[] = [
   {
@@ -22,6 +70,7 @@ const BONUS_GROUPS: SelectItemGroup[] = [
       { label: 'Damage %', value: 'dmg' },
     ],
   },
+  SKILL_DAMAGE_GROUP,
   {
     label: 'Stats',
     items: [
@@ -251,10 +300,26 @@ const BONUS_GROUPS: SelectItemGroup[] = [
   styleUrls: ['./custom-bonus.component.css'],
 })
 export class CustomBonusComponent {
-  @Output() bonusChange = new EventEmitter<CustomBonusRow[]>();
+  @Output() bonusChange = new EventEmitter<CustomBonusOutput>();
+  @Input() isCompare = false;
+  @Input() cardLists: any = {};
 
   bonusGroups = BONUS_GROUPS;
+  equipmentSlots = EQUIPMENT_SLOTS;
   rows: CustomBonusRow[] = [];
+
+  selectedSlot: string | null = null;
+  selectedCardId: number | null = null;
+
+  itemScriptJson = '';
+  itemScriptError = '';
+  parsedItemScript: Record<string, number[]> | null = null;
+
+  get currentCardList(): any[] {
+    if (!this.selectedSlot) return [];
+    const listKey = SLOT_CARD_LIST_MAP[this.selectedSlot];
+    return listKey ? (this.cardLists[listKey] || []) : [];
+  }
 
   addRow() {
     this.rows = [...this.rows, { attr: '', value: 0 }];
@@ -274,11 +339,80 @@ export class CustomBonusComponent {
     this.emitChange();
   }
 
+  onCompareToggle() {
+    if (!this.isCompare) {
+      this.selectedSlot = null;
+      this.selectedCardId = null;
+    }
+    this.emitChange();
+  }
+
+  onSlotChange() {
+    this.selectedCardId = null;
+    this.emitChange();
+  }
+
+  onCardChange() {
+    this.emitChange();
+  }
+
+  onItemScriptChange() {
+    const trimmed = this.itemScriptJson.trim();
+    if (!trimmed) {
+      this.parsedItemScript = null;
+      this.itemScriptError = '';
+      this.emitChange();
+      return;
+    }
+
+    try {
+      const parsed = JSON.parse(trimmed);
+      if (typeof parsed !== 'object' || parsed === null || Array.isArray(parsed)) {
+        this.itemScriptError = 'Must be a JSON object like { "atk": [10], "p_race_all": [5] }';
+        this.parsedItemScript = null;
+        this.emitChange();
+        return;
+      }
+
+      const script: Record<string, number[]> = {};
+      for (const [key, val] of Object.entries(parsed)) {
+        if (Array.isArray(val)) {
+          script[key] = val.map(Number).filter((n) => !Number.isNaN(n));
+        } else if (typeof val === 'number') {
+          script[key] = [val];
+        } else if (typeof val === 'string' && !Number.isNaN(Number(val))) {
+          script[key] = [Number(val)];
+        } else {
+          this.itemScriptError = `Invalid value for "${key}": must be number or array of numbers`;
+          this.parsedItemScript = null;
+          this.emitChange();
+          return;
+        }
+      }
+
+      this.parsedItemScript = script;
+      this.itemScriptError = '';
+      this.emitChange();
+    } catch (e) {
+      this.itemScriptError = 'Invalid JSON format';
+      this.parsedItemScript = null;
+      this.emitChange();
+    }
+  }
+
   trackByIndex(index: number) {
     return index;
   }
 
+  objectKeys = Object.keys;
+
   private emitChange() {
-    this.bonusChange.emit(this.rows.filter((r) => r.attr && r.value !== 0));
+    this.bonusChange.emit({
+      rows: this.rows.filter((r) => r.attr && r.value !== 0),
+      itemScript: this.parsedItemScript,
+      isCompare: this.isCompare,
+      replaceSlot: this.isCompare ? this.selectedSlot : null,
+      cardId: this.isCompare && this.selectedSlot ? this.selectedCardId : null,
+    });
   }
 }

@@ -1769,7 +1769,7 @@
       </p-accordionTab>
 
       <p-accordionTab header="Custom Bonus">
-        <app-custom-bonus (bonusChange)="onCustomBonusChange($event)"></app-custom-bonus>
+        <app-custom-bonus [cardLists]="itemList" (bonusChange)="onCustomBonusChange($event)"></app-custom-bonus>
       </p-accordionTab>
 
       <p-accordionTab header="Battle Summary">

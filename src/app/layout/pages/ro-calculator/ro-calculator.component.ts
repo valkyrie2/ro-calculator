@@ -60,7 +60,7 @@ import { LayoutService } from '../../service/app.layout.service';
 import { BaseStateCalculator } from './base-state-calculator';
 import { Calculator } from './calculator';
 import { HighlightService } from './calc-breakdown/highlight.service';
-import { CustomBonusRow } from './custom-bonus/custom-bonus.component';
+import { CustomBonusOutput, CustomBonusRow } from './custom-bonus/custom-bonus.component';
 import { MonsterDataViewComponent } from './monster-data-view/monster-data-view.component';
 import { PresetTableComponent } from './preset-table/preset-table.component';
 
@@ -168,6 +168,10 @@ export class RoCalculatorComponent implements OnInit, OnDestroy {
 
   optionList: any[] = createExtraOptionList();
   customBonuses: CustomBonusRow[] = [];
+  customItemScript: Record<string, number[]> | null = null;
+  isCustomCompare = false;
+  customReplaceSlot: string | null = null;
+  customCardId: number | null = null;
   itemList: ItemListModel = {} as any;
 
   weaponList: DropdownModel[] = [];
@@ -725,7 +729,7 @@ export class RoCalculatorComponent implements OnInit, OnDestroy {
     this.selectedColumns = defaultCols;
   }
 
-  private prepare(calculator: Calculator, compareModel?: any, selectedChanceList: string[] = this.selectedChances) {
+  private prepare(calculator: Calculator, compareModel?: any, selectedChanceList: string[] = this.selectedChances, customBonusOverride?: { rows: CustomBonusRow[]; itemScript: Record<string, number[]> | null; cardId?: number | null }, baseModel?: any) {
     const { activeSkills, passiveSkills, selectedAtkSkill } = this.model;
     const { equipAtks, masteryAtks, activeSkillNames, learnedSkillMap } = this.selectedCharacter
       .setLearnSkills({
@@ -836,11 +840,41 @@ export class RoCalculatorComponent implements OnInit, OnDestroy {
           }
         }
       }
+    } else if (baseModel) {
+      baseModel.rawOptionTxts = toRawOptionTxtList(baseModel, this.items);
+      calc.loadItemFromModel(baseModel);
     } else {
       // clean if the itemType not allow to have options
       this.model.rawOptionTxts = toRawOptionTxtList(this.model, this.items);
 
       calc.loadItemFromModel(this.model);
+    }
+
+    const bonusRows = customBonusOverride ? customBonusOverride.rows : this.customBonuses;
+    const bonusScript = customBonusOverride ? customBonusOverride.itemScript : this.customItemScript;
+    const bonusCardId = customBonusOverride !== undefined ? (customBonusOverride.cardId ?? null) : this.customCardId;
+    const customExtras: Record<string, number>[] = bonusRows
+      .filter(b => b.attr && b.value !== 0)
+      .map(b => ({ [b.attr]: b.value }));
+
+    if (bonusScript) {
+      for (const [attr, values] of Object.entries(bonusScript)) {
+        const sum = values.reduce((a, b) => a + b, 0);
+        if (sum !== 0) {
+          customExtras.push({ [attr]: sum });
+        }
+      }
+    }
+
+    if (bonusCardId && this.items[bonusCardId]?.script) {
+      for (const [attr, values] of Object.entries(this.items[bonusCardId].script)) {
+        if (Array.isArray(values)) {
+          const sum = (values as any[]).map(Number).filter((n: number) => !isNaN(n)).reduce((a: number, b: number) => a + b, 0);
+          if (sum !== 0) {
+            customExtras.push({ [attr]: sum });
+          }
+        }
+      }
     }
 
     calc
@@ -851,8 +885,8 @@ export class RoCalculatorComponent implements OnInit, OnDestroy {
       .setConsumables(consumeData)
       .setAspdPotion(aspdPotion)
       .setExtraOptions([
-        ...this.getOptionScripts(!compareModel ? this.model.rawOptionTxts : rawOptionTxts),
-        ...this.customBonuses.filter(b => b.attr && b.value !== 0).map(b => ({ [b.attr]: b.value })),
+        ...this.getOptionScripts(compareModel ? rawOptionTxts : (baseModel ? baseModel.rawOptionTxts : this.model.rawOptionTxts)),
+        ...customExtras,
       ])
       .setUsedSkillNames(activeSkillNames)
       .setLearnedSkills(learnedSkillMap)
@@ -868,10 +902,33 @@ export class RoCalculatorComponent implements OnInit, OnDestroy {
   }
 
   private calculate() {
-    const calc = this.prepare(this.calculator);
+    const hasCustomBonuses = this.customBonuses.length > 0 || this.customItemScript || this.customCardId;
+    const hasCustomReplace = this.customReplaceSlot != null;
+    const emptyCustom = { rows: [] as CustomBonusRow[], itemScript: null, cardId: null };
+    let calc: Calculator;
 
-    this.totalSummary = calc.getTotalSummary();
-    this.breakdownData = calc.getBreakdownData();
+    if (this.isCustomCompare && (hasCustomBonuses || hasCustomReplace)) {
+      // Baseline: current equipment, no custom bonuses
+      calc = this.prepare(this.calculator, undefined, this.selectedChances, emptyCustom);
+      this.totalSummary = calc.getTotalSummary();
+      this.breakdownData = calc.getBreakdownData();
+
+      // Compare: custom replacing the selected slot
+      const slotModel = hasCustomReplace ? this.buildSlotClearModel(this.customReplaceSlot) : undefined;
+      const calcCustom = this.prepare(this.calculator2, undefined, this.selectedChances, undefined, slotModel);
+      this.totalSummary2 = calcCustom.getTotalSummary();
+      this.isEnableCompare = true;
+    } else {
+      calc = this.prepare(this.calculator);
+      this.totalSummary = calc.getTotalSummary();
+      this.breakdownData = calc.getBreakdownData();
+
+      if (!this.compareItemNames?.length) {
+        this.totalSummary2 = undefined;
+        this.isEnableCompare = false;
+      }
+    }
+
     const modelSummary = calc.getModelSummary() as any;
     this.modelSummary = { ...modelSummary, rawOptionTxts: modelSummary.rawOptionTxts.filter(Boolean) };
     const x = calc.getItemSummary();
@@ -893,6 +950,19 @@ export class RoCalculatorComponent implements OnInit, OnDestroy {
     // this.possiblyDamages = calc.getPossiblyDamages().map((a) => ({ label: `${a}`, value: a }));
 
     this.calculateToSelectedMonsters();
+  }
+
+  private buildSlotClearModel(slotType: string): any {
+    const model = { ...this.model };
+    model.rawOptionTxts = [...this.model.rawOptionTxts];
+    model[slotType] = null;
+    if (model[`${slotType}Refine`] !== undefined) model[`${slotType}Refine`] = null;
+    if (model[`${slotType}Grade`] !== undefined) model[`${slotType}Grade`] = null;
+    const relations = MainItemWithRelations[slotType as ItemTypeEnum] || [];
+    for (const rel of relations) {
+      model[rel] = null;
+    }
+    return model;
   }
 
   private calcCompare() {
@@ -2468,8 +2538,12 @@ export class RoCalculatorComponent implements OnInit, OnDestroy {
     this.updateItemEvent.next(1);
   }
 
-  onCustomBonusChange(bonuses: CustomBonusRow[]) {
-    this.customBonuses = bonuses;
+  onCustomBonusChange(output: CustomBonusOutput) {
+    this.customBonuses = output.rows;
+    this.customItemScript = output.itemScript;
+    this.isCustomCompare = output.isCompare;
+    this.customReplaceSlot = output.replaceSlot;
+    this.customCardId = output.cardId;
     this.updateItemEvent.next(1);
   }
 

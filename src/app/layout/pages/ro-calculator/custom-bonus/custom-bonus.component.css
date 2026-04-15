@@ -11,3 +11,20 @@
 .bonus-row:hover {
   background: rgba(255, 255, 255, 0.06);
 }
+
+.compare-toggle {
+  padding: 0.5rem;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 4px;
+}
+
+.slot-card-section {
+  padding: 0.5rem;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 4px;
+}
+
+.item-script-input {
+  font-family: 'Consolas', 'Monaco', monospace;
+  font-size: 0.8rem;
+}
