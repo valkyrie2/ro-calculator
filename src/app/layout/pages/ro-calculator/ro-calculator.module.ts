@@ -29,6 +29,7 @@ import { ToggleButtonModule } from 'primeng/togglebutton';
 import { BlockUIModule } from 'primeng/blockui';
 import { DataViewModule } from 'primeng/dataview';
 import { TreeSelectModule } from 'primeng/treeselect';
+import { TabViewModule } from 'primeng/tabview';
 
 import { RoCalculatorComponent } from './ro-calculator.component';
 import { PrettyJsonPipe } from '../../prettier-json.pipe';
@@ -50,6 +51,7 @@ import { EquipmentCosEnchantComponent } from './equipment-cos-enchant/equipment-
 import { StatusInputComponent } from './status-input/status-input.component';
 import { CalcBreakdownComponent } from './calc-breakdown/calc-breakdown.component';
 import { CustomBonusComponent } from './custom-bonus/custom-bonus.component';
+import { DpsCompareComponent } from './dps-compare/dps-compare.component';
 
 @NgModule({
   imports: [
@@ -85,6 +87,7 @@ import { CustomBonusComponent } from './custom-bonus/custom-bonus.component';
     TreeSelectModule,
     FieldsetModule,
     DialogModule,
+    TabViewModule,
     RoCalculatorRoutingModule,
   ],
   declarations: [
@@ -105,6 +108,7 @@ import { CustomBonusComponent } from './custom-bonus/custom-bonus.component';
     StatusInputComponent,
     CalcBreakdownComponent,
     CustomBonusComponent,
+    DpsCompareComponent,
   ],
   exports: [CalcValueComponent],
 })

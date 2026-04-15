@@ -136,6 +136,7 @@ export class RoCalculatorComponent implements OnInit, OnDestroy {
   updateCompareEvent = new Subject();
   updateChanceEvent = new Subject();
   isCalculatingEvent = new Subject();
+  presetUpdated$ = new Subject<void>();
 
   loadBtnItems: MenuItem[];
   monsterDataMap: Record<number, MonsterModel> = {};
@@ -1280,6 +1281,7 @@ export class RoCalculatorComponent implements OnInit, OnDestroy {
         });
         this.savePresetList(currentPresets);
         this.setPresetList();
+        this.presetUpdated$.next();
 
         this.messageService.add({
           severity: 'success',
@@ -1326,6 +1328,7 @@ export class RoCalculatorComponent implements OnInit, OnDestroy {
             value: preset.id,
             icon: ClassIcon[classId],
           }, ...this.preSets];
+          this.presetUpdated$.next();
           return waitRxjs();
         }),
         catchError((err) => {
@@ -1361,6 +1364,7 @@ export class RoCalculatorComponent implements OnInit, OnDestroy {
             summary: 'Updated',
             detail: `"${preset.label}" was updated.`,
           });
+          this.presetUpdated$.next();
           return waitRxjs();
         }),
       );
@@ -1442,6 +1446,7 @@ export class RoCalculatorComponent implements OnInit, OnDestroy {
           });
           this.preSets = this.preSets.filter(a => a.value !== id);
           this.selectedPreset = undefined;
+          this.presetUpdated$.next();
 
           return waitRxjs();
         }),
@@ -2856,6 +2861,7 @@ export class RoCalculatorComponent implements OnInit, OnDestroy {
           };
         });
         console.log('preset sycned');
+        this.presetUpdated$.next();
       });
   }
 

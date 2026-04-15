@@ -22,6 +22,9 @@
   <app-elemental-table [monsterMap]="monsterDataMap" [groupMonsterList]="groupMonsterList" [allSelectedMonsterIds]="allSelectedMonsterIds"></app-elemental-table>
 </p-dialog>
 
+<p-tabView>
+  <p-tabPanel header="Calculator">
+
 <div class="grid grid-nogutter" style="min-width: 1500px">
   <!-- Left Side -->
   <div class="p-fluid col-7">
@@ -2104,3 +2107,17 @@
     </p-accordion>
   </div>
 </div>
+
+  </p-tabPanel>
+
+  <p-tabPanel header="DPS Compare">
+    <app-dps-compare
+      [items]="items"
+      [monsterDataMap]="monsterDataMap"
+      [hpSpTable]="hpSpTable"
+      [groupMonsterList]="groupMonsterList"
+      [monsterList]="monsterList"
+      [presetUpdated$]="presetUpdated$"
+    ></app-dps-compare>
+  </p-tabPanel>
+</p-tabView>

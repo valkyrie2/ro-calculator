@@ -1,0 +1,195 @@
+<div class="grid grid-nogutter">
+  <!-- Monster Selection -->
+  <div class="col-12 mb-3">
+    <div class="flex align-items-center gap-3 flex-wrap">
+      <span class="font-bold text-lg" style="color: var(--primary-color)">DPS Compare</span>
+      <div class="flex align-items-center gap-2 flex-grow-1" style="max-width: 500px">
+        <label class="white-space-nowrap">Monster:</label>
+        <p-dropdown
+          [options]="monsterList"
+          [(ngModel)]="selectedMonster"
+          [filter]="true"
+          filterBy="label,name"
+          placeholder="Select Monster"
+          scrollHeight="350px"
+          [style]="{ width: '100%' }"
+          [group]="false"
+        >
+          <ng-template let-mon pTemplate="item">
+            <div>{{ mon.label }}</div>
+          </ng-template>
+          <ng-template let-mon pTemplate="selectedItem">
+            <div>{{ mon.label }}</div>
+          </ng-template>
+        </p-dropdown>
+      </div>
+      <button
+        pButton
+        type="button"
+        label="Compare"
+        icon="pi pi-bolt"
+        class="p-button-success"
+        [disabled]="!selectedPresetA || !selectedPresetB || !selectedMonster"
+        (click)="compare()"
+      ></button>
+    </div>
+  </div>
+
+  <!-- Side A -->
+  <div class="col-6 pr-2">
+    <div class="surface-card border-round p-3" style="border: 1px solid var(--surface-border)">
+      <div class="font-bold mb-2" style="color: var(--primary-color)">Preset A</div>
+      <p-dropdown
+        [options]="presetOptions"
+        [(ngModel)]="selectedPresetA"
+        [filter]="true"
+        filterBy="label"
+        placeholder="Select Preset"
+        scrollHeight="350px"
+        [style]="{ width: '100%' }"
+        (onChange)="onPresetChange('A')"
+      >
+        <ng-template let-p pTemplate="item">
+          <div class="flex gap-2 align-items-center">
+            <img *ngIf="p.icon" src="assets/demo/images/jobs/icon_jobs_{{ p.icon }}.png" alt="" style="width: 20px; height: 20px" />
+            <span>{{ p.label }}</span>
+          </div>
+        </ng-template>
+        <ng-template let-p pTemplate="selectedItem">
+          <div class="flex gap-2 align-items-center">
+            <img *ngIf="p.icon" src="assets/demo/images/jobs/icon_jobs_{{ p.icon }}.png" alt="" style="width: 20px; height: 20px" />
+            <span>{{ p.label }}</span>
+          </div>
+        </ng-template>
+      </p-dropdown>
+
+      <div *ngIf="sideA" class="mt-3">
+        <div class="flex align-items-center gap-2 mb-2">
+          <img src="assets/demo/images/jobs/icon_jobs_{{ sideA.classIcon }}.png" alt="" style="width: 24px; height: 24px" />
+          <span class="font-bold">{{ sideA.className }}</span>
+        </div>
+        <div class="mb-2">
+          <label class="block mb-1">Attack Skill:</label>
+          <p-dropdown
+            [options]="sideA.atkSkills"
+            [(ngModel)]="selectedSkillA"
+            optionValue="value"
+            optionLabel="label"
+            [filter]="true"
+            filterBy="label"
+            placeholder="Select Skill"
+            scrollHeight="350px"
+            [style]="{ width: '100%' }"
+            (onChange)="onSkillChange('A')"
+          >
+          </p-dropdown>
+        </div>
+      </div>
+
+      <!-- Results A -->
+      <div *ngIf="sideA?.totalSummary" class="mt-3">
+        <app-battle-dmg-summary
+          [totalSummary]="sideA.totalSummary"
+          [totalSummary2]="{}"
+          [model]="sideA.model"
+          [isCalculating]="false"
+          [isEnableCompare]="false"
+          [isInProcessingPreset]="false"
+          [selectedChances]="[]"
+          [selectedChances2]="[]"
+          [hideBasicAtk]="false"
+          [showLeftWeapon]="false"
+        ></app-battle-dmg-summary>
+      </div>
+    </div>
+  </div>
+
+  <!-- Side B -->
+  <div class="col-6 pl-2">
+    <div class="surface-card border-round p-3" style="border: 1px solid var(--surface-border)">
+      <div class="font-bold mb-2" style="color: var(--primary-color)">Preset B</div>
+      <p-dropdown
+        [options]="presetOptions"
+        [(ngModel)]="selectedPresetB"
+        [filter]="true"
+        filterBy="label"
+        placeholder="Select Preset"
+        scrollHeight="350px"
+        [style]="{ width: '100%' }"
+        (onChange)="onPresetChange('B')"
+      >
+        <ng-template let-p pTemplate="item">
+          <div class="flex gap-2 align-items-center">
+            <img *ngIf="p.icon" src="assets/demo/images/jobs/icon_jobs_{{ p.icon }}.png" alt="" style="width: 20px; height: 20px" />
+            <span>{{ p.label }}</span>
+          </div>
+        </ng-template>
+        <ng-template let-p pTemplate="selectedItem">
+          <div class="flex gap-2 align-items-center">
+            <img *ngIf="p.icon" src="assets/demo/images/jobs/icon_jobs_{{ p.icon }}.png" alt="" style="width: 20px; height: 20px" />
+            <span>{{ p.label }}</span>
+          </div>
+        </ng-template>
+      </p-dropdown>
+
+      <div *ngIf="sideB" class="mt-3">
+        <div class="flex align-items-center gap-2 mb-2">
+          <img src="assets/demo/images/jobs/icon_jobs_{{ sideB.classIcon }}.png" alt="" style="width: 24px; height: 24px" />
+          <span class="font-bold">{{ sideB.className }}</span>
+        </div>
+        <div class="mb-2">
+          <label class="block mb-1">Attack Skill:</label>
+          <p-dropdown
+            [options]="sideB.atkSkills"
+            [(ngModel)]="selectedSkillB"
+            optionValue="value"
+            optionLabel="label"
+            [filter]="true"
+            filterBy="label"
+            placeholder="Select Skill"
+            scrollHeight="350px"
+            [style]="{ width: '100%' }"
+            (onChange)="onSkillChange('B')"
+          >
+          </p-dropdown>
+        </div>
+      </div>
+
+      <!-- Results B -->
+      <div *ngIf="sideB?.totalSummary" class="mt-3">
+        <app-battle-dmg-summary
+          [totalSummary]="sideB.totalSummary"
+          [totalSummary2]="{}"
+          [model]="sideB.model"
+          [isCalculating]="false"
+          [isEnableCompare]="false"
+          [isInProcessingPreset]="false"
+          [selectedChances]="[]"
+          [selectedChances2]="[]"
+          [hideBasicAtk]="false"
+          [showLeftWeapon]="false"
+        ></app-battle-dmg-summary>
+      </div>
+    </div>
+  </div>
+
+  <!-- Comparison Summary -->
+  <div class="col-12 mt-3" *ngIf="hasComparison">
+    <div class="surface-card border-round p-3" style="border: 1px solid var(--surface-border)">
+      <div class="font-bold mb-3" style="color: var(--primary-color)">Comparison Summary (B vs A)</div>
+      <div class="grid grid-nogutter">
+        <div class="col-12 md:col-4 mb-2" *ngFor="let c of comparisons">
+          <div class="surface-ground border-round p-3 mx-1">
+            <div class="text-sm mb-1" style="color: var(--text-color-secondary)">{{ c.label }}</div>
+            <div class="text-xl font-bold {{ c.diffClass }}">
+              {{ c.prefix }}{{ c.diffValue.toLocaleString() }}
+            </div>
+            <div class="text-sm font-semibold {{ c.diffClass }}">
+              {{ c.diffPercent }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
