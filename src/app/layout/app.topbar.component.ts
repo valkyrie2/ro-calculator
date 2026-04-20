@@ -206,13 +206,50 @@ export class AppTopBarComponent implements OnInit, OnDestroy {
 
   updates: { v: string; date: string; logs: string[]; }[] = [
     {
+      v: 'Extra v59',
+      date: '20-04-2569',
+      logs: [
+        'เพิ่ม EXP Calculator แท็บใหม่ คำนวณ EXP/Job EXP ที่ได้รับจากมอนสเตอร์',
+        'รองรับตารางผลต่าง Lv. มอนสเตอร์ vs ผู้เล่น (Level Difference Modifier)',
+        'รองรับ modifier ทั้งหมด: Equip EXP Bonus, MR. Kim A.L.F.C, Battle Manual, VIP, Job Manual, Event EXP%, Kafra Buff, EXP Tap',
+        'เพิ่มข้อมูล Monster Spotlight Summer 2026 (25 มี.ค. – 29 เม.ย. 2569)',
+        'เพิ่มหมวด Spotlight ในดรอปดาวน์เลือกมอนสเตอร์ของ EXP Calculator',
+        'ปรับ Level ผู้เล่นใน EXP Calculator ได้โดยอิสระ หรือ Sync จากแท็บ Calculator',
+        'เพิ่ม EXP Bonus จากไอเทม 26 รายการ',
+      ],
+    },
+    {
+      v: 'Extra v58.3',
+      date: '18-04-2569',
+      logs: [
+        'เพิ่มไอเทมใหม่: Limit Break Shadow Earring, Limit Break Shadow Pendant',
+      ],
+    },
+    {
+      v: 'Extra v58.2',
+      date: '15-04-2569',
+      logs: [
+        'เพิ่มฟีเจอร์เปรียบเทียบ Custom Equipment (Custom Bonus tab) โดยคำนวณ Proc และดาเมจต่างกับอุปกรณ์ปัจจุบันได้',
+        'เพิ่มฟีเจอร์ Compare Preset ในแท็บ DPS Compare',
+      ],
+    },
+    {
+      v: 'Extra v58.1',
+      date: '14-04-2569',
+      logs: [
+        'เพิ่ม Custom Bonus tab: สามารถกำหนด bonus stat เพิ่มเติมได้เองเพื่อทดสอบสมมติฐาน',
+        'รองรับ item script แบบกำหนดเองใน Custom Bonus tab',
+        'แสดง pseudo damage เพื่อตรวจสอบค่าดาเมจเบื้องต้นสำหรับ custom bonus',
+      ],
+    },
+    {
       v: 'Extra v58',
       date: '06-04-2569',
       logs: [
-        "เพิ่มสกิล Fire Ball Lv10 ให้สายอาชีพ Mage และ Super Novice",
-        "แก้คำอธิบายออฟอาวุธ Clock Tower ให้ตรงตาม GGT",
-        "แก้บัค Glacier Flower Spell Physical/Magical Lv5 ให้ได้ Patk และ Smatk ถูกต้อง",
-        "เพิ่ม Fire Condor Card และ Gatchaman Card (No Event)",
+        'เพิ่มสกิล Fire Ball Lv10 ให้สายอาชีพ Mage และ Super Novice',
+        'แก้คำอธิบายออฟอาวุธ Clock Tower ให้ตรงตาม GGT',
+        'แก้บัค Glacier Flower Spell Physical/Magical Lv5 ให้ได้ Patk และ Smatk ถูกต้อง',
+        'เพิ่ม Fire Condor Card และ Gatchaman Card (No Event)',
       ],
     },
     {
@@ -1521,6 +1558,17 @@ export class AppTopBarComponent implements OnInit, OnDestroy {
   ];
   localVersion = localStorage.getItem('version') || '';
   lastestVersion = this.updates[0].v;
+
+  /** Indices of collapsed changelog entries; all except index 0 start collapsed */
+  collapsedVersions = new Set<number>(this.updates.slice(1).map((_, idx) => idx + 1));
+
+  toggleVersionCollapse(i: number): void {
+    if (this.collapsedVersions.has(i)) {
+      this.collapsedVersions.delete(i);
+    } else {
+      this.collapsedVersions.add(i);
+    }
+  }
 
   unreadVersion = this.updates.findIndex((a) => a.v === this.localVersion);
   showUnreadVersion = this.unreadVersion === -1 ? this.updates.length + 1 : this.unreadVersion;

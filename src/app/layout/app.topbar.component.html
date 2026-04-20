@@ -157,6 +157,14 @@
     <div *ngFor="let update of updates; index as i" [ngStyle]="{ color: i + 1 > showUnreadVersion ? 'var(--gray-300)' : 'white' }">
       <div class="grid grid-nogutter">
         <div class="p-col-12" style="display: flex; align-content: center; justify-content: center; align-items: center">
+          <button
+            pButton
+            type="button"
+            class="p-button-text p-button-sm p-button-secondary mr-1"
+            [icon]="collapsedVersions.has(i) ? 'pi pi-chevron-right' : 'pi pi-chevron-down'"
+            (click)="toggleVersionCollapse(i)"
+            style="padding: 0.15rem 0.3rem;"
+          ></button>
           <span class="pr-2">{{ update.v }}</span>
           <span>{{ update.date }} </span>
           <span>
@@ -171,7 +179,7 @@
           </span>
         </div>
       </div>
-      <ul class="mt-0">
+      <ul class="mt-0" *ngIf="!collapsedVersions.has(i)">
         <li *ngFor="let log of update.logs">{{ log }}</li>
       </ul>
     </div>

@@ -50,6 +50,12 @@
                     <span>{{ group.label }}</span>
                   </div>
                 </ng-template>
+                <ng-template let-item pTemplate="item">
+                  <div class="flex align-items-center justify-content-between">
+                    <span>{{ item.label }}</span>
+                    <p-tag *ngIf="item.isSpotlight || item.isVirtualSpotlight" severity="warning" value="⭐" styleClass="text-xs ml-2"></p-tag>
+                  </div>
+                </ng-template>
               </p-dropdown>
             </div>
           </div>
@@ -65,12 +71,21 @@
                   onerror="this.style.display='none'"
                 />
                 <div>
-                  <div class="font-semibold">{{ selectedMonster.name }}</div>
+                  <div class="font-semibold flex align-items-center gap-1">
+                    {{ selectedMonster.name }}
+                    <p-tag *ngIf="spotlightMonsterData" severity="warning" value="⭐ Spotlight" styleClass="text-xs"></p-tag>
+                    <p-tag *ngIf="isVirtualMonster" severity="info" value="Event Only" styleClass="text-xs"></p-tag>
+                  </div>
                   <div class="text-color-secondary text-sm">
                     Lv.{{ selectedMonster.stats?.level }}
-                    &nbsp;·&nbsp;{{ selectedMonster.stats?.raceName }}
-                    &nbsp;·&nbsp;{{ selectedMonster.stats?.scaleName }}
-                    &nbsp;·&nbsp;{{ selectedMonster.stats?.elementName }}
+                    <ng-container *ngIf="!isVirtualMonster">
+                      &nbsp;·&nbsp;{{ selectedMonster.stats?.raceName }}
+                      &nbsp;·&nbsp;{{ selectedMonster.stats?.scaleName }}
+                      &nbsp;·&nbsp;{{ selectedMonster.stats?.elementName }}
+                    </ng-container>
+                  </div>
+                  <div *ngIf="isVirtualMonster" class="text-xs text-yellow-400 mt-1">
+                    <i class="pi pi-info-circle mr-1"></i>Not in local database — Event EXP only
                   </div>
                 </div>
               </div>
@@ -83,7 +98,7 @@
                   <p-tag *ngIf="spotlightMonsterData" severity="warning" value="EVENT" styleClass="ml-1 text-xs"></p-tag>
                 </span>
               </div>
-              <div class="exp-row" *ngIf="!spotlightMonsterData">
+              <div class="exp-row" *ngIf="!spotlightMonsterData && !isVirtualMonster">
                 <span class="exp-label text-color-secondary text-xs">Normal Base</span>
                 <span class="exp-value text-color-secondary text-xs">{{ selectedMonster.stats.baseExperience | number }}</span>
               </div>

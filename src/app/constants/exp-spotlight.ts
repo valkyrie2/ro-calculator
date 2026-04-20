@@ -5,6 +5,8 @@ export interface SpotlightMonster {
   eventBaseExp: number;
   /** EVENT JOB EXP column from spotlight announcement */
   eventJobExp: number;
+  /** Monster level — required for monsters not in the local database */
+  monsterLevel?: number;
 }
 
 export interface SpotlightEvent {
@@ -24,11 +26,21 @@ export const SPOTLIGHT_EVENTS: SpotlightEvent[] = [
     startDate: '2026-03-25',
     endDate: '2026-04-29',
     // Source: official event banner (25 Mar – 29 Apr 2026)
-    // NOTE: Galapago(Lv45), Sea Otter(Lv48), Leaf Cat(Lv64), Kraben(Lv70),
-    //       Rafflesia(Lv86), Breeze(Lv92), Gazeti(Lv106), Ice Titan(Lv110),
-    //       Green Ferus(Lv126), Gold Acidus(Lv130), Blue Teddy Bear(Lv157),
-    //       Red Teddy Bear(Lv160) are not present in the monster database.
     monsters: [
+      // --- Monsters NOT in local DB (synthetic IDs 90001-90012, monsterLevel required) ---
+      { monsterId: 90001, monsterName: 'Galapago',       monsterLevel: 45,  eventBaseExp: 1476,  eventJobExp: 1204  },
+      { monsterId: 90002, monsterName: 'Sea Otter',      monsterLevel: 48,  eventBaseExp: 1516,  eventJobExp: 1312  },
+      { monsterId: 90003, monsterName: 'Leaf Cat',       monsterLevel: 64,  eventBaseExp: 2520,  eventJobExp: 2176  },
+      { monsterId: 90004, monsterName: 'Kraben',         monsterLevel: 70,  eventBaseExp: 2440,  eventJobExp: 2616  },
+      { monsterId: 90005, monsterName: 'Rafflesia',      monsterLevel: 86,  eventBaseExp: 4344,  eventJobExp: 3880  },
+      { monsterId: 90006, monsterName: 'Breeze',         monsterLevel: 92,  eventBaseExp: 4952,  eventJobExp: 4668  },
+      { monsterId: 90007, monsterName: 'Gazeti',         monsterLevel: 106, eventBaseExp: 7296,  eventJobExp: 6952  },
+      { monsterId: 90008, monsterName: 'Ice Titan',      monsterLevel: 110, eventBaseExp: 7632,  eventJobExp: 7288  },
+      { monsterId: 90009, monsterName: 'Green Ferus',    monsterLevel: 126, eventBaseExp: 15280, eventJobExp: 13992 },
+      { monsterId: 90010, monsterName: 'Gold Acidus',    monsterLevel: 130, eventBaseExp: 14956, eventJobExp: 14392 },
+      { monsterId: 90011, monsterName: 'Blue Teddy Bear',monsterLevel: 157, eventBaseExp: 73200, eventJobExp: 84940 },
+      { monsterId: 90012, monsterName: 'Red Teddy Bear', monsterLevel: 160, eventBaseExp: 79888, eventJobExp: 90012 },
+      // --- Monsters in local DB ---
       { monsterId: 20531, monsterName: 'Chaos Poporing',             eventBaseExp: 375504,  eventJobExp: 262852  },
       { monsterId: 20525, monsterName: 'Chaos Baphomet Jr.',         eventBaseExp: 384644,  eventJobExp: 269168  },
       { monsterId: 20530, monsterName: 'Chaos Killer Mantis',        eventBaseExp: 384788,  eventJobExp: 269512  },

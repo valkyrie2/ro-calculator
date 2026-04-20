@@ -119,7 +119,19 @@ export class ExpCalculatorComponent implements OnChanges {
 
   get selectedMonster(): MonsterModel | null {
     if (!this.selectedMonsterId) return null;
-    return this.monsterDataMap[this.selectedMonsterId] ?? null;
+    const dbMonster = this.monsterDataMap[this.selectedMonsterId];
+    if (dbMonster) return dbMonster;
+    // Virtual spotlight-only monster (synthetic ID, not in DB)
+    if (this.spotlightMonsterData?.monsterLevel != null) {
+      return this.makeVirtualMonster(this.spotlightMonsterData);
+    }
+    return null;
+  }
+
+  get isVirtualMonster(): boolean {
+    return !!this.selectedMonsterId &&
+      !this.monsterDataMap[this.selectedMonsterId] &&
+      !!this.spotlightMonsterData;
   }
 
   get levelDiff(): number {
@@ -175,19 +187,61 @@ export class ExpCalculatorComponent implements OnChanges {
     }
     const spotlightIds = new Set(this.activeSpotlightEvent.monsters.map((m) => m.monsterId));
     const spotlightItems: any[] = [];
+    const foundIds = new Set<number>();
+
+    // DB-backed monsters
     for (const group of this.groupMonsterList) {
       for (const item of group.items) {
         if (spotlightIds.has(item.value)) {
-          spotlightItems.push(item);
+          spotlightItems.push({ ...item, isSpotlight: true });
+          foundIds.add(item.value);
         }
       }
     }
+
+    // Virtual monsters not in DB
+    for (const sm of this.activeSpotlightEvent.monsters) {
+      if (!foundIds.has(sm.monsterId) && sm.monsterLevel != null) {
+        spotlightItems.push({
+          label: sm.monsterName,
+          name: sm.monsterName,
+          value: sm.monsterId,
+          level: sm.monsterLevel,
+          elementName: '—',
+          raceName: '—',
+          scaleName: '—',
+          searchVal: sm.monsterName,
+          isVirtualSpotlight: true,
+        });
+      }
+    }
+
+    // Sort all spotlight items by level ascending
+    spotlightItems.sort((a, b) => (a.level || 0) - (b.level || 0));
+
     if (spotlightItems.length === 0) return this.groupMonsterList;
     const spotlightGroup: MonsterSelectItemGroup = {
       label: '⭐ ' + this.activeSpotlightEvent.name,
       items: spotlightItems,
     };
     return [spotlightGroup, ...this.groupMonsterList];
+  }
+
+  private makeVirtualMonster(sm: SpotlightMonster): MonsterModel {
+    return {
+      id: sm.monsterId,
+      dbname: '',
+      name: sm.monsterName,
+      spawn: '',
+      stats: {
+        level: sm.monsterLevel ?? 0,
+        baseExperience: sm.eventBaseExp,
+        jobExperience: sm.eventJobExp,
+        raceName: '—',
+        scaleName: '—',
+        elementName: '—',
+      } as any,
+    };
   }
 
   getLevelDiffLabel(diff: number): string {
