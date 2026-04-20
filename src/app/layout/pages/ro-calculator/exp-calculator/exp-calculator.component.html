@@ -1,0 +1,462 @@
+<div class="exp-calc-container">
+
+  <!-- Spotlight Event Banner -->
+  <div *ngIf="activeSpotlightEvent" class="spotlight-banner mb-3">
+    <div class="flex align-items-center gap-2">
+      <i class="pi pi-star-fill text-yellow-400"></i>
+      <span class="font-semibold text-yellow-300">{{ activeSpotlightEvent.name }}</span>
+      <span class="text-color-secondary text-sm">
+        ({{ activeSpotlightEvent.startDate }} – {{ activeSpotlightEvent.endDate }})
+      </span>
+      <p-tag
+        *ngIf="spotlightMonsterData"
+        severity="warning"
+        value="Spotlight Monster"
+        icon="pi pi-star"
+      ></p-tag>
+      <p-tag
+        *ngIf="activeSpotlightEvent.monsters.length === 0"
+        severity="info"
+        value="No monster data yet — add to exp-spotlight.ts"
+      ></p-tag>
+    </div>
+  </div>
+
+  <div class="grid grid-nogutter gap-3">
+
+    <!-- ── Column 1: Monster Selection ── -->
+    <div class="col-4">
+      <p-fieldset legend="Monster" styleClass="h-full">
+        <div class="grid grid-nogutter">
+
+          <!-- Monster Dropdown -->
+          <div class="col-12 mb-2">
+            <div class="p-inputgroup">
+              <span class="p-inputgroup-addon monster_hilight_label">Monster</span>
+              <p-dropdown
+                [autoDisplayFirst]="false"
+                [resetFilterOnHide]="true"
+                [options]="expGroupMonsterList"
+                [filter]="true"
+                filterBy="label,searchVal"
+                [group]="true"
+                scrollHeight="400px"
+                [(ngModel)]="selectedMonsterId"
+                (onChange)="onMonsterChange()"
+                placeholder="Select monster..."
+              >
+                <ng-template let-group pTemplate="group">
+                  <div class="flex align-items-center font-bold dropdown_monster_group_label">
+                    <span>{{ group.label }}</span>
+                  </div>
+                </ng-template>
+              </p-dropdown>
+            </div>
+          </div>
+
+          <!-- Monster Info -->
+          <ng-container *ngIf="selectedMonster">
+            <div class="col-12 monster-info-card mb-2">
+              <div class="flex align-items-center gap-2 mb-1">
+                <img
+                  src="https://static.divine-pride.net/images/mobs/png/{{ selectedMonsterId }}.png"
+                  class="monster-thumb"
+                  alt=""
+                  onerror="this.style.display='none'"
+                />
+                <div>
+                  <div class="font-semibold">{{ selectedMonster.name }}</div>
+                  <div class="text-color-secondary text-sm">
+                    Lv.{{ selectedMonster.stats?.level }}
+                    &nbsp;·&nbsp;{{ selectedMonster.stats?.raceName }}
+                    &nbsp;·&nbsp;{{ selectedMonster.stats?.scaleName }}
+                    &nbsp;·&nbsp;{{ selectedMonster.stats?.elementName }}
+                  </div>
+                </div>
+              </div>
+
+              <!-- Base EXP -->
+              <div class="exp-row">
+                <span class="exp-label">Base EXP</span>
+                <span class="exp-value text-cyan-300">
+                  {{ (spotlightMonsterData?.eventBaseExp ?? selectedMonster.stats.baseExperience) | number }}
+                  <p-tag *ngIf="spotlightMonsterData" severity="warning" value="EVENT" styleClass="ml-1 text-xs"></p-tag>
+                </span>
+              </div>
+              <div class="exp-row" *ngIf="!spotlightMonsterData">
+                <span class="exp-label text-color-secondary text-xs">Normal Base</span>
+                <span class="exp-value text-color-secondary text-xs">{{ selectedMonster.stats.baseExperience | number }}</span>
+              </div>
+
+              <!-- Job EXP -->
+              <div class="exp-row">
+                <span class="exp-label">Job EXP</span>
+                <span class="exp-value text-cyan-300">
+                  {{ (spotlightMonsterData?.eventJobExp ?? selectedMonster.stats.jobExperience) | number }}
+                  <p-tag *ngIf="spotlightMonsterData" severity="warning" value="EVENT" styleClass="ml-1 text-xs"></p-tag>
+                </span>
+              </div>
+              <div class="exp-row" *ngIf="!spotlightMonsterData">
+                <span class="exp-label text-color-secondary text-xs">Normal Job</span>
+                <span class="exp-value text-color-secondary text-xs">{{ selectedMonster.stats.jobExperience | number }}</span>
+              </div>
+            </div>
+
+            <!-- Level Difference -->
+            <div class="col-12">
+              <div class="level-diff-card" [ngClass]="getLevelDiffClass(levelDiff)">
+                <div class="flex justify-content-between align-items-center">
+                  <span class="text-sm text-color-secondary">Player Lv.</span>
+                  <span class="font-semibold">{{ effectivePlayerLevel }}</span>
+                </div>
+                <div class="flex justify-content-between align-items-center">
+                  <span class="text-sm text-color-secondary">Monster Lv.</span>
+                  <span class="font-semibold">{{ selectedMonster.stats?.level }}</span>
+                </div>
+                <div class="divider-line my-1"></div>
+                <div class="flex justify-content-between align-items-center">
+                  <span class="text-sm">Difference</span>
+                  <span class="font-bold text-lg diff-value">{{ getLevelDiffLabel(levelDiff) }}</span>
+                </div>
+                <div class="flex justify-content-between align-items-center mt-1">
+                  <span class="text-sm">Level Mod</span>
+                  <span class="font-bold text-lg diff-mod" *ngIf="result">
+                    {{ (result.levelDiffMod * 100).toFixed(0) }}%
+                  </span>
+                </div>
+              </div>
+            </div>
+          </ng-container>
+
+          <div *ngIf="!selectedMonster" class="col-12 text-center text-color-secondary py-4">
+            <i class="pi pi-search mr-2"></i>Select a monster to calculate EXP
+          </div>
+        </div>
+      </p-fieldset>
+    </div>
+
+    <!-- ── Column 2: EXP Modifiers ── -->
+    <div class="col-4">
+      <p-fieldset legend="EXP Modifiers" styleClass="h-full">
+        <div class="grid grid-nogutter">
+
+          <!-- Equip EXP Bonus -->
+          <div class="col-12 modifier-row">
+            <div class="flex align-items-center justify-content-between mb-1">
+              <span class="modifier-label">
+                Player Level
+                <span class="text-xs text-color-secondary ml-1">(from Calculator tab)</span>
+              </span>
+              <button
+                *ngIf="overridePlayerLevel !== null"
+                pButton
+                type="button"
+                icon="pi pi-refresh"
+                class="p-button-text p-button-sm"
+                pTooltip="Reset to calculator value"
+                (click)="resetPlayerLevel()"
+              ></button>
+            </div>
+            <div class="p-inputgroup">
+              <p-inputNumber
+                [ngModel]="overridePlayerLevel !== null ? overridePlayerLevel : playerLevel"
+                (ngModelChange)="onOverridePlayerLevelChange($event)"
+                [min]="1"
+                [max]="300"
+                [showButtons]="false"
+                inputStyleClass="text-right"
+              ></p-inputNumber>
+              <span class="p-inputgroup-addon"><i class="pi pi-user"></i></span>
+            </div>
+            <div *ngIf="overridePlayerLevel === null" class="text-xs text-primary mt-1">
+              <i class="pi pi-link mr-1"></i>Synced from Calculator
+            </div>
+          </div>
+
+          <!-- Equip EXP Bonus -->
+          <div class="col-12 modifier-row">
+            <div class="flex align-items-center justify-content-between mb-1">
+              <span class="modifier-label">
+                Equip EXP Bonus
+                <span class="text-xs text-color-secondary ml-1">(from Calculator tab)</span>
+              </span>
+              <button
+                *ngIf="overrideEquipBonus !== null"
+                pButton
+                type="button"
+                icon="pi pi-refresh"
+                class="p-button-text p-button-sm"
+                pTooltip="Reset to calculator value"
+                (click)="resetEquipBonus()"
+              ></button>
+            </div>
+            <div class="p-inputgroup">
+              <p-inputNumber
+                [ngModel]="overrideEquipBonus !== null ? overrideEquipBonus : equipExpBonus"
+                (ngModelChange)="onOverrideEquipBonusChange($event)"
+                [min]="0"
+                [max]="500"
+                suffix=" %"
+                [showButtons]="false"
+                inputStyleClass="text-right"
+              ></p-inputNumber>
+              <span class="p-inputgroup-addon text-primary">%</span>
+            </div>
+            <div *ngIf="overrideEquipBonus === null" class="text-xs text-primary mt-1">
+              <i class="pi pi-link mr-1"></i>Synced from Calculator
+            </div>
+          </div>
+
+          <!-- MR. Kim A.L.F.C -->
+          <div class="col-12 modifier-row">
+            <div class="flex align-items-center justify-content-between">
+              <span class="modifier-label">MR. Kim A.L.F.C <span class="text-yellow-400 font-semibold">+60%</span></span>
+              <p-inputSwitch [(ngModel)]="isMrKim" (ngModelChange)="onModifierChange()"></p-inputSwitch>
+            </div>
+          </div>
+
+          <!-- Battle Manual -->
+          <div class="col-12 modifier-row">
+            <div class="modifier-label mb-1">Battle Manual</div>
+            <p-dropdown
+              [options]="manualOptions"
+              [(ngModel)]="manualType"
+              (onChange)="onModifierChange()"
+              [style]="{ width: '100%' }"
+            ></p-dropdown>
+          </div>
+
+          <!-- VIP -->
+          <div class="col-12 modifier-row" [class.modifier-disabled]="manualType === 'none' && !isJobManual">
+            <div class="flex align-items-center justify-content-between">
+              <span class="modifier-label">
+                VIP
+                <span class="text-color-secondary text-xs ml-1">(Manual × 1.5)</span>
+              </span>
+              <p-inputSwitch
+                [(ngModel)]="isVip"
+                [disabled]="manualType === 'none' && !isJobManual"
+                (ngModelChange)="onModifierChange()"
+              ></p-inputSwitch>
+            </div>
+          </div>
+
+          <!-- Job Battle Manual -->
+          <div class="col-12 modifier-row">
+            <div class="flex align-items-center justify-content-between">
+              <span class="modifier-label">
+                Job Battle Manual
+                <span class="text-green-400 font-semibold">+50%</span>
+                <span class="text-color-secondary text-xs ml-1">(Job EXP only)</span>
+              </span>
+              <p-inputSwitch [(ngModel)]="isJobManual" (ngModelChange)="onModifierChange()"></p-inputSwitch>
+            </div>
+          </div>
+
+          <!-- Event EXP % -->
+          <div class="col-12 modifier-row">
+            <div class="flex align-items-center justify-content-between mb-1">
+              <span class="modifier-label">
+                Event EXP Bonus
+                <i *ngIf="activeSpotlightEvent" class="pi pi-star-fill text-yellow-400 ml-1" pTooltip="Spotlight event is active"></i>
+              </span>
+            </div>
+            <div class="p-inputgroup">
+              <p-inputNumber
+                [(ngModel)]="eventExpPercent"
+                (ngModelChange)="onModifierChange()"
+                [min]="0"
+                [max]="500"
+                suffix=" %"
+                [showButtons]="false"
+                inputStyleClass="text-right"
+              ></p-inputNumber>
+              <span class="p-inputgroup-addon text-yellow-400">%</span>
+            </div>
+          </div>
+
+          <!-- Kafra Buff -->
+          <div class="col-12 modifier-row">
+            <div class="flex align-items-center justify-content-between">
+              <span class="modifier-label">Kafra Buff (7 Days) <span class="text-yellow-400 font-semibold">+50%</span></span>
+              <p-inputSwitch [(ngModel)]="isKafraBuff" (ngModelChange)="onModifierChange()"></p-inputSwitch>
+            </div>
+          </div>
+
+          <!-- EXP Tap Mod -->
+          <div class="col-12 modifier-row">
+            <div class="modifier-label mb-1">EXP Tap Multiplier</div>
+            <p-selectButton
+              [options]="tapModOptions"
+              [(ngModel)]="tapMod"
+              (ngModelChange)="onModifierChange()"
+              optionLabel="label"
+              optionValue="value"
+            ></p-selectButton>
+          </div>
+
+        </div>
+      </p-fieldset>
+    </div>
+
+    <!-- ── Column 3: Results ── -->
+    <div class="col">
+      <p-fieldset legend="EXP Yield" styleClass="h-full">
+
+        <ng-container *ngIf="result; else noResult">
+
+          <!-- Base EXP Result -->
+          <div class="result-card mb-3">
+            <div class="result-title">Base EXP</div>
+            <div class="result-value text-cyan-300">{{ result.finalBaseExp | number }}</div>
+            <div class="result-raw text-color-secondary text-sm">
+              Base: {{ result.rawBaseExp | number }} × {{ (result.levelDiffMod * 100).toFixed(0) }}%
+              × {{ result.totalBaseMod.toFixed(4) }}
+              <span *ngIf="tapMod > 1">× {{ tapMod }}x tap</span>
+            </div>
+          </div>
+
+          <!-- Job EXP Result -->
+          <div class="result-card mb-3">
+            <div class="result-title">Job EXP</div>
+            <div class="result-value text-green-400">{{ result.finalJobExp | number }}</div>
+            <div class="result-raw text-color-secondary text-sm">
+              Base: {{ result.rawJobExp | number }} × {{ (result.levelDiffMod * 100).toFixed(0) }}%
+              × {{ result.totalJobMod.toFixed(4) }}
+              <span *ngIf="tapMod > 1">× {{ tapMod }}x tap</span>
+            </div>
+          </div>
+
+          <p-divider></p-divider>
+
+          <!-- Modifier Breakdown -->
+          <div class="breakdown-title mb-2">Modifier Breakdown</div>
+          <div class="breakdown-table">
+            <div class="breakdown-row">
+              <span class="breakdown-label">Level Difference</span>
+              <span class="breakdown-value">{{ (result.levelDiffMod * 100).toFixed(0) }} %</span>
+            </div>
+            <div class="breakdown-row" *ngIf="result.equipModPercent">
+              <span class="breakdown-label">Equip EXP Bonus</span>
+              <span class="breakdown-value text-primary">+{{ result.equipModPercent }} %</span>
+            </div>
+            <div class="breakdown-row" *ngIf="result.mrkimModPercent">
+              <span class="breakdown-label">MR. Kim</span>
+              <span class="breakdown-value text-primary">+{{ result.mrkimModPercent }} %</span>
+            </div>
+            <div class="breakdown-row" *ngIf="result.eventModPercent">
+              <span class="breakdown-label">Event EXP</span>
+              <span class="breakdown-value text-yellow-400">+{{ result.eventModPercent }} %</span>
+            </div>
+            <div class="breakdown-row" *ngIf="result.kafraModPercent">
+              <span class="breakdown-label">Kafra Buff</span>
+              <span class="breakdown-value text-yellow-400">+{{ result.kafraModPercent }} %</span>
+            </div>
+            <div class="breakdown-row" *ngIf="result.manualModPercent">
+              <span class="breakdown-label">
+                Battle Manual
+                <span *ngIf="isVip" class="text-xs text-yellow-300 ml-1">(VIP ×1.5)</span>
+              </span>
+              <span class="breakdown-value text-orange-400">+{{ result.manualModPercent }} %</span>
+            </div>
+            <div class="breakdown-row" *ngIf="isJobManual">
+              <span class="breakdown-label">Job Manual <span class="text-xs text-color-secondary">(job only)</span></span>
+              <span class="breakdown-value text-orange-400">+{{ isVip ? 75 : 50 }} %</span>
+            </div>
+            <div class="breakdown-row" *ngIf="tapMod > 1">
+              <span class="breakdown-label">EXP Tap</span>
+              <span class="breakdown-value text-pink-300">×{{ tapMod }}</span>
+            </div>
+            <div class="breakdown-row total-row">
+              <span class="breakdown-label font-bold">Total Base Mod</span>
+              <span class="breakdown-value font-bold text-cyan-300">×{{ result.totalBaseMod.toFixed(4) }}</span>
+            </div>
+            <div class="breakdown-row total-row" *ngIf="isJobManual">
+              <span class="breakdown-label font-bold">Total Job Mod</span>
+              <span class="breakdown-value font-bold text-green-400">×{{ result.totalJobMod.toFixed(4) }}</span>
+            </div>
+          </div>
+
+          <!-- Formula Reference -->
+          <p-divider></p-divider>
+          <div class="formula-ref text-xs text-color-secondary mt-2">
+            Formula: Orig × LvDiff × [(1 + Equip + MrKim) × (1 + Event + Kafra) + Manual × (1 + VIP)] × Tap
+          </div>
+        </ng-container>
+
+        <ng-template #noResult>
+          <div class="text-center text-color-secondary py-4">
+            <i class="pi pi-calculator mr-2 text-2xl"></i>
+            <div>Select a monster to see EXP yield</div>
+          </div>
+        </ng-template>
+
+      </p-fieldset>
+    </div>
+
+  </div>
+
+  <!-- Level Difference Reference Table -->
+  <div class="mt-4">
+    <p-fieldset legend="Level Difference Reference" [toggleable]="true" [collapsed]="true">
+      <div class="grid grid-nogutter">
+        <div class="col-6">
+          <p-table [value]="[
+            { diff: '+16 or more', mod: '40%', cls: 'diff-bad' },
+            { diff: '+15', mod: '115%', cls: 'diff-good' },
+            { diff: '+14', mod: '120%', cls: 'diff-good' },
+            { diff: '+13', mod: '125%', cls: 'diff-great' },
+            { diff: '+12', mod: '130%', cls: 'diff-great' },
+            { diff: '+11', mod: '135%', cls: 'diff-great' },
+            { diff: '+10', mod: '140% ★', cls: 'diff-great' },
+            { diff: '+9', mod: '135%', cls: 'diff-great' },
+            { diff: '+8', mod: '130%', cls: 'diff-great' },
+            { diff: '+7', mod: '125%', cls: 'diff-great' },
+            { diff: '+6', mod: '120%', cls: 'diff-good' },
+            { diff: '+5', mod: '115%', cls: 'diff-good' },
+            { diff: '+4', mod: '110%', cls: 'diff-good' },
+            { diff: '+3', mod: '105%', cls: 'diff-good' },
+            { diff: '+2 to -5', mod: '100%', cls: 'diff-good' },
+            { diff: '-6 to -10', mod: '95%', cls: 'diff-good' }
+          ]" styleClass="p-datatable-sm p-datatable-striped">
+            <ng-template pTemplate="header">
+              <tr>
+                <th>Level Diff</th>
+                <th>EXP Mod</th>
+              </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-row>
+              <tr>
+                <td>{{ row.diff }}</td>
+                <td><span [ngClass]="row.cls + '-text'">{{ row.mod }}</span></td>
+              </tr>
+            </ng-template>
+          </p-table>
+        </div>
+        <div class="col-6">
+          <p-table [value]="[
+            { diff: '-11 to -15', mod: '90%', cls: 'diff-warn' },
+            { diff: '-16 to -20', mod: '85%', cls: 'diff-warn' },
+            { diff: '-21 to -25', mod: '60%', cls: 'diff-bad' },
+            { diff: '-26 to -30', mod: '35%', cls: 'diff-bad' },
+            { diff: '-31 or less', mod: '10%', cls: 'diff-bad' }
+          ]" styleClass="p-datatable-sm p-datatable-striped">
+            <ng-template pTemplate="header">
+              <tr>
+                <th>Level Diff</th>
+                <th>EXP Mod</th>
+              </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-row>
+              <tr>
+                <td>{{ row.diff }}</td>
+                <td><span [ngClass]="row.cls + '-text'">{{ row.mod }}</span></td>
+              </tr>
+            </ng-template>
+          </p-table>
+        </div>
+      </div>
+    </p-fieldset>
+  </div>
+
+</div>

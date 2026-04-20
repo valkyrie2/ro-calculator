@@ -9,6 +9,7 @@ export const createRawTotalBonus = (): EquipmentSummaryModel => {
     hpPercent: 0,
     sp: 0,
     spPercent: 0,
+    expBonus: 0,
     def: 0,
     defPercent: 0,
     softDef: 0,

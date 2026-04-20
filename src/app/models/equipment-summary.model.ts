@@ -212,6 +212,8 @@ export interface EquipmentSummaryModel {
   pene_mres_race_angel: number;
   pene_mres_race_dragon: number;
 
+  expBonus: number;
+
   // Other from skill
   forceCri?: number;
   magnumBreakPsedoBonus?: number;

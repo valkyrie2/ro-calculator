@@ -52,6 +52,7 @@ import { StatusInputComponent } from './status-input/status-input.component';
 import { CalcBreakdownComponent } from './calc-breakdown/calc-breakdown.component';
 import { CustomBonusComponent } from './custom-bonus/custom-bonus.component';
 import { DpsCompareComponent } from './dps-compare/dps-compare.component';
+import { ExpCalculatorComponent } from './exp-calculator/exp-calculator.component';
 
 @NgModule({
   imports: [
@@ -109,6 +110,7 @@ import { DpsCompareComponent } from './dps-compare/dps-compare.component';
     CalcBreakdownComponent,
     CustomBonusComponent,
     DpsCompareComponent,
+    ExpCalculatorComponent,
   ],
   exports: [CalcValueComponent],
 })

@@ -1,0 +1,269 @@
+import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { SelectItemGroup } from 'primeng/api';
+import { MonsterModel } from 'src/app/models/monster.model';
+import {
+  getActiveSpotlightEvent,
+  getSpotlightMonster,
+  SpotlightEvent,
+  SpotlightMonster,
+} from 'src/app/constants/exp-spotlight';
+
+/**
+ * Level difference modifier: diff = monsterLevel - playerLevel
+ * Source: Official RO EXP table
+ */
+function getLevelDiffMod(diff: number): number {
+  if (diff >= 16) return 0.40;
+  if (diff === 15) return 1.15;
+  if (diff === 14) return 1.20;
+  if (diff === 13) return 1.25;
+  if (diff === 12) return 1.30;
+  if (diff === 11) return 1.35;
+  if (diff === 10) return 1.40;
+  if (diff === 9) return 1.35;
+  if (diff === 8) return 1.30;
+  if (diff === 7) return 1.25;
+  if (diff === 6) return 1.20;
+  if (diff === 5) return 1.15;
+  if (diff === 4) return 1.10;
+  if (diff === 3) return 1.05;
+  if (diff >= -5) return 1.00;
+  if (diff >= -10) return 0.95;
+  if (diff >= -15) return 0.90;
+  if (diff >= -20) return 0.85;
+  if (diff >= -25) return 0.60;
+  if (diff >= -30) return 0.35;
+  return 0.10; // -31 and below
+}
+
+export type ManualType = 'none' | 'm50' | 'm55' | 'm100' | 'm200';
+
+interface MonsterSelectItemGroup extends SelectItemGroup {
+  items: any[];
+}
+
+interface ExpResult {
+  rawBaseExp: number;
+  rawJobExp: number;
+  finalBaseExp: number;
+  finalJobExp: number;
+  levelDiffMod: number;
+  equipModPercent: number;
+  mrkimModPercent: number;
+  eventModPercent: number;
+  kafraModPercent: number;
+  manualModPercent: number;
+  totalBaseMod: number;
+  totalJobMod: number;
+}
+
+@Component({
+  selector: 'app-exp-calculator',
+  templateUrl: './exp-calculator.component.html',
+  styleUrls: ['./exp-calculator.component.scss'],
+})
+export class ExpCalculatorComponent implements OnChanges {
+  @Input() groupMonsterList: MonsterSelectItemGroup[] = [];
+  @Input() monsterDataMap: Record<number, MonsterModel> = {};
+  @Input() playerLevel: number = 1;
+  /** equip EXP bonus % from main calculator (totalSummary.calc.expBonus) */
+  @Input() equipExpBonus: number = 0;
+
+  selectedMonsterId: number = null;
+
+  // --- Modifiers ---
+  manualType: ManualType = 'none';
+  isVip = false;
+  isMrKim = false;
+  isKafraBuff = false;
+  isJobManual = false;
+  /** Custom event EXP % (auto-filled when spotlight is active) */
+  eventExpPercent = 0;
+  tapMod = 1;
+  /** Override equip bonus manually (instead of using the value from the calculator) */
+  overrideEquipBonus: number = null;
+  /** Override player level manually (instead of using the value from the calculator) */
+  overridePlayerLevel: number = null;
+
+  // --- Results ---
+  result: ExpResult | null = null;
+
+  // --- Spotlight ---
+  activeSpotlightEvent: SpotlightEvent | null = null;
+  spotlightMonsterData: SpotlightMonster | null = null;
+
+  readonly manualOptions: { label: string; value: ManualType }[] = [
+    { label: 'None', value: 'none' },
+    { label: '+50% Battle Manual', value: 'm50' },
+    { label: '+55% Thick Battle Manual', value: 'm55' },
+    { label: '+100% HE Battle Manual', value: 'm100' },
+    { label: '+200% Battle Manual X3', value: 'm200' },
+  ];
+
+  readonly tapModOptions = [
+    { label: '1×', value: 1 },
+    { label: '2×', value: 2 },
+    { label: '3×', value: 3 },
+  ];
+
+  constructor() {
+    this.activeSpotlightEvent = getActiveSpotlightEvent();
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['equipExpBonus'] && this.overrideEquipBonus === null) {
+      // sync override field when parent changes and no custom override set
+    }
+    this.calculate();
+  }
+
+  get selectedMonster(): MonsterModel | null {
+    if (!this.selectedMonsterId) return null;
+    return this.monsterDataMap[this.selectedMonsterId] ?? null;
+  }
+
+  get levelDiff(): number {
+    if (!this.selectedMonster) return 0;
+    return (this.selectedMonster.stats?.level || 0) - (this.effectivePlayerLevel || 1);
+  }
+
+  get effectiveEquipBonus(): number {
+    return this.overrideEquipBonus !== null ? this.overrideEquipBonus : this.equipExpBonus;
+  }
+
+  get effectivePlayerLevel(): number {
+    return this.overridePlayerLevel !== null ? this.overridePlayerLevel : this.playerLevel;
+  }
+
+  onMonsterChange(): void {
+    if (this.selectedMonsterId) {
+      this.spotlightMonsterData = getSpotlightMonster(this.selectedMonsterId);
+    } else {
+      this.spotlightMonsterData = null;
+    }
+    this.calculate();
+  }
+
+  onModifierChange(): void {
+    this.calculate();
+  }
+
+  onOverrideEquipBonusChange(value: number): void {
+    this.overrideEquipBonus = value;
+    this.calculate();
+  }
+
+  resetEquipBonus(): void {
+    this.overrideEquipBonus = null;
+    this.calculate();
+  }
+
+  onOverridePlayerLevelChange(value: number): void {
+    this.overridePlayerLevel = value;
+    this.calculate();
+  }
+
+  resetPlayerLevel(): void {
+    this.overridePlayerLevel = null;
+    this.calculate();
+  }
+
+  /** groupMonsterList with a "Spotlight" group prepended when an active event has monsters */
+  get expGroupMonsterList(): MonsterSelectItemGroup[] {
+    if (!this.activeSpotlightEvent || this.activeSpotlightEvent.monsters.length === 0) {
+      return this.groupMonsterList;
+    }
+    const spotlightIds = new Set(this.activeSpotlightEvent.monsters.map((m) => m.monsterId));
+    const spotlightItems: any[] = [];
+    for (const group of this.groupMonsterList) {
+      for (const item of group.items) {
+        if (spotlightIds.has(item.value)) {
+          spotlightItems.push(item);
+        }
+      }
+    }
+    if (spotlightItems.length === 0) return this.groupMonsterList;
+    const spotlightGroup: MonsterSelectItemGroup = {
+      label: '⭐ ' + this.activeSpotlightEvent.name,
+      items: spotlightItems,
+    };
+    return [spotlightGroup, ...this.groupMonsterList];
+  }
+
+  getLevelDiffLabel(diff: number): string {
+    if (diff > 0) return `+${diff} (Monster above)`;
+    if (diff < 0) return `${diff} (Monster below)`;
+    return `0 (Equal)`;
+  }
+
+  getLevelDiffClass(diff: number): string {
+    const mod = getLevelDiffMod(diff);
+    if (mod >= 1.2) return 'diff-great';
+    if (mod >= 1.0) return 'diff-good';
+    if (mod >= 0.85) return 'diff-warn';
+    return 'diff-bad';
+  }
+
+  private getManualMod(): number {
+    switch (this.manualType) {
+      case 'm50': return 0.50;
+      case 'm55': return 0.55;
+      case 'm100': return 1.00;
+      case 'm200': return 2.00;
+      default: return 0;
+    }
+  }
+
+  private calculate(): void {
+    const monster = this.selectedMonster;
+    if (!monster) {
+      this.result = null;
+      return;
+    }
+
+    // Use spotlight event EXP if monster is in active spotlight
+    const rawBaseExp = this.spotlightMonsterData?.eventBaseExp ?? monster.stats.baseExperience;
+    const rawJobExp = this.spotlightMonsterData?.eventJobExp ?? monster.stats.jobExperience;
+
+    const diff = this.levelDiff;
+    const levelDiffMod = getLevelDiffMod(diff);
+
+    const equipModPercent = this.effectiveEquipBonus;
+    const mrkimModPercent = this.isMrKim ? 60 : 0;
+    const eventModPercent = this.eventExpPercent;
+    const kafraModPercent = this.isKafraBuff ? 50 : 0;
+
+    const equipMod = equipModPercent / 100;
+    const mrkimMod = mrkimModPercent / 100;
+    const eventMod = eventModPercent / 100;
+    const kafraMod = kafraModPercent / 100;
+
+    const baseManualMod = this.getManualMod();
+    const vipBoost = this.isVip && baseManualMod > 0 ? 0.5 : 0;
+    const manualMod = baseManualMod * (1 + vipBoost);
+    const manualModPercent = Math.round(manualMod * 100);
+
+    // Formula: Orig × LvDiff × [(1 + Equip + MrKim) × (1 + Event + Kafra) + Manual] × Tap
+    const totalBaseMod = (1 + equipMod + mrkimMod) * (1 + eventMod + kafraMod) + manualMod;
+    const jobManualMod = this.isJobManual ? (this.isVip ? 0.75 : 0.50) : 0;
+    const totalJobMod = (1 + equipMod + mrkimMod) * (1 + eventMod + kafraMod) + manualMod + jobManualMod;
+
+    const finalBaseExp = Math.floor(rawBaseExp * levelDiffMod * totalBaseMod * this.tapMod);
+    const finalJobExp = Math.floor(rawJobExp * levelDiffMod * totalJobMod * this.tapMod);
+
+    this.result = {
+      rawBaseExp,
+      rawJobExp,
+      finalBaseExp,
+      finalJobExp,
+      levelDiffMod,
+      equipModPercent,
+      mrkimModPercent,
+      eventModPercent,
+      kafraModPercent,
+      manualModPercent,
+      totalBaseMod,
+      totalJobMod,
+    };
+  }
+}

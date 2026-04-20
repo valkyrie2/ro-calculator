@@ -1512,6 +1512,7 @@ export class Calculator {
         // display on stat summary
         maxHp: this.maxHp,
         maxSp: this.maxSp,
+        expBonus: this.totalEquipStatus.expBonus || 0,
         dex2int1: this.skillFrequency.sumDex2Int1 || 0,
         to530: 530 - (this.skillFrequency.sumDex2Int1 || 0),
         def: this.def,

@@ -1,0 +1,186 @@
+.exp-calc-container {
+  padding: 1rem;
+  min-width: 900px;
+}
+
+// ── Spotlight Banner ──────────────────────────────────────────────
+.spotlight-banner {
+  background: linear-gradient(90deg, rgba(255, 193, 7, 0.08), rgba(255, 152, 0, 0.05));
+  border: 1px solid rgba(255, 193, 7, 0.3);
+  border-radius: 8px;
+  padding: 0.6rem 1rem;
+}
+
+// ── Monster Info Card ─────────────────────────────────────────────
+.monster-info-card {
+  background: rgba(255, 255, 255, 0.04);
+  border-radius: 8px;
+  padding: 0.75rem;
+  border: 1px solid var(--surface-border);
+}
+
+.monster-thumb {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+  image-rendering: pixelated;
+}
+
+.exp-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2px 0;
+}
+
+.exp-label {
+  color: var(--text-color-secondary);
+  font-size: 0.875rem;
+}
+
+.exp-value {
+  font-weight: 600;
+}
+
+// ── Level Difference Card ─────────────────────────────────────────
+.level-diff-card {
+  border-radius: 8px;
+  padding: 0.75rem;
+  border: 2px solid;
+  transition: border-color 0.2s, background 0.2s;
+
+  .diff-value,
+  .diff-mod {
+    font-size: 1rem;
+  }
+
+  .divider-line {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+  }
+}
+
+.diff-great {
+  border-color: var(--green-500);
+  background: rgba(76, 175, 80, 0.08);
+
+  .diff-value, .diff-mod { color: var(--green-400); }
+}
+
+.diff-good {
+  border-color: var(--cyan-500);
+  background: rgba(0, 188, 212, 0.06);
+
+  .diff-value, .diff-mod { color: var(--cyan-300); }
+}
+
+.diff-warn {
+  border-color: var(--yellow-500);
+  background: rgba(255, 193, 7, 0.06);
+
+  .diff-value, .diff-mod { color: var(--yellow-300); }
+}
+
+.diff-bad {
+  border-color: var(--red-500);
+  background: rgba(244, 67, 54, 0.07);
+
+  .diff-value, .diff-mod { color: var(--red-400); }
+}
+
+// Table color helpers
+.diff-great-text { color: var(--green-400); font-weight: 600; }
+.diff-good-text  { color: var(--cyan-300); }
+.diff-warn-text  { color: var(--yellow-300); }
+.diff-bad-text   { color: var(--red-400); font-weight: 600; }
+
+// ── Modifier Rows ─────────────────────────────────────────────────
+.modifier-row {
+  padding: 0.5rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.modifier-label {
+  font-size: 0.9rem;
+  color: var(--text-color);
+}
+
+.modifier-disabled {
+  opacity: 0.5;
+}
+
+// ── Result Cards ──────────────────────────────────────────────────
+.result-card {
+  background: rgba(255, 255, 255, 0.04);
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.result-title {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-color-secondary);
+  margin-bottom: 0.25rem;
+}
+
+.result-value {
+  font-size: 1.75rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.result-raw {
+  margin-top: 0.25rem;
+}
+
+// ── Breakdown Table ───────────────────────────────────────────────
+.breakdown-title {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-color-secondary);
+}
+
+.breakdown-table {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.breakdown-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 3px 6px;
+  border-radius: 4px;
+  font-size: 0.875rem;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.04);
+  }
+}
+
+.total-row {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  margin-top: 4px;
+}
+
+.breakdown-label {
+  color: var(--text-color-secondary);
+}
+
+.breakdown-value {
+  font-weight: 600;
+}
+
+.formula-ref {
+  font-style: italic;
+  opacity: 0.7;
+  line-height: 1.4;
+}
