@@ -180,51 +180,130 @@ export class ExpCalculatorComponent implements OnChanges {
     this.calculate();
   }
 
-  /** groupMonsterList with a "Spotlight" group prepended when an active event has monsters */
+  /** groupMonsterList with Recommended and Spotlight groups prepended */
   get expGroupMonsterList(): MonsterSelectItemGroup[] {
-    if (!this.activeSpotlightEvent || this.activeSpotlightEvent.monsters.length === 0) {
-      return this.groupMonsterList;
-    }
-    const spotlightIds = new Set(this.activeSpotlightEvent.monsters.map((m) => m.monsterId));
-    const spotlightItems: any[] = [];
-    const foundIds = new Set<number>();
+    const playerLv = this.effectivePlayerLevel || 1;
+    const groups: MonsterSelectItemGroup[] = [];
 
-    // DB-backed monsters
+    // Build spotlight lookup map (monsterId -> SpotlightMonster)
+    const spotlightMap = this.activeSpotlightEvent
+      ? new Map(this.activeSpotlightEvent.monsters.map((m) => [m.monsterId, m]))
+      : new Map<number, SpotlightMonster>();
+
+    // --- Recommended group: top 5 by baseExp × levelDiffMod ---
+    const candidates: { item: any; score: number }[] = [];
     for (const group of this.groupMonsterList) {
       for (const item of group.items) {
-        if (spotlightIds.has(item.value)) {
-          spotlightItems.push({ ...item, isSpotlight: true });
-          foundIds.add(item.value);
+        const monsterLevel: number = item.level || 0;
+        if (!monsterLevel) continue;
+        if (item.mvp) continue; // exclude BOSS/MVP monsters
+        if (!this.monsterDataMap[item.value]?.spawn) continue; // exclude monsters with no spawn location
+        if (this.isExcludedSpawn(this.monsterDataMap[item.value]?.spawn)) continue; // exclude special instance spawns
+        const diff = monsterLevel - playerLv;
+        if (Math.abs(diff) > 15) continue; // exclude monsters too far in level
+        const mod = getLevelDiffMod(diff);
+        const sm = spotlightMap.get(item.value);
+        const baseExp = sm
+          ? sm.eventBaseExp
+          : (this.monsterDataMap[item.value]?.stats?.baseExperience ?? 0);
+        const extraFlags = sm ? { isSpotlight: true } : {};
+        candidates.push({ item: { ...item, ...extraFlags }, score: baseExp * mod });
+      }
+    }
+    // Include virtual spotlight-only monsters in candidates
+    if (this.activeSpotlightEvent) {
+      const dbIds = new Set(this.groupMonsterList.flatMap((g) => g.items.map((i) => i.value)));
+      for (const sm of this.activeSpotlightEvent.monsters) {
+        if (!dbIds.has(sm.monsterId) && sm.monsterLevel != null) {
+          const diff = sm.monsterLevel - playerLv;
+          if (Math.abs(diff) > 15) continue; // exclude monsters too far in level
+          const mod = getLevelDiffMod(diff);
+          candidates.push({
+            item: {
+              label: sm.monsterName,
+              name: sm.monsterName,
+              value: sm.monsterId,
+              level: sm.monsterLevel,
+              elementName: '—',
+              raceName: '—',
+              scaleName: '—',
+              searchVal: sm.monsterName,
+              isVirtualSpotlight: true,
+            },
+            score: sm.eventBaseExp * mod,
+          });
         }
       }
     }
+    candidates.sort((a, b) => b.score - a.score);
+    // Pick top 1 per unique spawn group → 5 monsters from different places
+    const usedGroups = new Set<string>();
+    const recItems: any[] = [];
+    for (const c of candidates) {
+      const groupKey = (c.item.groups?.[0] ?? c.item.searchVal ?? '').trim();
+      if (usedGroups.has(groupKey)) continue;
+      usedGroups.add(groupKey);
+      recItems.push({ ...c.item, isRecommended: true, recScore: c.score });
+      if (recItems.length >= 5) break;
+    }
+    // Already sorted highest score first
+    if (recItems.length > 0) {
+      groups.push({
+        label: `🔵 Recommended for Lv.${playerLv}`,
+        items: recItems,
+      });
+    }
 
-    // Virtual monsters not in DB
-    for (const sm of this.activeSpotlightEvent.monsters) {
-      if (!foundIds.has(sm.monsterId) && sm.monsterLevel != null) {
-        spotlightItems.push({
-          label: sm.monsterName,
-          name: sm.monsterName,
-          value: sm.monsterId,
-          level: sm.monsterLevel,
-          elementName: '—',
-          raceName: '—',
-          scaleName: '—',
-          searchVal: sm.monsterName,
-          isVirtualSpotlight: true,
+    // --- Spotlight group ---
+    if (this.activeSpotlightEvent && this.activeSpotlightEvent.monsters.length > 0) {
+      const spotlightIds = new Set(this.activeSpotlightEvent.monsters.map((m) => m.monsterId));
+      const spotlightItems: any[] = [];
+      const foundIds = new Set<number>();
+
+      for (const group of this.groupMonsterList) {
+        for (const item of group.items) {
+          if (spotlightIds.has(item.value)) {
+            spotlightItems.push({ ...item, isSpotlight: true });
+            foundIds.add(item.value);
+          }
+        }
+      }
+      for (const sm of this.activeSpotlightEvent.monsters) {
+        if (!foundIds.has(sm.monsterId) && sm.monsterLevel != null) {
+          spotlightItems.push({
+            label: sm.monsterName,
+            name: sm.monsterName,
+            value: sm.monsterId,
+            level: sm.monsterLevel,
+            elementName: '—',
+            raceName: '—',
+            scaleName: '—',
+            searchVal: sm.monsterName,
+            isVirtualSpotlight: true,
+          });
+        }
+      }
+      spotlightItems.sort((a, b) => (a.level || 0) - (b.level || 0));
+      if (spotlightItems.length > 0) {
+        groups.push({
+          label: '⭐ ' + this.activeSpotlightEvent.name,
+          items: spotlightItems,
         });
       }
     }
 
-    // Sort all spotlight items by level ascending
-    spotlightItems.sort((a, b) => (a.level || 0) - (b.level || 0));
-
-    if (spotlightItems.length === 0) return this.groupMonsterList;
-    const spotlightGroup: MonsterSelectItemGroup = {
-      label: '⭐ ' + this.activeSpotlightEvent.name,
-      items: spotlightItems,
-    };
-    return [spotlightGroup, ...this.groupMonsterList];
+    // Push normal groups with boss/MVP and no-spawn monsters removed
+    for (const group of this.groupMonsterList) {
+      const nonBossItems = group.items.filter(
+        (item) => !item.mvp
+          && !!this.monsterDataMap[item.value]?.spawn
+          && !this.isExcludedSpawn(this.monsterDataMap[item.value]?.spawn)
+      );
+      if (nonBossItems.length > 0) {
+        groups.push({ ...group, items: nonBossItems });
+      }
+    }
+    return groups;
   }
 
   private makeVirtualMonster(sm: SpotlightMonster): MonsterModel {
@@ -242,6 +321,21 @@ export class ExpCalculatorComponent implements OnChanges {
         elementName: '—',
       } as any,
     };
+  }
+
+  private readonly excludedSpawnPrefixes = ['1@'];
+
+  private isExcludedSpawn(spawn: string): boolean {
+    if (!spawn) return false;
+    return this.excludedSpawnPrefixes.some((prefix) =>
+      spawn.split(',').every((s) => s.trim().startsWith(prefix))
+    );
+  }
+
+  formatExp(score: number): string {
+    if (score >= 1_000_000) return (score / 1_000_000).toFixed(1) + 'M';
+    if (score >= 1_000) return Math.round(score / 1_000) + 'k';
+    return String(Math.round(score));
   }
 
   getLevelDiffLabel(diff: number): string {

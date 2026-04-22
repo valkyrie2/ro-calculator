@@ -1,5 +1,9 @@
 # Changelog
 
+## Extra v59.1 (23-04-2569)
+
+- Added item: 6th Anniversary Ayothaya Ring [1]
+
 ## Extra v59 (20-04-2569)
 
 - Added EXP Calculator tab — calculates EXP/Job EXP yield from monsters

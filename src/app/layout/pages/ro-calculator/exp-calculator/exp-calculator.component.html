@@ -53,7 +53,11 @@
                 <ng-template let-item pTemplate="item">
                   <div class="flex align-items-center justify-content-between">
                     <span>{{ item.label }}</span>
-                    <p-tag *ngIf="item.isSpotlight || item.isVirtualSpotlight" severity="warning" value="⭐" styleClass="text-xs ml-2"></p-tag>
+                    <div class="flex gap-1 align-items-center">
+                      <span *ngIf="item.isRecommended" class="text-xs text-color-secondary">{{ formatExp(item.recScore) }}</span>
+                      <p-tag *ngIf="item.isRecommended" severity="info" value="Rec" styleClass="text-xs"></p-tag>
+                      <p-tag *ngIf="item.isSpotlight || item.isVirtualSpotlight" severity="warning" value="⭐" styleClass="text-xs"></p-tag>
+                    </div>
                   </div>
                 </ng-template>
               </p-dropdown>
