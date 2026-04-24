@@ -86,14 +86,11 @@
     }
 
     .topbar-ad-slot {
-        flex: 1 1 auto;
-        max-width: 728px;
-        min-width: 200px;
+        flex: 0 0 auto;
         margin: 0 1rem;
         display: flex;
         align-items: center;
         justify-content: center;
-        overflow: hidden;
     }
 }
 
