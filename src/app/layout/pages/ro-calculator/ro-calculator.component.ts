@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ConfirmationService, MenuItem, MessageService, PrimeIcons, SelectItemGroup } from 'primeng/api';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { Observable, Subject, Subscription, catchError, debounceTime, finalize, forkJoin, mergeMap, of, switchMap, take, tap, throwError } from 'rxjs';
-import { AuthService, PresetModel, PresetService } from 'src/app/api-services';
+import { AuthService, PresetModel, PresetService, AnalyticsService } from 'src/app/api-services';
 import { logger } from 'src/app/api-services/logger.service';
 import { RoService } from 'src/app/api-services/ro.service';
 import { AllowedCompareItemTypes } from 'src/app/app-config';
@@ -357,6 +357,7 @@ export class RoCalculatorComponent implements OnInit, OnDestroy {
     private readonly layoutService: LayoutService,
     private readonly authService: AuthService,
     private readonly presetService: PresetService,
+    private readonly analytics: AnalyticsService,
     public readonly highlightService: HighlightService,
   ) { }
 
@@ -1283,6 +1284,7 @@ export class RoCalculatorComponent implements OnInit, OnDestroy {
         this.savePresetList(currentPresets);
         this.setPresetList();
         this.presetUpdated$.next();
+        this.analytics.track('preset-save-local', { className: this.selectedCharacter?.className });
 
         this.messageService.add({
           severity: 'success',
@@ -1330,6 +1332,7 @@ export class RoCalculatorComponent implements OnInit, OnDestroy {
             icon: ClassIcon[classId],
           }, ...this.preSets];
           this.presetUpdated$.next();
+          this.analytics.track('preset-save-cloud', { classId });
           return waitRxjs();
         }),
         catchError((err) => {
@@ -1471,6 +1474,7 @@ export class RoCalculatorComponent implements OnInit, OnDestroy {
         tap((preset) => {
           this.updateCompareEvent.next(1);
           if (presetName) this.selectedPreset = presetName;
+          this.analytics.track('preset-load', { cloud: true });
           this.messageService.add({
             severity: 'success',
             summary: 'Loaded',

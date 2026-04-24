@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AuthService } from 'src/app/api-services';
+import { AuthService, AnalyticsService } from 'src/app/api-services';
 import { logger } from 'src/app/api-services/logger.service';
 
 @Component({
@@ -13,6 +13,7 @@ export class AuthComponent implements OnInit {
     private readonly route: ActivatedRoute,
     private readonly authService: AuthService,
     private readonly router: Router,
+    private readonly analytics: AnalyticsService,
   ) {}
 
   ngOnInit() {
@@ -25,9 +26,11 @@ export class AuthComponent implements OnInit {
   login(authCode: string) {
     this.authService.login(authCode).subscribe({
       next: () => {
+        this.analytics.track('login-success');
         this.router.navigate(['..'], { relativeTo: this.route });
       },
       error: (err) => {
+        this.analytics.track('login-failure');
         logger.error(err);
         this.router.navigate(['..'], { relativeTo: this.route });
       },

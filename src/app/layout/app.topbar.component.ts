@@ -3,7 +3,7 @@ import { ConfirmationService, MenuItem, MessageService } from 'primeng/api';
 import { DialogService } from 'primeng/dynamicdialog';
 import { Subscription } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { AuthService } from '../api-services';
+import { AuthService, AnalyticsService } from '../api-services';
 import { logger } from '../api-services/logger.service';
 import { LayoutService } from './service/app.layout.service';
 
@@ -24,11 +24,12 @@ export class AppTopBarComponent implements OnInit, OnDestroy {
         exact: true,
       },
     },
-    {
-      label: 'Shared Presets',
-      icon: 'pi pi-fw pi-list',
-      routerLink: ['/shared-presets'],
-    },
+    // HIDDEN: Shared Presets tab
+    // {
+    //   label: 'Shared Presets',
+    //   icon: 'pi pi-fw pi-list',
+    //   routerLink: ['/shared-presets'],
+    // },
     //{
     //  label: 'Item Ranking',
     //  icon: 'pi pi-fw pi-sort-amount-down',
@@ -1578,6 +1579,8 @@ export class AppTopBarComponent implements OnInit, OnDestroy {
 
   username: string;
 
+  analyticsOptedOut = false;
+
   obs = [] as Subscription[];
 
   constructor(
@@ -1585,7 +1588,10 @@ export class AppTopBarComponent implements OnInit, OnDestroy {
     private readonly authService: AuthService,
     private messageService: MessageService,
     private confirmationService: ConfirmationService,
-  ) { }
+    private readonly analytics: AnalyticsService,
+  ) {
+    this.analyticsOptedOut = this.analytics.isOptedOut();
+  }
 
   ngOnDestroy(): void {
     for (const subscription of this.obs) {
@@ -1598,6 +1604,17 @@ export class AppTopBarComponent implements OnInit, OnDestroy {
       this.username = profile?.name;
     });
     this.obs.push(o);
+  }
+
+  toggleAnalytics(): void {
+    const next = !this.analyticsOptedOut;
+    this.analytics.setOptOut(next);
+    this.analyticsOptedOut = next;
+    this.messageService.add({
+      severity: 'info',
+      summary: next ? 'Analytics disabled' : 'Analytics enabled',
+      detail: next ? 'No usage data will be sent.' : 'Thanks for helping improve the calculator!',
+    });
   }
 
   logout() {

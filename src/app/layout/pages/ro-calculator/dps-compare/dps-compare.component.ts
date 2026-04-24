@@ -1,6 +1,6 @@
 import { Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
 import { Observable, Subscription, take, tap } from 'rxjs';
-import { AuthService, PresetModel, PresetService } from 'src/app/api-services';
+import { AuthService, PresetModel, PresetService, AnalyticsService } from 'src/app/api-services';
 import { ClassIcon } from 'src/app/jobs';
 import { JobBuffs } from 'src/app/constants';
 import { toRawOptionTxtList, floor } from 'src/app/utils';
@@ -74,6 +74,7 @@ export class DpsCompareComponent implements OnInit, OnDestroy, OnChanges {
   constructor(
     private readonly authService: AuthService,
     private readonly presetService: PresetService,
+    private readonly analytics: AnalyticsService,
   ) {}
 
   ngOnInit() {
@@ -197,6 +198,7 @@ export class DpsCompareComponent implements OnInit, OnDestroy, OnChanges {
 
     this.sideA.totalSummary = this.runCalculation(presetA.model, this.selectedSkillA);
     this.sideB.totalSummary = this.runCalculation(presetB.model, this.selectedSkillB);
+    this.analytics.track('dps-compare', { skillA: this.selectedSkillA, skillB: this.selectedSkillB });
   }
 
   private runCalculation(model: PresetModel, selectedAtkSkill: string): any {
