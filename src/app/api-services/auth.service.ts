@@ -4,6 +4,7 @@ import { LoginResponse, Profile } from './models';
 import { ReplaySubject, catchError, of, switchMap, tap, throwError } from 'rxjs';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { BaseAPIService } from './base-api.service';
+import { logger } from './logger.service';
 
 @Injectable()
 export class AuthService extends BaseAPIService {
@@ -33,10 +34,10 @@ export class AuthService extends BaseAPIService {
   logout() {
     return this.post<LoginResponse>(`${this.API.logout}`, {}).subscribe({
       next: () => {
-        console.log('logout');
+        logger.log('logout');
       },
       error: (err) => {
-        console.error({ err });
+        logger.error({ err });
       },
       complete: () => {
         localStorage.removeItem('accessToken');

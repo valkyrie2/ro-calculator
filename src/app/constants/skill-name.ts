@@ -1,3 +1,5 @@
+import { logger } from '../api-services/logger.service';
+
 const ACTIVE_PASSIVE_SKILL_NAMES = [
   '_3Faith',
   '_Argutus Vita_Telum',
@@ -727,6 +729,6 @@ for (const s of ACTIVE_PASSIVE_SKILL_NAMES) {
   }
 }
 
-if (dup.length > 0) console.log('skillname_dupplicates', dup);
+if (dup.length > 0) logger.log('skillname_dupplicates', dup);
 
 export type SKILL_NAME = (typeof ACTIVE_PASSIVE_SKILL_NAMES)[number] | (typeof OFFENSIVE_SKILL_NAMES)[number];

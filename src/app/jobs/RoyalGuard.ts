@@ -4,6 +4,7 @@ import { Paladin } from './Paladin';
 import { ElementType } from '../constants/element-type.const';
 import { AdditionalBonusInput, InfoForClass } from '../models/info-for-class.model';
 import { ShieldSpellFn } from '../constants/share-active-skills';
+import { atkSkill } from './_skill-builder';
 
 const jobBonusTable: Record<number, [number, number, number, number, number, number]> = {
   1: [0, 0, 0, 0, 0, 0],
@@ -84,15 +85,10 @@ export class RoyalGuard extends Paladin {
 
   protected readonly classNames3rd = [ClassName.Only_3rd, ClassName.RoyalGuard];
   protected readonly atkSkillList3rd: AtkSkillModel[] = [
-    {
+    atkSkill({
       name: 'Banishing Point',
-      label: 'Banishing Point Lv10',
-      value: 'Banishing Point==10',
-      values: ['[Improved] Banishing Point==10'],
-      acd: 0,
-      fct: 0,
-      vct: 0,
-      cd: 0,
+      level: 10,
+      includeImproved: true,
       formula: (input: AtkSkillFormulaInput): number => {
         const { model, skillLevel } = input;
         const baseLevel = model.level;
@@ -104,12 +100,11 @@ export class RoyalGuard extends Paladin {
 
         return (skillLevel * 80 + bashLv * 50) * (baseLevel / 100);
       },
-    },
-    {
+    }),
+    atkSkill({
       name: 'Genesis Ray',
-      label: 'Genesis Ray Lv10',
-      value: 'Genesis Ray==10',
-      values: ['[Improved] Genesis Ray==10'],
+      level: 10,
+      includeImproved: true,
       acd: 1,
       fct: 0.5,
       vct: 6.5,
@@ -131,7 +126,7 @@ export class RoyalGuard extends Paladin {
 
         return (skillLevel * 230 + totalInt * 2) * (baseLevel / 100);
       },
-    },
+    }),
     {
       name: 'Over Brand',
       label: 'Over Brand Lv5',

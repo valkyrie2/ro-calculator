@@ -1,4 +1,6 @@
-console.clear();
+import { logger } from '../api-services/logger.service';
+
+logger.clear();
 
 // const lvl = 175
 // const factor = 90
@@ -62,4 +64,4 @@ for (let i = 1; i <= 70; i++) {
   response[i] = [str, agi, vit, int, dex, luk];
 }
 
-console.log(response);
+logger.log(response);

@@ -1,4 +1,5 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { logger } from '../../../../api-services/logger.service';
 import { createBonusNameList, prettyItemDesc } from '../../../../utils';
 import { DropdownModel } from '../../../../models/dropdown.model';
 import { ItemModel } from '../../../../models/item.model';
@@ -127,7 +128,7 @@ export class ItemSearchComponent implements OnInit, OnDestroy {
     for (const equipableItem of this.equipableItems) {
       const item = this.items[equipableItem.value] as ItemModel;
       if (!item?.script) {
-        console.log('No Script', { item, equipableItem });
+        logger.log('No Script', { item, equipableItem });
         continue;
       }
       if (selectedPositions.size > 0 && !selectedPositions.has(equipableItem.position)) continue;

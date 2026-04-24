@@ -5,6 +5,7 @@ import { Observable, map, shareReplay, tap } from 'rxjs';
 import { createRawTotalBonus } from 'src/app/utils';
 import { environment } from 'src/environments/environment';
 import { OFFENSIVE_SKILL_NAMES } from '../constants/skill-name';
+import { logger } from './logger.service';
 import { validClassNameSet } from './valid-bonuses';
 
 type baseStat = 'Str' | 'Agi' | 'Int' | 'Dex' | 'Luk' | 'Vit' | 'Pow' | 'Con' | 'Crt' | 'Spl' | 'Sta' | 'Wis';
@@ -81,8 +82,8 @@ export class RoService {
           // }
         }
 
-        if (invalidBonusSet.size > 0) console.error('invalidBonusSet', [...invalidBonusSet]);
-        if (invalidClassNameSet.size > 0) console.error('invalidClassNameSet', invalidClassNameSet);
+        if (invalidBonusSet.size > 0) logger.error('invalidBonusSet', [...invalidBonusSet]);
+        if (invalidClassNameSet.size > 0) logger.error('invalidClassNameSet', invalidClassNameSet);
       }),
     );
     this.cachedHpSpTable$ = this.http.get<any>('assets/demo/data/hp_sp_table.json').pipe(shareReplay(1));
@@ -114,7 +115,7 @@ export class RoService {
       'Abyss_Chaser', 'Elemental_Master', 'Inquisitor', 'Troubadour', 'Trouvere', ...expandedJobs];
 
     this.fetchYaml<{ Body: HpSpTable[]; }>('job_basepoints.yml').subscribe(({ Body: data }) => {
-      console.log({ data });
+      logger.log({ data });
       for (const rec of data) {
         const curJob = rec.Jobs;
         // console.log({ curJob })
@@ -165,8 +166,8 @@ export class RoService {
           });
         }
       }
-      console.log(a);
-    }, err => console.error({ err }));
+      logger.log(a);
+    }, err => logger.error({ err }));
 
     // this.getHpSpTable<any[]>().subscribe((data) => {
     //   const ls = {};
@@ -184,7 +185,7 @@ export class RoService {
   // 2: [1, 0, 0, 0, 0, 1],
   doX() {
     this.fetchYaml<{ Body: JobStatBody[]; }>('job_stats.yml').subscribe(({ Body }) => {
-      console.log({ Body });
+      logger.log({ Body });
       for (const job of Body) {
         const bastStat = {} as any;
         const traitStat = {} as any;
@@ -193,7 +194,7 @@ export class RoService {
           let [pow, sta, wis, spl, con, crt] = i === 1 ? [0, 0, 0, 0, 0, 0] : traitStat[i - 1];
 
           if (!job.BonusStats) {
-            console.error({ ...job });
+            logger.error({ ...job });
             break;
           }
 
@@ -220,9 +221,9 @@ export class RoService {
 
         const jobNames = Object.keys(job.Jobs).join(',');
         if (traitStat[70]?.[0] === 0 && traitStat[70]?.[1] === 0 && traitStat[70]?.[2] === 0 && traitStat[70]?.[3] === 0) {
-          console.log(jobNames, { bastStat });
+          logger.log(jobNames, { bastStat });
         } else {
-          console.log(jobNames, { bastStat, traitStat });
+          logger.log(jobNames, { bastStat, traitStat });
         }
       }
     });

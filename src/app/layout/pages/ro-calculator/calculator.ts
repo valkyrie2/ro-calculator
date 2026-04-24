@@ -12,6 +12,7 @@ import { SKILL_NAME } from 'src/app/constants/skill-name';
 import { Monster, Weapon } from 'src/app/domain';
 import { CharacterBase } from 'src/app/jobs';
 import { createRawTotalBonus, floor, isNumber, round } from 'src/app/utils';
+import { logger } from 'src/app/api-services/logger.service';
 import { ChanceModel } from '../../../models/chance-model';
 import { BasicAspdModel, BasicDamageSummaryModel, MiscModel, SkillAspdModel, SkillDamageSummaryModel } from '../../../models/damage-summary.model';
 import { EquipmentSummaryModel } from '../../../models/equipment-summary.model';
@@ -1012,7 +1013,7 @@ export class Calculator {
         }
 
         if (Number.isNaN(Number(restCondition))) {
-          console.log('cannot turn to number', { lineScript, restCondition });
+          logger.log('cannot turn to number', { lineScript, restCondition });
 
           return sum;
         }
@@ -1306,7 +1307,7 @@ export class Calculator {
       if (isNumber(val) && val !== 0) {
         this.totalEquipStatus[attr] = round(val, 2);
         if (val !== this.totalEquipStatus[attr]) {
-          console.log({ attr, val, newVal: this.totalEquipStatus[attr] });
+          logger.log({ attr, val, newVal: this.totalEquipStatus[attr] });
         }
       }
     }

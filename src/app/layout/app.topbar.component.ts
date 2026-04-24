@@ -4,6 +4,7 @@ import { DialogService } from 'primeng/dynamicdialog';
 import { Subscription } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { AuthService } from '../api-services';
+import { logger } from '../api-services/logger.service';
 import { LayoutService } from './service/app.layout.service';
 
 @Component({
@@ -1652,7 +1653,7 @@ export class AppTopBarComponent implements OnInit, OnDestroy {
           res(true);
         },
         reject: () => {
-          console.log('reject confirm');
+          logger.log('reject confirm');
           res(false);
         },
       });

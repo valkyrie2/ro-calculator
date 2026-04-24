@@ -3,6 +3,7 @@ import { ConfirmationService, MenuItem, MessageService, PrimeIcons, SelectItemGr
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { Observable, Subject, Subscription, catchError, debounceTime, finalize, forkJoin, mergeMap, of, switchMap, take, tap, throwError } from 'rxjs';
 import { AuthService, PresetModel, PresetService } from 'src/app/api-services';
+import { logger } from 'src/app/api-services/logger.service';
 import { RoService } from 'src/app/api-services/ro.service';
 import { AllowedCompareItemTypes } from 'src/app/app-config';
 import { ToErrorDetail } from 'src/app/app-errors';
@@ -368,7 +369,7 @@ export class RoCalculatorComponent implements OnInit, OnDestroy {
         tap(() => {
           const ob = this.authService.loggedInEvent$.subscribe((isLoggedIn) => {
             this.isLoggedIn = isLoggedIn;
-            console.log({ isLoggedIn });
+            logger.log({ isLoggedIn });
             if (isLoggedIn) {
               this.confirmSync();
               this.setPresetList();
@@ -391,7 +392,7 @@ export class RoCalculatorComponent implements OnInit, OnDestroy {
             this.ondefStarsChange();
           }
         } catch (err) {
-          console.error('Failed to apply hp/def star overrides on init', err);
+          logger.error('Failed to apply hp/def star overrides on init', err);
         }
       });
 
@@ -652,10 +653,10 @@ export class RoCalculatorComponent implements OnInit, OnDestroy {
             .filter(Boolean)
             .flat();
           const allEnchantSet = new Set(enchants);
-          console.log({ allEnchantSet });
+          logger.log({ allEnchantSet });
           for (const enchtName of allEnchantSet.values()) {
             if (!this.mapEnchant.has(enchtName)) {
-              console.log('not found in data.json', { enchtName });
+              logger.log('not found in data.json', { enchtName });
             }
           }
         }
@@ -990,7 +991,7 @@ export class RoCalculatorComponent implements OnInit, OnDestroy {
 
       return ids.map(Number).filter((id) => Number.isInteger(id));
     } catch (error) {
-      console.error(error);
+      logger.error(error);
       return [];
     }
   }
@@ -1007,7 +1008,7 @@ export class RoCalculatorComponent implements OnInit, OnDestroy {
 
       return cached.filter((a) => typeof a === 'string');
     } catch (error) {
-      console.error(error);
+      logger.error(error);
       return [];
     }
   }
@@ -1245,7 +1246,7 @@ export class RoCalculatorComponent implements OnInit, OnDestroy {
           res(true);
         },
         reject: () => {
-          console.log('reject confirm');
+          logger.log('reject confirm');
           res(false);
         },
       });
@@ -1655,7 +1656,7 @@ export class RoCalculatorComponent implements OnInit, OnDestroy {
           }
           this.onBaseStatusChange();
         } catch (error) {
-          console.error(error);
+          logger.error(error);
         }
 
         return waitRxjs(1);
@@ -2241,7 +2242,7 @@ export class RoCalculatorComponent implements OnInit, OnDestroy {
     if (!this.env.production) {
       for (const wea of weaponList) {
         if (!wea.itemLevel) {
-          console.log('invalid weapon, ID' + wea.id);
+          logger.log('invalid weapon, ID' + wea.id);
         }
       }
     }
@@ -2593,7 +2594,7 @@ export class RoCalculatorComponent implements OnInit, OnDestroy {
   }
 
   onLog(inputs) {
-    console.log({ inputs, model2: this.model2 });
+    logger.log({ inputs, model2: this.model2 });
   }
 
   onOptionChange() {
@@ -2816,7 +2817,7 @@ export class RoCalculatorComponent implements OnInit, OnDestroy {
             activeSkillMap[c.activeSkills[i].name] = activeSkills[i];
           }
         } catch (error) {
-          console.log({ error });
+          logger.log({ error });
         }
       }
 
@@ -2860,7 +2861,7 @@ export class RoCalculatorComponent implements OnInit, OnDestroy {
             icon: ClassIcon[a.classId],
           };
         });
-        console.log('preset sycned');
+        logger.log('preset sycned');
         this.presetUpdated$.next();
       });
   }

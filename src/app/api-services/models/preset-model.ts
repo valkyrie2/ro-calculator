@@ -15,7 +15,7 @@ export interface PresetModel {
   luk: number;
   jobLuk: number;
   selectedAtkSkill: string;
-  rawOptionTxts: any[];
+  rawOptionTxts: string[];
   propertyAtk: string;
 
   ammo: number;
@@ -143,8 +143,8 @@ export interface PresetModel {
   activeSkills: number[];
   passiveSkillMap: { [key: string]: number; };
   passiveSkills: number[];
-  consumables: any[];
-  consumables2: any[];
+  consumables: number[];
+  consumables2: number[];
   aspdPotion: number;
-  aspdPotions: any[];
+  aspdPotions: number[];
 }

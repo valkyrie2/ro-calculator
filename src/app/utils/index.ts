@@ -8,7 +8,7 @@ export * from './create-base-stat-option-list';
 export * from './create-bonus-name-list';
 export * from './create-extra-option-list';
 export * from './create-main-model';
-export * from './create-main-stat-opton-list';
+export * from './create-main-stat-option-list';
 export * from './create-number-dropdown-list';
 export * from './create-raw-total-bonus';
 export * from './first-upper-case';
@@ -23,7 +23,7 @@ export * from './to-drowdown-list';
 export * from './to-grade-list';
 export * from './to-raw-option-txt-list';
 export * from './to-upsert-preset-model';
-export * from './vefify-sync-presets';
+export * from './verify-sync-presets';
 export * from './wait-rxjs';
 export * from './gen-skill-list';
 export * from './create-trait-stat-option-list'

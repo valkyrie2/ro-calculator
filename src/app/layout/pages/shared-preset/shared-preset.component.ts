@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { PresetService, PublishPresetModel, PublishPresetsReponse } from 'src/app/api-services';
+import { logger } from 'src/app/api-services/logger.service';
 import { DropdownModel } from '../../../models/dropdown.model';
 import { RoService } from 'src/app/api-services/ro.service';
 import { Observable, Subject, Subscription, catchError, debounceTime, forkJoin, of, switchMap, tap, throwError } from 'rxjs';
@@ -301,7 +302,7 @@ export class SharedPresetComponent implements OnInit, OnDestroy {
           res(true);
         },
         reject: () => {
-          console.log('reject confirm');
+          logger.log('reject confirm');
           res(false);
         },
       });
@@ -309,7 +310,7 @@ export class SharedPresetComponent implements OnInit, OnDestroy {
   }
 
   copyPreset(presetTag: PublishPresetModel) {
-    console.log(presetTag.publishName);
+    logger.log(presetTag.publishName);
     this.waitConfirm(`Copy "${presetTag.publishName}" ?`).then((isConfirm) => {
       if (!isConfirm) return;
 

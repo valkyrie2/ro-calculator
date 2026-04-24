@@ -18,6 +18,7 @@ A **Ragnarok Online damage/DPS calculator** built with Angular 16, PrimeNG, and 
 - [Environment Configuration](#environment-configuration)
 - [Deployment](#deployment)
 - [Data Tools](#data-tools)
+- [Developer Notes](#developer-notes)
 - [Version History](#version-history)
 
 ---
@@ -36,8 +37,8 @@ A **Ragnarok Online damage/DPS calculator** built with Angular 16, PrimeNG, and 
 | Code Highlight | Prism.js                                            |
 | State Mgmt     | RxJS 7.8 (services + ReplaySubject)                |
 | Build Tool     | Angular CLI + esbuild (browser-esbuild builder)     |
-| Testing        | Karma + Jasmine                                     |
-| Linting        | ESLint + @angular-eslint + unused-imports plugin    |
+| Testing        | Karma + Jasmine (headless Chrome)                   |
+| Linting        | ESLint (`no-explicit-any: warn`, `no-console: warn`)|
 | Language       | TypeScript 5.1                                      |
 
 ---
@@ -105,6 +106,7 @@ ro-calculator/
 │   │   │   ├── ro.service.ts         #   Monsters, items, HP/SP tables
 │   │   │   ├── preset.service.ts     #   Preset CRUD, sharing, tagging
 │   │   │   ├── summary.service.ts    #   Cached summary data
+│   │   │   ├── logger.service.ts     #   Dev-only logger (no-ops in production)
 │   │   │   ├── base-api.service.ts   #   Abstract HTTP base class
 │   │   │   ├── valid-bonuses.ts      #   Bonus type definitions
 │   │   │   └── models/               #   API DTOs and response interfaces
@@ -126,6 +128,7 @@ ro-calculator/
 │   │   │   ├── _class-name.ts        #   Job name enum/constants
 │   │   │   ├── _aspd-table.ts        #   ASPD lookup table
 │   │   │   ├── _raw-job.ts           #   Shared job structure
+│   │   │   ├── _skill-builder.ts     #   `atkSkill()` helper — removes label/value boilerplate
 │   │   │   ├── [JobName].ts          #   Individual job implementations
 │   │   │   └── summons/              #   Summon-type entities
 │   │   ├── layout/                   # PrimeNG dashboard layout
@@ -254,7 +257,24 @@ Character Stats + Equipment Bonuses + Skill Selection + Monster Data
 - **Damage Calculation** — Real-time min/max/crit damage and DPS output
 - **Monster Data View** — Select target monster with element, race, size properties
 - **Battle Summary** — Comprehensive damage breakdown
-- **Preset Management** — Save/load equipment and stat configurations
+- **Preset Management** — Save/load equipment and stat configurations (local + cloud sync)
+
+### Custom Bonus Tab
+- Manually add bonus stats for theorycrafting / testing
+- Accepts custom item-script input
+- Displays pseudo damage for verifying base damage with custom bonuses
+- Custom equipment compare (Proc & damage diff vs current equip)
+
+### DPS Compare Tab
+- Compare DPS across multiple presets side by side
+- Load own presets or shared presets for comparison
+
+### EXP Calculator Tab
+- Calculates EXP / Job EXP yield from monsters
+- Level-difference modifier table (Monster Lv. vs Player Lv.)
+- Full EXP modifier support: Equip Bonus, MR. Kim A.L.F.C, Battle Manual, VIP, Job Manual, Event EXP%, Kafra Buff, EXP Tap
+- Monster Spotlight group (time-boxed event monsters)
+- Player level syncs from the main Calculator tab
 
 ### Shared Presets
 - Browse community-shared presets
@@ -383,14 +403,49 @@ python monster_parser.py
 
 ---
 
+## Developer Notes
+
+### Logging
+
+Use the `LoggerService` (DI) or the `logger` singleton (for non-DI contexts like utils / constants) from [`src/app/api-services/logger.service.ts`](src/app/api-services/logger.service.ts). All `log`/`warn`/`info`/`debug` calls become no-ops when `environment.production === true`. Only `error()` always passes through so production diagnostics still surface.
+
+ESLint flags raw `console.log` as a warning — `console.warn` and `console.error` are allowed through for fast debug scenarios.
+
+### Skill name invariants
+
+[`src/app/constants/skill-name.ts`](src/app/constants/skill-name.ts) intentionally keeps the in-game typos `Fatal Manace` and `Lightening Bolt`. The item data (`item.json`) uses these exact strings as script keys, and `RoService` validates every key against the list. Regression guards live in [`src/app/constants/skill-name.spec.ts`](src/app/constants/skill-name.spec.ts).
+
+### Skill definition helper
+
+New `AtkSkillModel` entries in `src/app/jobs/*.ts` can use `atkSkill({ name, level, includeImproved, formula, … })` from [`_skill-builder.ts`](src/app/jobs/_skill-builder.ts) instead of hand-writing the `label` / `value` / `values` / default-cooldown scaffolding. See [`RoyalGuard.ts`](src/app/jobs/RoyalGuard.ts) (Banishing Point, Genesis Ray) for a working reference.
+
+### Angular upgrade
+
+Angular 16 is EOL (Nov 2024). The staged upgrade plan — covering 16→17→18→19, PrimeNG migration risk, and alt-library trade-offs — lives in [`angular-upgrade-plan.md`](angular-upgrade-plan.md).
+
+### Running tests
+
+```bash
+npx ng test --watch=false --browsers=ChromeHeadless
+```
+
+Current coverage is smoke-only (9 specs). Priority additions: `RoService`, `PresetService`, `damage-calculator`, `calculator`.
+
+---
+
 ## Version History
 
-| Version | Highlights                                                                 |
-|---------|---------------------------------------------------------------------------|
-| 1.0.4   | Ranger, Sura, Sorcerer skill bonuses; new items; 4th slot garment costume |
-| 1.0.3   | Weapon compare fix; new items & monsters                                  |
-| 1.0.2   | EDP calculation fix; Rolling Cutter → Melee damage                        |
-| 1.0.1   | Item bonus fix; Shadow monster calc fix; Racing cap & Enchants            |
-| 1.0.0   | Initial release: 10+ job support, presets, item compare, ESLint           |
+| Version          | Highlights                                                                             |
+|------------------|----------------------------------------------------------------------------------------|
+| Extra v59.1      | Added 6th Anniversary Ayothaya Ring [1]                                                |
+| Extra v59        | EXP Calculator tab; Monster Spotlight Summer 2026; expBonus scripts on 26 items        |
+| Extra v58.4      | Added Limit Break Shadow Earring / Pendant                                             |
+| Extra v58.2      | Custom equipment compare (Custom Bonus tab); Compare Preset in DPS Compare tab         |
+| Extra v58.1      | New **Custom Bonus** tab — manual bonus input, custom item scripts, pseudo damage view |
+| Extra v58        | Ranger / SR / Sorcerer skill bonuses; new items; 4th slot garment costume              |
+| 1.0.3            | Weapon compare fix; new items & monsters                                               |
+| 1.0.2            | EDP calculation fix; Rolling Cutter → Melee damage                                     |
+| 1.0.1            | Item bonus fix; Shadow monster calc fix; Racing cap & Enchants                         |
+| 1.0.0            | Initial release: 10+ job support, presets, item compare, ESLint                        |
 
 See [CHANGELOG.md](CHANGELOG.md) for full details.

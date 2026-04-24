@@ -4,6 +4,7 @@ import { ItemTypeEnum } from '../../../../constants/item-type.enum';
 import { ClassID, ClassIcon } from '../../../../jobs/_class-name';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { AuthService, EntirePresetWithTagsModel, PresetService } from 'src/app/api-services';
+import { logger } from 'src/app/api-services/logger.service';
 import { Observable, Subscription, catchError, finalize, of, switchMap, tap } from 'rxjs';
 import { availableTags, tagSeverityMap } from '../../../../constants/available-tags';
 import { ToErrorDetail } from 'src/app/app-errors';
@@ -129,7 +130,7 @@ export class PresetTableComponent implements OnInit, OnDestroy {
           res(true);
         },
         reject: () => {
-          console.log('reject confirm');
+          logger.log('reject confirm');
           res(false);
         },
       });
@@ -439,7 +440,7 @@ export class PresetTableComponent implements OnInit, OnDestroy {
       }),
       finalize(() => {
         if (!isInOtherProcessing) this.isProcessing = false;
-        console.log('load final', this.isProcessing);
+        logger.log('load final', this.isProcessing);
       }),
     );
   }

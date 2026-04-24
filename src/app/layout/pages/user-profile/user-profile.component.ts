@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AuthService, Profile } from 'src/app/api-services';
+import { logger } from 'src/app/api-services/logger.service';
 import { LayoutService } from '../../service/app.layout.service';
 import { Subscription, catchError, of, tap } from 'rxjs';
 import { MessageService } from 'primeng/api';
@@ -53,7 +54,7 @@ export class UserProfileComponent implements OnInit, OnDestroy {
           });
         }),
         catchError((err) => {
-          console.log({ err });
+          logger.log({ err });
           this.messageService.add({
             severity: 'error',
             summary: err?.error?.message || err?.statusText || 'server error',

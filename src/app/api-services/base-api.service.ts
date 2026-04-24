@@ -3,6 +3,7 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 import { Observable, catchError, of, switchMap, tap, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { LoginResponse } from './models';
+import { logger } from './logger.service';
 import { Unauthorized } from '../app-errors';
 
 const BASE_URL = environment.roBackendUrl;
@@ -87,7 +88,7 @@ export abstract class BaseAPIService {
         if (this.isUnauthorizedErr(err)) {
           return this.handleUnauthErr();
         } else {
-          console.error({ err });
+          logger.error({ err });
         }
 
         return throwError(() => err);
@@ -113,7 +114,7 @@ export abstract class BaseAPIService {
         if (this.isUnauthorizedErr(err)) {
           return this.handleUnauthErr();
         } else {
-          console.error({ err });
+          logger.error({ err });
         }
 
         return throwError(() => err);
@@ -139,7 +140,7 @@ export abstract class BaseAPIService {
         if (this.isUnauthorizedErr(err)) {
           return this.handleUnauthErr();
         } else {
-          console.error({ err });
+          logger.error({ err });
         }
 
         return throwError(() => err);

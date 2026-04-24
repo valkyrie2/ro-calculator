@@ -1,3 +1,4 @@
+import { logger } from '../api-services/logger.service';
 import { JobBuffs } from '../constants/job-buffs';
 import { CharacterBase } from '../jobs/_character-base.abstract';
 import { MainModel } from '../models/main.model';
@@ -21,7 +22,7 @@ export const toUpsertPresetModel = (model: MainModel, cClass: CharacterBase) => 
       activeSkillMap[cClass.activeSkills[i].name] = activeSkills[i];
     }
   } catch (error) {
-    console.log({ error });
+    logger.log({ error });
   }
 
   return {

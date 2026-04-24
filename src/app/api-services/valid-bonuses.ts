@@ -1,4 +1,5 @@
 import { ClassName } from '../jobs';
+import { logger } from './logger.service';
 
 const validClassName = Object.values(ClassName);
 
@@ -39,6 +40,6 @@ const usedConditions = [
 ];
 for (const element of usedConditions) {
   if (!validClassNameSet.has(element as any)) {
-    console.error(`USED[${element}] not found in 'ClassName'`);
+    logger.error(`USED[${element}] not found in 'ClassName'`);
   }
 }

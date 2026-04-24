@@ -1,4 +1,5 @@
 import { ItemTypeEnum, MainItemWithRelations } from '../../../constants/item-type.enum';
+import { logger } from '../../../api-services/logger.service';
 import { CharacterBase } from '../../../jobs/_character-base.abstract';
 import { EquipmentSummaryModel } from '../../../models/equipment-summary.model';
 import { HpSpTable } from '../../../models/hp-sp-table.model';
@@ -144,7 +145,7 @@ export class HpSpCalculator {
       maxSp += sp + this._equipmentInt;
       this._maxSp = maxSp + floor(maxSp * ((spPercent || 0) * 0.01));
     } catch (error) {
-      console.error('hp calculation', error);
+      logger.error('hp calculation', error);
     }
     return this;
   }

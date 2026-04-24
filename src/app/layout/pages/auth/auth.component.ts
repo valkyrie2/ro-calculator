@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'src/app/api-services';
+import { logger } from 'src/app/api-services/logger.service';
 
 @Component({
   selector: 'app-auth',
@@ -27,7 +28,7 @@ export class AuthComponent implements OnInit {
         this.router.navigate(['..'], { relativeTo: this.route });
       },
       error: (err) => {
-        console.error(err);
+        logger.error(err);
         this.router.navigate(['..'], { relativeTo: this.route });
       },
     });
