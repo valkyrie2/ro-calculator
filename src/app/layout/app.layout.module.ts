@@ -17,6 +17,8 @@ import { AppFooterComponent } from './app.footer.component';
 import { AppConfigModule } from './config/config.module';
 import { AppSidebarComponent } from './app.sidebar.component';
 import { AppLayoutComponent } from './app.layout.component';
+import { BannerComponent } from './banner/banner.component';
+import { AdSlotComponent } from './ad-slot/ad-slot.component';
 import { ButtonModule } from 'primeng/button';
 import { DialogModule } from 'primeng/dialog';
 import { ChipModule } from 'primeng/chip';
@@ -34,6 +36,8 @@ import { UserProfileModule } from './pages/user-profile/user-profile.module';
     AppMenuComponent,
     AppSidebarComponent,
     AppLayoutComponent,
+    BannerComponent,
+    AdSlotComponent,
   ],
   imports: [
     BrowserModule,

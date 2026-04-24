@@ -1,0 +1,17 @@
+<ng-container *ngIf="banner as b">
+  <a
+    *ngIf="b.href; else imgOnly"
+    class="app-banner"
+    [href]="b.href"
+    target="_blank"
+    rel="noopener noreferrer"
+    (click)="onClick()"
+  >
+    <img [src]="b.src" [alt]="b.alt" [style.width]="b.width || '160px'" />
+  </a>
+  <ng-template #imgOnly>
+    <span class="app-banner" (click)="onClick()">
+      <img [src]="b.src" [alt]="b.alt" [style.width]="b.width || '160px'" />
+    </span>
+  </ng-template>
+</ng-container>

@@ -26,6 +26,10 @@
       </ng-template>
     </p-tabMenu>
   </div>
+
+  <div class="topbar-ad-slot">
+    <app-ad-slot slot="1332897611" format="auto" [fullWidthResponsive]="true"></app-ad-slot>
+  </div>
   <!-- <div class="grid router_link">
     <div class="col-fixed">
       <a routerLink="/" routerLinkActive="/">Calculator</a>
@@ -51,6 +55,7 @@
   > -->
 
   <div #topbarmenu class="layout-topbar-menu" [ngClass]="{ 'layout-topbar-menu-mobile-active': layoutService.state.profileSidebarVisible }">
+    <app-banner></app-banner>
     <!-- <button class="p-link layout-topbar-button">
             <i class="pi pi-calendar"></i>
             <span>Calendar</span>
