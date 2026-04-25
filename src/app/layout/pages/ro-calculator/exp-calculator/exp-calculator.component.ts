@@ -37,6 +37,7 @@ function getLevelDiffMod(diff: number): number {
 }
 
 export type ManualType = 'none' | 'm50' | 'm55' | 'm100' | 'm200';
+export type MalangCanType = 'none' | 'normal' | 'upgraded';
 
 interface MonsterSelectItemGroup extends SelectItemGroup {
   items: any[];
@@ -50,7 +51,11 @@ interface ExpResult {
   levelDiffMod: number;
   equipModPercent: number;
   mrkimModPercent: number;
+  malangCanModPercent: number;
   eventModPercent: number;
+  vipModPercent: number;
+  silvervineModPercent: number;
+  satanMorrocModPercent: number;
   kafraModPercent: number;
   manualModPercent: number;
   totalBaseMod: number;
@@ -73,9 +78,12 @@ export class ExpCalculatorComponent implements OnChanges {
 
   // --- Modifiers ---
   manualType: ManualType = 'none';
+  malangCanType: MalangCanType = 'none';
   isVip = false;
   isMrKim = false;
   isKafraBuff = false;
+  isSilvervine = false;
+  isSatanMorroc = false;
   isJobManual = false;
   /** Custom event EXP % (auto-filled when spotlight is active) */
   eventExpPercent = 0;
@@ -98,6 +106,12 @@ export class ExpCalculatorComponent implements OnChanges {
     { label: '+55% Thick Battle Manual', value: 'm55' },
     { label: '+100% HE Battle Manual', value: 'm100' },
     { label: '+200% Battle Manual X3', value: 'm200' },
+  ];
+
+  readonly malangCanOptions: { label: string; value: MalangCanType }[] = [
+    { label: 'None', value: 'none' },
+    { label: 'Malangdo Cat Can +10%', value: 'normal' },
+    { label: 'Upgraded Malangdo Cat Can +20%', value: 'upgraded' },
   ];
 
   readonly tapModOptions = [
@@ -378,12 +392,20 @@ export class ExpCalculatorComponent implements OnChanges {
 
     const equipModPercent = this.effectiveEquipBonus;
     const mrkimModPercent = this.isMrKim ? 60 : 0;
+    const malangCanModPercent = this.malangCanType === 'upgraded' ? 20 : this.malangCanType === 'normal' ? 10 : 0;
     const eventModPercent = this.eventExpPercent;
+    const vipModPercent = this.isVip ? 50 : 0;
+    const silvervineModPercent = this.isSilvervine ? 30 : 0;
+    const satanMorrocModPercent = this.isSatanMorroc ? 10 : 0;
     const kafraModPercent = this.isKafraBuff ? 50 : 0;
 
     const equipMod = equipModPercent / 100;
     const mrkimMod = mrkimModPercent / 100;
+    const malangCanMod = malangCanModPercent / 100;
     const eventMod = eventModPercent / 100;
+    const vipMod = vipModPercent / 100;
+    const silvervineMod = silvervineModPercent / 100;
+    const satanMorrocMod = satanMorrocModPercent / 100;
     const kafraMod = kafraModPercent / 100;
 
     const baseManualMod = this.getManualMod();
@@ -391,10 +413,13 @@ export class ExpCalculatorComponent implements OnChanges {
     const manualMod = baseManualMod * (1 + vipBoost);
     const manualModPercent = Math.round(manualMod * 100);
 
-    // Formula: Orig × LvDiff × [(1 + Equip + MrKim) × (1 + Event + Kafra) + Manual] × Tap
-    const totalBaseMod = (1 + equipMod + mrkimMod) * (1 + eventMod + kafraMod) + manualMod;
+    const factorA = 1 + equipMod + mrkimMod + malangCanMod;
+    const factorB = 1 + eventMod + vipMod + silvervineMod + satanMorrocMod;
+
+    // Formula: Orig × LvDiff × [(1 + Equip + MrKim + MalangCan) × (1 + Event + VIP + Silvervine + SatanMorroc) + Manual + Kafra] × Tap
+    const totalBaseMod = factorA * factorB + manualMod + kafraMod;
     const jobManualMod = this.isJobManual ? (this.isVip ? 0.75 : 0.50) : 0;
-    const totalJobMod = (1 + equipMod + mrkimMod) * (1 + eventMod + kafraMod) + manualMod + jobManualMod;
+    const totalJobMod = factorA * factorB + manualMod + kafraMod + jobManualMod;
 
     const finalBaseExp = Math.floor(rawBaseExp * levelDiffMod * totalBaseMod * this.tapMod);
     const finalJobExp = Math.floor(rawJobExp * levelDiffMod * totalJobMod * this.tapMod);
@@ -407,7 +432,11 @@ export class ExpCalculatorComponent implements OnChanges {
       levelDiffMod,
       equipModPercent,
       mrkimModPercent,
+      malangCanModPercent,
       eventModPercent,
+      vipModPercent,
+      silvervineModPercent,
+      satanMorrocModPercent,
       kafraModPercent,
       manualModPercent,
       totalBaseMod,

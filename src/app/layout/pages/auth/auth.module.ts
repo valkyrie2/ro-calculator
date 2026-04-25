@@ -1,11 +1,9 @@
 import { NgModule } from '@angular/core';
-import { AuthComponent } from './auth.component';
+import { AuthFormModule } from './auth-form.module';
 import { AuthRoutingModule } from './auth-routing.module';
 
 @NgModule({
-  imports: [],
-  declarations: [AuthComponent],
-  providers: [],
+  imports: [AuthFormModule, AuthRoutingModule],
   exports: [AuthRoutingModule],
 })
 export class AuthModule {}

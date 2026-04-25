@@ -208,6 +208,21 @@ export class AppTopBarComponent implements OnInit, OnDestroy {
 
   updates: { v: string; date: string; logs: string[]; }[] = [
     {
+      v: 'Extra v59.2',
+      date: '25-04-2569',
+      logs: [
+        'เพิ่มไอเทมใหม่: Costume Ayothaya Hat',
+        'เพิ่มไอเทมใหม่: Experience Shadow Shield'
+      ],
+    },
+    {
+      v: 'Extra v59.1',
+      date: '23-04-2569',
+      logs: [
+        'เพิ่มไอเทมใหม่: 6th Anniversary Ayothaya Ring [1]',
+      ],
+    },
+    {
       v: 'Extra v59',
       date: '20-04-2569',
       logs: [
@@ -1579,7 +1594,7 @@ export class AppTopBarComponent implements OnInit, OnDestroy {
 
   username: string;
 
-  analyticsOptedOut = false;
+  visibleLogin = false;
 
   obs = [] as Subscription[];
 
@@ -1589,9 +1604,7 @@ export class AppTopBarComponent implements OnInit, OnDestroy {
     private messageService: MessageService,
     private confirmationService: ConfirmationService,
     private readonly analytics: AnalyticsService,
-  ) {
-    this.analyticsOptedOut = this.analytics.isOptedOut();
-  }
+  ) {}
 
   ngOnDestroy(): void {
     for (const subscription of this.obs) {
@@ -1602,19 +1615,15 @@ export class AppTopBarComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     const o = this.authService.profileEventObs$.subscribe((profile) => {
       this.username = profile?.name;
+      if (this.username) {
+        this.visibleLogin = false;
+      }
     });
     this.obs.push(o);
   }
 
-  toggleAnalytics(): void {
-    const next = !this.analyticsOptedOut;
-    this.analytics.setOptOut(next);
-    this.analyticsOptedOut = next;
-    this.messageService.add({
-      severity: 'info',
-      summary: next ? 'Analytics disabled' : 'Analytics enabled',
-      detail: next ? 'No usage data will be sent.' : 'Thanks for helping improve the calculator!',
-    });
+  openLogin(): void {
+    this.visibleLogin = true;
   }
 
   logout() {

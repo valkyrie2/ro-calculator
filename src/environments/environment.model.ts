@@ -2,6 +2,9 @@ export interface EnvironmentModel {
   production: boolean;
   surveyUrl: string;
   issueTrackingUrl?: string;
-  roBackendUrl: string;
   youtubeVideoUrl: string;
+  supabase: {
+    url: string;
+    anonKey: string;
+  };
 }

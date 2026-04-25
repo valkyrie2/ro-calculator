@@ -27,6 +27,7 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ToastModule } from 'primeng/toast';
 import { TooltipModule } from 'primeng/tooltip';
 import { UserProfileModule } from './pages/user-profile/user-profile.module';
+import { AuthFormModule } from './pages/auth/auth-form.module';
 
 @NgModule({
   declarations: [
@@ -60,6 +61,7 @@ import { UserProfileModule } from './pages/user-profile/user-profile.module';
     ToastModule,
     TooltipModule,
     UserProfileModule,
+    AuthFormModule,
   ],
   exports: [AppLayoutComponent],
 })

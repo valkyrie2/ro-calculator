@@ -16,6 +16,7 @@ A **Ragnarok Online damage/DPS calculator** built with Angular 16, PrimeNG, and 
 - [Key Modules & Features](#key-modules--features)
 - [Available Scripts](#available-scripts)
 - [Environment Configuration](#environment-configuration)
+- [Supabase Setup](#supabase-setup)
 - [Deployment](#deployment)
 - [Data Tools](#data-tools)
 - [Developer Notes](#developer-notes)
@@ -31,7 +32,8 @@ A **Ragnarok Online damage/DPS calculator** built with Angular 16, PrimeNG, and 
 | UI Library     | PrimeNG 16 + PrimeFlex 3.3                         |
 | Theme          | Vela Green (dark theme)                              |
 | Styling        | SCSS                                                |
-| Auth           | JWT (`@auth0/angular-jwt`)                          |
+| Backend        | Supabase (Postgres + Auth + Realtime)               |
+| Auth           | Supabase Auth (email/password, PKCE flow)           |
 | Charts         | Chart.js 3                                          |
 | Calendar       | FullCalendar 6                                      |
 | Code Highlight | Prism.js                                            |
@@ -101,15 +103,16 @@ ro-calculator/
 │   │   ├── app.module.ts             # Root module (JWT, Layout, API services)
 │   │   ├── app-routing.module.ts     # Root routes with lazy loading
 │   │   ├── app.component.ts          # Root component (PrimeNG ripple config)
-│   │   ├── api-services/             # HTTP services for backend communication
-│   │   │   ├── auth.service.ts       #   JWT login/logout/profile
-│   │   │   ├── ro.service.ts         #   Monsters, items, HP/SP tables
-│   │   │   ├── preset.service.ts     #   Preset CRUD, sharing, tagging
+│   │   ├── api-services/             # Services for backend communication
+│   │   │   ├── supabase-client.service.ts # Singleton Supabase client (PKCE auth)
+│   │   │   ├── auth.service.ts       #   Supabase auth + user_profiles (role/premium)
+│   │   │   ├── ro.service.ts         #   Monsters, items, HP/SP tables (static JSON)
+│   │   │   ├── preset.service.ts     #   Preset CRUD, sharing, tagging (Supabase)
 │   │   │   ├── summary.service.ts    #   Cached summary data
 │   │   │   ├── logger.service.ts     #   Dev-only logger (no-ops in production)
-│   │   │   ├── base-api.service.ts   #   Abstract HTTP base class
+│   │   │   ├── analytics.service.ts  #   Umami analytics
 │   │   │   ├── valid-bonuses.ts      #   Bonus type definitions
-│   │   │   └── models/               #   API DTOs and response interfaces
+│   │   │   └── models/               #   DTOs (profile, preset, etc.)
 │   │   ├── app-config/               # App-wide config (4th job level cap, compare rules)
 │   │   ├── app-errors/               # Custom error types (BaseError, Unauthorized)
 │   │   ├── constants/                # Game data constants
@@ -165,9 +168,13 @@ ro-calculator/
 │   │   └── layout/                   # Theme CSS and layout assets
 │   └── environments/
 │       ├── environment.model.ts      # Environment interface definition
-│       ├── environment.ts            # Development config
-│       └── environment.prod.ts       # Production config
+│       ├── environment.ts            # Development config (imports supabase secrets)
+│       ├── environment.prod.ts       # Production config (imports supabase secrets)
+│       ├── supabase.secrets.ts       # **gitignored** — real URL + anon key
+│       └── supabase.secrets.example.ts # Committed template; copy → supabase.secrets.ts
 ├── docs/                             # GitHub Pages deployment output (generated)
+├── supabase/
+│   └── migrations/                   # SQL migrations (apply via Dashboard or `supabase db push`)
 ├── tools/                            # Python data scraping/parsing scripts
 │   ├── item_download.py              #   Download item data
 │   ├── item_parser.py                #   Parse items to JSON
@@ -207,16 +214,19 @@ index.html → main.ts → AppModule → AppComponent → <router-outlet>
 ### Data Flow
 
 ```
-Backend API (ro-calc.luminotus.com)
-        ↓
-   API Services (auth, ro, preset, summary)
-        ↓
-   Components (layout pages)
-        ↓
-   Calculation Utils (damage, DPS, ASPD)
-        ↓
-   Display (PrimeNG components + Chart.js)
+Supabase (Postgres + Auth)               Static JSON (item.json, monster.json)
+        ↓                                          ↓
+   AuthService / PresetService              RoService / SummaryService
+        ↓                                          ↓
+              Components (layout pages)
+                          ↓
+              Calculation Utils (damage, DPS, ASPD)
+                          ↓
+              Display (PrimeNG + Chart.js)
 ```
+
+Row-Level Security (RLS) on every Supabase table enforces ownership; the
+browser only ever talks to Supabase with the public anon key.
 
 ### Job System
 
@@ -284,9 +294,13 @@ Character Stats + Equipment Bonuses + Skill Selection + Monster Data
 - Compare presets side by side
 - Aggregated summary views
 
-### Authentication
-- JWT-based login/logout
-- Token stored in localStorage
+### Authentication & Roles
+- Supabase Auth — email/password sign-up, sign-in, password reset (PKCE flow)
+- OAuth providers (Google, Discord) wired but UI hidden until enabled in the Supabase Dashboard
+- Session persisted in `localStorage` and auto-refreshed
+- `user_profiles` table adds `role: 'user' | 'admin'` and `premium_expires_at`
+- `AuthService` exposes `isAdmin$` / `isPremium$` observables (premium = admin OR future expiry)
+- Helper SQL functions `public.is_admin()` / `public.is_premium()` (SECURITY DEFINER) for use in RLS policies on other tables
 - Required for saving/sharing presets
 
 ---
@@ -315,12 +329,69 @@ Environment files are in `src/environments/`:
 | Variable           | Purpose                          | Value (Dev & Prod)                        |
 |--------------------|----------------------------------|-------------------------------------------|
 | `production`       | Production mode flag             | `false` (dev) / `true` (prod)             |
-| `roBackendUrl`     | Backend API base URL             | `https://ro-calc.luminotus.com`           |
+| `supabase.url`     | Supabase project URL             | `https://<ref>.supabase.co`               |
+| `supabase.anonKey` | Supabase anon (public) key       | JWT or `sb_publishable_*` key             |
 | `surveyUrl`        | User feedback form               | Google Forms link                         |
 | `issueTrackingUrl` | Bug/issue tracker                | Google Sheets link                        |
 | `youtubeVideoUrl`  | Tutorial video                   | YouTube playlist link                     |
 
-During production build, `environment.ts` is replaced with `environment.prod.ts` via Angular's `fileReplacements` in `angular.json`.
+The Supabase URL and anon key are NOT stored inline in `environment.ts` /
+`environment.prod.ts` — both files import from `./supabase.secrets`, which is
+**gitignored**. To set up locally:
+
+```bash
+cp src/environments/supabase.secrets.example.ts src/environments/supabase.secrets.ts
+# then edit supabase.secrets.ts and paste your project URL + anon key from
+# Supabase Dashboard → Project Settings → API
+```
+
+The anon key is safe to ship to the browser — RLS policies enforce all access
+control. CI/host setups must materialize `supabase.secrets.ts` before
+`ng build` runs (e.g. write it from a CI secret).
+
+During production build, `environment.ts` is replaced with `environment.prod.ts`
+via Angular's `fileReplacements` in `angular.json`.
+
+---
+
+## Supabase Setup
+
+The project ships SQL migrations under `supabase/migrations/`:
+
+| Migration                                  | Purpose                                                 |
+|--------------------------------------------|---------------------------------------------------------|
+| `20260425000000_init_presets.sql`          | `ro_presets`, `preset_tags`, `preset_tag_likes`, RLS, `get_published_presets` RPC |
+| `20260425000100_user_roles.sql`            | `user_profiles` (role + premium_expires_at), signup trigger, `is_admin()` / `is_premium()` |
+| `20260426000000_fix_user_profiles_rls.sql` | Fixes infinite-recursion RLS on `user_profiles` (helpers become `SECURITY DEFINER`) |
+
+### Option A — paste in SQL Editor
+
+Supabase Dashboard → **SQL Editor → New query**, paste each file in order, **Run**.
+
+### Option B — Supabase CLI
+
+```bash
+npx supabase login
+npx supabase link --project-ref <your-project-ref>
+npx supabase db push
+```
+
+### Promote yourself to admin
+
+In the Dashboard SQL Editor (which uses the service role and bypasses RLS):
+
+```sql
+select id, email from auth.users;
+update public.user_profiles set role = 'admin' where id = '<your-uuid>';
+```
+
+### Grant premium access
+
+```sql
+update public.user_profiles
+set premium_expires_at = now() + interval '30 days'
+where id = '<user-uuid>';
+```
 
 ---
 
@@ -437,6 +508,7 @@ Current coverage is smoke-only (9 specs). Priority additions: `RoService`, `Pres
 
 | Version          | Highlights                                                                             |
 |------------------|----------------------------------------------------------------------------------------|
+| (unreleased)     | **Supabase migration** — replaced JWT backend with Supabase Auth + Postgres; admin role; premium-with-expiry membership |
 | Extra v59.2      | Umami analytics + opt-out; AdSense integration (`AdSlotComponent`, ads.txt); LoggerService |
 | Extra v59.1      | Added 6th Anniversary Ayothaya Ring [1]                                                |
 | Extra v59        | EXP Calculator tab; Monster Spotlight Summer 2026; expBonus scripts on 26 items        |

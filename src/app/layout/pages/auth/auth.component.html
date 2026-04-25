@@ -1,1 +1,99 @@
-<p>processing...</p>
+<p-toast></p-toast>
+
+<div class="auth-page">
+  <div class="auth-card">
+    <h2 class="auth-title">
+      <ng-container [ngSwitch]="mode">
+        <span *ngSwitchCase="'sign-in'">Sign in</span>
+        <span *ngSwitchCase="'sign-up'">Create account</span>
+        <span *ngSwitchCase="'reset'">Reset password</span>
+      </ng-container>
+    </h2>
+
+    <p-message *ngIf="errorMessage" severity="error" [text]="errorMessage" styleClass="w-full mb-3"></p-message>
+    <p-message *ngIf="infoMessage" severity="info" [text]="infoMessage" styleClass="w-full mb-3"></p-message>
+
+    <form (ngSubmit)="submit()" class="auth-form" autocomplete="on">
+      <label class="block">
+        <span class="auth-label">Email</span>
+        <input
+          pInputText
+          type="email"
+          name="email"
+          autocomplete="email"
+          [(ngModel)]="email"
+          [disabled]="loading"
+          required
+          class="w-full"
+        />
+      </label>
+
+      <label *ngIf="mode === 'sign-up'" class="block">
+        <span class="auth-label">Display name (optional)</span>
+        <input
+          pInputText
+          type="text"
+          name="name"
+          autocomplete="nickname"
+          [(ngModel)]="name"
+          [disabled]="loading"
+          class="w-full"
+        />
+      </label>
+
+      <label *ngIf="mode !== 'reset'" class="block">
+        <span class="auth-label">Password</span>
+        <p-password
+          name="password"
+          [(ngModel)]="password"
+          [feedback]="mode === 'sign-up'"
+          [toggleMask]="true"
+          [disabled]="loading"
+          inputStyleClass="w-full"
+          styleClass="w-full"
+        ></p-password>
+      </label>
+
+      <button
+        pButton
+        type="submit"
+        class="w-full mt-2"
+        [disabled]="loading"
+        [label]="
+          mode === 'sign-in' ? 'Sign in' : mode === 'sign-up' ? 'Create account' : 'Send reset email'
+        "
+      ></button>
+    </form>
+
+    <div class="auth-links mt-3">
+      <button
+        *ngIf="mode !== 'sign-in'"
+        pButton
+        class="p-button-text p-button-sm"
+        type="button"
+        label="Back to sign in"
+        (click)="setMode('sign-in')"
+      ></button>
+      <button
+        *ngIf="mode === 'sign-in'"
+        pButton
+        class="p-button-text p-button-sm"
+        type="button"
+        label="Create account"
+        (click)="setMode('sign-up')"
+      ></button>
+      <button
+        *ngIf="mode === 'sign-in'"
+        pButton
+        class="p-button-text p-button-sm"
+        type="button"
+        label="Forgot password?"
+        (click)="setMode('reset')"
+      ></button>
+    </div>
+
+    <div *ngIf="loading" class="auth-loading">
+      <p-progressSpinner styleClass="w-2rem h-2rem"></p-progressSpinner>
+    </div>
+  </div>
+</div>

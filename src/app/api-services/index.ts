@@ -6,3 +6,4 @@ export * from './api-service.module';
 export * from './preset.service';
 export * from './ro.service';
 export * from './summary.service';
+export * from './supabase-client.service';

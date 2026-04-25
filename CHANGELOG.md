@@ -3,7 +3,7 @@
 ## Extra v59.2 (25-04-2569)
 
 - Added item: Costume Ayothaya Hat
-- Added Experience Shadow Shield
+- Added item: Experience Shadow Shield
 
 ## Extra v59.1 (23-04-2569)
 

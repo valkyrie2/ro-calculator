@@ -234,6 +234,17 @@
             </div>
           </div>
 
+          <!-- Malangdo Cat Can -->
+          <div class="col-12 modifier-row">
+            <div class="modifier-label mb-1">Malangdo Cat Can</div>
+            <p-dropdown
+              [options]="malangCanOptions"
+              [(ngModel)]="malangCanType"
+              (onChange)="onModifierChange()"
+              [style]="{ width: '100%' }"
+            ></p-dropdown>
+          </div>
+
           <!-- Battle Manual -->
           <div class="col-12 modifier-row">
             <div class="modifier-label mb-1">Battle Manual</div>
@@ -246,15 +257,14 @@
           </div>
 
           <!-- VIP -->
-          <div class="col-12 modifier-row" [class.modifier-disabled]="manualType === 'none' && !isJobManual">
+          <div class="col-12 modifier-row">
             <div class="flex align-items-center justify-content-between">
               <span class="modifier-label">
-                VIP
-                <span class="text-color-secondary text-xs ml-1">(Manual × 1.5)</span>
+                VIP <span class="text-yellow-400 font-semibold">+50%</span>
+                <span class="text-color-secondary text-xs ml-1">(also Manual × 1.5)</span>
               </span>
               <p-inputSwitch
                 [(ngModel)]="isVip"
-                [disabled]="manualType === 'none' && !isJobManual"
                 (ngModelChange)="onModifierChange()"
               ></p-inputSwitch>
             </div>
@@ -299,6 +309,22 @@
             <div class="flex align-items-center justify-content-between">
               <span class="modifier-label">Kafra Buff (7 Days) <span class="text-yellow-400 font-semibold">+50%</span></span>
               <p-inputSwitch [(ngModel)]="isKafraBuff" (ngModelChange)="onModifierChange()"></p-inputSwitch>
+            </div>
+          </div>
+
+          <!-- Silvervine Buff -->
+          <div class="col-12 modifier-row">
+            <div class="flex align-items-center justify-content-between">
+              <span class="modifier-label">Silvervine Buff <span class="text-yellow-400 font-semibold">+30%</span></span>
+              <p-inputSwitch [(ngModel)]="isSilvervine" (ngModelChange)="onModifierChange()"></p-inputSwitch>
+            </div>
+          </div>
+
+          <!-- Satan Morroc Buff -->
+          <div class="col-12 modifier-row">
+            <div class="flex align-items-center justify-content-between">
+              <span class="modifier-label">Satan Morroc Buff <span class="text-yellow-400 font-semibold">+10%</span></span>
+              <p-inputSwitch [(ngModel)]="isSatanMorroc" (ngModelChange)="onModifierChange()"></p-inputSwitch>
             </div>
           </div>
 
@@ -363,9 +389,25 @@
               <span class="breakdown-label">MR. Kim</span>
               <span class="breakdown-value text-primary">+{{ result.mrkimModPercent }} %</span>
             </div>
+            <div class="breakdown-row" *ngIf="result.malangCanModPercent">
+              <span class="breakdown-label">Malangdo Cat Can</span>
+              <span class="breakdown-value text-primary">+{{ result.malangCanModPercent }} %</span>
+            </div>
             <div class="breakdown-row" *ngIf="result.eventModPercent">
               <span class="breakdown-label">Event EXP</span>
               <span class="breakdown-value text-yellow-400">+{{ result.eventModPercent }} %</span>
+            </div>
+            <div class="breakdown-row" *ngIf="result.vipModPercent">
+              <span class="breakdown-label">VIP</span>
+              <span class="breakdown-value text-yellow-400">+{{ result.vipModPercent }} %</span>
+            </div>
+            <div class="breakdown-row" *ngIf="result.silvervineModPercent">
+              <span class="breakdown-label">Silvervine</span>
+              <span class="breakdown-value text-yellow-400">+{{ result.silvervineModPercent }} %</span>
+            </div>
+            <div class="breakdown-row" *ngIf="result.satanMorrocModPercent">
+              <span class="breakdown-label">Satan Morroc</span>
+              <span class="breakdown-value text-yellow-400">+{{ result.satanMorrocModPercent }} %</span>
             </div>
             <div class="breakdown-row" *ngIf="result.kafraModPercent">
               <span class="breakdown-label">Kafra Buff</span>
@@ -399,7 +441,7 @@
           <!-- Formula Reference -->
           <p-divider></p-divider>
           <div class="formula-ref text-xs text-color-secondary mt-2">
-            Formula: Orig × LvDiff × [(1 + Equip + MrKim) × (1 + Event + Kafra) + Manual × (1 + VIP)] × Tap
+            Formula: Orig × LvDiff × [(1 + Equip + MrKim + MalangCan) × (1 + Event + VIP + Silvervine + SatanMorroc) + Manual + Kafra] × Tap
           </div>
         </ng-container>
 

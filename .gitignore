@@ -44,3 +44,6 @@ layout.css
 src/assets/demo/styles/badges.css
 ssl
 backup-preset.json
+
+# Local secrets (Supabase, etc.)
+src/environments/supabase.secrets.ts
