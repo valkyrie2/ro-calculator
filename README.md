@@ -437,6 +437,7 @@ Current coverage is smoke-only (9 specs). Priority additions: `RoService`, `Pres
 
 | Version          | Highlights                                                                             |
 |------------------|----------------------------------------------------------------------------------------|
+| Extra v59.2      | Umami analytics + opt-out; AdSense integration (`AdSlotComponent`, ads.txt); LoggerService |
 | Extra v59.1      | Added 6th Anniversary Ayothaya Ring [1]                                                |
 | Extra v59        | EXP Calculator tab; Monster Spotlight Summer 2026; expBonus scripts on 26 items        |
 | Extra v58.4      | Added Limit Break Shadow Earring / Pendant                                             |
