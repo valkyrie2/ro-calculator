@@ -1,5 +1,10 @@
 # Changelog
 
+## Extra v59.2 (25-04-2569)
+
+- Added item: Costume Ayothaya Hat
+- Added Experience Shadow Shield
+
 ## Extra v59.1 (23-04-2569)
 
 - Added item: 6th Anniversary Ayothaya Ring [1]

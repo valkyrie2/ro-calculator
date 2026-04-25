@@ -267,7 +267,7 @@
       <div class="col-4">
         <div *ngIf="!item.mainId">--- {{ item.itemType }} ---</div>
         <div *ngIf="item.mainId" class="item_template flex gap-1">
-          <img src="assets/demo/images/items/{{ item.mainId }}.png" alt="" class="item_img" />
+          <img src="assets/demo/images/items/{{ item.mainId | itemImage }}.png" alt="" class="item_img" />
           <div class="text_ellips pr-2" style="text-overflow: ellipsis">
             {{ item.refineTxt }} {{ getItemLabel(item.mainId) }}
           </div>
@@ -275,7 +275,7 @@
       </div>
       <div *ngFor="let cardId of item.cardIds" class="col-2">
         <div class="item_template flex gap-1">
-          <img *ngIf="item.isHead" src="assets/demo/images/items/{{ cardId }}.png" alt="" class="item_img" />
+          <img *ngIf="item.isHead" src="assets/demo/images/items/{{ cardId | itemImage }}.png" alt="" class="item_img" />
           <img *ngIf="!item.isHead" src="assets/demo/images/items/card.png" alt="" class="item_img" />
           <div class="text_ellips pr-2" style="text-overflow: ellipsis">
             {{ getItemLabel(cardId) }}
@@ -284,7 +284,7 @@
       </div>
       <div *ngFor="let enchantId of item.enchantIds" class="col-2">
         <div class="item_template flex gap-1">
-          <img src="assets/demo/images/items/{{ enchantId }}.png" alt="" class="item_img" />
+          <img src="assets/demo/images/items/{{ enchantId | itemImage }}.png" alt="" class="item_img" />
           <div class="text_ellips pr-2" style="text-overflow: ellipsis">
             {{ getItemLabel(enchantId) }}
           </div>
@@ -305,7 +305,7 @@
           <div class="col-12">
             <div *ngIf="!item.mainId">--- {{ item.itemType }} ---</div>
             <div *ngIf="item.mainId" class="item_template flex gap-1">
-              <img src="assets/demo/images/items/{{ item.mainId }}.png" alt="" class="item_img" />
+              <img src="assets/demo/images/items/{{ item.mainId | itemImage }}.png" alt="" class="item_img" />
               <div class="text_ellips pr-2" style="text-overflow: ellipsis">{{ getItemLabel(item.mainId) }}</div>
             </div>
           </div>
@@ -320,7 +320,7 @@
           <div class="col-12">
             <div *ngIf="!item.mainId">--- {{ item.itemType }} ---</div>
             <div *ngIf="item.mainId" class="item_template flex gap-1">
-              <img src="assets/demo/images/items/{{ item.mainId }}.png" alt="" class="item_img" />
+              <img src="assets/demo/images/items/{{ item.mainId | itemImage }}.png" alt="" class="item_img" />
               <div class="text_ellips pr-2" style="text-overflow: ellipsis">
                 {{ item.refineTxt }} {{ getItemLabel(item.mainId) }}
               </div>

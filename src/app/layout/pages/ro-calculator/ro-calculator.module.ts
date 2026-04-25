@@ -33,6 +33,7 @@ import { TabViewModule } from 'primeng/tabview';
 
 import { RoCalculatorComponent } from './ro-calculator.component';
 import { PrettyJsonPipe } from '../../prettier-json.pipe';
+import { SharedPipesModule } from '../../shared-pipes.module';
 import { RoCalculatorRoutingModule } from './ro-calculator-routing.module';
 import { EquipmentComponent } from './equipment/equipment.component';
 import { CalcValueComponent } from './calc-value/calc-value.component';
@@ -90,6 +91,7 @@ import { ExpCalculatorComponent } from './exp-calculator/exp-calculator.componen
     DialogModule,
     TabViewModule,
     RoCalculatorRoutingModule,
+    SharedPipesModule,
   ],
   declarations: [
     RoCalculatorComponent,
@@ -112,6 +114,6 @@ import { ExpCalculatorComponent } from './exp-calculator/exp-calculator.componen
     DpsCompareComponent,
     ExpCalculatorComponent,
   ],
-  exports: [CalcValueComponent],
+  exports: [CalcValueComponent, SharedPipesModule],
 })
 export class RoCalculatorModule {}

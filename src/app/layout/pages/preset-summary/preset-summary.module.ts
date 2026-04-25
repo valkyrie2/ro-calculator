@@ -6,10 +6,11 @@ import { ListboxModule } from 'primeng/listbox';
 import { PresetSummaryComponent } from './preset-summary.component';
 import { FormsModule } from '@angular/forms';
 import { CheckboxModule } from 'primeng/checkbox';
+import { SharedPipesModule } from '../../../layout/shared-pipes.module';
 
 @NgModule({
   declarations: [PresetSummaryComponent],
-  imports: [PresetSummaryRoutingModule, ListboxModule, ButtonModule, CommonModule, FormsModule, CheckboxModule],
+  imports: [PresetSummaryRoutingModule, ListboxModule, ButtonModule, CommonModule, FormsModule, CheckboxModule, SharedPipesModule],
   exports: [],
 })
 export class PresetSummaryModule {}

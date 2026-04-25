@@ -3,7 +3,7 @@
     <div class="text-xl font-semibold">Consumables</div>
     <div class="pt-1" *ngFor="let item of consumables">
       <div class="flex gap-1">
-        <img src="assets/demo/images/items/{{ item.value }}.png" alt="" class="consumable-icon" />
+        <img src="assets/demo/images/items/{{ item.value | itemImage }}.png" alt="" class="consumable-icon" />
         <div class="text_ellips">{{ item.label }}</div>
       </div>
     </div>

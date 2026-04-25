@@ -37,7 +37,7 @@
         <div class="text-lg font-bold mb-3">Item Description</div>
         <div class="mb-4" *ngFor="let selectedItem of displaySelectedItems">
           <div class="flex gap-1 mb-2" *ngIf="selectedItemId">
-            <img src="assets/demo/images/items/{{ selectedItem.id }}.png" alt="" class="item_img" />
+            <img src="assets/demo/images/items/{{ selectedItem.id | itemImage }}.png" alt="" class="item_img" />
             <div class="text_ellips font-medium">
               {{ selectedItem.name }}
             </div>
@@ -60,7 +60,7 @@
           <ng-template let-rank pTemplate="item" styleClass="py-0 xxx">
             <div *ngIf="!rank.IsEnchant" class="flex w-full justify-content-between">
               <div class="flex gap-1" *ngIf="rank.ItemId">
-                <img src="assets/demo/images/items/{{ rank.ItemId }}.png" alt="" class="item_img" />
+                <img src="assets/demo/images/items/{{ rank.ItemId | itemImage }}.png" alt="" class="item_img" />
                 <div class="text_ellips font-medium">
                   {{ rank.ItemName }}
                 </div>
@@ -76,7 +76,7 @@
             <div *ngIf="rank.IsEnchant" class="flex pl-4 w-full justify-content-between">
               <div class="flex gap-2 w-full">
                 <div class="flex gap-1 {{ rank.EnchantInfos.length === 3 ? 'item_enchant' : '' }}" *ngFor="let enchant of rank.EnchantInfos">
-                  <img src="assets/demo/images/items/{{ enchant.id }}.png" alt="" class="item_img" />
+                  <img src="assets/demo/images/items/{{ enchant.id | itemImage }}.png" alt="" class="item_img" />
                   <div>{{ enchant.name }}</div>
                 </div>
               </div>
