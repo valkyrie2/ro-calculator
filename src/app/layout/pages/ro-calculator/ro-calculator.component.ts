@@ -31,6 +31,7 @@ import {
   WeaponTypeNameMapBySubTypeId,
   getMonsterSpawnMap,
   extrabuff,
+  DailyDungeonGroupLabels,
 } from 'src/app/constants';
 import { ActiveSkillModel, AtkSkillModel, CharacterBase, ClassID, ClassIcon, ClassName, JobPromotionMapper, PassiveSkillModel } from 'src/app/jobs';
 import {
@@ -39,6 +40,7 @@ import {
   createMainModel,
   createMainStatOptionList,
   createNumberDropdownList,
+  filterPremiumItems,
   isNumber,
   prettyItemDesc,
   sortObj,
@@ -267,6 +269,25 @@ export class RoCalculatorComponent implements OnInit, OnDestroy {
       return 21531;
     }
     return this.selectedMonster;
+  }
+
+  private readonly localMonsterImages: Record<number, string> = {
+    30001: 'assets/demo/images/monsters/30001.gif',
+    30002: 'assets/demo/images/monsters/30002.gif',
+    30003: 'assets/demo/images/monsters/30003.png',
+    30004: 'assets/demo/images/monsters/30004.gif',
+    30005: 'assets/demo/images/monsters/30005.gif',
+    30006: 'assets/demo/images/monsters/30006.gif',
+    30007: 'assets/demo/images/monsters/30007.gif',
+    30008: 'assets/demo/images/monsters/30008.gif',
+    30009: 'assets/demo/images/monsters/30009.gif',
+    30010: 'assets/demo/images/monsters/30010.gif',
+    30011: 'assets/demo/images/monsters/30011.gif',
+    30012: 'assets/demo/images/monsters/30012.gif',
+  };
+
+  getMonsterImageUrl(id: number): string {
+    return this.localMonsterImages[id] ?? `https://static.divine-pride.net/images/mobs/png/${id}.png`;
   }
 
   chanceList = [] as ChanceModel[];
@@ -625,6 +646,9 @@ export class RoCalculatorComponent implements OnInit, OnDestroy {
       this.roService.getHpSpTable<HpSpTable>(),
     ]).pipe(
       tap(([items, monsters, hpSpTable]) => {
+        const canSeeRestricted = this.authService.isPremium();
+        items = filterPremiumItems(items, canSeeRestricted);
+        monsters = filterPremiumItems(monsters, canSeeRestricted);
         this.items = items;
         this.monsterDataMap = monsters;
         this.hpSpTable = hpSpTable;
@@ -1895,13 +1919,15 @@ export class RoCalculatorComponent implements OnInit, OnDestroy {
     };
 
     for (const mon of rawMonsters) {
-      const { id, name, spawn, stats } = mon;
+      const { id, name, spawn, stats, isPremium, releaseDate } = mon;
       const { level, health, mvp, class: _class, elementShortName, raceName, scaleName } = stats;
 
       const spawnMap = getMonsterSpawnMap(spawn) ? getMonsterSpawnMap(spawn) : mvp === 1 ? ' Boss' : (_class === 1 ? ' Boss' : 'Etc');
       const group = groupMap.get(spawnMap);
+      const isUnreleased = !!releaseDate && Date.parse(releaseDate) > Date.now();
+      const prefix = (isUnreleased ? '🔒 ' : '') + (isPremium ? '⭐ ' : '');
       const monster: DropdownModel = {
-        label: `${level} ${name} (${raceName} ${scaleName.at(0)})`,
+        label: `${prefix}${level} ${name} (${raceName} ${scaleName.at(0)})`,
         name,
         value: id,
         level,
@@ -1928,7 +1954,18 @@ export class RoCalculatorComponent implements OnInit, OnDestroy {
     }
 
     this.monsterList = monsters;
+    const dayOrder: Record<string, number> = {
+      Sunday: 0, Monday: 1, Tuesday: 2, Wednesday: 3, Thursday: 4, Friday: 5, Saturday: 6,
+    };
+    const getDayRank = (label: string): number => {
+      const m = label.match(/(Sunday|Monday|Tuesday|Wednesday|Thursday|Friday|Saturday)/);
+      return m ? dayOrder[m[1]] : 99;
+    };
     this.groupMonsterList = [...groupMap.values()].sort((a, b) => {
+      const aDaily = DailyDungeonGroupLabels.has(a.label) ? 0 : 1;
+      const bDaily = DailyDungeonGroupLabels.has(b.label) ? 0 : 1;
+      if (aDaily !== bDaily) return aDaily - bDaily;
+      if (aDaily === 0) return getDayRank(a.label) - getDayRank(b.label);
       return a.label > b.label ? 1 : -1;
     });
   }
@@ -2608,6 +2645,7 @@ export class RoCalculatorComponent implements OnInit, OnDestroy {
   onClassChange(isChangeByInput = true) {
     if (isChangeByInput) {
       this.isInProcessingPreset = true;
+      this.analytics.track('class-change', { classId: this.model.class });
 
       const { level, jobLevel } = this.model;
 
@@ -2663,8 +2701,33 @@ export class RoCalculatorComponent implements OnInit, OnDestroy {
     this.updateItemEvent.next(1);
   }
 
+  onMainTabChange(event: { index: number }) {
+    const labelMap: Record<number, string> = { 0: 'calculator', 1: 'dps-compare', 2: 'exp-calculator' };
+    const tab = labelMap[event?.index];
+    if (tab) {
+      this.analytics.track('tab-open', { tab });
+    }
+  }
+
   onMonsterListChange() {
     this.updateMonsterListEvent.next(1);
+  }
+
+  isDailyDungeonGroup(label: string): boolean {
+    return DailyDungeonGroupLabels.has(label);
+  }
+
+  getDailyDungeonTagStyle(label: string): { background: string; color: string } {
+    if (label.includes('Tuesday')) return { background: '#EC407A', color: '#fff' }; // Pink
+    if (label.includes('Wednesday')) return { background: '#43A047', color: '#fff' }; // Green
+    if (label.includes('Thursday')) return { background: '#FB8C00', color: '#fff' }; // Orange
+    if (label.includes('Friday')) return { background: '#29B6F6', color: '#fff' }; // Blue Sky
+    return { background: '#FB8C00', color: '#fff' };
+  }
+
+  getDailyDungeonTagValue(label: string): string {
+    const match = label.match(/(Sunday|Monday|Tuesday|Wednesday|Thursday|Friday|Saturday)/);
+    return match ? match[1] : 'Daily';
   }
 
   onSelectedColChange() {

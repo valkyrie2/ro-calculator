@@ -68,7 +68,19 @@ const Mapper = {
   // corridor_2: 'Corridor of Pantom 2',
   corridor_3: 'Corridor of Pantom 3 (COP)',
   corridor_4: 'Corridor of Pantom 4 (COP)',
+  phai_dun01: 'Daily Dungeon - Thursday (ไพรภิรมย์)',
+  phai_dun02: 'Daily Dungeon - Wednesday (มรณะราตรี)',
+  phai_dun03: 'Daily Dungeon - Tuesday (นทีอมตะ)',
+  phai_dun04: 'Daily Dungeon - Friday (พิษจันทรา)',
 } as const;
+
+export const DailyDungeonSpawns = new Set<string>(['phai_dun01', 'phai_dun02', 'phai_dun03', 'phai_dun04']);
+export const DailyDungeonGroupLabels = new Set<string>([
+  'Daily Dungeon - Thursday (ไพรภิรมย์)',
+  'Daily Dungeon - Wednesday (มรณะราตรี)',
+  'Daily Dungeon - Tuesday (นทีอมตะ)',
+  'Daily Dungeon - Friday (พิษจันทรา)',
+]);
 
 export const MonsterGroupNames = [...new Set(Object.values(Mapper))].sort((a, b) => (a > b ? 1 : -1));
 

@@ -48,6 +48,7 @@
                 <ng-template let-group pTemplate="group">
                   <div class="flex align-items-center font-bold dropdown_monster_group_label">
                     <span>{{ group.label }}</span>
+                    <p-tag *ngIf="isDailyDungeonGroup(group.label)" [value]="getDailyDungeonTagValue(group.label)" styleClass="ml-2" [style]="getDailyDungeonTagStyle(group.label)"></p-tag>
                   </div>
                 </ng-template>
                 <ng-template let-item pTemplate="item">

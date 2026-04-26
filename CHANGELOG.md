@@ -1,5 +1,9 @@
 # Changelog
 
+## Extra v59.3 (26-04-2569)
+
+- Added item: Ayothaya Helm (refinable up to +20)
+
 ## Extra v59.2 (25-04-2569)
 
 - Added item: Costume Ayothaya Hat

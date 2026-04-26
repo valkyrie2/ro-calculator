@@ -509,6 +509,7 @@ Current coverage is smoke-only (9 specs). Priority additions: `RoService`, `Pres
 | Version          | Highlights                                                                             |
 |------------------|----------------------------------------------------------------------------------------|
 | (unreleased)     | **Supabase migration** — replaced JWT backend with Supabase Auth + Postgres; admin role; premium-with-expiry membership |
+| Extra v59.3      | Added 6th Anniversary monsters (Bio Naga, Bio Ancient Tree, Bio Dollocaris); Daily Dungeon - Thursday (ไพรภิรมย์) group with orange tag |
 | Extra v59.2      | Umami analytics + opt-out; AdSense integration (`AdSlotComponent`, ads.txt); LoggerService |
 | Extra v59.1      | Added 6th Anniversary Ayothaya Ring [1]                                                |
 | Extra v59        | EXP Calculator tab; Monster Spotlight Summer 2026; expBonus scripts on 26 items        |

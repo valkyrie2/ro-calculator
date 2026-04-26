@@ -3,6 +3,7 @@ import { DropdownModel } from '../../../../models/dropdown.model';
 import { ItemModel } from '../../../../models/item.model';
 import { ItemTypeEnum, OptionableItemTypeSet } from '../../../../constants/item-type.enum';
 import { ExtraOptionTable } from '../../../../constants/extra-option-table';
+import { RefineCapTable } from '../../../../constants/refine-cap-table';
 import { createNumberDropdownList, getGradeList } from '../../../../utils';
 import { getEnchants } from 'src/app/constants/enchant_item';
 
@@ -252,6 +253,11 @@ export class EquipmentComponent implements OnChanges, OnInit {
             this.itemRefineChange.emit(this.itemRefine);
           }
         }
+      }
+
+      const refineCapOverride = RefineCapTable[item?.aegisName];
+      if (refineCapOverride && this.isRefinable) {
+        this.refineList = createNumberDropdownList({ from: 0, to: refineCapOverride });
       }
     } else {
       const e = this[`${itemType}Change`];

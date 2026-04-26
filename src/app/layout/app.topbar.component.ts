@@ -208,6 +208,16 @@ export class AppTopBarComponent implements OnInit, OnDestroy {
 
   updates: { v: string; date: string; logs: string[]; }[] = [
     {
+      v: 'Extra v59.3',
+      date: '26-04-2569',
+      logs: [
+        'เพิ่มมอนสเตอร์ใหม่ Daily Dungeon Tuesday (นทีอมตะ): Bio Empathizer, Bio Pray Giver, Bio Holy Skogul',
+        'เพิ่มมอนสเตอร์ใหม่ Daily Dungeon Wednesday (มรณะราตรี): Bio Incarnation of Morroc, Bio Skeleton Archer, Bio Skeleton Soldier',
+        'เพิ่มมอนสเตอร์ใหม่ Daily Dungeon Thursday (ไพรภิรมย์): Bio Naga, Bio Ancient Tree, Bio Dollocaris',
+        'เพิ่มมอนสเตอร์ใหม่ Daily Dungeon Friday (พิษจันทรา): Bio Moskillo, Bio Dark Pinguicula, Bio Pom Spider'
+      ],
+    },
+    {
       v: 'Extra v59.2',
       date: '25-04-2569',
       logs: [

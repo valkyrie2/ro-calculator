@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { PresetService, PublishPresetModel, PublishPresetsReponse } from 'src/app/api-services';
+import { PresetService, PublishPresetModel, PublishPresetsReponse, AuthService } from 'src/app/api-services';
 import { logger } from 'src/app/api-services/logger.service';
 import { DropdownModel } from '../../../models/dropdown.model';
 import { RoService } from 'src/app/api-services/ro.service';
@@ -12,7 +12,7 @@ import { ConfirmationService, MessageService } from 'primeng/api';
 import { Calculator } from '../ro-calculator/calculator';
 import { MainModel } from '../../../models/main.model';
 import { HpSpTable } from '../../../models/hp-sp-table.model';
-import { toRawOptionTxtList, waitRxjs } from '../../../utils';
+import { filterPremiumItems, toRawOptionTxtList, waitRxjs } from '../../../utils';
 import { JobBuffs, availableTags, getMonsterSpawnMap } from 'src/app/constants';
 import { ActiveSkillModel, AtkSkillModel, CharacterBase, getClassDropdownList } from 'src/app/jobs';
 
@@ -90,6 +90,7 @@ export class SharedPresetComponent implements OnInit, OnDestroy {
     private readonly roService: RoService,
     private readonly messageService: MessageService,
     private readonly confirmationService: ConfirmationService,
+    private readonly authService: AuthService,
   ) { }
 
   ngOnInit() {
@@ -113,8 +114,9 @@ export class SharedPresetComponent implements OnInit, OnDestroy {
       this.roService.getHpSpTable<HpSpTable>(),
     ]).pipe(
       tap(([items, monsters, hpSpTable]) => {
-        this.itemMap = items;
-        this.monsterDataMap = monsters;
+        const canSeeRestricted = this.authService.isPremium();
+        this.itemMap = filterPremiumItems(items, canSeeRestricted);
+        this.monsterDataMap = filterPremiumItems(monsters, canSeeRestricted);
         this.hpSpTable = hpSpTable;
 
         this.onSelectClassChange();
@@ -134,13 +136,15 @@ export class SharedPresetComponent implements OnInit, OnDestroy {
     };
 
     for (const mon of rawMonsters) {
-      const { id, name, spawn, stats } = mon;
+      const { id, name, spawn, stats, isPremium, releaseDate } = mon;
       const { level, health, mvp, class: _class, elementShortName, raceName, scaleName } = stats;
 
       const spawnMap = mvp === 1 ? ' Boss' : getMonsterSpawnMap(spawn) || (_class === 1 ? ' Boss' : 'Etc');
       const group = groupMap.get(spawnMap);
+      const isUnreleased = !!releaseDate && Date.parse(releaseDate) > Date.now();
+      const prefix = (isUnreleased ? '🔒 ' : '') + (isPremium ? '⭐ ' : '');
       const monster: DropdownModel = {
-        label: `${level} ${name} (${raceName} ${scaleName.at(0)})`,
+        label: `${prefix}${level} ${name} (${raceName} ${scaleName.at(0)})`,
         name,
         value: id,
         level,

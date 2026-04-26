@@ -4,6 +4,18 @@ export interface MonsterModel {
   name: string;
   spawn: string;
   stats: Stats;
+  /**
+   * When true, this monster is hidden from non-premium users. Only admins
+   * and users with a non-expired premium grant see it in monster dropdowns.
+   */
+  isPremium?: boolean;
+  /**
+   * ISO timestamp. Monsters with a future `releaseDate` are hidden from
+   * regular users (admins and active-premium users see them, marked as
+   * upcoming). Once the date passes, the monster is visible to everyone
+   * and the upcoming marker disappears automatically.
+   */
+  releaseDate?: string;
 }
 
 export interface Stats {

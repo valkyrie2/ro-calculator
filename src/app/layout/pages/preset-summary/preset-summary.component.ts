@@ -3,9 +3,10 @@ import { getClassDropdownList } from '../../../jobs/_class-list';
 import { SummaryService } from 'src/app/api-services/summary.service';
 import { Subject, Subscription, debounceTime, forkJoin, tap } from 'rxjs';
 import { RoService } from 'src/app/api-services/ro.service';
+import { AuthService } from 'src/app/api-services';
 import { ItemModel } from '../../../models/item.model';
 import { EquipmentPosition, EquipmentRankingModel, ItemRankingModel, JobSkillSummary, JobSummary, TotalSummaryModel } from './model';
-import { prettyItemDesc } from 'src/app/utils';
+import { filterPremiumItems, prettyItemDesc } from 'src/app/utils';
 
 const getEmptyRanking = () => {
   return Object.values(EquipmentPosition).reduce((pre, item) => {
@@ -67,7 +68,11 @@ export class PresetSummaryComponent implements OnInit, OnDestroy {
   skillRankingList = [] as { value: string; label: string; total: number; totalPresets: number }[];
   rankingMap = getEmptyRanking();
 
-  constructor(private readonly summaryService: SummaryService, private readonly roService: RoService) {}
+  constructor(
+    private readonly summaryService: SummaryService,
+    private readonly roService: RoService,
+    private readonly authService: AuthService,
+  ) {}
 
   ngOnInit() {
     this.loadData();
@@ -92,7 +97,7 @@ export class PresetSummaryComponent implements OnInit, OnDestroy {
       this.presetSummary = presetSummary;
       this.jobSummary = jobSummary;
       this.totalSummary = totalSummary;
-      this.itemMap = itemMap;
+      this.itemMap = filterPremiumItems(itemMap, this.authService.isPremium());
 
       this.totalPresets = Object.values(presetSummary).reduce((total, cur) => total + Object.values(cur).reduce((t, c) => t + c, 0), 0);
 

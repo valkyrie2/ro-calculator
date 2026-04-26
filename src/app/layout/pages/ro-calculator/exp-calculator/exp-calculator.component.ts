@@ -1,6 +1,7 @@
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { SelectItemGroup } from 'primeng/api';
 import { MonsterModel } from 'src/app/models/monster.model';
+import { DailyDungeonGroupLabels } from 'src/app/constants/monster-spawn-mapper';
 import {
   getActiveSpotlightEvent,
   getSpotlightMonster,
@@ -192,6 +193,23 @@ export class ExpCalculatorComponent implements OnChanges {
   resetPlayerLevel(): void {
     this.overridePlayerLevel = null;
     this.calculate();
+  }
+
+  isDailyDungeonGroup(label: string): boolean {
+    return DailyDungeonGroupLabels.has(label);
+  }
+
+  getDailyDungeonTagStyle(label: string): { background: string; color: string } {
+    if (label.includes('Tuesday')) return { background: '#EC407A', color: '#fff' };
+    if (label.includes('Wednesday')) return { background: '#43A047', color: '#fff' };
+    if (label.includes('Thursday')) return { background: '#FB8C00', color: '#fff' };
+    if (label.includes('Friday')) return { background: '#29B6F6', color: '#fff' };
+    return { background: '#FB8C00', color: '#fff' };
+  }
+
+  getDailyDungeonTagValue(label: string): string {
+    const match = label.match(/(Sunday|Monday|Tuesday|Wednesday|Thursday|Friday|Saturday)/);
+    return match ? match[1] : 'Daily';
   }
 
   /** groupMonsterList with Recommended and Spotlight groups prepended */
