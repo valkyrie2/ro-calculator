@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { Subscription } from 'rxjs';
-import { AnalyticsService, AuthService, OAuthProvider } from 'src/app/api-services';
+import { AnalyticsService, AppLogService, AuthService, OAuthProvider } from 'src/app/api-services';
 import { logger } from 'src/app/api-services/logger.service';
 
 type Mode = 'sign-in' | 'sign-up' | 'reset';
@@ -30,6 +30,7 @@ export class AuthComponent implements OnInit, OnDestroy {
     private readonly router: Router,
     private readonly analytics: AnalyticsService,
     private readonly messageService: MessageService,
+    private readonly appLog: AppLogService,
   ) {}
 
   ngOnInit() {
@@ -44,6 +45,7 @@ export class AuthComponent implements OnInit, OnDestroy {
     this.sub = this.authService.loggedInEvent$.subscribe((isLoggedIn) => {
       if (isLoggedIn) {
         this.analytics.track('login-success');
+        this.appLog.info('auth.login-success', { mode: this.mode });
         this.router.navigate(['/']);
       }
     });
@@ -94,6 +96,7 @@ export class AuthComponent implements OnInit, OnDestroy {
         if (error) {
           this.errorMessage = error.message;
           this.analytics.track('login-failure');
+          this.appLog.error('auth.login-failure', error, { method: 'email' });
         }
         // success path is handled by the loggedInEvent$ subscription.
       },
@@ -102,6 +105,7 @@ export class AuthComponent implements OnInit, OnDestroy {
         logger.error(err);
         this.errorMessage = err?.message ?? 'Sign-in failed.';
         this.analytics.track('login-failure');
+        this.appLog.error('auth.login-failure', err, { method: 'email' });
       },
     });
   }
@@ -113,8 +117,10 @@ export class AuthComponent implements OnInit, OnDestroy {
         this.loading = false;
         if (error) {
           this.errorMessage = error.message;
+          this.appLog.error('auth.signup-failure', error);
           return;
         }
+        this.appLog.info('auth.signup-success', { hasSession: !!data.session });
         // When email confirmation is enabled, no session is returned yet.
         if (!data.session) {
           this.infoMessage = 'Check your inbox to confirm your email address.';
@@ -125,6 +131,7 @@ export class AuthComponent implements OnInit, OnDestroy {
         this.loading = false;
         logger.error(err);
         this.errorMessage = err?.message ?? 'Sign-up failed.';
+        this.appLog.error('auth.signup-failure', err);
       },
     });
   }
@@ -157,6 +164,7 @@ export class AuthComponent implements OnInit, OnDestroy {
         if (error) {
           this.loading = false;
           this.errorMessage = error.message;
+          this.appLog.error('auth.oauth-failure', error, { provider });
         }
         // On success the browser is redirected away — keep loading=true.
       },
@@ -164,6 +172,7 @@ export class AuthComponent implements OnInit, OnDestroy {
         this.loading = false;
         logger.error(err);
         this.errorMessage = err?.message ?? `Could not sign in with ${provider}.`;
+        this.appLog.error('auth.oauth-failure', err, { provider });
       },
     });
   }

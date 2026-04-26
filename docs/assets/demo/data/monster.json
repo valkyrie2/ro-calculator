@@ -24411,6 +24411,7 @@
     "dbname": "BIO_EMPATHIZER",
     "name": "Bio Empathizer",
     "spawn": "phai_dun03",
+    "releaseDate": "2026-04-27T00:01:10",
     "stats": {
       "attackRange": 2,
       "level": 240,
@@ -24465,6 +24466,7 @@
     "dbname": "BIO_PRAY_GIVER",
     "name": "Bio Pray Giver",
     "spawn": "phai_dun03",
+    "releaseDate": "2026-04-27T00:01:10",
     "stats": {
       "attackRange": 2,
       "level": 240,
@@ -24519,6 +24521,7 @@
     "dbname": "BIO_HOLY_SKOGUL",
     "name": "Bio Holy Skogul",
     "spawn": "phai_dun03",
+    "releaseDate": "2026-04-27T00:01:10",
     "stats": {
       "attackRange": 2,
       "level": 240,

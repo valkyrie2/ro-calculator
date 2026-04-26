@@ -1,4 +1,5 @@
 export * from './analytics.service';
+export * from './app-log.service';
 export * from './auth.service';
 export * from './logger.service';
 export * from './models';

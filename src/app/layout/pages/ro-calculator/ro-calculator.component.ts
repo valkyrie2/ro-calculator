@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ConfirmationService, MenuItem, MessageService, PrimeIcons, SelectItemGroup } from 'primeng/api';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { Observable, Subject, Subscription, catchError, debounceTime, finalize, forkJoin, mergeMap, of, switchMap, take, tap, throwError } from 'rxjs';
-import { AuthService, PresetModel, PresetService, AnalyticsService } from 'src/app/api-services';
+import { AuthService, PresetModel, PresetService, AnalyticsService, AppLogService } from 'src/app/api-services';
 import { logger } from 'src/app/api-services/logger.service';
 import { RoService } from 'src/app/api-services/ro.service';
 import { AllowedCompareItemTypes } from 'src/app/app-config';
@@ -369,6 +369,13 @@ export class RoCalculatorComponent implements OnInit, OnDestroy {
   onClassChanged$ = this.onClassChangedSubject.asObservable();
 
   isLoggedIn = false;
+  /**
+   * Snapshot of `authService.isPremium()` from the most recent `initData()`
+   * run. We compare against new `isPremium$` emissions to decide whether
+   * the master item/monster lists need to be re-filtered (e.g. when admin
+   * role finally arrives after async profile fetch, or when premium expires).
+   */
+  private lastCanSeeRestricted: boolean | null = null;
 
   constructor(
     private roService: RoService,
@@ -379,6 +386,7 @@ export class RoCalculatorComponent implements OnInit, OnDestroy {
     private readonly authService: AuthService,
     private readonly presetService: PresetService,
     private readonly analytics: AnalyticsService,
+    private readonly appLog: AppLogService,
     public readonly highlightService: HighlightService,
   ) { }
 
@@ -389,7 +397,8 @@ export class RoCalculatorComponent implements OnInit, OnDestroy {
       .pipe(
         switchMap(() => this.loadItemSet(localStorage.getItem('ro-set'))),
         tap(() => {
-          const ob = this.authService.loggedInEvent$.subscribe((isLoggedIn) => {
+          // Refresh preset DDL on login/logout (cloud vs. local presets).
+          const loginOb = this.authService.loggedInEvent$.subscribe((isLoggedIn) => {
             this.isLoggedIn = isLoggedIn;
             logger.log({ isLoggedIn });
             if (isLoggedIn) {
@@ -400,7 +409,29 @@ export class RoCalculatorComponent implements OnInit, OnDestroy {
               this.selectedPreset = undefined;
             }
           });
-          this.allSubs.push(ob);
+          this.allSubs.push(loginOb);
+
+          // Re-filter items + monsters whenever the viewer's permission
+          // level changes — covers admin-role arriving after an async
+          // profile fetch (post-login), and premium-expiry transitions.
+          // initData() already loaded data with the current snapshot, so we
+          // skip emissions that match `lastCanSeeRestricted`.
+          const permOb = this.authService.isPremium$.subscribe((canSee) => {
+            if (canSee === this.lastCanSeeRestricted) return;
+            this.refreshItemsAndMonsters();
+          });
+          this.allSubs.push(permOb);
+
+          // Fail-safe: also refresh on a hard login-state transition. If the
+          // user was logged in as admin/premium and now logs out, the
+          // `isPremium$` distinct stream emits but in case it ever races,
+          // this catches the change too.
+          const logoutOb = this.authService.loggedInEvent$.subscribe((isLoggedIn) => {
+            if (!isLoggedIn && this.lastCanSeeRestricted) {
+              this.refreshItemsAndMonsters();
+            }
+          });
+          this.allSubs.push(logoutOb);
         }),
       )
       .subscribe(() => {
@@ -639,6 +670,22 @@ export class RoCalculatorComponent implements OnInit, OnDestroy {
     }
   }
 
+  /**
+   * Re-runs `initData()` (re-filters items + monsters with current premium
+   * gate and rebuilds the dropdowns) and immediately re-triggers the calc
+   * pipeline so the damage panel reflects any monster fallback. Used when
+   * the viewer's permission level changes (login/logout/premium expiry).
+   */
+  private refreshItemsAndMonsters() {
+    this.initData().subscribe({
+      next: () => {
+        this.updateItemEvent.next(1);
+        this.updateMonsterListEvent.next(1);
+      },
+      error: (err) => logger.error({ refreshItemsAndMonsters: err }),
+    });
+  }
+
   private initData() {
     return forkJoin([
       this.roService.getItems<Record<number, ItemModel>>(),
@@ -647,12 +694,26 @@ export class RoCalculatorComponent implements OnInit, OnDestroy {
     ]).pipe(
       tap(([items, monsters, hpSpTable]) => {
         const canSeeRestricted = this.authService.isPremium();
+        this.lastCanSeeRestricted = canSeeRestricted;
         items = filterPremiumItems(items, canSeeRestricted);
         monsters = filterPremiumItems(monsters, canSeeRestricted);
         this.items = items;
         this.monsterDataMap = monsters;
         this.hpSpTable = hpSpTable;
 
+        // If the previously selected monster is no longer visible (e.g. it
+        // was a premium/unreleased entry and the user just logged out),
+        // fall back to the top monster in the dropdown so the UI doesn't
+        // show a stale name + stale stats from the prior selection. The
+        // dropdown is sorted by level ascending, so "top" = lowest level.
+        if (!this.monsterDataMap[this.selectedMonster]) {
+          const top = Object.values(this.monsterDataMap)
+            .sort((a, b) => (a.stats?.level ?? 0) - (b.stats?.level ?? 0))[0];
+          if (top) {
+            this.selectedMonster = top.id;
+            localStorage.setItem('monster', String(top.id));
+          }
+        }
         this.selectedMonsterName = this.monsterDataMap[this.selectedMonster]?.name;
 
         this.calculator.setMasterItems(items).setHpSpTable(hpSpTable);
@@ -1309,6 +1370,7 @@ export class RoCalculatorComponent implements OnInit, OnDestroy {
         this.setPresetList();
         this.presetUpdated$.next();
         this.analytics.track('preset-save-local', { className: this.selectedCharacter?.className });
+        this.appLog.info('preset.save-local', { className: this.selectedCharacter?.className, label: name });
 
         this.messageService.add({
           severity: 'success',
@@ -1357,9 +1419,11 @@ export class RoCalculatorComponent implements OnInit, OnDestroy {
           }, ...this.preSets];
           this.presetUpdated$.next();
           this.analytics.track('preset-save-cloud', { classId });
+          this.appLog.info('preset.save-cloud', { classId, presetId: preset.id, label: preset.label });
           return waitRxjs();
         }),
         catchError((err) => {
+          this.appLog.error('preset.save-cloud-failure', err, { classId, label });
           this.messageService.add({
             severity: 'error',
             summary: 'Failed to create.',
@@ -1392,6 +1456,7 @@ export class RoCalculatorComponent implements OnInit, OnDestroy {
             summary: 'Updated',
             detail: `"${preset.label}" was updated.`,
           });
+          this.appLog.info('preset.update-cloud', { presetId: preset.id, label: preset.label });
           this.presetUpdated$.next();
           return waitRxjs();
         }),
@@ -1472,6 +1537,7 @@ export class RoCalculatorComponent implements OnInit, OnDestroy {
             summary: 'Deleted',
             detail: `"${label}" was deleted.`,
           });
+          this.appLog.info('preset.delete-cloud', { presetId: id, label });
           this.preSets = this.preSets.filter(a => a.value !== id);
           this.selectedPreset = undefined;
           this.presetUpdated$.next();
@@ -2934,6 +3000,7 @@ export class RoCalculatorComponent implements OnInit, OnDestroy {
   }
 
   private handleAPIError(err: any) {
+    this.appLog.error('api.error', err, { url: typeof window !== 'undefined' ? window.location.hash : '' });
     this.messageService.add({
       severity: 'error',
       summary: 'Error',

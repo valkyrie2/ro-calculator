@@ -3,7 +3,7 @@ import { ConfirmationService, MenuItem, MessageService } from 'primeng/api';
 import { DialogService } from 'primeng/dynamicdialog';
 import { Subscription } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { AuthService, AnalyticsService } from '../api-services';
+import { AuthService, AnalyticsService, AppLogService } from '../api-services';
 import { logger } from '../api-services/logger.service';
 import { LayoutService } from './service/app.layout.service';
 
@@ -1614,6 +1614,7 @@ export class AppTopBarComponent implements OnInit, OnDestroy {
     private messageService: MessageService,
     private confirmationService: ConfirmationService,
     private readonly analytics: AnalyticsService,
+    private readonly appLog: AppLogService,
   ) {}
 
   ngOnDestroy(): void {
@@ -1641,6 +1642,7 @@ export class AppTopBarComponent implements OnInit, OnDestroy {
       if (!isConfirm) return;
 
       this.authService.logout();
+      this.appLog.info('auth.logout');
       this.messageService.add({
         severity: 'success',
         summary: 'Logout',
