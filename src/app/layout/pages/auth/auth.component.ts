@@ -22,6 +22,18 @@ export class AuthComponent implements OnInit, OnDestroy {
   errorMessage = '';
   infoMessage = '';
 
+  /**
+   * Cooldown for email-sending auth actions (sign-up confirmation,
+   * password reset). Supabase enforces a per-email rate limit (default 60s)
+   * and rejects faster requests with a 429 "For security purposes..."
+   * error. We disable the submit button + show a countdown so the user
+   * doesn't keep mashing it.
+   */
+  cooldownLeft = 0;
+  private cooldownTimer?: ReturnType<typeof setInterval>;
+  /** Default cooldown when Supabase doesn't tell us a specific seconds value. */
+  private readonly defaultCooldownMs = 60_000;
+
   private sub?: Subscription;
 
   constructor(
@@ -53,6 +65,59 @@ export class AuthComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.sub?.unsubscribe();
+    this.clearCooldownTimer();
+  }
+
+  /**
+   * Whether the current action is rate-limited and the submit button
+   * should be disabled. Sign-in itself isn't email-rate-limited, so the
+   * cooldown only blocks signup + reset modes.
+   */
+  get isRateLimited(): boolean {
+    return this.cooldownLeft > 0 && this.mode !== 'sign-in';
+  }
+
+  get submitLabel(): string {
+    if (this.isRateLimited) return `Try again in ${this.cooldownLeft}s`;
+    if (this.mode === 'sign-in') return 'Sign in';
+    if (this.mode === 'sign-up') return 'Create account';
+    return 'Send reset email';
+  }
+
+  private startCooldown(seconds: number) {
+    this.cooldownLeft = Math.max(1, Math.ceil(seconds));
+    this.clearCooldownTimer();
+    this.cooldownTimer = setInterval(() => {
+      this.cooldownLeft = Math.max(0, this.cooldownLeft - 1);
+      if (this.cooldownLeft <= 0) this.clearCooldownTimer();
+    }, 1000);
+  }
+
+  private clearCooldownTimer() {
+    if (this.cooldownTimer) {
+      clearInterval(this.cooldownTimer);
+      this.cooldownTimer = undefined;
+    }
+  }
+
+  /**
+   * Parses Supabase's rate-limit error message (e.g.
+   * "For security purposes, you can only request this after 47 seconds.")
+   * and starts the appropriate cooldown.
+   */
+  private handleRateLimitError(err: { message?: string; status?: number } | undefined): boolean {
+    const msg = err?.message ?? '';
+    const status = err?.status;
+    const isRateLimit =
+      status === 429 ||
+      /for security purposes/i.test(msg) ||
+      /rate limit/i.test(msg) ||
+      /only request this after/i.test(msg);
+    if (!isRateLimit) return false;
+    const m = msg.match(/after\s+(\d+)\s+second/i);
+    const secs = m ? Number(m[1]) : Math.ceil(this.defaultCooldownMs / 1000);
+    this.startCooldown(secs > 0 ? secs : Math.ceil(this.defaultCooldownMs / 1000));
+    return true;
   }
 
   setMode(mode: Mode) {
@@ -63,6 +128,7 @@ export class AuthComponent implements OnInit, OnDestroy {
 
   submit() {
     if (this.loading) return;
+    if (this.isRateLimited) return;
     this.errorMessage = '';
     this.infoMessage = '';
 
@@ -118,9 +184,16 @@ export class AuthComponent implements OnInit, OnDestroy {
         if (error) {
           this.errorMessage = error.message;
           this.appLog.error('auth.signup-failure', error);
+          this.handleRateLimitError(error as any);
           return;
         }
         this.appLog.info('auth.signup-success', { hasSession: !!data.session });
+        // Always start the cooldown after a successful signup call so the
+        // user can't spam-trigger Supabase's per-email rate limit on a
+        // double-submit. (When email confirmation is disabled the user is
+        // redirected away by the loggedInEvent$ subscription so the timer
+        // is harmless.)
+        this.startCooldown(this.defaultCooldownMs / 1000);
         // When email confirmation is enabled, no session is returned yet.
         if (!data.session) {
           this.infoMessage = 'Check your inbox to confirm your email address.';
@@ -132,6 +205,7 @@ export class AuthComponent implements OnInit, OnDestroy {
         logger.error(err);
         this.errorMessage = err?.message ?? 'Sign-up failed.';
         this.appLog.error('auth.signup-failure', err);
+        this.handleRateLimitError(err);
       },
     });
   }
@@ -143,14 +217,17 @@ export class AuthComponent implements OnInit, OnDestroy {
         this.loading = false;
         if (error) {
           this.errorMessage = error.message;
+          this.handleRateLimitError(error as any);
           return;
         }
         this.infoMessage = 'Password reset email sent. Check your inbox.';
+        this.startCooldown(this.defaultCooldownMs / 1000);
       },
       error: (err) => {
         this.loading = false;
         logger.error(err);
         this.errorMessage = err?.message ?? 'Could not send reset email.';
+        this.handleRateLimitError(err);
       },
     });
   }

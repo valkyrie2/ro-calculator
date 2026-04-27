@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ConfirmationService, MenuItem, MessageService, PrimeIcons, SelectItemGroup } from 'primeng/api';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { Observable, Subject, Subscription, catchError, debounceTime, finalize, forkJoin, mergeMap, of, switchMap, take, tap, throwError } from 'rxjs';
-import { AuthService, PresetModel, PresetService, AnalyticsService, AppLogService } from 'src/app/api-services';
+import { AuthService, PresetModel, PresetService, AnalyticsService } from 'src/app/api-services';
 import { logger } from 'src/app/api-services/logger.service';
 import { RoService } from 'src/app/api-services/ro.service';
 import { AllowedCompareItemTypes } from 'src/app/app-config';
@@ -386,7 +386,6 @@ export class RoCalculatorComponent implements OnInit, OnDestroy {
     private readonly authService: AuthService,
     private readonly presetService: PresetService,
     private readonly analytics: AnalyticsService,
-    private readonly appLog: AppLogService,
     public readonly highlightService: HighlightService,
   ) { }
 
@@ -1370,7 +1369,6 @@ export class RoCalculatorComponent implements OnInit, OnDestroy {
         this.setPresetList();
         this.presetUpdated$.next();
         this.analytics.track('preset-save-local', { className: this.selectedCharacter?.className });
-        this.appLog.info('preset.save-local', { className: this.selectedCharacter?.className, label: name });
 
         this.messageService.add({
           severity: 'success',
@@ -1419,11 +1417,9 @@ export class RoCalculatorComponent implements OnInit, OnDestroy {
           }, ...this.preSets];
           this.presetUpdated$.next();
           this.analytics.track('preset-save-cloud', { classId });
-          this.appLog.info('preset.save-cloud', { classId, presetId: preset.id, label: preset.label });
           return waitRxjs();
         }),
         catchError((err) => {
-          this.appLog.error('preset.save-cloud-failure', err, { classId, label });
           this.messageService.add({
             severity: 'error',
             summary: 'Failed to create.',
@@ -1456,7 +1452,6 @@ export class RoCalculatorComponent implements OnInit, OnDestroy {
             summary: 'Updated',
             detail: `"${preset.label}" was updated.`,
           });
-          this.appLog.info('preset.update-cloud', { presetId: preset.id, label: preset.label });
           this.presetUpdated$.next();
           return waitRxjs();
         }),
@@ -1537,7 +1532,6 @@ export class RoCalculatorComponent implements OnInit, OnDestroy {
             summary: 'Deleted',
             detail: `"${label}" was deleted.`,
           });
-          this.appLog.info('preset.delete-cloud', { presetId: id, label });
           this.preSets = this.preSets.filter(a => a.value !== id);
           this.selectedPreset = undefined;
           this.presetUpdated$.next();
@@ -3000,7 +2994,6 @@ export class RoCalculatorComponent implements OnInit, OnDestroy {
   }
 
   private handleAPIError(err: any) {
-    this.appLog.error('api.error', err, { url: typeof window !== 'undefined' ? window.location.hash : '' });
     this.messageService.add({
       severity: 'error',
       summary: 'Error',
