@@ -2,6 +2,7 @@ export * from './admin.service';
 export * from './analytics.service';
 export * from './app-log.service';
 export * from './auth.service';
+export * from './bug-report.service';
 export * from './logger.service';
 export * from './models';
 export * from './api-service.module';

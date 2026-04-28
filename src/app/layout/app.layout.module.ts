@@ -24,6 +24,7 @@ import { DialogModule } from 'primeng/dialog';
 import { ChipModule } from 'primeng/chip';
 import { TabMenuModule } from 'primeng/tabmenu';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { InputTextareaModule } from 'primeng/inputtextarea';
 import { ToastModule } from 'primeng/toast';
 import { TooltipModule } from 'primeng/tooltip';
 import { UserProfileModule } from './pages/user-profile/user-profile.module';
@@ -58,6 +59,7 @@ import { AuthFormModule } from './pages/auth/auth-form.module';
     ChipModule,
     TabMenuModule,
     ConfirmDialogModule,
+    InputTextareaModule,
     ToastModule,
     TooltipModule,
     UserProfileModule,

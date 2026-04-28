@@ -1,12 +1,16 @@
 <div class="admin-page p-3">
   <h2 class="mt-0">Admin</h2>
   <p-toast></p-toast>
+  <p-confirmDialog></p-confirmDialog>
   <p-tabView [(activeIndex)]="activeIndex">
     <p-tabPanel header="Add Item" leftIcon="pi pi-plus-circle">
       <app-admin-add-item></app-admin-add-item>
     </p-tabPanel>
     <p-tabPanel header="Add Custom Monster" leftIcon="pi pi-android">
       <app-admin-add-monster></app-admin-add-monster>
+    </p-tabPanel>
+    <p-tabPanel header="Bug Reports" leftIcon="pi pi-exclamation-triangle">
+      <app-admin-bug-reports></app-admin-bug-reports>
     </p-tabPanel>
   </p-tabView>
 </div>

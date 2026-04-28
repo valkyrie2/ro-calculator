@@ -3,7 +3,7 @@ import { ConfirmationService, MenuItem, MessageService } from 'primeng/api';
 import { DialogService } from 'primeng/dynamicdialog';
 import { Subscription } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { AuthService, AnalyticsService, AppLogService } from '../api-services';
+import { AuthService, AnalyticsService, AppLogService, BugReportService } from '../api-services';
 import { logger } from '../api-services/logger.service';
 import { LayoutService } from './service/app.layout.service';
 
@@ -1606,6 +1606,15 @@ export class AppTopBarComponent implements OnInit, OnDestroy {
 
   visibleLogin = false;
 
+  // ---- Report bug dialog state ------------------------------------------
+  visibleReportBug = false;
+  bugReportTitle = '';
+  bugReportDescription = '';
+  bugReportImage: File | null = null;
+  bugReportImagePreview: string | null = null;
+  bugReportImageError: string | null = null;
+  isSubmittingBugReport = false;
+
   obs = [] as Subscription[];
 
   constructor(
@@ -1615,6 +1624,7 @@ export class AppTopBarComponent implements OnInit, OnDestroy {
     private confirmationService: ConfirmationService,
     private readonly analytics: AnalyticsService,
     private readonly appLog: AppLogService,
+    private readonly bugReportService: BugReportService,
   ) {}
 
   ngOnDestroy(): void {
@@ -1653,6 +1663,75 @@ export class AppTopBarComponent implements OnInit, OnDestroy {
 
   openLogin(): void {
     this.visibleLogin = true;
+  }
+
+  // ---- Report bug -------------------------------------------------------
+  openReportBug(): void {
+    this.bugReportTitle = '';
+    this.bugReportDescription = '';
+    this.clearBugReportImage();
+    this.visibleReportBug = true;
+  }
+
+  onBugReportImageSelected(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    const file = input.files?.[0] ?? null;
+    this.bugReportImageError = null;
+
+    if (!file) {
+      this.clearBugReportImage();
+      return;
+    }
+    if (!file.type.startsWith('image/')) {
+      this.bugReportImageError = 'File must be an image.';
+      input.value = '';
+      return;
+    }
+    const maxBytes = 5 * 1024 * 1024;
+    if (file.size > maxBytes) {
+      this.bugReportImageError = 'Image must be smaller than 5 MB.';
+      input.value = '';
+      return;
+    }
+
+    this.bugReportImage = file;
+    const reader = new FileReader();
+    reader.onload = () => {
+      this.bugReportImagePreview = typeof reader.result === 'string' ? reader.result : null;
+    };
+    reader.readAsDataURL(file);
+  }
+
+  clearBugReportImage(): void {
+    this.bugReportImage = null;
+    this.bugReportImagePreview = null;
+    this.bugReportImageError = null;
+  }
+
+  async submitBugReport(): Promise<void> {
+    const title = this.bugReportTitle.trim();
+    if (!title) {
+      this.messageService.add({ severity: 'warn', summary: 'Title is required' });
+      return;
+    }
+    this.isSubmittingBugReport = true;
+    try {
+      await this.bugReportService.submit({
+        title,
+        description: this.bugReportDescription,
+        image: this.bugReportImage,
+      });
+      this.analytics.track('bug-report-submit', { hasImage: !!this.bugReportImage });
+      this.appLog.info('bug-report.submit');
+      this.messageService.add({ severity: 'success', summary: 'Report submitted', detail: 'Thank you!' });
+      this.visibleReportBug = false;
+      this.clearBugReportImage();
+    } catch (err) {
+      const detail = err instanceof Error ? err.message : 'Failed to submit report.';
+      this.messageService.add({ severity: 'error', summary: 'Submit failed', detail });
+    } finally {
+      this.isSubmittingBugReport = false;
+    }
   }
 
   logout() {
