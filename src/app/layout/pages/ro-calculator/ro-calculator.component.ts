@@ -2678,20 +2678,20 @@ export class RoCalculatorComponent implements OnInit, OnDestroy {
     if (isCompareItem) {
       selectedType = this.selectedCompareItemDesc;
       bonus = this.compareItemSummaryModel?.[selectedType] || {};
-      itemId = this.equipCompareItemIdItemTypeMap.get(selectedType);
+      itemId = this.equipCompareItemIdItemTypeMap?.get(selectedType);
 
       this.selectedItemDesc = undefined;
     } else {
       selectedType = this.selectedItemDesc;
       bonus = this.itemSummary?.[selectedType] || this.itemSummary2?.[selectedType] || {};
-      itemId = this.equipItemIdItemTypeMap.get(selectedType);
+      itemId = this.equipItemIdItemTypeMap?.get(selectedType);
 
       this.selectedCompareItemDesc = undefined;
     }
 
     this.itemId = itemId;
     this.itemBonus = bonus; //{ script, bonus };
-    this.itemDescription = prettyItemDesc(this.items[itemId]?.description);
+    this.itemDescription = prettyItemDesc(this.items?.[itemId]?.description);
   }
 
   onLog(inputs) {

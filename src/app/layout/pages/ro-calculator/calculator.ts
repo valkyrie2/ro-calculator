@@ -309,7 +309,8 @@ export class Calculator {
   }
 
   isAllowAmmo() {
-    const cName = this._class.className;
+    const cName = this._class?.className;
+    if (!cName) return false;
 
     return AllowAmmoMapper[this.weaponData.data?.typeName] || ClassAmmoMapper[cName] != null;
   }
@@ -328,7 +329,8 @@ export class Calculator {
   }
 
   getAmmoSubTypeId() {
-    const cName = this._class.className;
+    const cName = this._class?.className;
+    if (!cName) return undefined;
 
     return WeaponAmmoMapper[this.weaponData.data?.typeName] || ClassAmmoMapper[cName];
   }
