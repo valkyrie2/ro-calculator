@@ -25,6 +25,10 @@ import { AppLayoutComponent } from './layout/app.layout.component';
               loadChildren: () =>
                 import('./layout/pages/preset-summary/preset-summary.module').then((m) => m.PresetSummaryModule),
             },
+            {
+              path: 'admin',
+              loadChildren: () => import('./layout/pages/admin/admin.module').then((m) => m.AdminModule),
+            },
           ],
         },
         {

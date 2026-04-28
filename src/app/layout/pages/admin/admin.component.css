@@ -1,0 +1,29 @@
+.admin-page {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.admin-page textarea {
+  font-family: 'Consolas', 'Courier New', monospace;
+  font-size: 0.85rem;
+}
+
+.admin-page .preview-img {
+  width: 64px;
+  height: 64px;
+  object-fit: contain;
+  border: 1px solid var(--surface-border);
+  background: var(--surface-100);
+  border-radius: 4px;
+}
+
+.admin-page .field {
+  margin-bottom: 0.75rem;
+}
+
+.admin-page label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+  color: var(--text-color-secondary);
+}

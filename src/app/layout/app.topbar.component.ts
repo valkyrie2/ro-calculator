@@ -1631,6 +1631,24 @@ export class AppTopBarComponent implements OnInit, OnDestroy {
       }
     });
     this.obs.push(o);
+
+    // Toggle the Admin tab in the topbar based on the cached profile.role.
+    // We mutate the same `items` array PrimeNG's TabMenu was bound to
+    // rather than reassigning, so the active-item highlight stays put.
+    const adminTab: MenuItem = {
+      label: 'Admin',
+      icon: 'pi pi-fw pi-cog',
+      routerLink: ['/admin'],
+    };
+    const adminSub = this.authService.isAdmin$.subscribe((isAdmin) => {
+      const hasTab = this.items.some((it) => it.label === 'Admin');
+      if (isAdmin && !hasTab) {
+        this.items = [...this.items, adminTab];
+      } else if (!isAdmin && hasTab) {
+        this.items = this.items.filter((it) => it.label !== 'Admin');
+      }
+    });
+    this.obs.push(adminSub);
   }
 
   openLogin(): void {

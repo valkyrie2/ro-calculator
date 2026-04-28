@@ -1,10 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import * as yaml from 'js-yaml';
-import { Observable, map, shareReplay, tap } from 'rxjs';
+import { Observable, map, shareReplay, switchMap, tap } from 'rxjs';
 import { createRawTotalBonus } from 'src/app/utils';
 import { environment } from 'src/environments/environment';
 import { OFFENSIVE_SKILL_NAMES } from '../constants/skill-name';
+import { AdminService } from './admin.service';
 import { logger } from './logger.service';
 import { validClassNameSet } from './valid-bonuses';
 
@@ -31,10 +32,23 @@ export class RoService {
   private cachedHpSpTable$: Observable<any>;
   private _isFirst = true;
 
-  constructor(private http: HttpClient) {
-    this.cachedMonster$ = this.http.get<any>('assets/demo/data/monster.json').pipe(shareReplay(1));
-    this.cachedItems$ = this.http.get<any>('assets/demo/data/item.json').pipe(
+  constructor(private http: HttpClient, private adminService: AdminService) {
+    // Static JSON + Supabase-managed custom rows are merged on subscribe so
+    // the calculator sees both data sources transparently. Custom rows win
+    // ties (so admins can override a built-in entry). The result is cached
+    // via shareReplay; AdminService refreshes its cache after each write,
+    // but consumers need to re-subscribe to RoService streams to see new
+    // entries — RoCalculator already does this via its data-init flow on
+    // login state changes, so we expose `refresh()` for explicit reloads.
+    const baseMonsters$ = this.http.get<any>('assets/demo/data/monster.json');
+    this.cachedMonster$ = baseMonsters$.pipe(
+      switchMap((base) =>
+        this.adminService.getCustomMonsters().pipe(map((custom) => ({ ...base, ...custom }))),
+      ),
       shareReplay(1),
+    );
+    const baseItems$ = this.http.get<any>('assets/demo/data/item.json');
+    this.cachedItems$ = baseItems$.pipe(
       tap((items) => {
         if (!this._isFirst || environment.production) return;
 
@@ -85,6 +99,10 @@ export class RoService {
         if (invalidBonusSet.size > 0) logger.error('invalidBonusSet', [...invalidBonusSet]);
         if (invalidClassNameSet.size > 0) logger.error('invalidClassNameSet', invalidClassNameSet);
       }),
+      switchMap((base) =>
+        this.adminService.getCustomItems().pipe(map((custom) => ({ ...base, ...custom }))),
+      ),
+      shareReplay(1),
     );
     this.cachedHpSpTable$ = this.http.get<any>('assets/demo/data/hp_sp_table.json').pipe(shareReplay(1));
 

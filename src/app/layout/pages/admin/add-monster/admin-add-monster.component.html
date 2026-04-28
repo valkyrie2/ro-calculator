@@ -1,0 +1,179 @@
+<div class="grid">
+  <div class="col-12 lg:col-8">
+    <div class="grid">
+      <div class="col-12 md:col-6 field">
+        <label>ID (auto)</label>
+        <div class="p-inputgroup">
+          <input
+            type="number"
+            pInputText
+            [(ngModel)]="form.id"
+            [readOnly]="loadingId"
+            class="w-full"
+            placeholder="Generating..."
+          />
+          <button
+            pButton
+            type="button"
+            icon="pi pi-refresh"
+            class="p-button-secondary"
+            pTooltip="Re-scan and pick the next unique id"
+            (click)="refreshNextId()"
+            [disabled]="loadingId"
+          ></button>
+        </div>
+        <small class="block mt-1 text-color-secondary">
+          Next free id from monster.json + custom_monsters (≥ 9,000,001).
+        </small>
+      </div>
+      <div class="col-12 md:col-6 field">
+        <label>Name</label>
+        <input pInputText [(ngModel)]="form.name" class="w-full" [placeholder]="placeholder.name" />
+      </div>
+      <div class="col-12 md:col-3 field">
+        <label>Level</label>
+        <input
+          type="number"
+          pInputText
+          [(ngModel)]="form.level"
+          class="w-full"
+          [placeholder]="placeholder.level"
+        />
+      </div>
+      <div class="col-12 md:col-5 field">
+        <label>Element</label>
+        <p-dropdown
+          [options]="elementOptions"
+          [(ngModel)]="form.element"
+          appendTo="body"
+          styleClass="w-full"
+          placeholder="Poison"
+        ></p-dropdown>
+      </div>
+      <div class="col-12 md:col-4 field">
+        <label>Element Level</label>
+        <p-dropdown
+          [options]="elementLevelOptions"
+          [(ngModel)]="form.elementLevel"
+          appendTo="body"
+          styleClass="w-full"
+          [placeholder]="placeholder.elementLevel"
+        ></p-dropdown>
+      </div>
+      <div class="col-12 md:col-6 field">
+        <label>Race</label>
+        <p-dropdown
+          [options]="raceOptions"
+          [(ngModel)]="form.race"
+          appendTo="body"
+          styleClass="w-full"
+          placeholder="Plant"
+        ></p-dropdown>
+      </div>
+      <div class="col-12 md:col-6 field">
+        <label>Size</label>
+        <p-dropdown
+          [options]="scaleOptions"
+          [(ngModel)]="form.scale"
+          appendTo="body"
+          styleClass="w-full"
+          placeholder="Medium"
+        ></p-dropdown>
+      </div>
+
+      <div class="col-12 md:col-6 field">
+        <label>HP</label>
+        <input
+          type="number"
+          pInputText
+          [(ngModel)]="form.health"
+          class="w-full"
+          [placeholder]="placeholder.health"
+        />
+      </div>
+      <div class="col-12 md:col-3 field">
+        <label>DEF</label>
+        <input
+          type="number"
+          pInputText
+          [(ngModel)]="form.defense"
+          class="w-full"
+          [placeholder]="placeholder.defense"
+        />
+      </div>
+      <div class="col-12 md:col-3 field">
+        <label>MDEF</label>
+        <input
+          type="number"
+          pInputText
+          [(ngModel)]="form.magicDefense"
+          class="w-full"
+          [placeholder]="placeholder.magicDefense"
+        />
+      </div>
+      <div class="col-12 md:col-3 field">
+        <label>RES</label>
+        <input
+          type="number"
+          pInputText
+          [(ngModel)]="form.res"
+          class="w-full"
+          [placeholder]="placeholder.res"
+        />
+      </div>
+      <div class="col-12 md:col-3 field">
+        <label>MRES</label>
+        <input
+          type="number"
+          pInputText
+          [(ngModel)]="form.mres"
+          class="w-full"
+          [placeholder]="placeholder.mres"
+        />
+      </div>
+      <div class="col-12 md:col-3 field">
+        <label>EXP</label>
+        <input
+          type="number"
+          pInputText
+          [(ngModel)]="form.baseExperience"
+          class="w-full"
+          [placeholder]="placeholder.baseExperience"
+        />
+      </div>
+      <div class="col-12 md:col-3 field">
+        <label>JEXP</label>
+        <input
+          type="number"
+          pInputText
+          [(ngModel)]="form.jobExperience"
+          class="w-full"
+          [placeholder]="placeholder.jobExperience"
+        />
+      </div>
+    </div>
+  </div>
+
+  <div class="col-12 lg:col-4">
+    <div class="field">
+      <label>Monster Image</label>
+      <input type="file" accept="image/*" (change)="onImageChange($event)" />
+      <div *ngIf="imagePreview" class="mt-2">
+        <img [src]="imagePreview" alt="preview" class="preview-img" />
+      </div>
+      <small class="block mt-1 text-color-secondary">
+        Stored at <code>custom-monster-images/&#123;id&#125;.&#123;ext&#125;</code> in Supabase Storage.
+      </small>
+    </div>
+
+    <button
+      pButton
+      class="p-button-success w-full mt-3"
+      icon="pi pi-save"
+      label="Save Monster"
+      [loading]="saving"
+      [disabled]="saving || loadingId"
+      (click)="save()"
+    ></button>
+  </div>
+</div>

@@ -1,0 +1,42 @@
+<div class="grid">
+  <div class="col-12 lg:col-8">
+    <div class="field">
+      <label>Item JSON</label>
+      <textarea
+        pInputTextarea
+        [(ngModel)]="jsonText"
+        (input)="onJsonInput()"
+        rows="20"
+        class="w-full"
+        placeholder='Paste a single item object, e.g. { "id": 1234567, "aegisName": "...", "name": "...", ... }'
+      ></textarea>
+      <small *ngIf="parseError" class="block mt-1 p-error">{{ parseError }}</small>
+      <small *ngIf="parsedItem" class="block mt-1 text-green-400">
+        Parsed OK — id {{ parsedItem.id }} ({{ parsedItem.name }})
+      </small>
+    </div>
+  </div>
+
+  <div class="col-12 lg:col-4">
+    <div class="field">
+      <label>Item Image</label>
+      <input type="file" accept="image/*" (change)="onImageChange($event)" />
+      <div *ngIf="imagePreview" class="mt-2">
+        <img [src]="imagePreview" alt="preview" class="preview-img" />
+      </div>
+      <small class="block mt-1 text-color-secondary">
+        Stored at <code>custom-item-images/&#123;id&#125;.&#123;ext&#125;</code> in Supabase Storage.
+      </small>
+    </div>
+
+    <button
+      pButton
+      class="p-button-success w-full mt-3"
+      icon="pi pi-save"
+      label="Save Item"
+      [loading]="saving"
+      [disabled]="!parsedItem || saving"
+      (click)="save()"
+    ></button>
+  </div>
+</div>
