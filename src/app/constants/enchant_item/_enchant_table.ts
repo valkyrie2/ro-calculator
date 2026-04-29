@@ -138,7 +138,7 @@ import { snowFwAccL2, snowFwAccL3, snowFwAccL4, snowFwAccR2, snowFwAccR3, snowFw
 import { thanosBoot3, thanosBoot4, thanosHead3, thanosHead4 } from './thanos';
 import { traitShadow3, traitShadow4 } from './trait_shadow';
 import { unkWatch2, unkWatch34 } from './unknown_watch';
-import { corruptedPoisonArmor2, corruptedPoisonArmor3, corruptedPoisonArmor4, fieryEarthArmor2, fieryEarthArmor3, fieryEarthArmor4, flameRuneArmor2, icyStromArmor2, icyStromArmor3, icyStromArmor4, soulPurifyArmor2, soulPurifyArmor3, soulPurifyArmor4, varmundt3, varmundt4, varmundtAcc3, varmundtAcc4, varmundtHiAcc2 } from './varmundt';
+import { corruptedPoisonArmor2, corruptedPoisonArmor3, corruptedPoisonArmor4, fieryEarthArmor2, fieryEarthArmor3, fieryEarthArmor4, flameRuneArmor2, icyStromArmor2, icyStromArmor3, icyStromArmor4, soulPurifyArmor2, soulPurifyArmor3, soulPurifyArmor4, varmundt3, varmundt4, varmundtAcc3, varmundtAcc4, varmundtHiAcc2, varmundtShadowMagic2, varmundtShadowMelee2, varmundtShadowRange2, varmundtShadowStat34 } from './varmundt';
 import { vivatusHead3, vivatusHead4 } from './vivatus';
 import { whiteKnight2, whiteKnight34, whiteKnight4 } from './white_knigh_man';
 import { yorscalpAcc2, yorscalpAcc3, yorscalpAcc4, yorscalpArmor2, yorscalpArmor3, yorscalpArmor4, yorscalpBoot2, yorscalpBoot3, yorscalpBoot4, yorscalpGarment2, yorscalpGarment3, yorscalpGarment4, yorscalpHeadUpper2, yorscalpHeadUpper3, yorscalpHeadUpper4 } from './yorscalp';
@@ -1775,6 +1775,12 @@ export const EnchantTable: EntTable[] = [
 
   { name: "S_Master_Weapon", enchants: [null, null, mShadow3, mShadow4] },
   { name: "S_Master_Shield", enchants: [null, null, mShadow3, mShadow4] },
+  { name: "S_BP10_Melee_E", enchants: [null, varmundtShadowMelee2, varmundtShadowStat34, varmundtShadowStat34] },
+  { name: "S_BP10_Melee_P", enchants: [null, varmundtShadowMelee2, varmundtShadowStat34, varmundtShadowStat34] },
+  { name: "S_BP10_Range_E", enchants: [null, varmundtShadowRange2, varmundtShadowStat34, varmundtShadowStat34] },
+  { name: "S_BP10_Range_P", enchants: [null, varmundtShadowRange2, varmundtShadowStat34, varmundtShadowStat34] },
+  { name: "S_BP10_Magic_E", enchants: [null, varmundtShadowMagic2, varmundtShadowStat34, varmundtShadowStat34] },
+  { name: "S_BP10_Magic_P", enchants: [null, varmundtShadowMagic2, varmundtShadowStat34, varmundtShadowStat34] },
   { name: "S_DK_Armor", enchants: [null, null, mShadowDK3, mShadowAllClass4] },
   { name: "S_DK_Shoes", enchants: [null, null, mShadowDK3, mShadowAllClass4] },
   { name: "S_DK_Earring", enchants: [null, null, mShadowDK3, mShadowAllClass4] },

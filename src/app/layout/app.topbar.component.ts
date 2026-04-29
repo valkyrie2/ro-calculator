@@ -208,6 +208,16 @@ export class AppTopBarComponent implements OnInit, OnDestroy {
 
   updates: { v: string; date: string; logs: string[]; }[] = [
     {
+      v: 'Extra v59.4',
+      date: '29-04-2569',
+      logs: [
+        'เพิ่มไอเทมใหม่: Varmundt Melee Shadow Earring, Varmundt Melee Shadow Pendant',
+        'เพิ่มไอเทมใหม่: Varmundt Range Shadow Earring, Varmundt Range Shadow Pendant',
+        'เพิ่มไอเทมใหม่: Varmundt Magic Shadow Earring, Varmundt Magic Shadow Pendant',
+        'ไอเทมชื้นที่เหลือ เดี๋ยวค่อยมาทำนะครับติดงาน'
+      ],
+    },
+    {
       v: 'Extra v59.3',
       date: '26-04-2569',
       logs: [

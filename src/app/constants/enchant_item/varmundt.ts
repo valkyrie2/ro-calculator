@@ -1,4 +1,5 @@
 import { agi, dex, int, str, vit } from "./_basic";
+import { mShadow3, mShadow4 } from './master_shadow';
 
 export const varmundt3 = [
   'Barmund_Pow1',
@@ -112,6 +113,21 @@ export const varmundtHiAcc2 = [
   "Bio_Jam_Hd3",
   "Bio_Jam_Normal",
   "Bio_Jam_Boss",
+]
+
+export const varmundtShadowStat34 = [
+  ...mShadow3,
+  ...mShadow4,
+];
+
+export const varmundtShadowMelee2 = [
+  "BioE_Melee",
+]
+export const varmundtShadowRange2 = [
+  "BioE_Range",
+]
+export const varmundtShadowMagic2 = [
+  "BioE_Magic",
 ]
 
 export const flameRuneArmor2 = [
