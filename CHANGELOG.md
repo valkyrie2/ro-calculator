@@ -1,5 +1,16 @@
 # Changelog
 
+## Extra v60.1 (30-04-2569)
+
+- Fixed slot type of 9x Dim Glacier Ring of Resonance items — corrected itemSubTypeId from generic Accessory (517) to Right Accessory (510)
+- Fixed 6th Anniversary Ayothaya Ring — added Grade A physical/magical penetration vs all races (40%)
+
+## Extra v60 (29-04-2569)
+
+- Added items: Varmundt Melee Shadow Earring, Varmundt Melee Shadow Pendant
+- Added items: Varmundt Range Shadow Earring, Varmundt Range Shadow Pendant
+- Added items: Varmundt Magic Shadow Earring, Varmundt Magic Shadow Pendant
+
 ## Extra v59.3 (26-04-2569)
 
 - Added item: Ayothaya Helm (refinable up to +20)

@@ -208,13 +208,21 @@ export class AppTopBarComponent implements OnInit, OnDestroy {
 
   updates: { v: string; date: string; logs: string[]; }[] = [
     {
-      v: 'Extra v59.4',
+      v: 'Extra v60.1',
+      date: '30-04-2569',
+      logs: [
+        'แก้ slot type ของ Dim Glacier Ring of Resonance 9 ชิ้น จาก Accessory (517) เป็น Right Accessory (510)',
+        'แก้ 6th Anniversary Ayothaya Ring เพิ่ม Grade A เจาะทางกายภาพ/เวทมนตร์ต่อทุกเผ่า 40%',
+        'ไอเทมชื้นที่เหลือ เดี๋ยวค่อยมาทำนะครับ ขี้เกียจ'
+      ],
+    },
+    {
+      v: 'Extra v60',
       date: '29-04-2569',
       logs: [
         'เพิ่มไอเทมใหม่: Varmundt Melee Shadow Earring, Varmundt Melee Shadow Pendant',
         'เพิ่มไอเทมใหม่: Varmundt Range Shadow Earring, Varmundt Range Shadow Pendant',
-        'เพิ่มไอเทมใหม่: Varmundt Magic Shadow Earring, Varmundt Magic Shadow Pendant',
-        'ไอเทมชื้นที่เหลือ เดี๋ยวค่อยมาทำนะครับติดงาน'
+        'เพิ่มไอเทมใหม่: Varmundt Magic Shadow Earring, Varmundt Magic Shadow Pendant'
       ],
     },
     {
