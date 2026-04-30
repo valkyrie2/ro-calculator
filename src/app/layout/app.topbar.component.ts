@@ -213,7 +213,7 @@ export class AppTopBarComponent implements OnInit, OnDestroy {
       logs: [
         'แก้ slot type ของ Dim Glacier Ring of Resonance 9 ชิ้น จาก Accessory (517) เป็น Right Accessory (510)',
         'แก้ 6th Anniversary Ayothaya Ring เพิ่ม Grade A เจาะทางกายภาพ/เวทมนตร์ต่อทุกเผ่า 40%',
-        'ไอเทมชื้นที่เหลือ เดี๋ยวค่อยมาทำนะครับ ขี้เกียจ'
+        'ไอเทมชื้นที่เหลือ เดี๋ยวค่อยมาทำนะครับ'
       ],
     },
     {
