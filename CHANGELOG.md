@@ -1,5 +1,13 @@
 # Changelog
 
+## Extra v60.2 (01-05-2569)
+
+- Added item: 6th Anniversary Card (300700) — base P.ATK/S.MATK +6, MHP +666, MSP +66; full set bonuses with 1st/2nd/4th Anniversary Cards
+- Added time-limited bonuses (until 26-08-2569): ATK/MATK +166, All Trait +16
+- Added items: EXP +2% (29027 Lower / 29145 Middle / 29159 Upper) Costume Enchants — DB lookup only, EXP gain only
+- Wrapped Costume Ayothaya Hat (490974) bonuses with TIME[2026-07-15] — auto-expire after server maintenance on 15-07-2569
+- Calculator: new TIME[YYYY-MM-DD] script prefix — bonuses auto-expire when current date passes the cutoff
+
 ## Extra v60.1 (30-04-2569)
 
 - Fixed slot type of 9x Dim Glacier Ring of Resonance items — corrected itemSubTypeId from generic Accessory (517) to Right Accessory (510)

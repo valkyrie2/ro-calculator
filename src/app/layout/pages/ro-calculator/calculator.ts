@@ -681,6 +681,18 @@ export class Calculator {
   private validateCondition(params: { itemType: ItemTypeEnum; itemRefine: number; script: string; }): ValidationResult {
     const { itemRefine, itemType, script } = params;
     let restCondition = script;
+
+    // TIME[YYYY-MM-DD] — time-limited bonus, valid only while current date <= YYYY-MM-DD
+    const [toRemoveTime, timeUntil] = restCondition.match(/TIME\[(\d{4}-\d{2}-\d{2})]/) ?? [];
+    if (timeUntil) {
+      const expiryMs = Date.parse(`${timeUntil}T23:59:59`);
+      if (Number.isNaN(expiryMs) || Date.now() > expiryMs) {
+        return { isValid: false, restCondition };
+      }
+      restCondition = restCondition.replace(toRemoveTime, '');
+      if (restCondition.startsWith('===')) return { isValid: true, restCondition: restCondition.replace('===', '') };
+    }
+
     const mainStatusRegex = /^(str|int|dex|agi|vit|luk|level):(\d+)&&(\d+===.+)/;
     const [, status, statusCondition, raw] = restCondition.match(mainStatusRegex) ?? [];
     if (status) {

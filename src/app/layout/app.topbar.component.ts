@@ -208,6 +208,17 @@ export class AppTopBarComponent implements OnInit, OnDestroy {
 
   updates: { v: string; date: string; logs: string[]; }[] = [
     {
+      v: 'Extra v60.2',
+      date: '01-05-2569',
+      logs: [
+        'เพิ่มไอเทมใหม่: 6th Anniversary Card (P.ATK/S.MATK +6, MHP +666, MSP +66 และ Set Bonus กับ 1st/2nd/4th Anniversary Card)',
+        'เพิ่มความสามารถพิเศษ 6th Anniversary Card (จำกัดเวลาถึง 26-08-2569): ATK/MATK +166, All Trait +16',
+        'เพิ่มไอเทมใหม่ Costume Enchant: EXP +2% (Lower/Middle/Upper)',
+        'Costume Ayothaya Hat: ปรับให้ Bonus ทั้งหมดหมดอายุอัตโนมัติหลัง 15-07-2569',
+        'Calculator: เพิ่ม script prefix TIME[YYYY-MM-DD] สำหรับ bonus ที่หมดอายุตามวันที่จริง'
+      ],
+    },
+    {
       v: 'Extra v60.1',
       date: '30-04-2569',
       logs: [
