@@ -214,6 +214,16 @@ export interface EquipmentSummaryModel {
 
   expBonus: number;
 
+  /** Flat max-HP bonus from item scripts using the `mhp` key. */
+  mhp: number;
+  /** Flat max-SP bonus from item scripts using the `msp` key. */
+  msp: number;
+  /**
+   * Critical damage bonus (%) from item scripts using the `criticalDamage`
+   * key. Treated as equivalent to `criDmg` during damage calculation.
+   */
+  criticalDamage: number;
+
   // Other from skill
   forceCri?: number;
   magnumBreakPsedoBonus?: number;

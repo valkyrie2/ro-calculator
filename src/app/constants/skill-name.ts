@@ -494,6 +494,7 @@ export const OFFENSIVE_SKILL_NAMES = [
   'Lightning Land',
   'Lightning Ride',
   'Lion Howling',
+  'Lope',
   'Lord of Vermilion',
   'Lucky Cast',
   'Lunatic Carrot Beat',

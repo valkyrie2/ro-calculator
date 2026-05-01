@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, ReplaySubject, from, map, shareReplay } from 'rxjs';
+import { EnchantTable, getEnchants, registerEnchants } from 'src/app/constants/enchant_item/_enchant_table';
 import { ItemModel } from 'src/app/models/item.model';
 import { MonsterModel } from 'src/app/models/monster.model';
 import { logger } from './logger.service';
@@ -9,6 +10,7 @@ export interface CustomItemRow {
   id: number;
   data: ItemModel;
   image_path: string | null;
+  enchant_template: string | null;
   created_at: string;
   updated_at: string;
 }
@@ -52,6 +54,14 @@ export class AdminService {
   }
 
   /**
+   * The list of existing enchant template names available for admins to
+   * copy onto a new custom item. Sorted alphabetically for the dropdown.
+   */
+  getEnchantTemplateNames(): string[] {
+    return EnchantTable.map((e) => e.name).sort((a, b) => a.localeCompare(b));
+  }
+
+  /**
    * Returns a hot, cached observable of every custom item keyed by id.
    * Subsequent subscribers replay the last fetched snapshot. Call
    * `refreshItems()` after a successful insert to invalidate the cache.
@@ -80,7 +90,11 @@ export class AdminService {
 
   // ---- Items -------------------------------------------------------------
 
-  async addItem(item: ItemModel, image: File | null): Promise<CustomItemRow> {
+  async addItem(
+    item: ItemModel,
+    image: File | null,
+    options?: { enchantTemplate?: string | null },
+  ): Promise<CustomItemRow> {
     if (!item || typeof item.id !== 'number') {
       throw new Error('Item JSON must contain a numeric "id" field.');
     }
@@ -94,6 +108,7 @@ export class AdminService {
       id: item.id,
       data: item as any,
       image_path: imagePath,
+      enchant_template: options?.enchantTemplate ?? null,
     };
 
     const { data, error } = await this.client
@@ -105,6 +120,13 @@ export class AdminService {
     if (error) {
       logger.error({ addItemError: error });
       throw new Error(error.message);
+    }
+
+    // Register the enchant pools immediately so the calculator UI sees
+    // them on the next equipment-pick without waiting for a refetch.
+    if (options?.enchantTemplate) {
+      const enchants = getEnchants(options.enchantTemplate);
+      if (enchants) registerEnchants(item.aegisName, enchants);
     }
 
     this.refreshItems();
@@ -186,7 +208,7 @@ export class AdminService {
   private async fetchCustomItems(): Promise<Record<number, ItemModel>> {
     const { data, error } = await this.client
       .from('custom_items')
-      .select('id, data, image_path');
+      .select('id, data, image_path, enchant_template');
 
     if (error) {
       logger.error({ fetchCustomItemsError: error });
@@ -198,6 +220,12 @@ export class AdminService {
       const item = { ...(row.data as any) } as ItemModel;
       const url = this.getPublicImageUrl('item', row.image_path);
       if (url) (item as any).customImageUrl = url;
+      // Plug this item into the enchant lookup using the chosen template.
+      // If the template doesn't exist (was removed?), the call is a no-op.
+      if (row.enchant_template && item.aegisName) {
+        const enchants = getEnchants(row.enchant_template);
+        if (enchants) registerEnchants(item.aegisName, enchants);
+      }
       out[row.id] = item;
     }
     return out;

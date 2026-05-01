@@ -7,6 +7,7 @@
 - Added items: EXP +2% (29027 Lower / 29145 Middle / 29159 Upper) Costume Enchants — DB lookup only, EXP gain only
 - Wrapped Costume Ayothaya Hat (490974) bonuses with TIME[2026-07-15] — auto-expire after server maintenance on 15-07-2569
 - Calculator: new TIME[YYYY-MM-DD] script prefix — bonuses auto-expire when current date passes the cutoff
+- Fixed Exotic Temporal Young Leaf-LT full 4-piece set bonuses: moved magic element bonus to m_my_element_all, added p/m_pene_race_all 100% and pene_res/pene_mres 30% at combined refine ≥39
 
 ## Extra v60.1 (30-04-2569)
 

@@ -1,4 +1,36 @@
 <div class="grid">
+  <!-- ── Source row: divine-pride.net URL/ID fetch ─────────────────────── -->
+  <div class="col-12">
+    <div class="field">
+      <label>Import from divine-pride.net</label>
+      <div class="flex gap-2">
+        <input
+          pInputText
+          type="text"
+          [(ngModel)]="sourceRef"
+          (keyup.enter)="fetchFromDivinePride()"
+          placeholder="https://www.divine-pride.net/database/item/410193  —or—  410193"
+          class="flex-1"
+        />
+        <button
+          pButton
+          icon="pi pi-cloud-download"
+          label="Fetch"
+          [loading]="fetching"
+          [disabled]="fetching || !sourceRef.trim()"
+          (click)="fetchFromDivinePride()"
+        ></button>
+      </div>
+      <small *ngIf="fetchError" class="block mt-1 p-error">{{ fetchError }}</small>
+      <small class="block mt-1 text-color-secondary">
+        Pulls JSON via the divine-pride API and the icon from
+        <code>static.divine-pride.net</code>. CORS-blocked? Paste the JSON below
+        manually.
+      </small>
+    </div>
+  </div>
+
+  <!-- ── Left column: editable JSON + script preview ───────────────────── -->
   <div class="col-12 lg:col-8">
     <div class="field">
       <label>Item JSON</label>
@@ -6,7 +38,7 @@
         pInputTextarea
         [(ngModel)]="jsonText"
         (input)="onJsonInput()"
-        rows="20"
+        rows="18"
         class="w-full"
         placeholder='Paste a single item object, e.g. { "id": 1234567, "aegisName": "...", "name": "...", ... }'
       ></textarea>
@@ -15,8 +47,22 @@
         Parsed OK — id {{ parsedItem.id }} ({{ parsedItem.name }})
       </small>
     </div>
+
+    <!-- Script preview pane -->
+    <div class="field" *ngIf="parsedItem">
+      <label>
+        Script preview
+        <span class="text-color-secondary">({{ scriptKeyCount }} bonus key<span *ngIf="scriptKeyCount !== 1">s</span>)</span>
+      </label>
+      <pre class="script-preview">{{ scriptPreview || '(empty — no bonuses)' }}</pre>
+      <small class="block mt-1 text-color-secondary">
+        This is the <code>script</code> block exactly as it will be saved.
+        Edit the JSON above to change it.
+      </small>
+    </div>
   </div>
 
+  <!-- ── Right column: image, enchant config, save ─────────────────────── -->
   <div class="col-12 lg:col-4">
     <div class="field">
       <label>Item Image</label>
@@ -25,7 +71,31 @@
         <img [src]="imagePreview" alt="preview" class="preview-img" />
       </div>
       <small class="block mt-1 text-color-secondary">
-        Stored at <code>custom-item-images/&#123;id&#125;.&#123;ext&#125;</code> in Supabase Storage.
+        Stored at <code>custom-item-images/&#123;id&#125;.&#123;ext&#125;</code>
+        in Supabase Storage.
+      </small>
+    </div>
+
+    <!-- Enchant template -->
+    <div class="field">
+      <label class="flex align-items-center gap-2">
+        <input type="checkbox" [(ngModel)]="enableEnchant" />
+        <span>This item supports enchants</span>
+      </label>
+      <p-dropdown
+        *ngIf="enableEnchant"
+        [options]="enchantTemplateOptions"
+        [(ngModel)]="enchantTemplate"
+        [filter]="true"
+        filterBy="label"
+        placeholder="Copy enchant slots from existing item…"
+        appendTo="body"
+        styleClass="w-full"
+      ></p-dropdown>
+      <small *ngIf="enableEnchant" class="block mt-1 text-color-secondary">
+        The new item will reuse this template's 4 enchant slots. Pick the
+        item whose enchant pools best match what you want
+        (e.g. <code>Mace_Of_Judgement</code>, <code>Robe_Of_Judgement</code>).
       </small>
     </div>
 

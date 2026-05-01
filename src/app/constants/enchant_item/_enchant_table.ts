@@ -534,6 +534,8 @@ interface EntTable {
   enchants: [null | string[], string[], string[], string[]];
 }
 
+export type { EntTable };
+
 const soutanes = ['Cassock_Str', 'Cassock_Agi', 'Cassock_Vit', 'Cassock_Dex', 'Cassock_Int', 'Cassock_Luk'];
 const specialBonus = [FS._5, FS._6, Spell._4, Spell._5, EA._4, EA._5, Sharp._4, Sharp._5];
 const soutaneBase = [...cri510, ...mhp35, MSP._100, MSP._150, ...createBaseStat(6, 8)];
@@ -1920,4 +1922,20 @@ const map = new Map(EnchantTable.map((a) => [a.name, a.enchants]));
 
 export const getEnchants = (name) => {
   return map.get(name);
+};
+
+/**
+ * Register an enchant config at runtime. Used by the admin custom-item
+ * pipeline so newly-added items can declare their enchant slots without
+ * shipping a code change. The `EnchantTable` array itself is frozen, so
+ * we only mutate the lookup map; consumers of `getEnchants()` will see
+ * the new entry, while the dev-only diagnostics that iterate
+ * `EnchantTable` are unaffected.
+ */
+export const registerEnchants = (
+  name: string,
+  enchants: EntTable['enchants'],
+) => {
+  if (!name || !enchants) return;
+  map.set(name, enchants);
 };

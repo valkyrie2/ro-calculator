@@ -131,18 +131,18 @@ export class HpSpCalculator {
       const baseHp = this.hpSpTable[this._dataIndex].baseHp[Math.min(this._level, 250)];
       const baseSp = this.hpSpTable[this._dataIndex].baseSp[Math.min(this._level, 250)];
 
-      const { hp, hpPercent, sp, spPercent } = this._totalBonus;
+      const { hp, hpPercent, sp, spPercent, mhp, msp } = this._totalBonus;
       // console.log({ baseHp, baseSp, hp, hpPercent, sp, spPercent });
 
       let maxHp = floor(baseHp * this._bonusMainClass) + this._baseHp;
       maxHp = floor(maxHp * (1 + this._totalStatus.totalVit * 0.01));
-      maxHp += hp + this._shadowHP + this._equipmentVit;
+      maxHp += (hp + (mhp || 0)) + this._shadowHP + this._equipmentVit;
       maxHp += this.getBonusHpL();
       this._maxHp = maxHp + floor(maxHp * ((hpPercent || 0) * 0.01));
 
       let maxSp = floor(baseSp * this._bonusMainClass) + this._baseSp;
       maxSp = floor(maxSp * (1 + this._totalStatus.totalInt * 0.01));
-      maxSp += sp + this._equipmentInt;
+      maxSp += (sp + (msp || 0)) + this._equipmentInt;
       this._maxSp = maxSp + floor(maxSp * ((spPercent || 0) * 0.01));
     } catch (error) {
       logger.error('hp calculation', error);

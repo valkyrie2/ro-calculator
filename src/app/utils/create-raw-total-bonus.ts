@@ -215,5 +215,9 @@ export const createRawTotalBonus = (): EquipmentSummaryModel => {
     m_pene_race_demihuman: 0,
     m_pene_race_brute: 0,
     m_pene_race_angel: 0,
+
+    mhp: 0,
+    msp: 0,
+    criticalDamage: 0,
   };
 };

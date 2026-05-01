@@ -921,13 +921,14 @@ export class DamageCalculator {
     const hardDef = isIgnoreDef || isHDefToSDef ? 1 : finalDmgReduction;
     const softDef = isIgnoreSDef ? 0 : finalSoftDef + (isHDefToSDef ? reducedHardDef : 0);
 
-    const { range, melee, criDmg, hitDmg } = this.totalBonus;
+    const { range, melee, criDmg, hitDmg, criticalDamage } = this.totalBonus;
     const isMelee = _isMelee != null && typeof _isMelee === 'function' ? _isMelee(this.weaponData.data.typeName) : !!_isMelee;
     const ranged = isMelee ? melee : range;
     const rangedMultiplier = this.toPercent(ranged + 100);
     const baseSkillMultiplier = this.toPercent(baseSkillDamage);
     const equipSkillMultiplier = this.toPercent(100 + this.getSkillBonus(skillName));
-    const criDmgToMonster = floor(criDmg * criDmgPercentage || 0);
+    const totalCriDmg = (criDmg || 0) + (criticalDamage || 0);
+    const criDmgToMonster = floor(totalCriDmg * criDmgPercentage || 0);
     const criMultiplier = canCri ? this.toPercent(criDmgToMonster + 100) : 1;
     const phyHitMultiplier = phyHit ? this.toPercent(hitDmg + 100) : 1;
 

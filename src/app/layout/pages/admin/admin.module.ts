@@ -1,4 +1,5 @@
 import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ConfirmationService, MessageService } from 'primeng/api';
@@ -22,6 +23,7 @@ import { AdminBugReportsComponent } from './bug-reports/admin-bug-reports.compon
   declarations: [AdminComponent, AdminAddItemComponent, AdminAddMonsterComponent, AdminBugReportsComponent],
   imports: [
     CommonModule,
+    HttpClientModule,
     FormsModule,
     AdminRoutingModule,
     TabViewModule,

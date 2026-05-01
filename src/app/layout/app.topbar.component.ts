@@ -215,7 +215,8 @@ export class AppTopBarComponent implements OnInit, OnDestroy {
         'เพิ่มความสามารถพิเศษ 6th Anniversary Card (จำกัดเวลาถึง 26-08-2569): ATK/MATK +166, All Trait +16',
         'เพิ่มไอเทมใหม่ Costume Enchant: EXP +2% (Lower/Middle/Upper)',
         'Costume Ayothaya Hat: ปรับให้ Bonus ทั้งหมดหมดอายุอัตโนมัติหลัง 15-07-2569',
-        'Calculator: เพิ่ม script prefix TIME[YYYY-MM-DD] สำหรับ bonus ที่หมดอายุตามวันที่จริง'
+        'Calculator: เพิ่ม script prefix TIME[YYYY-MM-DD] สำหรับ bonus ที่หมดอายุตามวันที่จริง',
+        'แก้ Exotic Temporal Young Leaf-LT ชุด 4 ชิ้น: ย้าย m_element_all → m_my_element_all, เพิ่ม p/m_pene_race_all 100% และ pene_res/pene_mres 30% เมื่อ refine รวม ≥39'
       ],
     },
     {

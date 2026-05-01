@@ -27,3 +27,19 @@
   margin-bottom: 0.25rem;
   color: var(--text-color-secondary);
 }
+
+.admin-page .script-preview {
+  max-height: 280px;
+  overflow: auto;
+  padding: 0.5rem 0.75rem;
+  margin: 0;
+  background: var(--surface-100);
+  border: 1px solid var(--surface-border);
+  border-radius: 4px;
+  font-family: 'Consolas', 'Courier New', monospace;
+  font-size: 0.8rem;
+  line-height: 1.4;
+  white-space: pre-wrap;
+  word-break: break-word;
+  color: var(--text-color);
+}
