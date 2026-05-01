@@ -172,7 +172,9 @@ ro-calculator/
 │       ├── environment.prod.ts       # Production config (imports supabase secrets)
 │       ├── supabase.secrets.ts       # **gitignored** — real URL + anon key
 │       └── supabase.secrets.example.ts # Committed template; copy → supabase.secrets.ts
-├── docs/                             # GitHub Pages deployment output (generated)
+├── .github/
+│   └── workflows/
+│       └── deploy.yml            # CI/CD — build + deploy to GitHub Pages
 ├── supabase/
 │   └── migrations/                   # SQL migrations (apply via Dashboard or `supabase db push`)
 ├── tools/                            # Python data scraping/parsing scripts
@@ -315,10 +317,9 @@ Character Stats + Equipment Bonuses + Skill Selection + Monster Data
 | `npm test`          | Run unit tests via Karma                                 |
 | `npm run lint`      | Lint and auto-fix with ESLint                            |
 | `npm run e2e`       | Run end-to-end tests                                     |
-| `npm run predeploy` | Build for GitHub Pages into `tong-calc-ro-host/docs`     |
-| `npm run deploy`    | Copy `index.html` → `404.html` for SPA routing support  |
+| `npm run predeploy` | Build for GitHub Pages into `docs/` (used by CI)         |
+| `npm run deploy`    | Copy `index.html` → `404.html` for SPA routing (used by CI) |
 | `test.bat`          | Quick shortcut: `ng serve --open`                        |
-| `deploy.bat`        | Full deploy: `npm run predeploy && npm run deploy`       |
 
 ---
 
@@ -397,7 +398,7 @@ where id = '<user-uuid>';
 
 ## Deployment
 
-The project is deployed to **GitHub Pages** from the `docs/` folder in this repository.
+The project is deployed to **GitHub Pages** automatically via GitHub Actions. Pushing to `main` triggers a build-and-deploy workflow — no manual steps required.
 
 ### One-Time Setup
 
@@ -410,42 +411,32 @@ The project is deployed to **GitHub Pages** from the `docs/` folder in this repo
    git push -u origin main
    ```
 
-3. **Enable GitHub Pages:**
-   - Go to **Settings → Pages** in your repository.
-   - Under **Source**, select **Deploy from a branch**.
-   - Set branch to `main` and folder to `/docs`.
-   - Click **Save**.
+3. **Add repository secrets** (Settings → Secrets and variables → Actions):
 
-### Deploy Steps
+   | Secret name        | Value                                   |
+   |--------------------|-----------------------------------------|
+   | `SUPABASE_URL`     | Your Supabase project URL               |
+   | `SUPABASE_ANON_KEY`| Your Supabase anon (public) key         |
 
-1. **Build for production:**
-   ```bash
-   npm run predeploy
-   ```
-   This builds the Angular app with output hashing and places it in the `docs/` folder with `--base-href /ro-calculator/`.
+4. **Enable GitHub Pages** (Settings → Pages → Source): select **GitHub Actions**.
 
-2. **Copy index.html for SPA routing:**
-   ```bash
-   npm run deploy
-   ```
-   Copies `index.html` to `404.html` so that GitHub Pages handles client-side routing correctly.
+### How It Works
 
-3. **Commit and push:**
-   ```bash
-   git add .
-   git commit -m "deploy"
-   git push
-   ```
+The workflow file is at [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml).
 
-Or use the one-click script on Windows:
+On every push to `main`:
+1. Checks out the code.
+2. Installs dependencies (`npm ci`).
+3. Materializes `supabase.secrets.ts` from the repository secrets.
+4. Runs `npm run predeploy` (Angular build → `docs/`).
+5. Copies `index.html` → `404.html` for SPA routing.
+6. Uploads `docs/` as a Pages artifact and deploys via `actions/deploy-pages`.
 
-```bash
-deploy.bat
-```
+> The `docs/` build output is **gitignored** — it is generated entirely by CI and never committed.
 
-After pushing, your site will be live at **https://valkyrie2.github.io/ro-calculator/#/**.
+You can also trigger a deploy manually from the **Actions** tab → **Build and Deploy to GitHub Pages** → **Run workflow**.
 
-> **Note:** The first deployment may take a few minutes for GitHub Pages to activate.
+After a successful run, your site will be live at **https://valkyrie2.github.io/ro-calculator/#/**.
 
 ---
 

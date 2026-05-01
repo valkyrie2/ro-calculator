@@ -6,6 +6,7 @@
 /out-tsc
 /bazel-out
 /tong-calc-ro-host
+/docs
 
 # Node
 /node_modules
