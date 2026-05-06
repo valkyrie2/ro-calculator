@@ -2,26 +2,29 @@ import { ItemModel } from 'src/app/models/item.model';
 
 /**
  * Subset of fields divine-pride.net's `/api/database/Item/:id` endpoint
- * actually returns. We only declare what we map; the real payload has
- * more keys (Identifier flags, NPC pricing, etc.) we don't care about.
+ * actually returns (all keys are camelCase in the real response).
+ * We only declare what we map; the real payload has more keys
+ * (Identifier flags, NPC pricing, etc.) we don't care about.
  */
 export interface DivinePrideItemResponse {
-  Id: number;
-  AegisName?: string;
-  Name?: string;
-  UnidentifiedDisplayName?: string;
-  ResourceName?: string;
-  Description?: string;
-  Slots?: number;
-  Type?: number;
-  SubType?: number;
-  Attack?: number | null;
-  Defense?: number | null;
-  Weight?: number;
-  EquipLevelMin?: number;
-  RequiredLevel?: number;
-  Locations?: Record<string, boolean>;
-  Script?: string;
+  id: number;
+  aegisName?: string;
+  name?: string;
+  unidName?: string;
+  resName?: string;
+  description?: string;
+  slots?: number;
+  itemTypeId?: number;
+  itemSubTypeId?: number;
+  attack?: number | null;
+  matk?: number | null;
+  defense?: number | null;
+  weight?: number;
+  equipLevelMin?: number;
+  requiredLevel?: number;
+  location?: string | null;
+  compositionPos?: number | null;
+  cardPrefix?: string;
 }
 
 const DEFAULT_ITEM_TYPE_ID = 5;
@@ -51,31 +54,26 @@ export function parseDivinePrideItemRef(input: string): number | null {
  * it in the JSON textarea before saving.
  */
 export function mapDivinePrideItem(payload: DivinePrideItemResponse): ItemModel {
-  const id = payload.Id;
-  // Find the equipment slot key from the truthy Locations hash. The app
-  // expects a single `location` string (e.g. "Accessory", "Head_Top").
-  let location: string | null = null;
-  if (payload.Locations) {
-    location = Object.keys(payload.Locations).find((k) => payload.Locations![k]) ?? null;
-  }
+  const id = payload.id;
 
   return {
     id,
-    aegisName: payload.AegisName ?? `Custom_${id}`,
-    name: payload.Name ?? `Custom Item ${id}`,
-    unidName: payload.UnidentifiedDisplayName ?? '',
-    resName: payload.ResourceName ?? '',
-    description: payload.Description ?? '',
-    slots: payload.Slots ?? 0,
-    itemTypeId: payload.Type ?? DEFAULT_ITEM_TYPE_ID,
-    itemSubTypeId: payload.SubType ?? DEFAULT_ITEM_SUBTYPE_ID,
+    aegisName: payload.aegisName ?? `Custom_${id}`,
+    name: payload.name ?? `Custom Item ${id}`,
+    unidName: payload.unidName ?? '',
+    resName: payload.resName ?? '',
+    description: payload.description ?? '',
+    slots: payload.slots ?? 0,
+    itemTypeId: payload.itemTypeId ?? DEFAULT_ITEM_TYPE_ID,
+    itemSubTypeId: payload.itemSubTypeId ?? DEFAULT_ITEM_SUBTYPE_ID,
     itemLevel: null,
-    attack: payload.Attack ?? null,
-    defense: payload.Defense ?? null,
-    weight: payload.Weight ?? 0,
-    requiredLevel: payload.EquipLevelMin ?? payload.RequiredLevel ?? 1,
-    location: location as any,
-    compositionPos: null as any,
+    attack: payload.attack ?? null,
+    defense: payload.defense ?? null,
+    weight: payload.weight ?? 0,
+    requiredLevel: payload.equipLevelMin ?? payload.requiredLevel ?? 1,
+    location: (payload.location ?? null) as any,
+    compositionPos: (payload.compositionPos ?? null) as any,
+    ...(payload.cardPrefix ? { cardPrefix: payload.cardPrefix } : {}),
     script: {},
   } as ItemModel;
 }

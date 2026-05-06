@@ -79754,6 +79754,39 @@
             ]
         }
     },
+    "300549": {
+        "id": 300549,
+        "aegisName": null,
+        "name": "Summer Vacation Pope Card",
+        "unidName": "Summer Vacation Pope Card",
+        "resName": null,
+        "description": "เพิ่ม Damage ทางกายภาพระยะใกล้/ไกล 3%, เพิ่ม Damage ทางเวทมนตร์ทุกธาตุ 3%\n^ffffff_^000000\nเมื่อสวมใส่ร่วมกับ Sessrumnir Commemoration Ring เพิ่ม Damage ทางกายภาพระยะใกล้/ไกล 7%, เพิ่ม Damage ทางเวทมนตร์ทุกธาตุ 7%\n^ffffff_^000000\nประเภท : ^777777Card^000000\nใช้กับ : ^777777Accessory (Left)^000000\nน้ำหนัก : ^7777771^000000",
+        "slots": 0,
+        "itemTypeId": 6,
+        "itemSubTypeId": 0,
+        "itemLevel": null,
+        "attack": null,
+        "defense": null,
+        "weight": 1,
+        "requiredLevel": null,
+        "location": null,
+        "compositionPos": 128,
+        "cardPrefix": null,
+        "script": {
+            "melee": [
+                "3",
+                "EQUIP[Sessrumnir Commemoration Ring]7"
+            ],
+            "range": [
+                "3",
+                "EQUIP[Sessrumnir Commemoration Ring]7"
+            ],
+            "m_element_all": [
+                "3",
+                "EQUIP[Sessrumnir Commemoration Ring]7"
+            ]
+        }
+    },
     "300550": {
         "id": 300550,
         "aegisName": "CLB_SS_EA_Card",
@@ -183401,6 +183434,74 @@
             ]
         }
     },
+    "490557": {
+        "id": 490557,
+        "aegisName": null,
+        "name": "Sessrumnir Commemoration Ring [1]",
+        "unidName": "Sessrumnir Commemoration Ring",
+        "resName": null,
+        "description": "แหวนที่ทำขึ้นมาเพื่อเป็นที่ระลึกงาน Sessrumnir Ocean Week\n^ffffff_^000000\nATK + 5%, MATK + 5%\nCRI + 5, ASPD + 5%, ลดระยะเวลาร่ายแบบแปรผัน 5%\n^ffffff_^000000\n^CC3D3D[ความสามารถช่วงกิจกรรม]^000000\nATK + 20, MATK + 20,\nCRI + 10, ASPD + 10%, ลดระยะเวลาร่ายแบบแปรผัน 10%,\nเพิ่ม EXP ที่ได้รับจากมอนสเตอร์ 15%,\nเมื่อสวมใส่ร่วมกับ Summer Vacation Pope Card, \nเพิ่ม Damage ทางกายภาพ/เวทมนตร์ต่อศัตรูทุกเผ่า 10% (ยกเว้น Player), \nเพิ่ม Damage ทางกายภาพ/เวทมนตร์ต่อศัตรูทุกขนาด 10%, \nเพิ่ม Damage ทางกายภาพ/เวทมนตร์ต่อศัตรูทุกธาตุ 10%\n^ff0000(ความสามารถของไอเท็มชิ้นนี้จะถูกลบหลังสิ้นสุดระยะเวลากิจกรรม)^000000\nประเภท : ^777777Accessory (Left)^000000 พลังป้องกัน : ^7777770^000000\nน้ำหนัก : ^77777710^000000\nเลเวล Armor : ^7777771^000000\nเลเวลที่ต้องการ : ^777777100^000000\nอาชีพที่ใส่ได้ : ^777777ทุกอาชีพ^000000",
+        "slots": 1,
+        "itemTypeId": 2,
+        "itemSubTypeId": 511,
+        "itemLevel": null,
+        "attack": null,
+        "defense": 0,
+        "weight": 10,
+        "requiredLevel": 100,
+        "location": null,
+        "compositionPos": null,
+        "usableClass": [
+            "all"
+        ],
+        "script": {
+            "atkPercent": [
+                "5"
+            ],
+            "matkPercent": [
+                "5"
+            ],
+            "cri": [
+                "5",
+                "10"
+            ],
+            "aspdPercent": [
+                "5",
+                "10"
+            ],
+            "vct": [
+                "5",
+                "10"
+            ],
+            "atk": [
+                "20"
+            ],
+            "matk": [
+                "20"
+            ],
+            "expBonus": [
+                "15"
+            ],
+            "p_race_all": [
+                "EQUIP[Summer Vacation Pope Card]10"
+            ],
+            "m_race_all": [
+                "EQUIP[Summer Vacation Pope Card]10"
+            ],
+            "p_size_all": [
+                "EQUIP[Summer Vacation Pope Card]10"
+            ],
+            "m_size_all": [
+                "EQUIP[Summer Vacation Pope Card]10"
+            ],
+            "p_element_all": [
+                "EQUIP[Summer Vacation Pope Card]10"
+            ],
+            "m_element_all": [
+                "EQUIP[Summer Vacation Pope Card]10"
+            ]
+        }
+    },
     "490565": {
         "id": 490565,
         "aegisName": "aegisName_490565",
@@ -254352,6 +254453,59 @@
             ],
             "pene_mres": [
                 "EQUIP[Exotic Temporal Manteau-LT&&Exotic Temporal Armor-LT&&Exotic Temporal Boots-LT]REFINE[head_low,armor,garment,boot==39]===30"
+            ]
+        }
+    },
+    "420841": {
+        "id": 420841,
+        "aegisName": null,
+        "name": "All Above Time(Supreme)-LT",
+        "unidName": "All Above Time(Supreme)-LT",
+        "resName": "시간의장식",
+        "description": "เศษเสี้ยวหนึ่งของห้วงเวลาจาก Old Glast Heim\n\nลด Global Cooldown 10%,\nเพิ่ม Damage ทางกายภาพระยะใกล้/ไกล 10%,\nเพิ่ม Damage ทางเวทมนตร์ต่อศัตรูทุกธาตุ 10%\n\nเมื่อใช้งานร่วมกับ Shard of Strength Jewel, ATK + 100\n\nเมื่อใช้งานร่วมกับ Shard of Agility Jewel, CRI + 35, Critical Damage + 35%\n\nเมื่อใช้งานร่วมกับ Shard of Intelligence Jewel, MATK + 100\n\nเมื่อใช้งานร่วมกับ Shard of Vitality Jewel, ลด Global Cooldown 15%, MATK + 100\n\nเมื่อใช้งานร่วมกับ Shard of Dexterity Jewel, Perfect HIT + 40\n\nเมื่อใช้งานร่วมกับ Shard of Fatality Jewel, ATK + 100\nประเภท : ^777777Headgear^000000 พลังป้องกัน : ^7777770^000000\nตำแหน่ง : ^777777Lower^000000 น้ำหนัก : ^77777760^000000\nเลเวลที่ต้องการ : ^777777100^000000\nอาชีพที่ใส่ได้ : ^777777ทุกอาชีพ^000000",
+        "slots": 0,
+        "itemTypeId": 2,
+        "itemSubTypeId": 512,
+        "itemLevel": null,
+        "attack": null,
+        "defense": 0,
+        "weight": 60,
+        "requiredLevel": 100,
+        "location": "Lower",
+        "compositionPos": null,
+        "usableClass": [
+            "all"
+        ],
+        "script": {
+            "melee": [
+                "10"
+            ],
+            "range": [
+                "10"
+            ],
+            "m_element_all": [
+                "10"
+            ],
+            "acd": [
+                "10",
+                "EQUIP[Shard of Vitality Jewel]15"
+            ],
+            "atk": [
+                "EQUIP[Shard of Strength Jewel]100",
+                "EQUIP[Shard of Fatality Jewel]100"
+            ],
+            "matk": [
+                "EQUIP[Shard of Intelligence Jewel]100",
+                "EQUIP[Shard of Vitality Jewel]100"
+            ],
+            "cri": [
+                "EQUIP[Shard of Agility Jewel]35"
+            ],
+            "criDmg": [
+                "EQUIP[Shard of Agility Jewel]35"
+            ],
+            "perfectHit": [
+                "EQUIP[Shard of Dexterity Jewel]40"
             ]
         }
     },

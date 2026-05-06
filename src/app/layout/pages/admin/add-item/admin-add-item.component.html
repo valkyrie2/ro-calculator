@@ -50,14 +50,30 @@
 
     <!-- Script preview pane -->
     <div class="field" *ngIf="parsedItem">
-      <label>
-        Script preview
-        <span class="text-color-secondary">({{ scriptKeyCount }} bonus key<span *ngIf="scriptKeyCount !== 1">s</span>)</span>
+      <label class="flex align-items-center justify-content-between">
+        <span>
+          Script preview
+          <span class="text-color-secondary">({{ scriptKeyCount }} bonus key<span *ngIf="scriptKeyCount !== 1">s</span>)</span>
+        </span>
+        <!-- AI generate button hidden (no credits)
+        <button
+          pButton
+          icon="pi pi-microchip-ai"
+          label="Generate with AI"
+          class="p-button-outlined p-button-sm p-button-secondary"
+          [loading]="generatingScript"
+          [disabled]="generatingScript"
+          (click)="generateScript()"
+          pTooltip="Calls an AI agent (GPT-4o-mini via Supabase Edge Function) to analyse the description and fill in the script bonuses automatically."
+          tooltipPosition="left"
+        ></button>
+        -->
       </label>
       <pre class="script-preview">{{ scriptPreview || '(empty — no bonuses)' }}</pre>
+      <small *ngIf="scriptGenError" class="block mt-1 p-error">{{ scriptGenError }}</small>
       <small class="block mt-1 text-color-secondary">
         This is the <code>script</code> block exactly as it will be saved.
-        Edit the JSON above to change it.
+        Edit the JSON above to change it, or use <strong>Generate with AI</strong> to auto-fill.
       </small>
     </div>
   </div>

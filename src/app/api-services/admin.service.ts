@@ -62,6 +62,30 @@ export class AdminService {
   }
 
   /**
+   * Calls the `generate-item-script` Supabase Edge Function which uses
+   * OpenAI to parse the item description and return a populated `script`
+   * object matching the RO Calculator bonus-key format.
+   *
+   * Requires the `OPENAI_API_KEY` secret to be set in Supabase:
+   *   npx supabase secrets set OPENAI_API_KEY=sk-...
+   */
+  async generateItemScript(params: {
+    description?: string;
+    name?: string;
+    itemTypeId?: number;
+    cardPrefix?: string;
+    slots?: number;
+    compositionPos?: number | null;
+  }): Promise<Record<string, string[]>> {
+    const { data, error } = await this.client.functions.invoke<{ script: Record<string, string[]> }>(
+      'generate-item-script',
+      { body: params },
+    );
+    if (error) throw error;
+    return (data as any)?.script ?? {};
+  }
+
+  /**
    * Returns a hot, cached observable of every custom item keyed by id.
    * Subsequent subscribers replay the last fetched snapshot. Call
    * `refreshItems()` after a successful insert to invalidate the cache.

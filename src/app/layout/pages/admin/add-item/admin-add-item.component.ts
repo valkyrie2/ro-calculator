@@ -164,7 +164,48 @@ export class AdminAddItemComponent implements OnInit {
     this.imageFile = file;
     this.imagePreview = file ? URL.createObjectURL(file) : null;
   }
+  // ── AI script generation ─────────────────────────────────────────────
 
+  generatingScript = false;
+  scriptGenError: string | null = null;
+
+  /**
+   * Sends the current item's description/metadata to the Supabase Edge
+   * Function that calls OpenAI, then merges the returned script into the
+   * parsed item and re-serialises the JSON editor buffer.
+   */
+  async generateScript() {
+    if (!this.parsedItem) return;
+    this.scriptGenError = null;
+    this.generatingScript = true;
+    try {
+      const { description, name, itemTypeId, cardPrefix, slots, compositionPos } =
+        this.parsedItem as any;
+      const script = await this.adminService.generateItemScript({
+        description,
+        name,
+        itemTypeId,
+        cardPrefix,
+        slots,
+        compositionPos,
+      });
+      // Merge into parsed item and re-serialise so the JSON editor reflects the change
+      const updated = { ...this.parsedItem, script };
+      this.parsedItem = updated as any;
+      this.jsonText = JSON.stringify(updated, null, 2);
+      this.messageService.add({
+        severity: 'success',
+        summary: 'Script generated',
+        detail: `${Object.keys(script).length} bonus key(s) detected by AI`,
+      });
+    } catch (err: any) {
+      logger.error({ generateScript: err });
+      this.scriptGenError =
+        err?.message ?? 'AI generation failed. Check GEMINI_API_KEY is set in Supabase secrets.';
+    } finally {
+      this.generatingScript = false;
+    }
+  }
   // ── Script preview helpers ───────────────────────────────────────────────
 
   /** Pretty-printed `script` block for the preview pane. */

@@ -143,6 +143,7 @@ import { vivatusHead3, vivatusHead4 } from './vivatus';
 import { whiteKnight2, whiteKnight34, whiteKnight4 } from './white_knigh_man';
 import { yorscalpAcc2, yorscalpAcc3, yorscalpAcc4, yorscalpArmor2, yorscalpArmor3, yorscalpArmor4, yorscalpBoot2, yorscalpBoot3, yorscalpBoot4, yorscalpGarment2, yorscalpGarment3, yorscalpGarment4, yorscalpHeadUpper2, yorscalpHeadUpper3, yorscalpHeadUpper4 } from './yorscalp';
 import { ch1Armor2, ch1Armor3, ch1Armor4, ch1Boot2, ch1Boot3, ch1Boot4, ch1Garment2, ch1Garment3, ch1Garment4, ch1DimenBoot2, ch1DimenBoot3, ch1DimenBoot4 } from './chapter1';
+import { heroCapeSlot2, heroCapeSlot3, heroCapeSlot4 } from './hero_cape_lt';
 import { snowfox3, snowfox4 } from './snowfox';
 import { temringLT2, temringLT3, temringLT4 } from './temporal_ring_lt';
 import { type_c_LT2, type_c_LT3, type_c_LT4 } from './type_c_lt';
@@ -1120,6 +1121,8 @@ export const EnchantTable: EntTable[] = [
   { name: 'Officer_Cap_LT', enchants: [null, null, null, BaseState._3] },
   { name: 'Hero_Boots_LT', enchants: [null, heroBootLt2, heroBootLt3, heroBootLt4] },
   { name: 'Hero_Insignia', enchants: [null, heroBadge2, heroBootLt3, heroBootLt4] },
+  { name: 'Hero_Courage_TH_LT', enchants: [null, heroCapeSlot2, heroCapeSlot3, heroCapeSlot4] },
+  { name: 'Hero_Favor_TH_LT', enchants: [null, heroCapeSlot2, heroCapeSlot3, heroCapeSlot4] },
 
   { name: "Hero_Token_AG", enchants: [null, heroBadge2, heroBootLt3, heroBootLt4] },
   { name: "Hero_Token_WH", enchants: [null, heroBadge2, heroBootLt3, heroBootLt4] },

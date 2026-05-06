@@ -1,5 +1,11 @@
 # Changelog
 
+## Extra v60.3 (06-05-2569)
+
+- Added item: All Above Time(Supreme)-LT (420841) — Global Cooldown -10%, melee/range/magic element all +10%; shard set bonuses with Strength/Agility/Intelligence/Vitality/Dexterity/Fatality Shards
+- Added item: Sessrumnir Commemoration Ring [1] (490557) — ATK/MATK +5%, CRI +5, ASPD +5%, VCT -5%; event bonuses: ATK/MATK +20, CRI +10, ASPD +10%, VCT -10%, EXP +15%; set bonus with Summer Vacation Pope Card: phys/mag race/size/element all +10%
+- Added item: Summer Vacation Pope Card (300549) — melee/range +3%, magic element all +3%; set bonus with Sessrumnir Commemoration Ring: +7% each
+
 ## Extra v60.2 (01-05-2569)
 
 - Added item: 6th Anniversary Card (300700) — base P.ATK/S.MATK +6, MHP +666, MSP +66; full set bonuses with 1st/2nd/4th Anniversary Cards

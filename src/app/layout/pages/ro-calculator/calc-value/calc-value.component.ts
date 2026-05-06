@@ -29,7 +29,9 @@ export class CalcValueComponent {
   get compareStyleClass() {
     if (!this.isDisplayCompare) return this.styleClass2;
 
-    const isGreater = this.max2 > this.max;
+    const avg1 = (this.totalHit || 1) * (this._min + this._max) / 2;
+    const avg2 = (this.totalHit2 || 1) * (this._min2 + this._max2) / 2;
+    const isGreater = avg2 > avg1;
 
     if (this.isGreaterIsBetter) {
       return isGreater ? 'compare_greater' : 'compare_lower';
