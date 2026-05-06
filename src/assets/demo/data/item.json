@@ -252698,6 +252698,106 @@
             ]
         }
     },
+    "410643": {
+        "id": 410643,
+        "aegisName": null,
+        "name": "Little Garden-LT [1]",
+        "unidName": "Hairband",
+        "resName": "LittleGarden",
+        "description": "มงกุฎดอกไม้อันงดงาม สวมใส่แล้วรู้สึกได้ถึงภูมิฐานที่พริ้งพรายในความสวยงามตามธรรมชาติ\n\nATK + 80,\nCrirical Damage + 20%,\nCRI + 15\n\nเมื่อ Base LUK ตั้งแต่ 90 ขึ้นไป,\nATK + 120 เพิ่มเติม,\nCritical Damage + 20% เพิ่มเติม,\nAPSD + 7%\n\nเมื่อ Base LUK ตั้งแต่ 120 ขึ้นไป,\nATK + 160 เพิ่มเติม,\nCritical Damage + 30% เพิ่มเติม,\nC.RATE + 15\n\nเมื่อสวมใส่ร่วมกับ Orc Hero Card,\nลด Global Cooldown 15%,\nP.ATK + 15,\nเพิ่ม Damage ทางกายภาพต่อศัตรูทุกธาตุ 20%\nประเภท : ^777777Headgear^000000 พลังป้องกัน : ^7777770^000000\nตำแหน่ง : ^777777Middle^000000 น้ำหนัก : ^77777710^000000\nเลเวลที่ต้องการ : ^777777100^000000\nอาชีพที่ใส่ได้ : ^777777ทุกอาชีพ^000000",
+        "slots": 1,
+        "itemTypeId": 2,
+        "itemSubTypeId": 512,
+        "itemLevel": null,
+        "attack": null,
+        "defense": 0,
+        "weight": 10,
+        "requiredLevel": 100,
+        "location": "Middle",
+        "compositionPos": null,
+        "usableClass": [
+            "all"
+        ],
+        "script": {
+            "atk": [
+                "80",
+                "luk:90---120",
+                "luk:120---160"
+            ],
+            "criDmg": [
+                "20",
+                "luk:90---20",
+                "luk:120---30"
+            ],
+            "cri": [
+                "15"
+            ],
+            "cRate": [
+                "luk:120---15"
+            ],
+            "aspdPercent": [
+                "luk:90---7"
+            ],
+            "p_element_all": [
+                "EQUIP[Orc Hero Card]===20"
+            ],
+            "pAtk": [
+                "EQUIP[Orc Hero Card]===15"
+            ],
+            "acd": [
+                "EQUIP[Orc Hero Card]===15"
+            ]
+        }
+    },
+    "410644": {
+        "id": 410644,
+        "aegisName": null,
+        "name": "Floating Ball-LT [1]",
+        "unidName": "Floating Ball-LT",
+        "resName": "Floating_Ball",
+        "description": "MATK + 80,\nเพิ่ม Damage ทางเวทมนตร์ต่อมอนสเตอร์ประเภท Boss 5%,\nMATK + 5%\n\nเมื่อ Base DEX ตั้งแต่ 90 ขึ้นไป,\nMATK + 120 เพิ่มเติม,\nเพิ่ม Damage ทางเวทมนตร์ต่อมอนสเตอร์ประเภท Boss ขึ้นอีก 10%,\nลดระยะเวลาร่ายแบบคงที่ 0.2 วินาที\n\nเมื่อ Base DEX ตั้งแต่ 120 ขึ้นไป,\nMATK + 160 เพิ่มเติม,\nเพิ่ม Damage ทางเวทมนตร์ต่อมอนสเตอร์ประเภท Boss ขึ้นอีก 10%,\nลดระยะเวลาร่ายแบบคงที่ 0.3 วินาที\n\nเมื่อสวมใส่ร่วมกันกับ Mistress Card,\nลด Global Cooldown 15%,\nS.MATK + 15,\nเพิ่ม Damage ทางเวทมนตร์ต่อศัตรูทุกธาตุ 20%\nประเภท : ^777777Headgear^000000 พลังป้องกัน : ^7777770^000000\nตำแหน่ง : ^777777Middle^000000 น้ำหนัก : ^77777720^000000\nเลเวลที่ต้องการ : ^777777100^000000\nอาชีพที่ใส่ได้ : ^777777ทุกอาชีพ^000000",
+        "slots": 1,
+        "itemTypeId": 2,
+        "itemSubTypeId": 512,
+        "itemLevel": null,
+        "attack": null,
+        "defense": 0,
+        "weight": 20,
+        "requiredLevel": 100,
+        "location": "Middle",
+        "compositionPos": null,
+        "usableClass": [
+            "all"
+        ],
+        "script": {
+            "matk": [
+                "80",
+                "dex:90---120",
+                "dex:120---160"
+            ],
+            "m_class_boss": [
+                "5",
+                "dex:90---10",
+                "dex:120---10"
+            ],
+            "matkPercent": [
+                "5"
+            ],
+            "fct": [
+                "dex:90---0.2",
+                "dex:120---0.3"
+            ],
+            "sMatk": [
+                "EQUIP[Mistress Card]===15"
+            ],
+            "m_element_all": [
+                "EQUIP[Mistress Card]===20"
+            ],
+            "acd": [
+                "EQUIP[Mistress Card]===15"
+            ]
+        }
+    },
     "460150": {
         "id": 460150,
         "aegisName": "Sylvan_Guard_TH",

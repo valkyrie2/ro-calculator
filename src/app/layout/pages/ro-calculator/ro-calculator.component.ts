@@ -1998,7 +1998,7 @@ export class RoCalculatorComponent implements OnInit, OnDestroy {
         scaleName: scaleName.at(0),
         health,
         groups: spawnMap.trim().split(','),
-        searchVal: spawnMap,
+        searchVal: `${spawnMap} ${spawn}`,
       };
 
       monsters.push(monster);
