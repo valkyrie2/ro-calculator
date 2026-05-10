@@ -29,6 +29,7 @@
             "assets": [
               "src/favicon.ico",
               "src/ads.txt",
+              "src/CNAME",
               "src/assets"
             ],
             "styles": [
