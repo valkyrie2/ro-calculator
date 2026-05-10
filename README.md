@@ -2,7 +2,9 @@
 
 A **Ragnarok Online damage/DPS calculator** built with Angular 16, PrimeNG, and PrimeFlex. Supports 55+ job classes, item/equipment systems with bonuses, skill-based damage calculations, user authentication, and shareable presets.
 
-**Live Site:** [https://valkyrie2.github.io/ro-calculator/#/](https://valkyrie2.github.io/ro-calculator/#/)
+**Live Site:** [https://ro-calculator.sanka.in.th/](https://ro-calculator.sanka.in.th/)
+
+> The old GitHub Pages URL [https://valkyrie2.github.io/ro-calculator/](https://valkyrie2.github.io/ro-calculator/) still works and redirects automatically to the custom domain.
 
 ---
 
@@ -201,7 +203,8 @@ index.html → main.ts → AppModule → AppComponent → <router-outlet>
 ```
 
 - `AppModule` registers JWT configuration, layout module, and API services.
-- Uses `HashLocationStrategy` for GitHub Pages compatibility (`/#/` URLs).
+- Uses `HashLocationStrategy` for GitHub Pages SPA routing (`/#/` URLs).
+- The site is served from a custom domain (`ro-calculator.sanka.in.th`), so the build uses `--base-href /`. A `CNAME` file in `src/` is copied to `docs/` on every build to preserve the GitHub Pages custom domain setting.
 
 ### Routing (Lazy Loaded)
 
@@ -436,7 +439,9 @@ On every push to `main`:
 
 You can also trigger a deploy manually from the **Actions** tab → **Build and Deploy to GitHub Pages** → **Run workflow**.
 
-After a successful run, your site will be live at **https://valkyrie2.github.io/ro-calculator/#/**.
+After a successful run, your site will be live at **https://ro-calculator.sanka.in.th/**.
+
+The old URL **https://valkyrie2.github.io/ro-calculator/** still works — GitHub Pages redirects it to the custom domain automatically.
 
 ---
 

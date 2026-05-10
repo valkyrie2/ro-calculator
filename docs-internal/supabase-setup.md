@@ -41,10 +41,10 @@ For local dev you can hardcode them. For prod consider injecting at build time, 
 
 1. **Authentication → Providers → Email** → enable.
 2. **Authentication → URL Configuration**:
-   - **Site URL**: `https://tongaphisit.github.io/ro-calculator/` (prod). For dev also add `http://localhost:4200/`.
+   - **Site URL**: `https://ro-calculator.sanka.in.th/` (prod). For dev also add `http://localhost:4200/`.
    - **Redirect URLs**: add both:
      - `http://localhost:4200/**`
-     - `https://tongaphisit.github.io/ro-calculator/**`
+     - `https://ro-calculator.sanka.in.th/**`
 3. **Authentication → Email Templates**: optionally customize confirm/reset templates.
 4. Decide if you want **Confirm email** on (recommended): Authentication → Providers → Email → "Confirm email".
 
