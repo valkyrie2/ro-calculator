@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { ErrorHandler } from '@angular/core';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -16,7 +15,6 @@ const customComponent = [PrettyJsonPipe];
   declarations: [AppComponent],
   imports: [AppRoutingModule, AppLayoutModule, ApiServiceModule],
   providers: [
-    { provide: LocationStrategy, useClass: HashLocationStrategy },
     { provide: ErrorHandler, useClass: AppLogErrorHandler },
     RoService,
     SummaryService,

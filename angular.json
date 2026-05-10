@@ -30,6 +30,7 @@
               "src/favicon.ico",
               "src/ads.txt",
               "src/CNAME",
+              "src/404.html",
               "src/assets"
             ],
             "styles": [

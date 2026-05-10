@@ -5,6 +5,7 @@
 - Added item: All Above Time(Supreme)-LT (420841) — Global Cooldown -10%, melee/range/magic element all +10%; shard set bonuses with Strength/Agility/Intelligence/Vitality/Dexterity/Fatality Shards
 - Added item: Sessrumnir Commemoration Ring [1] (490557) — ATK/MATK +5%, CRI +5, ASPD +5%, VCT -5%; event bonuses: ATK/MATK +20, CRI +10, ASPD +10%, VCT -10%, EXP +15%; set bonus with Summer Vacation Pope Card: phys/mag race/size/element all +10%
 - Added item: Summer Vacation Pope Card (300549) — melee/range +3%, magic element all +3%; set bonus with Sessrumnir Commemoration Ring: +7% each
+- Added Enchant for Hero Mantle Set
 
 ## Extra v60.2 (01-05-2569)
 
