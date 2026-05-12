@@ -7,6 +7,7 @@
         <span *ngSwitchCase="'sign-in'">Sign in</span>
         <span *ngSwitchCase="'sign-up'">Create account</span>
         <span *ngSwitchCase="'reset'">Reset password</span>
+        <span *ngSwitchCase="'update-password'">Choose new password</span>
       </ng-container>
     </h2>
 
@@ -14,7 +15,7 @@
     <p-message *ngIf="infoMessage" severity="info" [text]="infoMessage" styleClass="w-full mb-3"></p-message>
 
     <form (ngSubmit)="submit()" class="auth-form" autocomplete="on">
-      <label class="block">
+      <label *ngIf="mode !== 'update-password'" class="block">
         <span class="auth-label">Email</span>
         <input
           pInputText
@@ -46,7 +47,20 @@
         <p-password
           name="password"
           [(ngModel)]="password"
-          [feedback]="mode === 'sign-up'"
+          [feedback]="mode === 'sign-up' || mode === 'update-password'"
+          [toggleMask]="true"
+          [disabled]="loading"
+          inputStyleClass="w-full"
+          styleClass="w-full"
+        ></p-password>
+      </label>
+
+      <label *ngIf="mode === 'update-password'" class="block">
+        <span class="auth-label">Confirm new password</span>
+        <p-password
+          name="confirmPassword"
+          [(ngModel)]="confirmPassword"
+          [feedback]="false"
           [toggleMask]="true"
           [disabled]="loading"
           inputStyleClass="w-full"
@@ -65,7 +79,7 @@
 
     <div class="auth-links mt-3">
       <button
-        *ngIf="mode !== 'sign-in'"
+        *ngIf="mode !== 'sign-in' && mode !== 'update-password'"
         pButton
         class="p-button-text p-button-sm"
         type="button"

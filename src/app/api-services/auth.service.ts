@@ -1,5 +1,5 @@
 import { Injectable, NgZone } from '@angular/core';
-import { Provider, Session, User } from '@supabase/supabase-js';
+import { AuthChangeEvent, Provider, Session, User } from '@supabase/supabase-js';
 import { Observable, ReplaySubject, distinctUntilChanged, from, map, tap } from 'rxjs';
 import { Profile, UserRole } from './models';
 import { logger } from './logger.service';
@@ -19,6 +19,7 @@ interface UserProfileRow {
 export class AuthService {
   private readonly profileEvent = new ReplaySubject<Profile>(1);
   private readonly loggedInSubject = new ReplaySubject<boolean>(1);
+  private readonly authStateEvent = new ReplaySubject<AuthChangeEvent>(1);
 
   private profile: Profile | undefined;
 
@@ -26,6 +27,8 @@ export class AuthService {
   readonly profileEventObs$ = this.profileEvent.asObservable();
   /** Emits the current logged-in state. */
   readonly loggedInEvent$ = this.loggedInSubject.asObservable();
+  /** Emits raw Supabase auth events (SIGNED_IN, PASSWORD_RECOVERY, SIGNED_OUT, ...). */
+  readonly authStateEvent$ = this.authStateEvent.asObservable();
   /** True when the current user has the `admin` role. */
   readonly isAdmin$ = this.profileEvent.pipe(
     map((p) => p?.role === 'admin'),
@@ -44,9 +47,12 @@ export class AuthService {
     // Hydrate from any persisted session and listen for future auth events
     // (sign-in, sign-out, token refresh, OAuth callback parsing, etc.).
     this.client.auth.getSession().then(({ data }) => this.handleSession(data.session));
-    this.client.auth.onAuthStateChange((_event, session) => {
+    this.client.auth.onAuthStateChange((event, session) => {
       // Supabase callbacks fire outside Angular's zone — re-enter so UI updates.
-      this.zone.run(() => this.handleSession(session));
+      this.zone.run(() => {
+        this.authStateEvent.next(event);
+        this.handleSession(session);
+      });
     });
   }
 
@@ -188,6 +194,14 @@ export class AuthService {
     return from(
       this.client.auth.resetPasswordForEmail(email, {
         redirectTo: this.buildRedirectUrl(),
+      }),
+    );
+  }
+
+  updatePassword(password: string) {
+    return from(this.client.auth.updateUser({ password })).pipe(
+      tap(({ error }) => {
+        if (error) logger.error({ supabaseUpdatePasswordError: error });
       }),
     );
   }

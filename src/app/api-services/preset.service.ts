@@ -16,6 +16,8 @@ import {
 import { AuthService } from './auth.service';
 import { SupabaseClientService } from './supabase-client.service';
 import { Unauthorized } from '../app-errors';
+import { CreatePresetSchema, UpdatePresetSchema, PresetTagListSchema } from '../schemas';
+import { parseOrThrow } from '../utils/safe-parse';
 
 interface PresetRow {
   id: string;
@@ -127,14 +129,15 @@ export class PresetService {
 
   createPreset(preset: Pick<RoPresetModel, 'label' | 'model'>): Observable<RoPresetModel> {
     return defer(async () => {
+      const valid = parseOrThrow(CreatePresetSchema, preset, 'preset');
       const userId = await this.requireUserId();
       const { data, error } = await this.client
         .from('ro_presets')
         .insert({
           user_id: userId,
-          label: preset.label,
-          class_id: (preset.model as any)?.class ?? 0,
-          model: preset.model,
+          label: valid.label,
+          class_id: (valid.model as any)?.class ?? 0,
+          model: valid.model,
         })
         .select('*')
         .single();
@@ -146,11 +149,14 @@ export class PresetService {
   bulkCreatePresets(bulkPreset: { bulkData: any[] }): Observable<RoPresetModel[]> {
     return defer(async () => {
       const userId = await this.requireUserId();
-      const rows = bulkPreset.bulkData.map((p) => ({
+      const validated = bulkPreset.bulkData.map((p) =>
+        parseOrThrow(CreatePresetSchema, { label: p?.label, model: p?.model }, 'preset'),
+      );
+      const rows = validated.map((p) => ({
         user_id: userId,
-        label: p?.label,
-        class_id: p?.model?.class ?? 0,
-        model: p?.model,
+        label: p.label,
+        class_id: (p.model as any)?.class ?? 0,
+        model: p.model,
       }));
       if (rows.length === 0) return [];
       const { data, error } = await this.client.from('ro_presets').insert(rows).select('*');
@@ -161,11 +167,12 @@ export class PresetService {
 
   updatePreset(id: string, preset: Partial<Pick<RoPresetModel, 'label' | 'model'>>): Observable<RoPresetModel> {
     return defer(async () => {
+      const valid = parseOrThrow(UpdatePresetSchema, preset, 'preset update');
       const patch: Record<string, unknown> = {};
-      if (preset.label !== undefined) patch['label'] = preset.label;
-      if (preset.model !== undefined) {
-        patch['model'] = preset.model;
-        patch['class_id'] = (preset.model as any)?.class ?? 0;
+      if (valid.label !== undefined) patch['label'] = valid.label;
+      if (valid.model !== undefined) {
+        patch['model'] = valid.model;
+        patch['class_id'] = (valid.model as any)?.class ?? 0;
       }
       const { data, error } = await this.client
         .from('ro_presets')
@@ -248,6 +255,12 @@ export class PresetService {
   addPresetTags(id: string, body: BulkOperationRequest): Observable<PresetWithTagsModel> {
     return defer(async () => {
       const userId = await this.requireUserId();
+      const createTags = body.createTags?.length
+        ? parseOrThrow(PresetTagListSchema, body.createTags, 'preset tags')
+        : [];
+      const deleteTags = body.deleteTags?.length
+        ? parseOrThrow(PresetTagListSchema, body.deleteTags, 'preset tags')
+        : [];
       const { data: presetRow, error: pErr } = await this.client
         .from('ro_presets')
         .select('id, class_id, label, publish_name, publisher_name, is_published, published_at, created_at, updated_at')
@@ -256,16 +269,16 @@ export class PresetService {
       this.throwIfError(pErr);
       const preset = presetRow as Omit<PresetRow, 'user_id' | 'model'>;
 
-      if (body.deleteTags?.length) {
+      if (deleteTags.length) {
         const { error: dErr } = await this.client
           .from('preset_tags')
           .delete()
           .eq('preset_id', id)
-          .in('tag', body.deleteTags);
+          .in('tag', deleteTags);
         this.throwIfError(dErr);
       }
-      if (body.createTags?.length) {
-        const rows = body.createTags.map((tag) => ({
+      if (createTags.length) {
+        const rows = createTags.map((tag) => ({
           preset_id: id,
           publisher_id: userId,
           class_id: preset.class_id,
@@ -348,12 +361,16 @@ export class PresetService {
     take: number;
   }): Observable<PublishPresetsReponse> {
     const { classId, tagName, skip, take } = params;
+    const safeClassId = Number.isFinite(classId) ? Math.max(0, Math.min(10_000, classId | 0)) : 0;
+    const safeSkip = Number.isFinite(skip) ? Math.max(0, Math.min(100_000, skip | 0)) : 0;
+    const safeTake = Number.isFinite(take) ? Math.max(1, Math.min(100, take | 0)) : 20;
+    const safeTag = typeof tagName === 'string' && /^[a-zA-Z0-9_-]{0,24}$/.test(tagName) ? tagName : '';
     return from(
       this.client.rpc('get_published_presets', {
-        p_class_id: classId,
-        p_tag: tagName,
-        p_skip: skip || 0,
-        p_take: take || 1,
+        p_class_id: safeClassId,
+        p_tag: safeTag,
+        p_skip: safeSkip,
+        p_take: safeTake,
       }),
     ).pipe(
       map(({ data, error }) => {

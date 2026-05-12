@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, ReplaySubject, from, map, shareReplay } from 'rxjs';
+import { Observable, ReplaySubject, from, shareReplay } from 'rxjs';
 import { EnchantTable, getEnchants, registerEnchants } from 'src/app/constants/enchant_item/_enchant_table';
 import { ItemModel } from 'src/app/models/item.model';
 import { MonsterModel } from 'src/app/models/monster.model';

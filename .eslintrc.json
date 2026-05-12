@@ -30,12 +30,12 @@
         ],
         "@typescript-eslint/no-explicit-any": "warn",
         "no-console": ["warn", { "allow": ["warn", "error"] }],
+        "no-eval": "error",
+        "no-implied-eval": "error",
+        "no-new-func": "error",
         "unused-imports/no-unused-imports": "error",
         "@typescript-eslint/no-unused-vars": "off",
-        "unused-imports/no-unused-vars": [
-          "warn",
-          { "vars": "all", "varsIgnorePattern": "^_", "args": "after-used", "argsIgnorePattern": "^_" }
-        ]
+        "unused-imports/no-unused-vars": ["warn", { "vars": "all", "varsIgnorePattern": "^_", "args": "after-used", "argsIgnorePattern": "^_" }]
       }
     },
     {
@@ -43,7 +43,10 @@
       "extends": ["plugin:@angular-eslint/template/recommended", "plugin:@angular-eslint/template/accessibility"],
       "rules": {
         "@angular-eslint/template/elements-content": ["off"],
-        "@angular-eslint/template/eqeqeq": ["off"]
+        "@angular-eslint/template/eqeqeq": ["off"],
+        "@angular-eslint/template/label-has-associated-control": ["warn"],
+        "@angular-eslint/template/click-events-have-key-events": ["warn"],
+        "@angular-eslint/template/interactive-supports-focus": ["warn"]
       }
     }
   ]

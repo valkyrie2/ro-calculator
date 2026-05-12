@@ -5,7 +5,7 @@ import { Subscription } from 'rxjs';
 import { AnalyticsService, AppLogService, AuthService, OAuthProvider } from 'src/app/api-services';
 import { logger } from 'src/app/api-services/logger.service';
 
-type Mode = 'sign-in' | 'sign-up' | 'reset';
+type Mode = 'sign-in' | 'sign-up' | 'reset' | 'update-password';
 
 @Component({
   selector: 'app-auth',
@@ -17,6 +17,7 @@ export class AuthComponent implements OnInit, OnDestroy {
   mode: Mode = 'sign-in';
   email = '';
   password = '';
+  confirmPassword = '';
   name = '';
   loading = false;
   errorMessage = '';
@@ -34,7 +35,7 @@ export class AuthComponent implements OnInit, OnDestroy {
   /** Default cooldown when Supabase doesn't tell us a specific seconds value. */
   private readonly defaultCooldownMs = 60_000;
 
-  private sub?: Subscription;
+  private readonly subscriptions = new Subscription();
 
   constructor(
     private readonly route: ActivatedRoute,
@@ -46,25 +47,44 @@ export class AuthComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
+    if (this.isRecoveryUrl()) {
+      this.enterRecoveryMode();
+    }
+
     // Surface any error returned from an OAuth / email-confirm round-trip.
     const errDesc = this.route.snapshot.queryParamMap.get('error_description');
     if (errDesc) {
-      this.errorMessage = decodeURIComponent(errDesc);
+      const decoded = (() => {
+        try {
+          return decodeURIComponent(errDesc);
+        } catch {
+          return errDesc;
+        }
+      })();
+      this.errorMessage = decoded.slice(0, 500);
     }
 
+    this.subscriptions.add(this.authService.authStateEvent$.subscribe((event) => {
+      if (event === 'PASSWORD_RECOVERY') {
+        this.enterRecoveryMode();
+      }
+    }));
+
     // If we already have a session (OAuth callback or persisted login),
-    // bounce back to the calculator.
-    this.sub = this.authService.loggedInEvent$.subscribe((isLoggedIn) => {
+    // bounce back to the calculator unless the session came from a password
+    // recovery redirect and the user still needs to choose a new password.
+    this.subscriptions.add(this.authService.loggedInEvent$.subscribe((isLoggedIn) => {
       if (isLoggedIn) {
+        if (this.mode === 'update-password') return;
         this.analytics.track('login-success');
         this.appLog.info('auth.login-success', { mode: this.mode });
         this.router.navigate(['/']);
       }
-    });
+    }));
   }
 
   ngOnDestroy(): void {
-    this.sub?.unsubscribe();
+    this.subscriptions.unsubscribe();
     this.clearCooldownTimer();
   }
 
@@ -81,6 +101,7 @@ export class AuthComponent implements OnInit, OnDestroy {
     if (this.isRateLimited) return `Try again in ${this.cooldownLeft}s`;
     if (this.mode === 'sign-in') return 'Sign in';
     if (this.mode === 'sign-up') return 'Create account';
+    if (this.mode === 'update-password') return 'Save new password';
     return 'Send reset email';
   }
 
@@ -124,6 +145,8 @@ export class AuthComponent implements OnInit, OnDestroy {
     this.mode = mode;
     this.errorMessage = '';
     this.infoMessage = '';
+    this.password = '';
+    this.confirmPassword = '';
   }
 
   submit() {
@@ -131,6 +154,11 @@ export class AuthComponent implements OnInit, OnDestroy {
     if (this.isRateLimited) return;
     this.errorMessage = '';
     this.infoMessage = '';
+
+    if (this.mode === 'update-password') {
+      this.runUpdatePassword();
+      return;
+    }
 
     if (!this.email) {
       this.errorMessage = 'Email is required.';
@@ -184,7 +212,7 @@ export class AuthComponent implements OnInit, OnDestroy {
         if (error) {
           this.errorMessage = error.message;
           this.appLog.error('auth.signup-failure', error);
-          this.handleRateLimitError(error as any);
+          this.handleRateLimitError(error);
           return;
         }
         this.appLog.info('auth.signup-success', { hasSession: !!data.session });
@@ -217,7 +245,7 @@ export class AuthComponent implements OnInit, OnDestroy {
         this.loading = false;
         if (error) {
           this.errorMessage = error.message;
-          this.handleRateLimitError(error as any);
+          this.handleRateLimitError(error);
           return;
         }
         this.infoMessage = 'Password reset email sent. Check your inbox.';
@@ -228,6 +256,43 @@ export class AuthComponent implements OnInit, OnDestroy {
         logger.error(err);
         this.errorMessage = err?.message ?? 'Could not send reset email.';
         this.handleRateLimitError(err);
+      },
+    });
+  }
+
+  private runUpdatePassword() {
+    if (!this.password) {
+      this.errorMessage = 'New password is required.';
+      return;
+    }
+    if (this.password.length < 6) {
+      this.errorMessage = 'New password must be at least 6 characters.';
+      return;
+    }
+    if (this.password !== this.confirmPassword) {
+      this.errorMessage = 'Passwords do not match.';
+      return;
+    }
+
+    this.loading = true;
+    this.authService.updatePassword(this.password).subscribe({
+      next: ({ error }) => {
+        this.loading = false;
+        if (error) {
+          this.errorMessage = error.message;
+          this.appLog.error('auth.password-update-failure', error);
+          return;
+        }
+        this.infoMessage = 'Password updated successfully.';
+        this.appLog.info('auth.password-update-success');
+        this.messageService.add({ severity: 'success', summary: 'Password updated' });
+        this.router.navigate(['/']);
+      },
+      error: (err) => {
+        this.loading = false;
+        logger.error(err);
+        this.errorMessage = err?.message ?? 'Could not update password.';
+        this.appLog.error('auth.password-update-failure', err);
       },
     });
   }
@@ -263,5 +328,26 @@ export class AuthComponent implements OnInit, OnDestroy {
       next: () => this.router.navigate(['/']),
       error: (err) => logger.error(err),
     });
+  }
+
+  private enterRecoveryMode() {
+    this.mode = 'update-password';
+    this.loading = false;
+    this.errorMessage = '';
+    this.password = '';
+    this.confirmPassword = '';
+    this.infoMessage = 'Enter your new password to finish resetting your account.';
+  }
+
+  private isRecoveryUrl(): boolean {
+    const queryType = this.route.snapshot.queryParamMap.get('type') || '';
+    const queryErrorCode = this.route.snapshot.queryParamMap.get('error_code') || '';
+    const hash = (window.location.hash || '').toLowerCase();
+
+    return queryType === 'recovery'
+      || queryErrorCode === 'otp_expired'
+      || hash.includes('type=recovery')
+      || hash.includes('recovery_token')
+      || hash.includes('access_token=');
   }
 }
