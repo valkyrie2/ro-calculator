@@ -193,7 +193,7 @@ export class AuthService {
   sendPasswordReset(email: string) {
     return from(
       this.client.auth.resetPasswordForEmail(email, {
-        redirectTo: this.buildRedirectUrl(),
+        redirectTo: this.buildRedirectUrl({ mode: 'update-password' }),
       }),
     );
   }
@@ -249,12 +249,16 @@ export class AuthService {
 
   // ---- Helpers -----------------------------------------------------------
 
-  private buildRedirectUrl(): string {
+  private buildRedirectUrl(params?: Record<string, string>): string {
     // Always come back to /login so AuthComponent can finish the round-trip.
-    // Preserve the deployed sub-path (e.g. /ro-calculator/) but drop any
-    // existing route + hash so Supabase doesn't double-append.
-    const { origin, pathname } = window.location;
-    const base = pathname.replace(/index\.html$/, '').replace(/\/+$/, '');
-    return `${origin}${base}/login`;
+    // Use the configured <base href> instead of the current route. Building
+    // from window.location.pathname would turn /login into /login/login.
+    const baseHref = window.document.querySelector('base')?.getAttribute('href') || '/';
+    const basePath = baseHref.replace(/index\.html$/, '').replace(/\/+$/, '');
+    const url = new URL(`${window.location.origin}${basePath}/login`);
+    for (const [key, value] of Object.entries(params || {})) {
+      url.searchParams.set(key, value);
+    }
+    return url.toString();
   }
 }

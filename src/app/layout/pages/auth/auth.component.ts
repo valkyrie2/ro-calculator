@@ -340,14 +340,14 @@ export class AuthComponent implements OnInit, OnDestroy {
   }
 
   private isRecoveryUrl(): boolean {
+    const queryMode = this.route.snapshot.queryParamMap.get('mode') || '';
     const queryType = this.route.snapshot.queryParamMap.get('type') || '';
-    const queryErrorCode = this.route.snapshot.queryParamMap.get('error_code') || '';
     const hash = (window.location.hash || '').toLowerCase();
 
-    return queryType === 'recovery'
-      || queryErrorCode === 'otp_expired'
+    return queryMode === 'update-password'
+      || queryType === 'recovery'
+      || hash.includes('mode=update-password')
       || hash.includes('type=recovery')
-      || hash.includes('recovery_token')
-      || hash.includes('access_token=');
+      || hash.includes('recovery_token');
   }
 }
