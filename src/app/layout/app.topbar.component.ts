@@ -209,6 +209,17 @@ export class AppTopBarComponent implements OnInit, OnDestroy {
 
   updates: { v: string; date: string; logs: string[]; }[] = [
     {
+      v: 'Extra v60.4',
+      date: '17-05-2569',
+      logs: [
+        'เพิ่ม scenario reset password',
+        'ลบ enchant ของมัพฮีโร่LT ที่เป็น Stat..Lv2 และ Lv3 ออก',
+        'ไอเทมที่มีความสามารถหมดอายุ จะมีไอเทมที่มีความสามารถแบบหมดอายุแล้วให้เลือกด้วย',
+        'Filter ชืด้วยชื่อแมพได้แล้ว',
+        'Migrate to Angular 19, fix vulnerabilities',
+      ],
+    },
+    {
       v: 'Extra v60.3',
       date: '06-05-2569',
       logs: [
