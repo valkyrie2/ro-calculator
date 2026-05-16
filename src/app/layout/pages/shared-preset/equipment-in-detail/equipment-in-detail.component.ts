@@ -31,6 +31,7 @@ const displayShadowItemKeys = [
 ];
 
 @Component({
+  standalone: false,
   selector: 'app-equipment-in-detail',
   templateUrl: './equipment-in-detail.component.html',
   styleUrls: ['./equipment-in-detail.component.css'],

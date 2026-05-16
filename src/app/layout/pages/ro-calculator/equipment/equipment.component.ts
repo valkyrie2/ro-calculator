@@ -15,6 +15,7 @@ interface EventEmitterResultModel {
 }
 
 @Component({
+  standalone: false,
   selector: 'app-equipment',
   templateUrl: './equipment.component.html',
   styleUrls: ['../ro-calculator.component.css'],

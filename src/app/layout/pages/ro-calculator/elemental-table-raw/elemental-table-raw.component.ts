@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 
 @Component({
+  standalone: false,
   selector: 'app-elemental-table-raw',
   templateUrl: './elemental-table-raw.component.html',
   styleUrls: ['./elemental-table-raw.component.css'],

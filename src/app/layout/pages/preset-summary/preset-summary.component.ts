@@ -24,6 +24,7 @@ const getInitShowIEnchant = (b: boolean) => {
 };
 
 @Component({
+  standalone: false,
   selector: 'app-preset-summary',
   templateUrl: './preset-summary.component.html',
   styleUrls: ['./preset-summary.component.css'],

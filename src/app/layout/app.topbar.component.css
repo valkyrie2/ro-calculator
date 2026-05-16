@@ -1,6 +1,21 @@
 :host ::ng-deep .router-link .p-menuitem-link {
+  display: flex;
+  align-items: center;
   padding-bottom: 0.75rem !important;
   border-width: 0 0 4px 0 !important;
+}
+
+:host ::ng-deep .router-link .p-tabmenu-nav {
+  display: flex;
+  flex-wrap: nowrap;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+:host ::ng-deep .router-link .p-tabmenuitem {
+  display: flex;
+  flex-shrink: 0;
 }
 
 :host ::ng-deep .chip-profile .p-chip {

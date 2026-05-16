@@ -3,6 +3,7 @@ import { AnalyticsService } from 'src/app/api-services';
 import { BANNERS, BannerConfig } from './banner.config';
 
 @Component({
+  standalone: false,
   selector: 'app-banner',
   templateUrl: './banner.component.html',
   styleUrls: ['./banner.component.scss'],

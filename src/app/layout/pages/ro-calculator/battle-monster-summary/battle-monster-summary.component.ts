@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
+  standalone: false,
   selector: 'app-battle-monster-summary',
   templateUrl: './battle-monster-summary.component.html',
   styleUrls: ['./battle-monster-summary.component.css', '../ro-calculator.component.css'],

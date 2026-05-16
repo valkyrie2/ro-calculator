@@ -16,6 +16,7 @@ const DIVINE_PRIDE_API_KEY = '4661da55613043bc544aaa9274fda488';
 const DIVINE_PRIDE_SERVER = 'thROG';
 
 @Component({
+  standalone: false,
   selector: 'app-admin-add-item',
   templateUrl: './admin-add-item.component.html',
 })

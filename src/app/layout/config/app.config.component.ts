@@ -4,6 +4,7 @@ import { MenuService } from '../app.menu.service';
 import { environment } from 'src/environments/environment';
 
 @Component({
+  standalone: false,
   selector: 'app-config',
   templateUrl: './app.config.component.html',
 })
@@ -91,7 +92,6 @@ export class AppConfigComponent implements OnInit {
 
     const themeLink = <HTMLLinkElement>document.getElementById('theme-css');
     const newHref = themeLink.getAttribute('href')!.replace(this.layoutService.config.theme, theme);
-    this.layoutService.config.colorScheme;
     this.replaceThemeLink(newHref, () => {
       this.layoutService.config.theme = theme;
       this.layoutService.config.colorScheme = colorScheme;

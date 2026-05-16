@@ -40,6 +40,7 @@ const Characters = getClassDropdownList();
 const skillBuffs = JobBuffs;
 
 @Component({
+  standalone: false,
   selector: 'app-dps-compare',
   templateUrl: './dps-compare.component.html',
   styleUrls: ['./dps-compare.component.scss'],

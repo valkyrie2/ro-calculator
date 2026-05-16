@@ -7,6 +7,7 @@ import { CommonModule } from '@angular/common';
 import { TableModule } from 'primeng/table';
 import { InputTextModule } from 'primeng/inputtext';
 import { FormsModule } from '@angular/forms';
+import { DropdownModule } from 'primeng/dropdown';
 import { EquipmentUiComponent } from './equipment-ui/equipment-ui.component';
 import { DividerModule } from 'primeng/divider';
 import { EquipmentInDetailComponent } from './equipment-in-detail/equipment-in-detail.component';
@@ -28,6 +29,7 @@ import { CascadeSelectModule } from 'primeng/cascadeselect';
     InputTextModule,
     FormsModule,
     DividerModule,
+    DropdownModule,
     PaginatorModule,
     InputSwitchModule,
     ToastModule,

@@ -41,6 +41,7 @@ const positions: DropdownModel[] = [
 ];
 
 @Component({
+  standalone: false,
   selector: 'app-item-search',
   templateUrl: './item-search.component.html',
   styleUrls: ['../ro-calculator.component.css', './item-search.component.css'],

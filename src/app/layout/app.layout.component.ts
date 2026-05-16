@@ -6,6 +6,7 @@ import { AppSidebarComponent } from "./app.sidebar.component";
 import { AppTopBarComponent } from './app.topbar.component';
 
 @Component({
+  standalone: false,
     selector: 'app-layout',
     templateUrl: './app.layout.component.html'
 })

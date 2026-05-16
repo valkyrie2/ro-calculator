@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 
 @Component({
+  standalone: false,
   selector: 'app-misc-detail',
   templateUrl: './misc-detail.component.html',
   styleUrls: ['../ro-calculator.component.css'],

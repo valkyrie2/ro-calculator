@@ -64,6 +64,7 @@ interface ExpResult {
 }
 
 @Component({
+  standalone: false,
   selector: 'app-exp-calculator',
   templateUrl: './exp-calculator.component.html',
   styleUrls: ['./exp-calculator.component.scss'],

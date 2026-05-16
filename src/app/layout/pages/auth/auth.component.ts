@@ -8,6 +8,7 @@ import { logger } from 'src/app/api-services/logger.service';
 type Mode = 'sign-in' | 'sign-up' | 'reset' | 'update-password';
 
 @Component({
+  standalone: false,
   selector: 'app-auth',
   templateUrl: './auth.component.html',
   styleUrls: ['./auth.component.css'],

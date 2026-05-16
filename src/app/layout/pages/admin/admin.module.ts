@@ -8,7 +8,7 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { DialogModule } from 'primeng/dialog';
 import { DropdownModule } from 'primeng/dropdown';
 import { InputTextModule } from 'primeng/inputtext';
-import { InputTextareaModule } from 'primeng/inputtextarea';
+import { TextareaModule } from 'primeng/textarea';
 import { TableModule } from 'primeng/table';
 import { TabViewModule } from 'primeng/tabview';
 import { ToastModule } from 'primeng/toast';
@@ -32,7 +32,7 @@ import { AdminBugReportsComponent } from './bug-reports/admin-bug-reports.compon
     ConfirmDialogModule,
     DropdownModule,
     InputTextModule,
-    InputTextareaModule,
+    TextareaModule,
     TableModule,
     ToastModule,
     TooltipModule,

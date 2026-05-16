@@ -5,6 +5,7 @@ import { Subscription, debounceTime } from 'rxjs';
 import { FilterService } from 'primeng/api';
 
 @Component({
+  standalone: false,
   selector: 'app-monster-data-view',
   templateUrl: './monster-data-view.component.html',
   styleUrls: ['../ro-calculator.component.css'],

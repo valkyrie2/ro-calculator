@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
+  standalone: false,
   selector: 'app-status-input',
   templateUrl: './status-input.component.html',
   styleUrls: ['./status-input.component.css', '../ro-calculator.component.css'],

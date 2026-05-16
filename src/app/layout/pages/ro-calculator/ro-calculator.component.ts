@@ -128,6 +128,7 @@ const HideHpSp = {
 };
 
 @Component({
+  standalone: false,
   selector: 'app-ro-calculator',
   templateUrl: './ro-calculator.component.html',
   styleUrls: ['./ro-calculator.component.css'],
@@ -304,17 +305,17 @@ export class RoCalculatorComponent implements OnInit, OnDestroy {
   itemSummary: any;
   itemSummary2: any;
   modelSummary: any;
-  totalSummary: any;
-  breakdownData: any;
+  totalSummary: any = {};
+  breakdownData: any = [];
 
-  elementTable: ElementDataModel[];
-  raceTable: RaceDataModel[];
-  peneRaceTable: RaceDataModel[];
-  sizeTable: RaceDataModel[];
-  classTable: RaceDataModel[];
-  atkTypeTable: any[];
-  peneClassTable: RaceDataModel[];
-  skillMultiplierTable: SkillMultiplierModel[];
+  elementTable: ElementDataModel[] = [];
+  raceTable: RaceDataModel[] = [];
+  peneRaceTable: RaceDataModel[] = [];
+  sizeTable: RaceDataModel[] = [];
+  classTable: RaceDataModel[] = [];
+  atkTypeTable: any[] = [];
+  peneClassTable: RaceDataModel[] = [];
+  skillMultiplierTable: SkillMultiplierModel[] = [];
 
   /**
    * Model 2

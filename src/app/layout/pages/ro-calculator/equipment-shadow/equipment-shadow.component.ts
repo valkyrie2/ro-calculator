@@ -10,6 +10,7 @@ interface EventEmitterResultModel {
 }
 
 @Component({
+  standalone: false,
   selector: 'app-equipment-shadow',
   templateUrl: './equipment-shadow.component.html',
   styleUrls: ['../ro-calculator.component.css'],

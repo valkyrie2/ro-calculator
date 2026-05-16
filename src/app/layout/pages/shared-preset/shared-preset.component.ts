@@ -19,6 +19,7 @@ import { ActiveSkillModel, AtkSkillModel, CharacterBase, getClassDropdownList } 
 const Characters = getClassDropdownList();
 
 @Component({
+  standalone: false,
   selector: 'app-shared-preset',
   templateUrl: './shared-preset.component.html',
   styleUrls: ['./shared-preset.component.css'],

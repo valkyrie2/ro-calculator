@@ -60,6 +60,7 @@ const SCALE_NUMERIC = { Small: 0, Medium: 1, Large: 2 } as const;
 const CUSTOM_ID_FLOOR = 9_000_001;
 
 @Component({
+  standalone: false,
   selector: 'app-admin-add-monster',
   templateUrl: './admin-add-monster.component.html',
 })

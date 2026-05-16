@@ -1,13 +1,221 @@
 /* You can add global styles to this file, and also import other style files */
 
 $gutter: 1rem; //for primeflex grid system
-@import "assets/layout/styles/layout/layout.scss";
+@import 'assets/layout/styles/layout/layout.scss';
 
 /* PrimeNG */
-@import "../node_modules/primeng/resources/primeng.min.css";
-@import "../node_modules/primeflex/primeflex.scss";
-@import "../node_modules/primeicons/primeicons.css";
+@import '../node_modules/primeflex/primeflex.scss';
+@import '../node_modules/primeicons/primeicons.css';
 
+html.layout-theme-dark,
+.layout-wrapper.layout-theme-dark {
+  --p-primary-color: var(--primary-color);
+  --p-primary-hover-color: #6abd6e;
+  --p-primary-active-color: #54b358;
+  --p-primary-contrast-color: var(--primary-color-text);
+  --p-content-background: var(--surface-card);
+  --p-content-hover-background: var(--surface-hover);
+  --p-content-border-color: var(--surface-border);
+  --p-content-color: var(--text-color);
+  --p-content-hover-color: var(--text-color);
+  --p-text-color: var(--text-color);
+  --p-text-muted-color: var(--text-color-secondary);
+  --p-form-field-background: var(--surface-ground);
+  --p-form-field-disabled-background: var(--surface-c);
+  --p-form-field-filled-background: var(--surface-ground);
+  --p-form-field-filled-hover-background: var(--surface-ground);
+  --p-form-field-filled-focus-background: var(--surface-ground);
+  --p-form-field-border-color: var(--surface-border);
+  --p-form-field-hover-border-color: var(--primary-color);
+  --p-form-field-focus-border-color: var(--primary-color);
+  --p-form-field-color: var(--text-color);
+  --p-form-field-disabled-color: var(--text-color-secondary);
+  --p-form-field-placeholder-color: var(--text-color-secondary);
+  --p-form-field-shadow: none;
+  --p-form-field-border-radius: var(--border-radius);
+  --p-form-field-padding-x: 0.5rem;
+  --p-form-field-padding-y: 0.5rem;
+  --p-select-background: var(--surface-ground);
+  --p-select-border-color: var(--surface-border);
+  --p-select-hover-border-color: var(--primary-color);
+  --p-select-focus-border-color: var(--primary-color);
+  --p-select-color: var(--text-color);
+  --p-select-placeholder-color: var(--text-color-secondary);
+  --p-select-border-radius: var(--border-radius);
+  --p-select-shadow: none;
+  --p-select-padding-x: 0.5rem;
+  --p-select-padding-y: 0.5rem;
+  --p-select-dropdown-width: 2.35rem;
+  --p-select-dropdown-color: var(--text-color-secondary);
+  --p-button-border-radius: var(--border-radius);
+  --p-button-padding-x: 1rem;
+  --p-button-padding-y: 0.5rem;
+  --p-button-primary-background: var(--primary-color);
+  --p-button-primary-hover-background: #6abd6e;
+  --p-button-primary-active-background: #54b358;
+  --p-button-primary-border-color: var(--primary-color);
+  --p-button-primary-hover-border-color: #6abd6e;
+  --p-button-primary-active-border-color: #54b358;
+  --p-button-primary-color: var(--primary-color-text);
+  --p-button-primary-hover-color: var(--primary-color-text);
+  --p-button-primary-active-color: var(--primary-color-text);
+  --p-button-text-primary-color: var(--primary-color);
+  --p-accordion-header-background: var(--surface-card);
+  --p-accordion-header-hover-background: var(--surface-hover);
+  --p-accordion-header-active-background: var(--primary-color);
+  --p-accordion-header-active-hover-background: #6abd6e;
+  --p-accordion-header-color: var(--text-color);
+  --p-accordion-header-hover-color: var(--text-color);
+  --p-accordion-header-active-color: var(--primary-color-text);
+  --p-accordion-header-active-hover-color: var(--primary-color-text);
+  --p-accordion-header-border-color: var(--surface-border);
+  --p-accordion-header-padding: 0.35rem 0.75rem;
+  --p-accordion-content-background: var(--surface-card);
+  --p-accordion-content-border-color: var(--surface-border);
+  --p-accordion-content-color: var(--text-color);
+  --p-accordion-content-padding: 1rem;
+}
+
+.layout-theme-dark .p-select,
+.layout-theme-dark .p-inputtext,
+.layout-theme-dark .p-multiselect,
+.layout-theme-dark .p-cascadeselect,
+.layout-theme-dark .p-treeselect {
+  background: var(--surface-ground);
+  border-color: var(--surface-border);
+  border-radius: var(--border-radius);
+  color: var(--text-color);
+}
+
+.layout-theme-dark .p-select:not(.p-disabled):hover,
+.layout-theme-dark .p-inputtext:enabled:hover,
+.layout-theme-dark .p-multiselect:not(.p-disabled):hover,
+.layout-theme-dark .p-cascadeselect:not(.p-disabled):hover,
+.layout-theme-dark .p-treeselect:not(.p-disabled):hover {
+  border-color: var(--primary-color);
+}
+
+.layout-theme-dark .p-select-label,
+.layout-theme-dark .p-select-dropdown,
+.layout-theme-dark .p-multiselect-label,
+.layout-theme-dark .p-cascadeselect-label,
+.layout-theme-dark .p-treeselect-label {
+  color: var(--text-color);
+}
+
+.layout-theme-dark .p-select-label.p-placeholder,
+.layout-theme-dark .p-multiselect-label.p-placeholder,
+.layout-theme-dark .p-cascadeselect-label.p-placeholder,
+.layout-theme-dark .p-treeselect-label.p-placeholder {
+  color: var(--text-color-secondary);
+}
+
+.layout-theme-dark .p-accordion .p-accordionheader {
+  border: 1px solid var(--surface-border);
+  border-radius: var(--border-radius);
+  background: var(--surface-card);
+  color: var(--text-color);
+  padding: 0.35rem 0.75rem;
+  font-weight: 800;
+}
+
+.layout-theme-dark .p-accordion .p-accordionpanel.p-accordionpanel-active > .p-accordionheader {
+  background: var(--primary-color);
+  color: var(--primary-color-text);
+  border-color: var(--primary-color);
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.layout-theme-dark .p-accordion .p-accordioncontent-content {
+  border: 1px solid var(--surface-border);
+  border-top: 0;
+  background: var(--surface-card);
+  color: var(--text-color);
+}
+
+.layout-theme-dark .p-button {
+  border-radius: var(--border-radius);
+}
+
+.layout-theme-dark .p-select,
+.layout-theme-dark .p-inputtext,
+.layout-theme-dark .p-multiselect,
+.layout-theme-dark .p-cascadeselect,
+.layout-theme-dark .p-treeselect,
+.layout-theme-dark .p-button,
+.layout-theme-dark .p-inputgroup-addon {
+  min-height: 2.125rem;
+}
+
+.layout-theme-dark .p-select-label,
+.layout-theme-dark .p-multiselect-label,
+.layout-theme-dark .p-cascadeselect-label,
+.layout-theme-dark .p-treeselect-label,
+.layout-theme-dark .p-inputtext,
+.layout-theme-dark .p-inputgroup-addon {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+.layout-theme-dark .p-select-dropdown,
+.layout-theme-dark .p-multiselect-dropdown,
+.layout-theme-dark .p-cascadeselect-dropdown,
+.layout-theme-dark .p-treeselect-trigger {
+  width: 2.35rem;
+}
+
+.layout-theme-dark .p-button {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+.p-inputgroup {
+  display: flex;
+  align-items: stretch;
+  width: 100%;
+}
+
+.p-inputgroup > .p-inputwrapper,
+.p-inputgroup > p-dropdown,
+.p-inputgroup > p-multiselect,
+.p-inputgroup > p-cascadeselect,
+.p-inputgroup > p-treeselect,
+.p-inputgroup > input,
+.p-inputgroup > textarea {
+  flex: 1 1 auto;
+  width: 1%;
+}
+
+.p-inputgroup > .p-inputgroup-addon,
+.p-inputgroup > button,
+.p-inputgroup > p-button,
+.p-inputgroup > p-splitbutton {
+  flex: 0 0 auto;
+}
+
+.p-inputgroup > .p-inputwrapper > .p-component,
+.p-inputgroup > p-dropdown > .p-component,
+.p-inputgroup > p-multiselect > .p-component,
+.p-inputgroup > p-cascadeselect > .p-component,
+.p-inputgroup > p-treeselect > .p-component {
+  width: 100%;
+}
+
+.p-fluid p-dropdown,
+.p-fluid p-multiselect,
+.p-fluid p-cascadeselect,
+.p-fluid p-treeselect {
+  display: flex;
+  width: 100%;
+}
+
+.p-fluid p-dropdown > .p-select,
+.p-fluid p-multiselect > .p-multiselect,
+.p-fluid p-cascadeselect > .p-cascadeselect,
+.p-fluid p-treeselect > .p-treeselect {
+  width: 100%;
+}
 
 .property_Water {
   /* background-color: #7ba7e1; */

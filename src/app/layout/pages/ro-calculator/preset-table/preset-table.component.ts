@@ -44,6 +44,7 @@ const displayShadowItemKeys = [
 ];
 
 @Component({
+  standalone: false,
   selector: 'app-preset-table',
   templateUrl: './preset-table.component.html',
   styleUrls: ['../ro-calculator.component.css'],

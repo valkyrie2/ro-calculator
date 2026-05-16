@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core';
 import { floor } from '../../../../utils';
 
 @Component({
+  standalone: false,
   selector: 'app-calc-value',
   templateUrl: './calc-value.component.html',
   styleUrls: ['./calc-value.component.css', '../ro-calculator.component.css'],

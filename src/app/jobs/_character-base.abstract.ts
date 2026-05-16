@@ -96,7 +96,6 @@ export interface AtkSkillModel {
   getElement?: (skillValue: string) => ElementType;
   secondaryDmgInput?: Omit<AtkSkillModel, 'secondaryDmg' | 'part2' | 'acd' | 'vct' | 'cd' | 'fct' | 'name' | 'value'> & { isIncludeMain: boolean; };
 }
-[];
 
 export interface SkillModel {
   label: string;

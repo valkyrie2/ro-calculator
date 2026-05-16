@@ -295,6 +295,7 @@ const BONUS_GROUPS: SelectItemGroup[] = [
 ];
 
 @Component({
+  standalone: false,
   selector: 'app-custom-bonus',
   templateUrl: './custom-bonus.component.html',
   styleUrls: ['./custom-bonus.component.css'],

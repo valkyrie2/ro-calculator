@@ -4,6 +4,7 @@ import { BugReportRow, BugReportService, BugReportStatus } from 'src/app/api-ser
 import { logger } from 'src/app/api-services/logger.service';
 
 @Component({
+  standalone: false,
   selector: 'app-admin-bug-reports',
   templateUrl: './admin-bug-reports.component.html',
 })

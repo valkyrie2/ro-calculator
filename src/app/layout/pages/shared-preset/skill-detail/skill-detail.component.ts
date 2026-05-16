@@ -4,6 +4,7 @@ import { ActiveSkillModel, CharacterBase } from '../../../../jobs/_character-bas
 import { JobBuffs } from '../../../../constants/job-buffs';
 
 @Component({
+  standalone: false,
   selector: 'app-skill-detail',
   templateUrl: './skill-detail.component.html',
   styleUrls: ['./skill-detail.component.css'],

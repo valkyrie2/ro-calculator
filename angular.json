@@ -20,26 +20,13 @@
             "outputPath": "dist/sakai-ng",
             "index": "src/index.html",
             "main": "src/main.ts",
-            "polyfills": [
-              "zone.js"
-            ],
+            "polyfills": ["zone.js"],
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "aot": true,
-            "assets": [
-              "src/favicon.ico",
-              "src/ads.txt",
-              "src/CNAME",
-              "src/404.html",
-              "src/assets"
-            ],
-            "styles": [
-              "src/styles.scss"
-            ],
-            "scripts": [
-              "node_modules/prismjs/prism.js",
-              "node_modules/prismjs/components/prism-typescript.js"
-            ]
+            "assets": ["src/favicon.ico", "src/ads.txt", "src/CNAME", "src/404.html", "src/assets"],
+            "styles": ["src/styles.scss"],
+            "scripts": ["node_modules/prismjs/prism.js", "node_modules/prismjs/components/prism-typescript.js"]
           },
           "configurations": {
             "production": {
@@ -61,6 +48,11 @@
                   "with": "src/environments/environment.prod.ts"
                 }
               ],
+              "optimization": {
+                "styles": {
+                  "inlineCritical": false
+                }
+              },
               "outputHashing": "all"
             },
             "development": {
@@ -77,14 +69,14 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "sakai-ng:build"
+            "buildTarget": "sakai-ng:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "sakai-ng:build:production"
+              "buildTarget": "sakai-ng:build:production"
             },
             "development": {
-              "browserTarget": "sakai-ng:build:development"
+              "buildTarget": "sakai-ng:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -92,38 +84,26 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "sakai-ng:build"
+            "buildTarget": "sakai-ng:build"
           }
         },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
             "main": "src/test.ts",
-            "polyfills": [
-              "zone.js",
-              "zone.js/testing"
-            ],
+            "polyfills": ["zone.js", "zone.js/testing"],
             "tsConfig": "tsconfig.spec.json",
             "karmaConfig": "karma.conf.js",
             "inlineStyleLanguage": "scss",
-            "styles": [
-              "src/styles.scss"
-            ],
+            "styles": ["src/styles.scss"],
             "scripts": [],
-            "assets": [
-              "src/favicon.ico",
-              "src/ads.txt",
-              "src/assets"
-            ]
+            "assets": ["src/favicon.ico", "src/ads.txt", "src/assets"]
           }
         },
         "lint": {
           "builder": "@angular-eslint/builder:lint",
           "options": {
-            "lintFilePatterns": [
-              "src/**/*.ts",
-              "src/**/*.html"
-            ]
+            "lintFilePatterns": ["src/**/*.ts", "src/**/*.html"]
           }
         }
       }

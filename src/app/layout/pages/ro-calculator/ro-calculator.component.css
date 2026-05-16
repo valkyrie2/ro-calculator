@@ -8,7 +8,9 @@
   outline-offset: -1px;
   background-color: rgba(76, 175, 80, 0.08);
   border-radius: 4px;
-  transition: outline 0.15s, background-color 0.15s;
+  transition:
+    outline 0.15s,
+    background-color 0.15s;
 }
 
 :host ::ng-deep .json_display .number-line {
@@ -144,6 +146,24 @@
 
 :host ::ng-deep .damage_table .p-datatable .p-datatable-header {
   padding: 0.25rem;
+}
+
+.calc-summary-panel {
+  font-size: 0.86rem;
+  line-height: 1.08;
+}
+
+.calc-summary-panel .grid > [class*='col-'] {
+  line-height: 1.08;
+}
+
+.calc-summary-panel .px-1 {
+  padding-left: 0.15rem !important;
+  padding-right: 0.15rem !important;
+}
+
+.calc-summary-panel .hp-sp-section {
+  line-height: 1.08;
 }
 
 .battle_row_health {
@@ -312,6 +332,41 @@
   /* background-color: var(--surface-0); */
   background-color: #121212;
   color: var(--yellow-300);
+}
+
+:host ::ng-deep :is(.item_label_weapon_main, .item_label_leftWeapon_main, .item_label_shield_main) :is(.p-select-label, .p-cascadeselect-label) {
+  background-color: #121212;
+  color: var(--pink-200);
+}
+
+:host ::ng-deep .item_label_head :is(.p-select-label, .p-cascadeselect-label) {
+  background-color: #121212;
+  color: var(--blue-200);
+}
+
+:host ::ng-deep .item_label_def :is(.p-select-label, .p-cascadeselect-label) {
+  background-color: #121212;
+  color: var(--red-200);
+}
+
+:host ::ng-deep .item_label_acc :is(.p-select-label, .p-cascadeselect-label) {
+  background-color: #121212;
+  color: var(--purple-200);
+}
+
+:host ::ng-deep .item_label_pet :is(.p-select-label, .p-cascadeselect-label) {
+  background-color: #121212;
+  color: var(--orange-200);
+}
+
+:host ::ng-deep .item_label_costume :is(.p-select-label, .p-cascadeselect-label) {
+  background-color: #121212;
+  color: var(--yellow-400);
+}
+
+:host ::ng-deep .item_label_shadow :is(.p-select-label, .p-cascadeselect-label) {
+  background-color: #121212;
+  color: var(--green-200);
 }
 
 :host ::ng-deep .item_label_leftWeapon_main .p-dropdown-label,
@@ -504,6 +559,13 @@
 :host ::ng-deep .item_label_compare .p-multiselect-label,
 :host ::ng-deep .item_label_compare .p-listbox-item {
   /* background-color: var(--surface-50); */
+  background-color: #2a2a2a;
+  color: var(--yellow-300);
+}
+
+:host ::ng-deep .item_label_compare .p-select-label,
+:host ::ng-deep .item_label_compare .p-cascadeselect-label,
+:host ::ng-deep .item_label_compare .p-multiselect-label {
   background-color: #2a2a2a;
   color: var(--yellow-300);
 }

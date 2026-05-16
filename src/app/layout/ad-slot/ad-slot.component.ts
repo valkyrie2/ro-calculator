@@ -15,6 +15,7 @@ declare global {
  *   <app-ad-slot slot="1332897611" format="auto" [fullWidthResponsive]="true"></app-ad-slot>
  */
 @Component({
+  standalone: false,
   selector: 'app-ad-slot',
   templateUrl: './ad-slot.component.html',
   styleUrls: ['./ad-slot.component.scss'],

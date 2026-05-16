@@ -6,6 +6,7 @@ import { Subscription, catchError, of, tap } from 'rxjs';
 import { MessageService } from 'primeng/api';
 
 @Component({
+  standalone: false,
   selector: 'app-user-profile',
   templateUrl: './user-profile.component.html',
   styleUrls: ['./user-profile.component.css'],

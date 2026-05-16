@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
 import { StyleClassModule } from 'primeng/styleclass';
 import { TableModule } from 'primeng/table';
@@ -7,7 +8,7 @@ import { DropdownModule } from 'primeng/dropdown';
 import { BadgeModule } from 'primeng/badge';
 import { InputSwitchModule } from 'primeng/inputswitch';
 import { InputTextModule } from 'primeng/inputtext';
-import { InputTextareaModule } from 'primeng/inputtextarea';
+import { TextareaModule } from 'primeng/textarea';
 import { RadioButtonModule } from 'primeng/radiobutton';
 import { RippleModule } from 'primeng/ripple';
 import { InputNumberModule } from 'primeng/inputnumber';
@@ -67,10 +68,11 @@ import { ExpCalculatorComponent } from './exp-calculator/exp-calculator.componen
     ConfirmDialogModule,
     DividerModule,
     DropdownModule,
+    FormsModule,
     InputNumberModule,
     InputSwitchModule,
     InputTextModule,
-    InputTextareaModule,
+    TextareaModule,
     ListboxModule,
     MultiSelectModule,
     OrderListModule,

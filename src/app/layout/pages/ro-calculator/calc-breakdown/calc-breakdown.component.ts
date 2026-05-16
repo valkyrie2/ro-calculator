@@ -1,4 +1,4 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit, OnChanges } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { HighlightService } from './highlight.service';
 
@@ -11,11 +11,12 @@ export interface BreakdownStep {
 }
 
 @Component({
+  standalone: false,
   selector: 'app-calc-breakdown',
   templateUrl: './calc-breakdown.component.html',
   styleUrls: ['./calc-breakdown.component.css'],
 })
-export class CalcBreakdownComponent implements OnInit, OnDestroy {
+export class CalcBreakdownComponent implements OnInit, OnDestroy, OnChanges {
   @Input() totalSummary: any;
   @Input() breakdownData: any;
   @Input() model: any;

@@ -3,6 +3,7 @@ import { MainModel } from '../../../../models/main.model';
 import { ItemTypeEnum } from '../../../../constants/item-type.enum';
 
 @Component({
+  standalone: false,
   selector: 'app-equipment-ui',
   templateUrl: './equipment-ui.component.html',
   styleUrls: ['./equipment-ui.component.css'],

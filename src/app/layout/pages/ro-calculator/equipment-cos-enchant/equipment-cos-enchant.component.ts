@@ -2,6 +2,7 @@ import { AfterViewInit, Component, EventEmitter, Input, Output } from '@angular/
 import { DropdownModel } from '../../../../models/dropdown.model';
 
 @Component({
+  standalone: false,
   selector: 'app-equipment-cos-enchant',
   templateUrl: './equipment-cos-enchant.component.html',
   styleUrls: ['./equipment-cos-enchant.component.css', '../ro-calculator.component.css'],

@@ -8,6 +8,7 @@ import { logger } from '../api-services/logger.service';
 import { LayoutService } from './service/app.layout.service';
 
 @Component({
+  standalone: false,
   selector: 'app-topbar',
   templateUrl: './app.topbar.component.html',
   styleUrls: ['./app.topbar.component.css'],

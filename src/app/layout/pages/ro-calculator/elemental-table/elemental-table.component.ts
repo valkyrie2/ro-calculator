@@ -25,6 +25,7 @@ interface MonsterElementSummary extends Record<ElementType, number> {
 }
 
 @Component({
+  standalone: false,
   selector: 'app-elemental-table',
   templateUrl: './elemental-table.component.html',
   styleUrls: ['./elemental-table.component.css', '../ro-calculator.component.css'],
