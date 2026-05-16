@@ -32,5 +32,12 @@ export interface ItemModel {
    * and the upcoming marker disappears automatically.
    */
   releaseDate?: string;
+  /**
+   * When true, this is a synthetic virtual entry that simulates the item
+   * after its TIME[YYYY-MM-DD] bonus has expired. Its id is the negative
+   * of the original item's id. The script has all TIME[] prefixes replaced
+   * with a past date so the time-limited bonuses are never applied.
+   */
+  isExpiredSim?: boolean;
   script: Record<string, any[]>;
 }

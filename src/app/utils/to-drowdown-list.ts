@@ -4,6 +4,8 @@ import { ItemDropdownModel } from '../models/dropdown.model';
 const PREMIUM_MARK = '⭐ ';
 /** Marker prefix added to labels of items not yet released (auto-removed once releaseDate passes). */
 const UNRELEASED_MARK = '🔒 ';
+/** Marker prefix added to virtual "expired simulation" entries (simulates the item after TIME[] expires). */
+const EXPIRED_SIM_MARK = '[Expired] ';
 
 export const toDropdownList = <T extends Record<string, any>>(
   list: T[],
@@ -24,7 +26,8 @@ export const toDropdownList = <T extends Record<string, any>>(
     const baseLabel = a[labelKey];
     const isUnreleased = !!a['releaseDate'] && Date.parse(a['releaseDate']) > now;
     const isPremium = !!a['isPremium'];
-    const prefix = (isUnreleased ? UNRELEASED_MARK : '') + (isPremium ? PREMIUM_MARK : '');
+    const isExpiredSim = !!a['isExpiredSim'];
+    const prefix = (isUnreleased ? UNRELEASED_MARK : '') + (isPremium ? PREMIUM_MARK : '') + (isExpiredSim ? EXPIRED_SIM_MARK : '');
 
     return {
       label: prefix ? `${prefix}${baseLabel}` : baseLabel,

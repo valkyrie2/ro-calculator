@@ -468,6 +468,12 @@ export class RoCalculatorComponent implements OnInit, OnDestroy {
         debounceTime(250),
       )
       .subscribe(() => {
+        if (!this.ensureCalculatorReady()) {
+          itemChanges.clear();
+          this.isCalculatingEvent.next(false);
+          return;
+        }
+
         this.hiddenMap = {
           ammu: !this.calculator.isAllowAmmo(),
           shield: !this.calculator.isAllowShield(),
@@ -531,6 +537,11 @@ export class RoCalculatorComponent implements OnInit, OnDestroy {
         debounceTime(250),
       )
       .subscribe(() => {
+        if (!this.ensureCalculatorReady()) {
+          this.isCalculatingEvent.next(false);
+          return;
+        }
+
         this.calculateToSelectedMonsters(false);
         this.setCacheMonsterIdsForCalc();
         this.isCalculatingEvent.next(false);
@@ -543,6 +554,11 @@ export class RoCalculatorComponent implements OnInit, OnDestroy {
         debounceTime(250),
       )
       .subscribe(() => {
+        if (!this.ensureCalculatorReady()) {
+          this.isCalculatingEvent.next(false);
+          return;
+        }
+
         const model2 = { rawOptionTxts: this.model2?.rawOptionTxts || [] } as ClassModel;
 
         const equipItemIdItemTypeMap2 = new Map<ItemTypeEnum, number>();
@@ -604,6 +620,8 @@ export class RoCalculatorComponent implements OnInit, OnDestroy {
         tap(() => (this.isCalculating = true)),
         debounceTime(300),
         tap(() => {
+          if (!this.ensureCalculatorReady()) return;
+
           this.calculator.setSelectedChances(this.selectedChances).recalcExtraBonus(this.model.selectedAtkSkill);
           this.totalSummary = this.calculator.getTotalSummary();
           this.breakdownData = this.calculator.getBreakdownData();
@@ -696,6 +714,29 @@ export class RoCalculatorComponent implements OnInit, OnDestroy {
         this.lastCanSeeRestricted = canSeeRestricted;
         items = filterPremiumItems(items, canSeeRestricted);
         monsters = filterPremiumItems(monsters, canSeeRestricted);
+
+        // Inject virtual "expired simulation" entries for equipment items whose
+        // TIME[YYYY-MM-DD] limit is still in the future. The virtual copy uses a
+        // negative id (-originalId) and has every TIME[] replaced with a past
+        // date so the calculator skips the time-limited bonus automatically.
+        const TIME_ACTIVE_RE = /TIME\[(\d{4}-\d{2}-\d{2})\]/;
+        const nowMs = Date.now();
+        for (const item of Object.values(items)) {
+          // if (item.itemTypeId === ItemTypeId.ENCHANT) continue;
+          const hasActive = Object.values(item.script ?? {}).flat().some((v) => {
+            const m = TIME_ACTIVE_RE.exec(String(v));
+            return m != null && Date.parse(`${m[1]}T23:59:59`) > nowMs;
+          });
+          if (!hasActive) continue;
+          const expiredScript: Record<string, any[]> = {};
+          for (const [k, vals] of Object.entries(item.script)) {
+            expiredScript[k] = (vals as any[]).map((v) =>
+              String(v).replace(/TIME\[\d{4}-\d{2}-\d{2}\]/g, 'TIME[2000-01-01]'),
+            );
+          }
+          items[-item.id] = { ...item, id: -item.id, isExpiredSim: true, script: expiredScript };
+        }
+
         this.items = items;
         this.monsterDataMap = monsters;
         this.hpSpTable = hpSpTable;
@@ -802,7 +843,7 @@ export class RoCalculatorComponent implements OnInit, OnDestroy {
       { field: 'criMaxDamage', header: 'BasicDPS' },
       { field: 'basicCriRate', header: 'BasicCri%' },
     ];
-    const availableCols = new Map(this.cols.map((a) => [a.field, a]));
+    const availableCols = new Map<string, (typeof this.cols)[number]>(this.cols.map((a) => [a.field, a]));
 
     const cached = this.getCachedBattleColNames()
       .map((col) => availableCols.get(col))
@@ -989,6 +1030,8 @@ export class RoCalculatorComponent implements OnInit, OnDestroy {
   }
 
   private calculate() {
+    if (!this.ensureCalculatorReady()) return;
+
     const hasCustomBonuses = this.customBonuses.length > 0 || this.customItemScript || this.customCardId;
     const hasCustomReplace = this.customReplaceSlot != null;
     const emptyCustom = { rows: [] as CustomBonusRow[], itemScript: null, cardId: null };
@@ -1053,6 +1096,8 @@ export class RoCalculatorComponent implements OnInit, OnDestroy {
   }
 
   private calcCompare() {
+    if (!this.ensureCalculatorReady()) return;
+
     if (this.compareItemNames?.length > 0) {
       const m2 = JSON.parse(JSON.stringify(this.model2));
       const calc2 = this.prepare(this.calculator2, m2, this.selectedChances2);
@@ -1233,6 +1278,8 @@ export class RoCalculatorComponent implements OnInit, OnDestroy {
   }
 
   calculateToSelectedMonsters(needCalcAll = true) {
+    if (!this.ensureCalculatorReady()) return;
+
     const classMap = ['Normal', 'Champion', 'Boss'];
     const selectedMonsterIds = this.selectedMonsterIds || [];
 
@@ -1815,6 +1862,21 @@ export class RoCalculatorComponent implements OnInit, OnDestroy {
     this.isAllowTraitStat = this.selectedCharacter.isAllowTraitStat();
     this.canPromote = !!JobPromotionMapper[this.model.class];
     this.isAllowLeftWeaponByClass = AllowLeftWeaponMapper[this.selectedCharacter.className] || false;
+  }
+
+  private ensureCalculatorReady(): boolean {
+    if (!this.selectedCharacter) {
+      this.setClassInstant();
+      this.setSkillModelArray();
+      this.setClassSkill();
+      this.setClassMinMaxLvl();
+      this.setClassLvl({ currentLvl: this.model.level, currentJob: this.model.jobLevel });
+      this.setJobBonus();
+      this.setAspdPotionList();
+      this.setDefaultSkill(this.model.selectedAtkSkill);
+    }
+
+    return Boolean(this.selectedCharacter && this.items && this.hpSpTable && this.monsterDataMap?.[this.selectedMonster]);
   }
 
   private setClassSkill() {

@@ -12,10 +12,10 @@ export const heroCapeSlot3 = [...ea15, ...ef15, ...em15];
 
 export const heroCapeSlot4 = [
   ...heroCapeSlot3,
-  RuneStr._1, RuneStr._2, RuneStr._3,
-  RuneAgi._1, RuneAgi._2, RuneAgi._3,
-  RuneVit._1, RuneVit._2, RuneVit._3,
-  RuneInt._1, RuneInt._2, RuneInt._3,
-  RuneDex._1, RuneDex._2, RuneDex._3,
-  RuneLuk._1, RuneLuk._2, RuneLuk._3,
+  RuneStr._1,
+  RuneAgi._1,
+  RuneVit._1,
+  RuneInt._1,
+  RuneDex._1,
+  RuneLuk._1,
 ];
