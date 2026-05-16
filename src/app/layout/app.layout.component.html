@@ -11,5 +11,64 @@
   </div>
   <app-config></app-config>
   <app-user-profile></app-user-profile>
+  <p-dialog
+    header="Reset password"
+    [(visible)]="showPasswordResetDialog"
+    [modal]="true"
+    [closable]="false"
+    [draggable]="false"
+    [resizable]="false"
+    [dismissableMask]="false"
+    [style]="{ width: 'min(92vw, 420px)' }"
+  >
+    <div class="flex flex-column gap-3">
+      <p-message *ngIf="resetPasswordError" severity="error" [text]="resetPasswordError" styleClass="w-full"></p-message>
+      <p-message *ngIf="resetPasswordInfo" severity="info" [text]="resetPasswordInfo" styleClass="w-full"></p-message>
+
+      <label class="block">
+        <span class="block mb-2 text-sm text-color-secondary">New password</span>
+        <p-password
+          name="layoutResetPassword"
+          [(ngModel)]="resetPassword"
+          [feedback]="true"
+          [toggleMask]="true"
+          [disabled]="resetPasswordLoading"
+          inputStyleClass="w-full"
+          styleClass="w-full"
+        ></p-password>
+      </label>
+
+      <label class="block">
+        <span class="block mb-2 text-sm text-color-secondary">Confirm new password</span>
+        <p-password
+          name="layoutResetPasswordConfirm"
+          [(ngModel)]="resetPasswordConfirm"
+          [feedback]="false"
+          [toggleMask]="true"
+          [disabled]="resetPasswordLoading"
+          inputStyleClass="w-full"
+          styleClass="w-full"
+        ></p-password>
+      </label>
+    </div>
+
+    <ng-template pTemplate="footer">
+      <button
+        pButton
+        type="button"
+        label="Cancel"
+        class="p-button-text"
+        [disabled]="resetPasswordLoading"
+        (click)="cancelPasswordReset()"
+      ></button>
+      <button
+        pButton
+        type="button"
+        label="Save new password"
+        [loading]="resetPasswordLoading"
+        (click)="submitPasswordReset()"
+      ></button>
+    </ng-template>
+  </p-dialog>
   <div class="layout-mask"></div>
 </div>

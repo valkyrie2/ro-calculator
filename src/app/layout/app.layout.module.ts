@@ -27,6 +27,8 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { TextareaModule } from 'primeng/textarea';
 import { ToastModule } from 'primeng/toast';
 import { TooltipModule } from 'primeng/tooltip';
+import { MessageModule } from 'primeng/message';
+import { PasswordModule } from 'primeng/password';
 import { UserProfileModule } from './pages/user-profile/user-profile.module';
 import { AuthFormModule } from './pages/auth/auth-form.module';
 
@@ -62,6 +64,8 @@ import { AuthFormModule } from './pages/auth/auth-form.module';
     TextareaModule,
     ToastModule,
     TooltipModule,
+    MessageModule,
+    PasswordModule,
     UserProfileModule,
     AuthFormModule,
   ],
