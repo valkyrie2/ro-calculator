@@ -1068,7 +1068,7 @@ export class Calculator {
   private getRefineLevelByItemType(itemType: ItemTypeEnum) {
     for (const _itemType of refinableItemTypes) {
       if (itemType.startsWith(_itemType)) {
-        return this.mapRefine.get(_itemType);
+        return this.mapRefine.get(_itemType) ?? 0;
       }
     }
 

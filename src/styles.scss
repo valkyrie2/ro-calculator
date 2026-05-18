@@ -217,6 +217,41 @@ html.layout-theme-dark,
   width: 100%;
 }
 
+.p-overlay:has(.skill-cascade-panel) {
+  z-index: 1200 !important;
+}
+
+.skill-cascade-panel {
+  position: relative;
+  z-index: 1200;
+  width: min(36rem, calc(100vw - 2rem));
+  max-height: min(24rem, calc(100vh - 2rem));
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.skill-cascade-panel > .p-cascadeselect-list-container {
+  width: 50%;
+  overflow: visible;
+}
+
+.skill-cascade-panel .p-cascadeselect-option {
+  position: relative;
+}
+
+.skill-cascade-panel .p-cascadeselect-option-list {
+  inset-inline-start: 100% !important;
+  inset-inline-end: auto !important;
+  width: 100% !important;
+  min-width: 100% !important;
+  max-height: min(16rem, calc(100vh - 2rem));
+  overflow-y: auto;
+}
+
+.skill-cascade-panel .p-cascadeselect-option-content {
+  min-height: 2.25rem;
+}
+
 .property_Water {
   /* background-color: #7ba7e1; */
   background-color: var(--blue-600) !important;

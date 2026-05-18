@@ -1917,6 +1917,8 @@
                   <span class="p-inputgroup-addon skill_hilight_label">Skill</span>
                   <p-cascadeSelect
                     inputId="skill"
+                    appendTo="body"
+                    panelStyleClass="skill-cascade-panel"
                     [(ngModel)]="model.selectedAtkSkill"
                     [options]="atkSkillCascades"
                     optionValue="value"
