@@ -5,48 +5,81 @@
 -- complementing client-side Zod validation. Apply with `supabase db push`
 -- or paste into the Supabase SQL editor.
 --
--- NOTE: ALTER TABLE ... ADD CONSTRAINT will fail if existing rows violate
--- the constraint. If that happens, clean up offending rows first or use
--- NOT VALID + VALIDATE CONSTRAINT to add without checking existing data.
+-- Existing production rows may contain older names/tags that do not match
+-- these rules. Add constraints as NOT VALID so they protect new writes
+-- without blocking deployment on historical data.
 -- =========================================================================
 
 -- ---- ro_presets --------------------------------------------------------
-alter table public.ro_presets
-  add constraint ro_presets_label_length_chk
-    check (char_length(label) between 1 and 60);
+do $$
+begin
+  begin
+    alter table public.ro_presets
+      add constraint ro_presets_label_length_chk
+        check (char_length(label) between 1 and 60) not valid;
+  exception when duplicate_object then null;
+  end;
 
-alter table public.ro_presets
-  add constraint ro_presets_label_charset_chk
-    check (label ~ '^[a-zA-Z0-9 _\-./()]+$');
+  begin
+    alter table public.ro_presets
+      add constraint ro_presets_label_charset_chk
+        check (label ~ '^[a-zA-Z0-9 _\-./()]+$') not valid;
+  exception when duplicate_object then null;
+  end;
 
-alter table public.ro_presets
-  add constraint ro_presets_model_size_chk
-    check (octet_length(model::text) <= 65536);
+  begin
+    alter table public.ro_presets
+      add constraint ro_presets_model_size_chk
+        check (octet_length(model::text) <= 65536) not valid;
+  exception when duplicate_object then null;
+  end;
 
-alter table public.ro_presets
-  add constraint ro_presets_publish_name_length_chk
-    check (publish_name is null or char_length(publish_name) between 1 and 80);
+  begin
+    alter table public.ro_presets
+      add constraint ro_presets_publish_name_length_chk
+        check (publish_name is null or char_length(publish_name) between 1 and 80) not valid;
+  exception when duplicate_object then null;
+  end;
 
-alter table public.ro_presets
-  add constraint ro_presets_publish_name_charset_chk
-    check (publish_name is null or publish_name ~ '^[\w \-./()]+$');
+  begin
+    alter table public.ro_presets
+      add constraint ro_presets_publish_name_charset_chk
+        check (publish_name is null or publish_name ~ '^[\w \-./()]+$') not valid;
+  exception when duplicate_object then null;
+  end;
 
-alter table public.ro_presets
-  add constraint ro_presets_publisher_name_length_chk
-    check (publisher_name is null or char_length(publisher_name) between 1 and 120);
+  begin
+    alter table public.ro_presets
+      add constraint ro_presets_publisher_name_length_chk
+        check (publisher_name is null or char_length(publisher_name) between 1 and 120) not valid;
+  exception when duplicate_object then null;
+  end;
+end$$;
 
 -- ---- preset_tags -------------------------------------------------------
-alter table public.preset_tags
-  add constraint preset_tags_tag_length_chk
-    check (char_length(tag) between 1 and 24);
+do $$
+begin
+  begin
+    alter table public.preset_tags
+      add constraint preset_tags_tag_length_chk
+        check (char_length(tag) between 1 and 24) not valid;
+  exception when duplicate_object then null;
+  end;
 
-alter table public.preset_tags
-  add constraint preset_tags_tag_charset_chk
-    check (tag ~ '^[a-zA-Z0-9_-]+$');
+  begin
+    alter table public.preset_tags
+      add constraint preset_tags_tag_charset_chk
+        check (tag ~ '^[a-zA-Z0-9_-]+$') not valid;
+  exception when duplicate_object then null;
+  end;
 
-alter table public.preset_tags
-  add constraint preset_tags_label_length_chk
-    check (label is null or char_length(label) between 1 and 80);
+  begin
+    alter table public.preset_tags
+      add constraint preset_tags_label_length_chk
+        check (label is null or char_length(label) between 1 and 80) not valid;
+  exception when duplicate_object then null;
+  end;
+end$$;
 
 -- ---- bug_reports -------------------------------------------------------
 -- Bound user-submitted bug report text to prevent abuse (table created in
@@ -59,7 +92,7 @@ begin
     begin
       alter table public.bug_reports
         add constraint bug_reports_message_size_chk
-          check (octet_length(coalesce(message, '')) <= 16384);
+          check (octet_length(coalesce(description, '')) <= 16384) not valid;
     exception when duplicate_object then null;
     end;
   end if;

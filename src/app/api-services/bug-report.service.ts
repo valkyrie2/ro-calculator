@@ -16,6 +16,9 @@ export interface BugReportRow {
   reporter_id: string | null;
   reporter_name: string | null;
   reporter_email: string | null;
+  admin_reply: string | null;
+  admin_replied_at: string | null;
+  admin_replied_by: string | null;
   created_at: string;
   updated_at: string;
 }
@@ -93,6 +96,20 @@ export class BugReportService {
 
   async updateStatus(id: number, status: BugReportStatus): Promise<void> {
     const { error } = await this.client.from('bug_reports').update({ status }).eq('id', id);
+    if (error) throw new Error(error.message);
+  }
+
+  async updateReply(id: number, reply: string): Promise<void> {
+    const trimmed = reply.trim();
+    const profile = this.authService.getProfile();
+    const { error } = await this.client
+      .from('bug_reports')
+      .update({
+        admin_reply: trimmed || null,
+        admin_replied_at: trimmed ? new Date().toISOString() : null,
+        admin_replied_by: trimmed ? profile?.id ?? null : null,
+      })
+      .eq('id', id);
     if (error) throw new Error(error.message);
   }
 
