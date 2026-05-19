@@ -149,12 +149,12 @@
 }
 
 .calc-summary-panel {
-  font-size: 0.86rem;
-  line-height: 1.08;
+  font-size: 1rem;
+  line-height: normal;
 }
 
 .calc-summary-panel .grid > [class*='col-'] {
-  line-height: 1.08;
+  line-height: normal;
 }
 
 .calc-summary-panel .px-1 {
@@ -163,7 +163,11 @@
 }
 
 .calc-summary-panel .hp-sp-section {
-  line-height: 1.08;
+  line-height: normal;
+}
+
+.calc-summary-panel .exp-bonus-summary {
+  display: none !important;
 }
 
 .battle_row_health {
@@ -603,6 +607,11 @@
   height: 100%;
 }
 :host ::ng-deep .dropdown-joblist .p-dropdown .p-dropdown-label {
+  padding-top: 0.25rem !important;
+  padding-bottom: 0.25rem !important;
+}
+
+:host ::ng-deep .dropdown-joblist .p-select-label {
   padding-top: 0.25rem !important;
   padding-bottom: 0.25rem !important;
 }

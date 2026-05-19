@@ -18,6 +18,19 @@
   flex-shrink: 0;
 }
 
+:host ::ng-deep .router-link .p-tabmenuitem-active .p-menuitem-link,
+:host ::ng-deep .router-link .p-highlight .p-menuitem-link,
+:host ::ng-deep .router-link .p-menuitem-link-active {
+  color: var(--primary-color) !important;
+  border-color: var(--primary-color) !important;
+}
+
+:host ::ng-deep .router-link .p-tabmenuitem-active .p-menuitem-link .p-menuitem-icon,
+:host ::ng-deep .router-link .p-highlight .p-menuitem-link .p-menuitem-icon,
+:host ::ng-deep .router-link .p-menuitem-link-active .p-menuitem-icon {
+  color: var(--primary-color) !important;
+}
+
 :host ::ng-deep .chip-profile .p-chip {
   max-width: 15rem;
   overflow: hidden;

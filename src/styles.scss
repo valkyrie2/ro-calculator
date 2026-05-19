@@ -35,6 +35,12 @@ html.layout-theme-dark,
   --p-form-field-border-radius: var(--border-radius);
   --p-form-field-padding-x: 0.5rem;
   --p-form-field-padding-y: 0.5rem;
+  --p-form-field-sm-font-size: 0.875rem;
+  --p-form-field-sm-padding-x: 0.4375rem;
+  --p-form-field-sm-padding-y: 0.4375rem;
+  --p-form-field-lg-font-size: 1.25rem;
+  --p-form-field-lg-padding-x: 0.625rem;
+  --p-form-field-lg-padding-y: 0.625rem;
   --p-select-background: var(--surface-ground);
   --p-select-border-color: var(--surface-border);
   --p-select-hover-border-color: var(--primary-color);
@@ -50,6 +56,12 @@ html.layout-theme-dark,
   --p-button-border-radius: var(--border-radius);
   --p-button-padding-x: 1rem;
   --p-button-padding-y: 0.5rem;
+  --p-button-sm-font-size: 0.875rem;
+  --p-button-sm-padding-x: 0.875rem;
+  --p-button-sm-padding-y: 0.4375rem;
+  --p-button-lg-font-size: 1.25rem;
+  --p-button-lg-padding-x: 1.25rem;
+  --p-button-lg-padding-y: 0.625rem;
   --p-button-primary-background: var(--primary-color);
   --p-button-primary-hover-background: #6abd6e;
   --p-button-primary-active-background: #54b358;
@@ -69,11 +81,20 @@ html.layout-theme-dark,
   --p-accordion-header-active-color: var(--primary-color-text);
   --p-accordion-header-active-hover-color: var(--primary-color-text);
   --p-accordion-header-border-color: var(--surface-border);
-  --p-accordion-header-padding: 0.35rem 0.75rem;
+  --p-accordion-header-padding: 0.75rem 1rem;
   --p-accordion-content-background: var(--surface-card);
   --p-accordion-content-border-color: var(--surface-border);
   --p-accordion-content-color: var(--text-color);
   --p-accordion-content-padding: 1rem;
+  --p-tag-font-size: 0.75rem;
+  --p-tag-padding: 0.25rem 0.4rem;
+  --p-tag-border-radius: 3px;
+}
+
+.layout-theme-dark .p-component,
+.layout-theme-dark .p-link {
+  font-family: var(--font-family);
+  font-size: 1rem;
 }
 
 .layout-theme-dark .p-select,
@@ -115,7 +136,8 @@ html.layout-theme-dark,
   border-radius: var(--border-radius);
   background: var(--surface-card);
   color: var(--text-color);
-  padding: 0.35rem 0.75rem;
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
   font-weight: 800;
 }
 
@@ -170,6 +192,51 @@ html.layout-theme-dark,
   padding-bottom: 0.5rem;
 }
 
+.layout-theme-dark .p-button.p-button-sm {
+  font-size: 0.875rem;
+  padding: 0.4375rem 0.875rem;
+}
+
+.layout-theme-dark .p-button.p-button-sm .p-button-icon {
+  font-size: 0.875rem;
+}
+
+.layout-theme-dark .p-button.p-button-lg {
+  font-size: 1.25rem;
+  padding: 0.625rem 1.25rem;
+}
+
+.layout-theme-dark .p-button.p-button-lg .p-button-icon {
+  font-size: 1.25rem;
+}
+
+.layout-theme-dark .p-inputtext.p-inputtext-sm,
+.layout-theme-dark .p-inputtext-sm .p-inputtext {
+  font-size: 0.875rem;
+  padding: 0.4375rem;
+}
+
+.layout-theme-dark .p-inputtext.p-inputtext-lg,
+.layout-theme-dark .p-inputtext-lg .p-inputtext {
+  font-size: 1.25rem;
+  padding: 0.625rem;
+}
+
+.layout-theme-dark .p-tag {
+  font-size: 0.75rem;
+  padding: 0.25rem 0.4rem;
+  border-radius: 3px;
+}
+
+.layout-theme-dark .p-tag .p-tag-icon {
+  font-size: 0.75rem;
+}
+
+.layout-theme-dark .p-tag .p-icon {
+  width: 0.75rem;
+  height: 0.75rem;
+}
+
 .p-inputgroup {
   display: flex;
   align-items: stretch;
@@ -200,6 +267,104 @@ html.layout-theme-dark,
 .p-inputgroup > p-cascadeselect > .p-component,
 .p-inputgroup > p-treeselect > .p-component {
   width: 100%;
+}
+
+.layout-theme-dark .p-inputgroup-addon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--surface-card);
+  color: var(--text-color-secondary);
+  border-top: 1px solid var(--surface-border);
+  border-left: 1px solid var(--surface-border);
+  border-right: 0 none;
+  border-bottom: 1px solid var(--surface-border);
+}
+
+.layout-theme-dark .p-inputgroup-addon:last-child {
+  border-right: 1px solid var(--surface-border);
+}
+
+.layout-theme-dark .p-inputgroup > .p-component,
+.layout-theme-dark .p-inputgroup > .p-element,
+.layout-theme-dark .p-inputgroup > p-dropdown,
+.layout-theme-dark .p-inputgroup > p-multiselect,
+.layout-theme-dark .p-inputgroup > p-cascadeselect,
+.layout-theme-dark .p-inputgroup > p-treeselect,
+.layout-theme-dark .p-inputgroup > p-dropdown > .p-component,
+.layout-theme-dark .p-inputgroup > p-multiselect > .p-component,
+.layout-theme-dark .p-inputgroup > p-cascadeselect > .p-component,
+.layout-theme-dark .p-inputgroup > p-treeselect > .p-component,
+.layout-theme-dark .p-inputgroup > .p-inputwrapper > .p-component,
+.layout-theme-dark .p-inputgroup > .p-inputwrapper > .p-component > .p-inputtext,
+.layout-theme-dark .p-inputgroup > .p-float-label > .p-component {
+  border-radius: 0;
+  margin: 0;
+}
+
+.layout-theme-dark .p-inputgroup > .p-component + .p-inputgroup-addon,
+.layout-theme-dark .p-inputgroup > .p-element + .p-inputgroup-addon,
+.layout-theme-dark .p-inputgroup > p-dropdown + .p-inputgroup-addon,
+.layout-theme-dark .p-inputgroup > p-multiselect + .p-inputgroup-addon,
+.layout-theme-dark .p-inputgroup > p-cascadeselect + .p-inputgroup-addon,
+.layout-theme-dark .p-inputgroup > p-treeselect + .p-inputgroup-addon,
+.layout-theme-dark .p-inputgroup > .p-inputwrapper > .p-component > .p-inputtext + .p-inputgroup-addon,
+.layout-theme-dark .p-inputgroup > .p-float-label > .p-component + .p-inputgroup-addon {
+  border-left: 0 none;
+}
+
+.layout-theme-dark .p-inputgroup > .p-component:focus,
+.layout-theme-dark .p-inputgroup > .p-element:focus,
+.layout-theme-dark .p-inputgroup > p-dropdown.p-focus,
+.layout-theme-dark .p-inputgroup > p-multiselect.p-focus,
+.layout-theme-dark .p-inputgroup > p-cascadeselect.p-focus,
+.layout-theme-dark .p-inputgroup > p-treeselect.p-focus,
+.layout-theme-dark .p-inputgroup > .p-inputwrapper > .p-component > .p-inputtext:focus,
+.layout-theme-dark .p-inputgroup > .p-float-label > .p-component:focus {
+  z-index: 1;
+}
+
+.layout-theme-dark .p-inputgroup-addon:first-child,
+.layout-theme-dark .p-inputgroup button:first-child,
+.layout-theme-dark .p-inputgroup input:first-child,
+.layout-theme-dark .p-inputgroup > p-dropdown:first-child,
+.layout-theme-dark .p-inputgroup > p-multiselect:first-child,
+.layout-theme-dark .p-inputgroup > p-cascadeselect:first-child,
+.layout-theme-dark .p-inputgroup > p-treeselect:first-child,
+.layout-theme-dark .p-inputgroup > .p-inputwrapper:first-child > .p-component,
+.layout-theme-dark .p-inputgroup > .p-inputwrapper:first-child > .p-component > .p-inputtext {
+  border-top-left-radius: var(--border-radius);
+  border-bottom-left-radius: var(--border-radius);
+}
+
+.layout-theme-dark .p-inputgroup-addon:last-child,
+.layout-theme-dark .p-inputgroup button:last-child,
+.layout-theme-dark .p-inputgroup input:last-child,
+.layout-theme-dark .p-inputgroup > p-dropdown:last-child,
+.layout-theme-dark .p-inputgroup > p-multiselect:last-child,
+.layout-theme-dark .p-inputgroup > p-cascadeselect:last-child,
+.layout-theme-dark .p-inputgroup > p-treeselect:last-child,
+.layout-theme-dark .p-inputgroup > .p-inputwrapper:last-child > .p-component,
+.layout-theme-dark .p-inputgroup > .p-inputwrapper:last-child > .p-component > .p-inputtext {
+  border-top-right-radius: var(--border-radius);
+  border-bottom-right-radius: var(--border-radius);
+}
+
+.layout-theme-dark .p-fluid .p-inputgroup .p-button {
+  width: auto;
+}
+
+.layout-theme-dark .p-fluid .p-inputgroup .p-button.p-button-icon-only {
+  width: 2.357rem;
+}
+
+.layout-theme-dark .p-inputgroup .p-splitbutton.p-component {
+  border: 0 none;
+  display: flex;
+}
+
+.layout-theme-dark .p-inputgroup .p-splitbutton .p-button {
+  min-height: 2.125rem;
 }
 
 .p-fluid p-dropdown,
