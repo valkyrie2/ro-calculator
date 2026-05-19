@@ -65,6 +65,13 @@
   width: 100%;
 }
 
+:host ::ng-deep .consumable .p-listbox,
+:host ::ng-deep .consumable .p-listbox-list-container {
+  height: auto !important;
+  max-height: none !important;
+  overflow: visible;
+}
+
 :host ::ng-deep .column_list p-listbox .p-listbox-list {
   columns: 2;
   padding: 0;
