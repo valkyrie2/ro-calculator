@@ -1,11 +1,26 @@
 /* You can add global styles to this file, and also import other style files */
 
-$gutter: 1rem; //for primeflex grid system
-@import 'assets/layout/styles/layout/layout.scss';
+.grid {
+  margin-right: -1rem;
+  margin-left: -1rem;
+  margin-top: -1rem;
+}
 
-/* PrimeNG */
-@import '../node_modules/primeflex/primeflex.scss';
-@import '../node_modules/primeicons/primeicons.css';
+.grid > .col,
+.grid > [class*='col'] {
+  padding: 1rem;
+}
+
+.grid-nogutter {
+  margin-right: 0;
+  margin-left: 0;
+  margin-top: 0;
+}
+
+.grid-nogutter > .col,
+.grid-nogutter > [class*='col-'] {
+  padding: 0;
+}
 
 html.layout-theme-dark,
 .layout-wrapper.layout-theme-dark {

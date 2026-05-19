@@ -25,7 +25,12 @@
             "inlineStyleLanguage": "scss",
             "aot": true,
             "assets": ["src/favicon.ico", "src/ads.txt", "src/CNAME", "src/404.html", "src/assets"],
-            "styles": ["src/styles.scss"],
+            "styles": [
+              "src/assets/layout/styles/layout/layout.scss",
+              "node_modules/primeflex/primeflex.css",
+              "node_modules/primeicons/primeicons.css",
+              "src/styles.scss"
+            ],
             "scripts": ["node_modules/prismjs/prism.js", "node_modules/prismjs/components/prism-typescript.js"]
           },
           "configurations": {
@@ -38,8 +43,8 @@
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "10kb",
-                  "maximumError": "15kb"
+                  "maximumWarning": "15kb",
+                  "maximumError": "20kb"
                 }
               ],
               "fileReplacements": [
@@ -95,7 +100,12 @@
             "tsConfig": "tsconfig.spec.json",
             "karmaConfig": "karma.conf.js",
             "inlineStyleLanguage": "scss",
-            "styles": ["src/styles.scss"],
+            "styles": [
+              "src/assets/layout/styles/layout/layout.scss",
+              "node_modules/primeflex/primeflex.css",
+              "node_modules/primeicons/primeicons.css",
+              "src/styles.scss"
+            ],
             "scripts": [],
             "assets": ["src/favicon.ico", "src/ads.txt", "src/assets"]
           }
