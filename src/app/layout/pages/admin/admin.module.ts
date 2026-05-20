@@ -8,6 +8,7 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { DialogModule } from 'primeng/dialog';
 import { DropdownModule } from 'primeng/dropdown';
 import { InputTextModule } from 'primeng/inputtext';
+import { PaginatorModule } from 'primeng/paginator';
 import { TextareaModule } from 'primeng/textarea';
 import { TableModule } from 'primeng/table';
 import { TabViewModule } from 'primeng/tabview';
@@ -32,6 +33,7 @@ import { AdminBugReportsComponent } from './bug-reports/admin-bug-reports.compon
     ConfirmDialogModule,
     DropdownModule,
     InputTextModule,
+    PaginatorModule,
     TextareaModule,
     TableModule,
     ToastModule,

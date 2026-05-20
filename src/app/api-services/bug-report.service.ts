@@ -4,6 +4,7 @@ import { logger } from './logger.service';
 import { SupabaseClientService } from './supabase-client.service';
 
 export type BugReportStatus = 'open' | 'in_progress' | 'resolved' | 'closed';
+export type BugReportType = 'bug' | 'request';
 
 export interface BugReportRow {
   id: number;
@@ -13,19 +14,39 @@ export interface BugReportRow {
   user_agent: string | null;
   image_path: string | null;
   status: BugReportStatus;
+  report_type: BugReportType;
   reporter_id: string | null;
   reporter_name: string | null;
   reporter_email: string | null;
   admin_reply: string | null;
   admin_replied_at: string | null;
   admin_replied_by: string | null;
+  public_reply: string | null;
+  public_replied_at: string | null;
+  public_reply_admin_replied_at: string | null;
   created_at: string;
   updated_at: string;
+}
+
+export interface PublicBugReportRow {
+  id: number;
+  title: string;
+  description: string | null;
+  status: BugReportStatus;
+  report_type: BugReportType;
+  admin_reply: string | null;
+  admin_replied_at: string | null;
+  public_reply: string | null;
+  public_replied_at: string | null;
+  created_at: string;
+  updated_at: string;
+  can_reply: boolean;
 }
 
 export interface SubmitBugReportInput {
   title: string;
   description?: string;
+  reportType?: BugReportType;
   pageUrl?: string;
   image?: File | null;
 }
@@ -61,6 +82,7 @@ export class BugReportService {
     const row = {
       title,
       description: input.description?.trim() || null,
+      report_type: input.reportType ?? 'bug',
       page_url: input.pageUrl ?? (typeof window !== 'undefined' ? window.location.href : null),
       user_agent: typeof navigator !== 'undefined' ? navigator.userAgent : null,
       image_path: imagePath,
@@ -94,8 +116,31 @@ export class BugReportService {
     return (data ?? []) as BugReportRow[];
   }
 
-  async updateStatus(id: number, status: BugReportStatus): Promise<void> {
-    const { error } = await this.client.from('bug_reports').update({ status }).eq('id', id);
+  async listPublicDashboard(): Promise<PublicBugReportRow[]> {
+    const { data, error } = await this.client
+      .from('public_bug_report_dashboard')
+      .select('*')
+      .order('created_at', { ascending: false });
+    if (error) {
+      logger.error({ listPublicBugReportsError: error });
+      throw new Error(error.message);
+    }
+    return (data ?? []) as PublicBugReportRow[];
+  }
+
+  async updateStatus(id: number, status: BugReportStatus, updatedAt = new Date().toISOString()): Promise<string> {
+    const { data, error } = await this.client
+      .from('bug_reports')
+      .update({ status, updated_at: updatedAt })
+      .eq('id', id)
+      .select('updated_at')
+      .single();
+    if (error) throw new Error(error.message);
+    return data.updated_at as string;
+  }
+
+  async updateReportType(id: number, reportType: BugReportType): Promise<void> {
+    const { error } = await this.client.from('bug_reports').update({ report_type: reportType }).eq('id', id);
     if (error) throw new Error(error.message);
   }
 
@@ -108,8 +153,19 @@ export class BugReportService {
         admin_reply: trimmed || null,
         admin_replied_at: trimmed ? new Date().toISOString() : null,
         admin_replied_by: trimmed ? profile?.id ?? null : null,
+        public_reply: null,
+        public_replied_at: null,
+        public_reply_admin_replied_at: null,
       })
       .eq('id', id);
+    if (error) throw new Error(error.message);
+  }
+
+  async replyToAdminComment(id: number, reply: string): Promise<void> {
+    const { error } = await this.client.rpc('reply_to_bug_report_admin_comment', {
+      report_id: id,
+      reply,
+    });
     if (error) throw new Error(error.message);
   }
 

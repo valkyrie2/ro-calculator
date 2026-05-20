@@ -21,6 +21,10 @@ import { AppLayoutComponent } from './layout/app.layout.component';
                 import('./layout/pages/shared-preset/shared-preset.module').then((m) => m.SharedPresetModule),
             },
             {
+              path: 'dashboard',
+              loadChildren: () => import('./layout/pages/dashboard/dashboard.module').then((m) => m.DashboardModule),
+            },
+            {
               path: 'preset-summary',
               loadChildren: () =>
                 import('./layout/pages/preset-summary/preset-summary.module').then((m) => m.PresetSummaryModule),

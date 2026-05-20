@@ -1,0 +1,133 @@
+<p-toast></p-toast>
+
+<div class="dashboard-page">
+  <div class="flex justify-content-between align-items-center mb-3 gap-3">
+    <div>
+      <h3 class="m-0">Report Tracking</h3>
+      <div class="text-color-secondary text-sm">Open, in-progress, and closed bug reports or requests with admin replies.</div>
+    </div>
+    <button pButton type="button" icon="pi pi-refresh" label="Refresh" class="p-button-sm" [loading]="loading" (click)="refresh()"></button>
+  </div>
+
+  <div class="report-board-scroll">
+    <div class="report-board-columns">
+      <section *ngFor="let section of sections" [ngClass]="['report-board-column', 'report-status-' + section.status]">
+        <div class="dashboard-section-header report-column-panel">
+          <div class="report-column-heading flex justify-content-between align-items-center">
+            <div class="flex align-items-center gap-2">
+              <i [class]="section.icon"></i>
+              <span class="font-semibold">{{ section.label }}</span>
+            </div>
+            <span [class]="statusClass(section.status)">{{ rowsByStatus(section.status).length }}</span>
+          </div>
+
+          <div class="report-card-list" [class.report-card-list-loading]="loading">
+            <article
+              *ngFor="let row of pagedRowsByStatus(section.status)"
+              [ngClass]="['report-board-card', 'report-status-' + row.status, 'report-kind-' + row.report_type]"
+              role="button"
+              tabindex="0"
+              (click)="openDetailFromCard(row, $event)"
+              (keydown.enter)="openDetailFromCard(row, $event)"
+              (keydown.space)="openDetailFromCard(row, $event)"
+            >
+              <div class="report-card-topline">
+                <span class="report-id">#{{ row.id }}</span>
+                <span [class]="reportTypeClass(row.report_type)">{{ reportTypeLabel(row.report_type) }}</span>
+              </div>
+
+              <button type="button" class="dashboard-title-button report-card-title" (click)="$event.stopPropagation(); openDetail(row)">{{ row.title }}</button>
+              <div class="report-card-description">{{ row.description || 'No description' }}</div>
+
+              <div class="report-card-meta">
+                <span><i class="pi pi-calendar"></i>{{ row.created_at | date: 'yyyy-MM-dd HH:mm' }}</span>
+                <span *ngIf="row.admin_reply" class="dashboard-badge status-in_progress">Answered</span>
+              </div>
+
+            </article>
+
+            <div *ngIf="!loading && rowsByStatus(section.status).length === 0" class="report-empty-card">
+              No {{ section.label | lowercase }} reports.
+            </div>
+
+            <p-paginator
+              *ngIf="rowsByStatus(section.status).length > reportRowsPerPage"
+              [first]="pageFirst(section.status)"
+              [rows]="reportRowsPerPage"
+              [totalRecords]="rowsByStatus(section.status).length"
+              (onPageChange)="onPageChange(section.status, $event)"
+            ></p-paginator>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>
+
+<p-dialog
+  *ngIf="selected"
+  [header]="'#' + selected.id + ' - ' + selected.title"
+  [draggable]="false"
+  [resizable]="false"
+  [modal]="true"
+  [(visible)]="detailVisible"
+  [dismissableMask]="!savingReply"
+  [closable]="!savingReply"
+  [style]="{ width: 'min(720px, 95vw)' }"
+>
+  <div class="flex flex-column gap-3">
+    <div class="flex flex-wrap gap-2 align-items-center">
+      <span [class]="statusClass(selected.status)">{{ statusLabel(selected.status) }}</span>
+      <span [class]="reportTypeClass(selected.report_type)">{{ reportTypeLabel(selected.report_type) }}</span>
+      <span class="text-color-secondary text-sm">{{ selected.created_at | date: 'yyyy-MM-dd HH:mm' }}</span>
+    </div>
+
+    <div>
+      <div class="font-semibold mb-1">Description</div>
+      <div class="dashboard-message">{{ selected.description || '(none)' }}</div>
+    </div>
+
+    <div>
+      <div class="font-semibold mb-1">Admin Comment</div>
+      <div class="dashboard-message admin-message">{{ selected.admin_reply || 'ยังไม่มีคำตอบจาก admin' }}</div>
+      <small *ngIf="selected.admin_replied_at" class="text-color-secondary">{{ selected.admin_replied_at | date: 'yyyy-MM-dd HH:mm' }}</small>
+    </div>
+
+    <div *ngIf="selected.public_reply">
+      <div class="font-semibold mb-1">Public Reply</div>
+      <div class="dashboard-message public-message">{{ selected.public_reply }}</div>
+      <small class="text-color-secondary">{{ selected.public_replied_at | date: 'yyyy-MM-dd HH:mm' }}</small>
+    </div>
+
+    <div *ngIf="canReply(selected)">
+      <div class="font-semibold mb-1">Reply to admin</div>
+      <textarea
+        pInputTextarea
+        [(ngModel)]="replyText"
+        rows="4"
+        maxlength="4000"
+        class="w-full"
+        placeholder="ตอบกลับได้ 1 ครั้งต่อ comment ของ admin"
+      ></textarea>
+      <small class="block mt-1 text-color-secondary">หลังส่งแล้วจะตอบซ้ำไม่ได้ จนกว่า admin จะตอบหรือแก้ comment ใหม่</small>
+    </div>
+
+    <div *ngIf="!canReply(selected) && selected.admin_reply && !selected.public_reply" class="text-color-secondary text-sm">
+      This admin comment has already been replied to.
+    </div>
+  </div>
+
+  <ng-template pTemplate="footer">
+    <button pButton type="button" class="p-button-text" label="Close" [disabled]="savingReply" (click)="detailVisible = false"></button>
+    <button
+      *ngIf="canReply(selected)"
+      pButton
+      type="button"
+      icon="pi pi-send"
+      label="Send Reply"
+      [loading]="savingReply"
+      [disabled]="savingReply || !replyText.trim()"
+      (click)="submitReply()"
+    ></button>
+  </ng-template>
+</p-dialog>

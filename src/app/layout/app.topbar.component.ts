@@ -25,6 +25,11 @@ export class AppTopBarComponent implements OnInit, OnDestroy {
         exact: true,
       },
     },
+    {
+      label: 'Report Tracking',
+      icon: 'pi pi-fw pi-chart-line',
+      routerLink: ['/dashboard'],
+    },
     // HIDDEN: Shared Presets tab
     // {
     //   label: 'Shared Presets',

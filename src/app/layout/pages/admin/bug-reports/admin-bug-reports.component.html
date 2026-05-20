@@ -1,87 +1,101 @@
-<div class="flex justify-content-between align-items-center mb-3">
-  <h3 class="m-0">Bug Reports</h3>
-  <button pButton type="button" icon="pi pi-refresh" label="Refresh" class="p-button-sm" [loading]="loading" (click)="refresh()"></button>
-</div>
-
-<ng-container *ngFor="let section of statusSections">
-  <div class="bug-report-section-header flex justify-content-between align-items-center p-3 mt-3 mb-2">
-    <div class="flex align-items-center gap-2">
-      <i [class]="section.icon"></i>
-      <div>
-        <div class="font-semibold">{{ section.label }}</div>
-        <div class="text-xs text-color-secondary">{{ section.description }}</div>
-      </div>
-    </div>
-    <span [class]="statusClass(section.value)">{{ rowsByStatus(section.value).length }}</span>
+<div class="admin-bug-board">
+  <div class="flex justify-content-between align-items-center mb-3">
+    <h3 class="m-0">Bug Reports</h3>
+    <button pButton type="button" icon="pi pi-refresh" label="Refresh" class="p-button-sm" [loading]="loading" (click)="refresh()"></button>
   </div>
 
-  <p-table
-    [value]="rowsByStatus(section.value)"
-    [loading]="loading"
-    [paginator]="rowsByStatus(section.value).length > 20"
-    [rows]="20"
-    [rowsPerPageOptions]="[10, 20, 50, 100]"
-    styleClass="p-datatable-striped p-datatable-sm"
-    [tableStyle]="{ 'min-width': '960px' }"
-    dataKey="id"
-  >
-    <ng-template pTemplate="header">
-      <tr>
-        <th style="width: 80px">ID</th>
-        <th style="width: 160px">Created</th>
-        <th>Title</th>
-        <th style="width: 180px">Reporter</th>
-        <th style="width: 70px">Image</th>
-        <th style="width: 160px">Status</th>
-        <th style="width: 110px">Reply</th>
-        <th style="width: 140px"></th>
-      </tr>
-    </ng-template>
-    <ng-template pTemplate="body" let-row>
-      <tr [class.bug-report-row-new]="isNewIssue(row)">
-        <td>{{ row.id }}</td>
-        <td>{{ row.created_at | date: 'yyyy-MM-dd HH:mm' }}</td>
-        <td>
-          <span *ngIf="isNewIssue(row)" class="new-issue-badge mr-2">New</span>
-          <a class="cursor-pointer text-primary" (click)="openDetail(row)">{{ row.title }}</a>
-        </td>
-        <td>
-          <div class="text-sm">{{ row.reporter_name || 'Anonymous' }}</div>
-          <div class="text-xs text-color-secondary">{{ row.reporter_email }}</div>
-        </td>
-        <td>
-          <a *ngIf="imageUrl(row) as url" [href]="url" target="_blank" rel="noreferrer noopener">
-            <img [src]="url" alt="thumb" style="width: 40px; height: 40px; object-fit: cover; border-radius: 4px" />
-          </a>
-        </td>
-        <td>
-          <p-dropdown
-            [options]="statusOptions"
-            optionLabel="label"
-            optionValue="value"
-            [ngModel]="row.status"
-            (onChange)="onStatusChange(row, $event.value)"
-            appendTo="body"
-            [style]="{ width: '100%' }"
-          ></p-dropdown>
-        </td>
-        <td>
-          <span *ngIf="row.admin_reply" class="status-badge status-resolved">Replied</span>
-          <span *ngIf="!row.admin_reply" class="text-xs text-color-secondary">-</span>
-        </td>
-        <td>
-          <button pButton type="button" icon="pi pi-eye" class="p-button-sm p-button-text" (click)="openDetail(row)" pTooltip="View / Reply"></button>
-          <button pButton type="button" icon="pi pi-trash" class="p-button-sm p-button-text p-button-danger" (click)="confirmDelete(row)" pTooltip="Delete"></button>
-        </td>
-      </tr>
-    </ng-template>
-    <ng-template pTemplate="emptymessage">
-      <tr>
-        <td colspan="8" class="text-center p-4 text-color-secondary">No {{ section.label | lowercase }} reports.</td>
-      </tr>
-    </ng-template>
-  </p-table>
-</ng-container>
+  <div class="bug-board-scroll">
+    <div class="bug-board-columns">
+      <section *ngFor="let section of statusSections" [ngClass]="['bug-board-column', 'report-status-' + section.value]">
+        <div class="bug-report-section-header bug-column-panel">
+          <div class="bug-column-heading flex justify-content-between align-items-center">
+            <div class="flex align-items-center gap-2">
+              <i [class]="section.icon"></i>
+              <div>
+                <div class="font-semibold">{{ section.label }}</div>
+                <div class="text-xs text-color-secondary">{{ section.description }}</div>
+              </div>
+            </div>
+            <span [class]="statusClass(section.value)">{{ rowsByStatus(section.value).length }}</span>
+          </div>
+
+          <div class="bug-card-list" [class.bug-card-list-loading]="loading">
+            <article
+              *ngFor="let row of pagedRowsByStatus(section.value)"
+              [ngClass]="['bug-board-card', 'report-status-' + row.status, 'report-kind-' + row.report_type, isNewIssue(row) ? 'bug-report-row-new' : '']"
+              role="button"
+              tabindex="0"
+              (click)="openDetailFromCard(row, $event)"
+              (keydown.enter)="openDetailFromCard(row, $event)"
+              (keydown.space)="openDetailFromCard(row, $event)"
+            >
+              <div class="bug-card-topline">
+                <div class="flex align-items-center gap-2">
+                  <span class="bug-report-id">#{{ row.id }}</span>
+                  <span *ngIf="isNewIssue(row)" class="new-issue-badge">New</span>
+                </div>
+                <div class="bug-card-actions">
+                  <button pButton type="button" icon="pi pi-eye" class="p-button-sm p-button-text" (click)="$event.stopPropagation(); openDetail(row)" pTooltip="View / Reply"></button>
+                  <button pButton type="button" icon="pi pi-trash" class="p-button-sm p-button-text p-button-danger" (click)="$event.stopPropagation(); confirmDelete(row)" pTooltip="Delete"></button>
+                </div>
+              </div>
+
+              <button type="button" class="bug-title-button bug-card-title" (click)="$event.stopPropagation(); openDetail(row)">{{ row.title }}</button>
+
+              <div class="bug-card-meta">
+                <span><i class="pi pi-calendar"></i>{{ row.created_at | date: 'yyyy-MM-dd HH:mm' }}</span>
+                <span *ngIf="row.admin_reply" class="status-badge status-resolved">Replied</span>
+                <span *ngIf="!row.admin_reply" class="text-xs text-color-secondary">No reply</span>
+              </div>
+
+              <div class="bug-card-reporter">
+                <div class="text-sm">{{ row.reporter_name || 'Anonymous' }}</div>
+                <div class="text-xs text-color-secondary">{{ row.reporter_email }}</div>
+              </div>
+
+              <a *ngIf="imageUrl(row) as url" [href]="url" target="_blank" rel="noreferrer noopener" class="bug-card-image-link" (click)="$event.stopPropagation()">
+                <img [src]="url" alt="thumb" class="bug-card-image" />
+              </a>
+
+              <div class="bug-card-controls">
+                <p-dropdown
+                  [options]="reportTypeOptions"
+                  optionLabel="label"
+                  optionValue="value"
+                  [ngModel]="row.report_type"
+                  (onChange)="onReportTypeChange(row, $event.value)"
+                  appendTo="body"
+                  styleClass="w-full"
+                ></p-dropdown>
+                <p-dropdown
+                  [options]="statusOptions"
+                  optionLabel="label"
+                  optionValue="value"
+                  [ngModel]="row.status"
+                  (onChange)="onStatusChange(row, $event.value)"
+                  appendTo="body"
+                  styleClass="w-full"
+                ></p-dropdown>
+              </div>
+            </article>
+
+            <div *ngIf="!loading && rowsByStatus(section.value).length === 0" class="bug-empty-card">
+              No {{ section.label | lowercase }} reports.
+            </div>
+
+            <p-paginator
+              *ngIf="rowsByStatus(section.value).length > bugRowsPerPage"
+              [first]="pageFirst(section.value)"
+              [rows]="bugRowsPerPage"
+              [totalRecords]="rowsByStatus(section.value).length"
+              (onPageChange)="onPageChange(section.value, $event)"
+            ></p-paginator>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>
 
 <p-dialog
   *ngIf="selected"
@@ -97,6 +111,10 @@
     <div>
       <div class="font-semibold">Title</div>
       <div>{{ selected.title }}</div>
+    </div>
+    <div>
+      <div class="font-semibold">Type</div>
+      <span [class]="reportTypeClass(selected.report_type)">{{ reportTypeLabel(selected.report_type) }}</span>
     </div>
     <div>
       <div class="font-semibold">Description</div>
@@ -157,6 +175,11 @@
           (click)="saveReply()"
         ></button>
       </div>
+    </div>
+    <div *ngIf="selected.public_reply">
+      <div class="font-semibold mb-1">Public Reply</div>
+      <div style="white-space: pre-wrap">{{ selected.public_reply }}</div>
+      <small class="text-color-secondary">{{ selected.public_replied_at | date: 'yyyy-MM-dd HH:mm' }}</small>
     </div>
   </div>
 </p-dialog>
