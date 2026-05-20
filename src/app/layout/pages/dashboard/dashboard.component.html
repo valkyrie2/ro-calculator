@@ -18,7 +18,6 @@
               <i [class]="section.icon"></i>
               <span class="font-semibold">{{ section.label }}</span>
             </div>
-            <span [class]="statusClass(section.status)">{{ rowsByStatus(section.status).length }}</span>
           </div>
 
           <div class="report-card-list" [class.report-card-list-loading]="loading">
@@ -37,7 +36,7 @@
               </div>
 
               <button type="button" class="dashboard-title-button report-card-title" (click)="$event.stopPropagation(); openDetail(row)">{{ row.title }}</button>
-              <div class="report-card-description">{{ row.description || 'No description' }}</div>
+              <div *ngIf="row.status !== 'closed'" class="report-card-description">{{ row.description || 'No description' }}</div>
 
               <div class="report-card-meta">
                 <span><i class="pi pi-calendar"></i>{{ row.created_at | date: 'yyyy-MM-dd HH:mm' }}</span>

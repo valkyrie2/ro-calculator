@@ -21,6 +21,21 @@
   padding: 0.85rem;
 }
 
+.report-status-open .report-column-heading {
+  background: linear-gradient(90deg, rgba(var(--primary-color-rgb, 76, 175, 80), 0.18), rgba(var(--primary-color-rgb, 76, 175, 80), 0.045));
+  border-bottom-color: rgba(var(--primary-color-rgb, 76, 175, 80), 0.22);
+}
+
+.report-status-in_progress .report-column-heading {
+  background: linear-gradient(90deg, rgba(59, 130, 246, 0.18), rgba(59, 130, 246, 0.045));
+  border-bottom-color: rgba(59, 130, 246, 0.22);
+}
+
+.report-status-closed .report-column-heading {
+  background: linear-gradient(90deg, rgba(148, 163, 184, 0.15), rgba(148, 163, 184, 0.035));
+  border-bottom-color: rgba(148, 163, 184, 0.2);
+}
+
 .dashboard-title-button {
   appearance: none;
   border: 0;

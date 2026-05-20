@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CdkDragDrop } from '@angular/cdk/drag-drop';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { PaginatorState } from 'primeng/paginator';
 import { BugReportRow, BugReportService, BugReportStatus, BugReportType } from 'src/app/api-services';
@@ -29,6 +30,21 @@ import { logger } from 'src/app/api-services/logger.service';
         padding: 0.85rem;
       }
 
+      .report-status-open .bug-column-heading {
+        background: linear-gradient(90deg, rgba(var(--primary-color-rgb, 76, 175, 80), 0.18), rgba(var(--primary-color-rgb, 76, 175, 80), 0.045));
+        border-bottom-color: rgba(var(--primary-color-rgb, 76, 175, 80), 0.22);
+      }
+
+      .report-status-in_progress .bug-column-heading {
+        background: linear-gradient(90deg, rgba(59, 130, 246, 0.18), rgba(59, 130, 246, 0.045));
+        border-bottom-color: rgba(59, 130, 246, 0.22);
+      }
+
+      .report-status-closed .bug-column-heading {
+        background: linear-gradient(90deg, rgba(148, 163, 184, 0.15), rgba(148, 163, 184, 0.035));
+        border-bottom-color: rgba(148, 163, 184, 0.2);
+      }
+
       .bug-report-row-new {
         background: transparent !important;
       }
@@ -41,8 +57,8 @@ import { logger } from 'src/app/api-services/logger.service';
       .bug-board-columns {
         display: grid;
         gap: 1rem;
-        grid-template-columns: repeat(4, minmax(285px, 1fr));
-        min-width: 1180px;
+        grid-template-columns: repeat(3, minmax(285px, 1fr));
+        min-width: 900px;
       }
 
       .bug-board-column {
@@ -79,6 +95,27 @@ import { logger } from 'src/app/api-services/logger.service';
           transform 0.16s;
       }
 
+      .bug-board-card.cdk-drag-preview {
+        box-shadow: 0 14px 30px rgba(0, 0, 0, 0.35);
+      }
+
+      .bug-board-card.cdk-drag-placeholder {
+        opacity: 0.28;
+      }
+
+      .bug-card-list.cdk-drop-list-dragging {
+        background: rgba(var(--primary-color-rgb, 76, 175, 80), 0.06);
+        border-radius: 0 0 6px 6px;
+      }
+
+      .bug-drag-handle {
+        cursor: grab;
+      }
+
+      .bug-drag-handle:active {
+        cursor: grabbing;
+      }
+
       .bug-board-card:focus-visible {
         outline: 2px solid var(--primary-color);
         outline-offset: 2px;
@@ -96,10 +133,6 @@ import { logger } from 'src/app/api-services/logger.service';
 
       .bug-board-card.report-status-in_progress {
         box-shadow: inset 4px 0 0 rgba(96, 165, 250, 0.58);
-      }
-
-      .bug-board-card.report-status-resolved {
-        box-shadow: inset 4px 0 0 rgba(167, 139, 250, 0.5);
       }
 
       .bug-board-card.report-status-closed {
@@ -168,7 +201,7 @@ import { logger } from 'src/app/api-services/logger.service';
       .bug-card-controls {
         display: grid;
         gap: 0.55rem;
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: 1fr;
         margin-top: 0.75rem;
       }
 
@@ -235,16 +268,16 @@ import { logger } from 'src/app/api-services/logger.service';
         border: 1px solid rgba(59, 130, 246, 0.28);
       }
 
-      .status-resolved {
-        color: #d4c7ff;
-        background: rgba(139, 92, 246, 0.12);
-        border: 1px solid rgba(139, 92, 246, 0.25);
-      }
-
       .status-closed {
         color: var(--text-color-secondary);
         background: rgba(148, 163, 184, 0.14);
         border: 1px solid rgba(148, 163, 184, 0.28);
+      }
+
+      .reply-badge {
+        color: #d4c7ff;
+        background: rgba(139, 92, 246, 0.12);
+        border: 1px solid rgba(139, 92, 246, 0.25);
       }
 
       .type-bug {
@@ -266,17 +299,15 @@ export class AdminBugReportsComponent implements OnInit {
   loading = false;
   readonly bugRowsPerPage = 20;
 
-  readonly firstByStatus: Record<BugReportStatus, number> = {
+  readonly firstByStatus: Partial<Record<BugReportStatus, number>> = {
     open: 0,
     in_progress: 0,
-    resolved: 0,
     closed: 0,
   };
 
   readonly statusOptions: { label: string; value: BugReportStatus }[] = [
     { label: 'Open', value: 'open' },
     { label: 'In Progress', value: 'in_progress' },
-    { label: 'Resolved', value: 'resolved' },
     { label: 'Closed', value: 'closed' },
   ];
 
@@ -293,7 +324,6 @@ export class AdminBugReportsComponent implements OnInit {
   }[] = [
     { label: 'New Issues', value: 'open', icon: 'pi pi-bell', description: 'Fresh reports waiting for first triage' },
     { label: 'In Progress', value: 'in_progress', icon: 'pi pi-wrench', description: 'Reports currently being investigated' },
-    { label: 'Resolved', value: 'resolved', icon: 'pi pi-check-circle', description: 'Fixed or answered reports' },
     { label: 'Closed', value: 'closed', icon: 'pi pi-lock', description: 'Archived reports' },
   ];
 
@@ -315,7 +345,10 @@ export class AdminBugReportsComponent implements OnInit {
   async refresh() {
     this.loading = true;
     try {
-      this.reports = await this.bugReportService.list();
+      this.reports = (await this.bugReportService.list()).map((row) => ({
+        ...row,
+        status: row.status === 'resolved' ? 'closed' : row.status,
+      }));
     } catch (err) {
       logger.error({ listBugReports: err });
       const detail = err instanceof Error ? err.message : 'Failed to load reports.';
@@ -348,6 +381,12 @@ export class AdminBugReportsComponent implements OnInit {
 
   onPageChange(status: BugReportStatus, event: PaginatorState) {
     this.firstByStatus[status] = event.first ?? 0;
+  }
+
+  async onDropStatus(status: BugReportStatus, event: CdkDragDrop<BugReportStatus>) {
+    const row = event.item.data as BugReportRow | undefined;
+    if (!row || row.status === status) return;
+    await this.onStatusChange(row, status);
   }
 
   statusLabel(status: BugReportStatus): string {

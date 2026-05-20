@@ -1,4 +1,5 @@
 import { CommonModule } from '@angular/common';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -24,6 +25,7 @@ import { AdminBugReportsComponent } from './bug-reports/admin-bug-reports.compon
   declarations: [AdminComponent, AdminAddItemComponent, AdminAddMonsterComponent, AdminBugReportsComponent],
   imports: [
     CommonModule,
+    DragDropModule,
     HttpClientModule,
     FormsModule,
     AdminRoutingModule,
