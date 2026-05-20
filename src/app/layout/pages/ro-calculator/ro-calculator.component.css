@@ -173,10 +173,6 @@
   line-height: normal;
 }
 
-.calc-summary-panel .exp-bonus-summary {
-  display: none !important;
-}
-
 .battle_row_health {
   color: var(--red-300);
   /* background-color: var(--surface-0); */

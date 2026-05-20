@@ -137,6 +137,28 @@ export interface AspdInput {
 
 export abstract class CharacterBase {
   private allClass = 'all';
+  private readonly fullThrottleSkill: ActiveSkillModel = {
+    label: 'Full Throttle',
+    name: 'Full Throttle',
+    inputType: 'dropdown',
+    dropdown: [
+      { label: '-', value: 0, isUse: false },
+      { label: 'Lv 5', value: 5, skillLv: 5, isUse: true },
+    ],
+  };
+  private readonly fullThrottlePassiveSkill: PassiveSkillModel = {
+    label: 'Full Throttle',
+    name: 'Full Throttle',
+    inputType: 'dropdown',
+    dropdown: [
+      { label: '-', value: 0, isUse: false },
+      { label: 'Lv 1', value: 1, isUse: true },
+      { label: 'Lv 2', value: 2, isUse: true },
+      { label: 'Lv 3', value: 3, isUse: true },
+      { label: 'Lv 4', value: 4, isUse: true },
+      { label: 'Lv 5', value: 5, isUse: true },
+    ],
+  };
 
   protected abstract readonly CLASS_NAME: ClassName;
   protected minMaxLevel: [number, number] = [99, 200];
@@ -350,7 +372,8 @@ export abstract class CharacterBase {
   }
 
   get passiveSkills() {
-    const sortedSkill = this._passiveSkillList.map((a) => {
+    const passiveSkillList = this.getSkillListWithFullThrottle(this._passiveSkillList, this.fullThrottlePassiveSkill);
+    const sortedSkill = passiveSkillList.map((a) => {
       if (a.inputType === 'selectButton') return a;
 
       const sortedDropdown = a.dropdown.sort(sortSkill);
@@ -369,7 +392,8 @@ export abstract class CharacterBase {
   }
 
   get activeSkills() {
-    const sortedSkill = this._activeSkillList.map((a) => {
+    const activeSkillList = this.getSkillListWithFullThrottle(this._activeSkillList, this.fullThrottleSkill);
+    const sortedSkill = activeSkillList.map((a) => {
       if (a.inputType === 'selectButton') return a;
       const sortedDropdown = a.dropdown.sort(sortSkill);
 
@@ -384,6 +408,12 @@ export abstract class CharacterBase {
     }
 
     return sortedSkill;
+  }
+
+  private getSkillListWithFullThrottle<T extends ActiveSkillModel>(skills: T[], fullThrottleSkill: T): T[] {
+    if (!this.classNames.includes(ClassName.Only_3rd) || skills.some((skill) => skill.name === 'Full Throttle')) return skills;
+
+    return [...skills, fullThrottleSkill];
   }
 
   get initialStatPoint() {
@@ -435,7 +465,7 @@ export abstract class CharacterBase {
     this.activeBonus.clear();
     this.passiveBonus.clear();
 
-    this._activeSkillList.forEach((skill, index) => {
+    this.activeSkills.forEach((skill, index) => {
       const { bonus, isUse, skillLv, value } = skill.dropdown.find((x) => x.value === this.activeSkillIds[index]) ?? {};
       if (!isUse) return;
 
@@ -452,7 +482,7 @@ export abstract class CharacterBase {
       }
     });
 
-    this._passiveSkillList.forEach((skill, index) => {
+    this.passiveSkills.forEach((skill, index) => {
       const { bonus, isUse, value, skillLv } = (skill.dropdown as any[]).find((x) => x.value === this.passiveSkillIds[index]) ?? {};
       if (!isUse) return;
 

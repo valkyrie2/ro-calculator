@@ -214,6 +214,16 @@ export class AppTopBarComponent implements OnInit, OnDestroy {
 
   updates: { v: string; date: string; logs: string[]; }[] = [
     {
+      v: 'Extra v60.5',
+      date: '20-05-2569',
+      logs: [
+        'เพิ่มไอเทมใหม่: Ring of Liberation (Left) [1] และ Ring of Liberation (Right) [1]',
+        'เพิ่มตัวเลือกสกิล Full Throttle สำหรับอาชีพ Class 3 เพื่อให้ Bonus ของ Ring of Liberation คำนวณได้',
+        'Sessrumnir Commemoration Ring [1]: ตั้งค่า Bonus ช่วงกิจกรรมให้หมดอายุวันที่ 15-07-2569',
+        'เพิ่ม Report Tracking ไว้ track issues ที่เปิดได้'
+      ],
+    },
+    {
       v: 'Extra v60.4',
       date: '17-05-2569',
       logs: [

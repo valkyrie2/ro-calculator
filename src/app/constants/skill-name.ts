@@ -103,6 +103,7 @@ const ACTIVE_PASSIVE_SKILL_NAMES = [
   'Foresight',
   'Frash Shrimp',
   'Freezing Spell',
+  'Full Throttle',
   'Frost Weapon',
   'Fusion of Sun, Moon and Star',
   'Geffenia Nocturne',

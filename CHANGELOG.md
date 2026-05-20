@@ -1,5 +1,11 @@
 # Changelog
 
+## Extra v60.5 (20-05-2569)
+
+- Added items: Ring of Liberation (Left) [1] (490633) and Ring of Liberation (Right) [1] (490641)
+- Added Full Throttle learned/active skill controls for 3rd class jobs so Ring of Liberation bonuses can be calculated
+- Set Sessrumnir Commemoration Ring [1] event bonuses to expire on 15-07-2569
+
 ## Extra v60.3 (06-05-2569)
 
 - Added item: All Above Time(Supreme)-LT (420841) — Global Cooldown -10%, melee/range/magic element all +10%; shard set bonuses with Strength/Agility/Intelligence/Vitality/Dexterity/Fatality Shards
