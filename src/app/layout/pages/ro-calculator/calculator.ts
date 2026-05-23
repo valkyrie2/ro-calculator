@@ -230,6 +230,7 @@ export class Calculator {
   private _class: CharacterBase;
   private dmgCalculator = new DamageCalculator();
   private propertyBasicAtk = ElementType.Neutral;
+  private propertyBasicAtkNoAmmo = ElementType.Neutral;
   private propertyWindmind: ElementType;
   private baseEquipmentStat: Record<string, number> = {};
   private finalMultipliers = [] as number[];
@@ -517,6 +518,8 @@ export class Calculator {
     const ammo = this.equipItem.get(ItemTypeEnum.ammo)?.propertyAtk;
 
     this.propertyBasicAtk = windmind ?? buff ?? ammo ?? weaponEle ?? ElementType.Neutral;
+    // Variant used by skills that ignore the ammo (cannonball) element (e.g. Meister non-Arm-Cannon skills).
+    this.propertyBasicAtkNoAmmo = windmind ?? buff ?? weaponEle ?? ElementType.Neutral;
   }
 
   calcAllAtk() {
@@ -539,7 +542,8 @@ export class Calculator {
         aspdPotion: this.aspdPotion,
         leftWeaponData: this.leftWeaponData,
       })
-      .setAmmoPropertyAtk(this.equipItem.get(ItemTypeEnum.ammo)?.propertyAtk);
+      .setAmmoPropertyAtk(this.equipItem.get(ItemTypeEnum.ammo)?.propertyAtk)
+      .setPropertyAtkNoAmmo(this.propertyBasicAtkNoAmmo);
 
     return this;
   }
@@ -1093,6 +1097,7 @@ export class Calculator {
     this.totalEquipStatus = { ...this.allStatus, matk: 0 - baseMatk, perfectHit: this.DEFAULT_PERFECT_HIT };
     this.equipStatus = {} as any;
     this.propertyBasicAtk = ElementType.Neutral;
+    this.propertyBasicAtkNoAmmo = ElementType.Neutral;
     this.propertyWindmind = undefined;
     this._chanceList = [];
     this.equipCombo.clear();

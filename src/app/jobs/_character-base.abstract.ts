@@ -83,6 +83,12 @@ export interface AtkSkillModel {
   isHit100?: boolean;
   treatedAsSkillNameFn?: (skillValue: string) => string;
   isExcludeCannanball?: boolean;
+  /**
+   * When true, the skill's element is resolved from the weapon (and elemental scroll/buffs) only,
+   * ignoring the ammo (cannonball) element. Use for skills that consume cannonballs for ATK but
+   * whose element should follow the weapon's element (e.g. Meister: Spark Blaster, Triple Laser).
+   */
+  isElementFromWeapon?: boolean;
   isSudoElement?: boolean;
   verifyItemFn?: ((parmas: AtkSkillFormulaInput) => string);
   currentHpFn?: (maxHp: number) => number;

@@ -51,6 +51,7 @@ export class DamageCalculator {
   private leftWeaponData: Weapon;
   private aspdPotion: number;
   private ammoPropertyAtk: ElementType;
+  private propertyAtkNoAmmo: ElementType;
 
   private zeroSkillDmg: SkillDamageSummaryModel = {
     skillDamageLabel: '',
@@ -170,6 +171,12 @@ export class DamageCalculator {
 
   setAmmoPropertyAtk(p: ElementType) {
     this.ammoPropertyAtk = p;
+
+    return this;
+  }
+
+  setPropertyAtkNoAmmo(p: ElementType) {
+    this.propertyAtkNoAmmo = p;
 
     return this;
   }
@@ -1362,10 +1369,16 @@ export class DamageCalculator {
     const _NoStackbaseSkillDamage = formula({ ...formulaParams, stack: 0 }) + this.getFlatDmg(skillName);
     const noStackNaseSkillDamage = floor(_NoStackbaseSkillDamage);
 
+    // Skills flagged with `isElementFromWeapon` follow the weapon's element (elemental scroll/buffs)
+    // and must ignore the ammo (cannonball) element.
+    const effectivePropertyAtk = skillData.isElementFromWeapon && this.propertyAtkNoAmmo != null
+      ? this.propertyAtkNoAmmo
+      : propertyAtk;
+
     const params = {
       baseSkillDamage,
       skillData,
-      weaponPropertyAtk: typeof getElement === 'function' && !!getElement ? getElement(skillValue) : propertyAtk,
+      weaponPropertyAtk: typeof getElement === 'function' && !!getElement ? getElement(skillValue) : effectivePropertyAtk,
       sizePenalty,
       formulaParams,
     };
@@ -1390,7 +1403,7 @@ export class DamageCalculator {
         });
       }
     } else if (customFormula && typeof customFormula === 'function') {
-      const skillPropertyAtk = typeof getElement === 'function' ? getElement(skillValue) : skillData.element || propertyAtk;
+      const skillPropertyAtk = typeof getElement === 'function' ? getElement(skillValue) : skillData.element || effectivePropertyAtk;
       const propertyMultiplier = this.getPropertyMultiplier(skillPropertyAtk);
 
       const d = customFormula({
@@ -1446,7 +1459,7 @@ export class DamageCalculator {
       const params2 = {
         baseSkillDamage: baseSkillDamage2,
         skillData: { ...skillData, ...part2 },
-        weaponPropertyAtk: propertyAtk,
+        weaponPropertyAtk: effectivePropertyAtk,
         sizePenalty,
         skillLevel,
       };

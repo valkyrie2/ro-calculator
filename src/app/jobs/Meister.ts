@@ -168,6 +168,7 @@ export class Meister extends Mechanic {
       name: 'Axe Stomp',
       label: 'Axe Stomp Lv5',
       value: 'Axe Stomp==5',
+      isElementFromWeapon: true,
       acd: () => {
         if (this.activeSkillLv('Skill Version') === 1) return 0.7; // KRO
 
@@ -212,6 +213,7 @@ export class Meister extends Mechanic {
       name: 'Spark Blaster',
       label: 'Spark Blaster Lv10',
       value: 'Spark Blaster==10',
+      isElementFromWeapon: true,
       acd: 0.25,
       fct: 0.5,
       vct: 1.5,
@@ -234,6 +236,7 @@ export class Meister extends Mechanic {
       name: 'Triple Laser',
       label: 'Triple Laser Lv5',
       value: 'Triple Laser==5',
+      isElementFromWeapon: true,
       acd: 0.25,
       fct: 0.5,
       vct: 1,
@@ -257,6 +260,7 @@ export class Meister extends Mechanic {
       name: 'Mighty Smash',
       label: 'Mighty Smash Lv10',
       value: 'Mighty Smash==10',
+      isElementFromWeapon: true,
       acd: () => {
         if (this.activeSkillLv('Skill Version') === 1)
           return 0.7; // KRO
@@ -298,6 +302,7 @@ export class Meister extends Mechanic {
       name: 'Mayhemic Thorns',
       label: 'Mayhemic Thorns Lv10',
       value: 'Mayhemic Thorns==10',
+      isElementFromWeapon: true,
       acd: 0.25,
       fct: 0.5,
       vct: 1.5,
