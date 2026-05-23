@@ -458,6 +458,118 @@
 
   </div>
 
+  <!-- Compare Monsters -->
+  <div class="mt-4">
+    <p-fieldset legend="Compare Monsters (3-4)" [toggleable]="true">
+      <div class="grid grid-nogutter align-items-center mb-2 gap-2">
+        <div class="col">
+          <p-multiSelect
+            [options]="expGroupMonsterList"
+            [group]="true"
+            optionLabel="label"
+            optionValue="value"
+            [filter]="true"
+            filterBy="label,searchVal"
+            scrollHeight="400px"
+            [(ngModel)]="compareMonsterIds"
+            (onChange)="onCompareChange()"
+            placeholder="Select 2-4 monsters to compare..."
+            display="chip"
+            [selectionLimit]="4"
+            [style]="{ width: '100%' }"
+          >
+            <ng-template let-group pTemplate="group">
+              <div class="flex align-items-center font-bold dropdown_monster_group_label">
+                <span>{{ group.label }}</span>
+              </div>
+            </ng-template>
+            <ng-template let-item pTemplate="item">
+              <div class="flex align-items-center justify-content-between" style="width: 100%;">
+                <span>{{ item.label }} <span class="text-color-secondary text-xs">Lv.{{ item.level }}</span></span>
+                <p-tag *ngIf="item.isSpotlight || item.isVirtualSpotlight" severity="warning" value="⭐" styleClass="text-xs"></p-tag>
+              </div>
+            </ng-template>
+          </p-multiSelect>
+        </div>
+        <div class="flex-none">
+          <button
+            pButton
+            type="button"
+            icon="pi pi-times"
+            label="Clear"
+            class="p-button-text p-button-sm"
+            [disabled]="!compareMonsterIds.length"
+            (click)="clearCompare()"
+          ></button>
+        </div>
+      </div>
+
+      <div *ngIf="compareResults.length > 0; else noCompare" class="compare-grid">
+        <div
+          *ngFor="let row of compareResults; let i = index"
+          class="compare-card"
+          [ngClass]="row.diffClass"
+        >
+          <div class="compare-rank" *ngIf="i === 0">
+            <i class="pi pi-trophy text-yellow-300"></i>
+            <span>Best</span>
+          </div>
+          <div class="compare-header">
+            <img
+              src="https://static.divine-pride.net/images/mobs/png/{{ row.monsterId }}.png"
+              class="monster-thumb"
+              alt=""
+              onerror="this.style.display='none'"
+            />
+            <div class="compare-name-wrap">
+              <div class="font-semibold flex align-items-center gap-1">
+                {{ row.name }}
+                <p-tag *ngIf="row.isSpotlight" severity="warning" value="⭐" styleClass="text-xs"></p-tag>
+              </div>
+              <div class="text-xs text-color-secondary">
+                Lv.{{ row.level }} · Diff {{ row.diff > 0 ? '+' : '' }}{{ row.diff }} ({{ (row.levelDiffMod * 100).toFixed(0) }}%)
+              </div>
+            </div>
+          </div>
+
+          <div class="compare-row">
+            <span class="compare-label">Base EXP</span>
+            <span class="compare-value text-cyan-300">{{ row.finalBaseExp | number }}</span>
+          </div>
+          <div class="compare-row">
+            <span class="compare-label">Job EXP</span>
+            <span class="compare-value text-green-400">{{ row.finalJobExp | number }}</span>
+          </div>
+          <div class="compare-row compare-row-raw">
+            <span class="compare-label text-xs">Raw Base</span>
+            <span class="compare-value text-xs text-color-secondary">{{ row.rawBaseExp | number }}</span>
+          </div>
+          <div class="compare-row compare-row-raw">
+            <span class="compare-label text-xs">Raw Job</span>
+            <span class="compare-value text-xs text-color-secondary">{{ row.rawJobExp | number }}</span>
+          </div>
+
+          <!-- Bar relative to best -->
+          <div class="compare-bar-wrap" *ngIf="compareResults[0].finalBaseExp > 0">
+            <div
+              class="compare-bar"
+              [style.width.%]="(row.finalBaseExp / compareResults[0].finalBaseExp) * 100"
+            ></div>
+            <span class="compare-bar-label">
+              {{ ((row.finalBaseExp / compareResults[0].finalBaseExp) * 100).toFixed(0) }}%
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <ng-template #noCompare>
+        <div class="text-center text-color-secondary py-3">
+          <i class="pi pi-list mr-2"></i>Pick 2-4 monsters above to compare side-by-side using your current modifiers.
+        </div>
+      </ng-template>
+    </p-fieldset>
+  </div>
+
   <!-- Level Difference Reference Table -->
   <div class="mt-4">
     <p-fieldset legend="Level Difference Reference" [toggleable]="true" [collapsed]="true">

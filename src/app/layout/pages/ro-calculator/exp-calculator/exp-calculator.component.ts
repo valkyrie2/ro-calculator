@@ -63,6 +63,20 @@ interface ExpResult {
   totalJobMod: number;
 }
 
+interface CompareRow {
+  monsterId: number;
+  name: string;
+  level: number;
+  isSpotlight: boolean;
+  diff: number;
+  diffClass: string;
+  levelDiffMod: number;
+  rawBaseExp: number;
+  rawJobExp: number;
+  finalBaseExp: number;
+  finalJobExp: number;
+}
+
 @Component({
   standalone: false,
   selector: 'app-exp-calculator',
@@ -98,6 +112,11 @@ export class ExpCalculatorComponent implements OnChanges {
   // --- Results ---
   result: ExpResult | null = null;
 
+  // --- Compare ---
+  /** Selected monster ids to compare side-by-side (3-4 recommended) */
+  compareMonsterIds: number[] = [];
+  compareResults: CompareRow[] = [];
+
   // --- Spotlight ---
   activeSpotlightEvent: SpotlightEvent | null = null;
   spotlightMonsterData: SpotlightMonster | null = null;
@@ -131,6 +150,7 @@ export class ExpCalculatorComponent implements OnChanges {
       // sync override field when parent changes and no custom override set
     }
     this.calculate();
+    this.calculateCompare();
   }
 
   get selectedMonster(): MonsterModel | null {
@@ -174,26 +194,40 @@ export class ExpCalculatorComponent implements OnChanges {
 
   onModifierChange(): void {
     this.calculate();
+    this.calculateCompare();
+  }
+
+  onCompareChange(): void {
+    this.calculateCompare();
+  }
+
+  clearCompare(): void {
+    this.compareMonsterIds = [];
+    this.compareResults = [];
   }
 
   onOverrideEquipBonusChange(value: number): void {
     this.overrideEquipBonus = value;
     this.calculate();
+    this.calculateCompare();
   }
 
   resetEquipBonus(): void {
     this.overrideEquipBonus = null;
     this.calculate();
+    this.calculateCompare();
   }
 
   onOverridePlayerLevelChange(value: number): void {
     this.overridePlayerLevel = value;
     this.calculate();
+    this.calculateCompare();
   }
 
   resetPlayerLevel(): void {
     this.overridePlayerLevel = null;
     this.calculate();
+    this.calculateCompare();
   }
 
   isDailyDungeonGroup(label: string): boolean {
@@ -395,18 +429,24 @@ export class ExpCalculatorComponent implements OnChanges {
     }
   }
 
-  private calculate(): void {
-    const monster = this.selectedMonster;
-    if (!monster) {
-      this.result = null;
-      return;
+  /** Resolve a monster by id, falling back to a virtual spotlight monster if not in DB. */
+  private resolveMonster(monsterId: number): { monster: MonsterModel; spotlight: SpotlightMonster | null } | null {
+    if (!monsterId) return null;
+    const spotlight = getSpotlightMonster(monsterId);
+    const dbMonster = this.monsterDataMap[monsterId];
+    if (dbMonster) return { monster: dbMonster, spotlight };
+    if (spotlight?.monsterLevel != null) {
+      return { monster: this.makeVirtualMonster(spotlight), spotlight };
     }
+    return null;
+  }
 
-    // Use spotlight event EXP if monster is in active spotlight
-    const rawBaseExp = this.spotlightMonsterData?.eventBaseExp ?? monster.stats.baseExperience;
-    const rawJobExp = this.spotlightMonsterData?.eventJobExp ?? monster.stats.jobExperience;
+  private computeExp(monster: MonsterModel, spotlight: SpotlightMonster | null): ExpResult {
+    const rawBaseExp = spotlight?.eventBaseExp ?? monster.stats.baseExperience;
+    const rawJobExp = spotlight?.eventJobExp ?? monster.stats.jobExperience;
 
-    const diff = this.levelDiff;
+    const monsterLevel = monster.stats?.level || 0;
+    const diff = monsterLevel - (this.effectivePlayerLevel || 1);
     const levelDiffMod = getLevelDiffMod(diff);
 
     const equipModPercent = this.effectiveEquipBonus;
@@ -435,7 +475,6 @@ export class ExpCalculatorComponent implements OnChanges {
     const factorA = 1 + equipMod + mrkimMod + malangCanMod;
     const factorB = 1 + eventMod + vipMod + silvervineMod + satanMorrocMod;
 
-    // Formula: Orig × LvDiff × [(1 + Equip + MrKim + MalangCan) × (1 + Event + VIP + Silvervine + SatanMorroc) + Manual + Kafra] × Tap
     const totalBaseMod = factorA * factorB + manualMod + kafraMod;
     const jobManualMod = this.isJobManual ? (this.isVip ? 0.75 : 0.50) : 0;
     const totalJobMod = factorA * factorB + manualMod + kafraMod + jobManualMod;
@@ -443,7 +482,7 @@ export class ExpCalculatorComponent implements OnChanges {
     const finalBaseExp = Math.floor(rawBaseExp * levelDiffMod * totalBaseMod * this.tapMod);
     const finalJobExp = Math.floor(rawJobExp * levelDiffMod * totalJobMod * this.tapMod);
 
-    this.result = {
+    return {
       rawBaseExp,
       rawJobExp,
       finalBaseExp,
@@ -461,5 +500,42 @@ export class ExpCalculatorComponent implements OnChanges {
       totalBaseMod,
       totalJobMod,
     };
+  }
+
+  private calculateCompare(): void {
+    const rows: CompareRow[] = [];
+    for (const id of this.compareMonsterIds) {
+      const resolved = this.resolveMonster(id);
+      if (!resolved) continue;
+      const exp = this.computeExp(resolved.monster, resolved.spotlight);
+      const monsterLevel = resolved.monster.stats?.level || 0;
+      const diff = monsterLevel - (this.effectivePlayerLevel || 1);
+      rows.push({
+        monsterId: id,
+        name: resolved.monster.name,
+        level: monsterLevel,
+        isSpotlight: !!resolved.spotlight,
+        diff,
+        diffClass: this.getLevelDiffClass(diff),
+        finalBaseExp: exp.finalBaseExp,
+        finalJobExp: exp.finalJobExp,
+        rawBaseExp: exp.rawBaseExp,
+        rawJobExp: exp.rawJobExp,
+        levelDiffMod: exp.levelDiffMod,
+      });
+    }
+    // Sort by final Base EXP desc so the best comes first
+    rows.sort((a, b) => b.finalBaseExp - a.finalBaseExp);
+    this.compareResults = rows;
+  }
+
+  private calculate(): void {
+    const monster = this.selectedMonster;
+    if (!monster) {
+      this.result = null;
+      return;
+    }
+
+    this.result = this.computeExp(monster, this.spotlightMonsterData);
   }
 }

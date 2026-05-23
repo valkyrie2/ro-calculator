@@ -15,9 +15,6 @@ export class BannerComponent implements OnInit {
 
   ngOnInit(): void {
     this.banner = this.pickBanner();
-    if (this.banner) {
-      this.analytics.track('banner-impression', { id: this.banner.id });
-    }
   }
 
   onClick(): void {
