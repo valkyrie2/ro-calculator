@@ -1,5 +1,9 @@
 # Changelog
 
+## Extra v60.6 (24-05-2569)
+
+- Added item: Costume Poring Noodle Head (400319) with event EXP +20% bonus expiring on 03-06-2569
+
 ## Extra v60.5 (20-05-2569)
 
 - Added items: Ring of Liberation (Left) [1] (490633) and Ring of Liberation (Right) [1] (490641)

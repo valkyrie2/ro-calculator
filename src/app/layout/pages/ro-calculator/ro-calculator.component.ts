@@ -1679,6 +1679,8 @@ export class RoCalculatorComponent implements OnInit, OnDestroy {
       header: 'Preset Management',
       baseZIndex: 10000,
       showHeader: true,
+      closable: true,
+      modal: true,
       data: {
         items: this.items,
         presets: this.getPresetList(),

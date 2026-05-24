@@ -214,6 +214,13 @@ export class AppTopBarComponent implements OnInit, OnDestroy {
 
   updates: { v: string; date: string; logs: string[]; }[] = [
     {
+      v: 'Extra v60.6',
+      date: '24-05-2569',
+      logs: [
+        'เพิ่มไอเทมใหม่: Costume Poring Noodle Head (400319) ติด EXP +20% (กิจกรรมหมดอายุวันที่ 03-06-2569)',
+      ],
+    },
+    {
       v: 'Extra v60.5',
       date: '20-05-2569',
       logs: [

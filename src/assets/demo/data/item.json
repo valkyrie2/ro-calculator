@@ -111798,6 +111798,28 @@
       "Ignition Break": ["EQUIP[Beam Claymore-OSAD]REFINE[weapon==2]---7"]
     }
   },
+  "400319": {
+    "id": 400319,
+    "aegisName": "C_Poringnoodle_Head",
+    "name": "Costume Poring Noodle Head",
+    "unidName": "Cap",
+    "resName": "C_Poringnoodle_Head",
+    "description": "หมวกที่ทำมาเพื่อให้สามารถใส่ Poring อันแสนน่ารักลงไปในชามก๋วยเตี๋ยวที่กินหมดแล้วได้\nเนื่องจากเป็นของเลียนแบบจึงไม่สามารถรับประทานได้\n\n[ความสามารถพิเศษจำกัดระยะเวลา]\nEXP + 20%\n(ความสามารถพิเศษจะถูกลบออกในวันที่ 3 มิถุนายน 2569)\nประเภท : ^777777Costume^000000 พลังป้องกัน : ^7777770^000000\nตำแหน่ง : ^777777Upper^000000 น้ำหนัก : ^7777770^000000\nเลเวลที่ต้องการ : ^7777771^000000\nอาชีพที่ใส่ได้ : ^777777ทุกอาชีพ^000000",
+    "slots": 0,
+    "itemTypeId": 9,
+    "itemSubTypeId": 519,
+    "itemLevel": null,
+    "attack": null,
+    "defense": 0,
+    "weight": 0,
+    "requiredLevel": 1,
+    "location": null,
+    "compositionPos": null,
+    "usableClass": ["all"],
+    "script": {
+      "expBonus": ["TIME[2026-06-03]20"]
+    }
+  },
   "400374": {
     "id": 400374,
     "aegisName": "GoodnEvil_Circlet_DK",
@@ -175177,6 +175199,7 @@
     "canGrade": false,
     "script": {
       "atk": ["2---15"],
+      "expBonus": ["3---3"],
       "cri": ["7===10"],
       "perfectHit": ["7===10"],
       "melee": ["9===15"],
@@ -175207,6 +175230,7 @@
     "canGrade": false,
     "script": {
       "matk": ["2---15"],
+      "expBonus": ["3---3"],
       "vct": ["7===15"],
       "fct": ["7===0.2", "13===0.3"],
       "m_my_element_all": ["9===20"],
@@ -175871,7 +175895,8 @@
     "canGrade": false,
     "script": {
       "allStatus": ["2---1"],
-      "melee": ["10===5"]
+      "melee": ["10===5"],
+      "expBonus": ["10===5"]
     }
   },
   "314890": {
@@ -175896,7 +175921,8 @@
     "canGrade": false,
     "script": {
       "allStatus": ["2---1"],
-      "range": ["10===5"]
+      "range": ["10===5"],
+      "expBonus": ["10===5"]
     }
   },
   "314891": {
@@ -175921,7 +175947,8 @@
     "canGrade": false,
     "script": {
       "allStatus": ["2---1"],
-      "matkPercent": ["10===5"]
+      "matkPercent": ["10===5"],
+      "expBonus": ["10===5"]
     }
   },
   "19163": {

@@ -68,14 +68,19 @@ Before editing, confirm:
 - `2` = Armor / Garment / Accessory / Shoes / Headgear
 - `5` = Weapon
 - `6` = Card
-- `10` = Shadow / Costume / Special
+- `9` = Costume (Costume Helm / Garment / Floor)
+- `10` = Shadow / Special
 
 ### `itemSubTypeId` (common)
 
 - `510` = Accessory (Right)
 - `511` = Accessory (Left)
+- `512` = Headgear
 - `517` = Accessory (generic, no L/R)
+- `519` = Costume Helm (Upper) — pairs with `itemTypeId: 9`, `location: null`
 - `525` ShadowWeapon · `526` ShadowArmor · `527` ShadowShield · `528` ShadowBoot · `529` ShadowEarring · `530` ShadowPendant
+
+> Costume items (`itemTypeId: 9`) use `location: null` (the costume slot is implied by subType). Real headgear (`itemTypeId: 2`, `itemSubTypeId: 512`) uses `location: "Upper"`.
 
 ### `usableClass`
 
@@ -83,7 +88,26 @@ Use `ClassName` values from [src/app/jobs/\_class-name.ts](src/app/jobs/_class-n
 
 ### `description`
 
-Copy verbatim from the source (Thai/original). Preserve `\n`, `^RRGGBB...^000000` color tags, and the final `ประเภท / น้ำหนัก / เลเวลที่ต้องการ / อาชีพที่ใส่ได้` footer.
+Copy verbatim from the source (Thai/original). Preserve `\n`, `^RRGGBB...^000000` color tags, and the final footer:
+
+```
+ประเภท : ^777777<Type>^000000 พลังป้องกัน : ^777777<Def>^000000
+ตำแหน่ง : ^777777<Upper|...>^000000 น้ำหนัก : ^777777<Weight>^000000
+เลเวลที่ต้องการ : ^777777<Lv>^000000
+อาชีพที่ใส่ได้ : ^777777<Class>^000000
+```
+
+If the Divine Pride API truncates the middle (it sometimes does for long Thai text), write a short faithful Thai summary of the flavor text — but **always include the full footer and any time-limited bonus block** exactly as the in-game text shows them.
+
+**Time-limited bonus block** (standard pattern):
+
+```
+[ความสามารถพิเศษจำกัดระยะเวลา]
+EXP + 20%
+(ความสามารถพิเศษจะถูกลบออกในวันที่ <D เดือนไทย พ.ศ.>)
+```
+
+Put this block right above the footer. Date must be Thai-formatted (e.g., `3 มิถุนายน 2569`) and match the `TIME[...]` Gregorian date in `script` (subtract 543).
 
 ---
 
@@ -193,9 +217,12 @@ If a `usableClass` entry references a `ClassName` not yet exported, add it to [s
 
 The file is very large (>180k lines). Tools to prefer/avoid:
 
-- **PREFER**: targeted PowerShell one-liners that match a uniquely-identifying multi-line block and use `Set-Content -Encoding UTF8`. Always include neighbouring lines (`"id"`, `"name"`, surrounding `script` keys) in the search string so the replacement is unique.
+- **PREFER (new entries)**: `replace_string_in_file` / `multi_replace_string_in_file` works fine for INSERTING a new item block. Use the trailing `}` of one neighbour plus the opening `"<nextId>": {` of the next as the `oldString` anchor — that combination is always unique. Insert the new item between them.
+- **PREFER (scoped edits to existing items)**: targeted PowerShell line-walker scripts that bound by `"<targetId>": {` and `"<nextId>": {` markers. See the `expire-event-item` skill for the exact pattern.
 - **AVOID**: generic single-line replacements such as `"atk": ["20"]` — they will silently match many unrelated items. (This has happened; always audit.)
 - **AVOID** `apply_patch` on `item.json` — it has failed with stack overflows on this file. Use it freely on the smaller TypeScript / Markdown files.
+
+**Insertion point heuristic:** `item.json` is only loosely sorted by ID. Use `grep_search` for ID prefixes (e.g., `"4003[0-9]{2}":`) to find existing neighbours in the same numeric band, then insert before the next-higher existing ID. Do not assume `id + 1` exists.
 
 After ANY scripted edit, audit:
 
@@ -228,12 +255,17 @@ If only `item.json` and images changed, `npm run build` is still a good sanity c
 
 ## 9. Changelog & topbar
 
-Add a short entry to:
+Update BOTH files. Keep the version string and date IDENTICAL between them.
 
-- [CHANGELOG.md](CHANGELOG.md) — under a new or existing `## Extra vX.Y (DD-MM-YYYY)` section (Buddhist year, e.g. `2569`). English bullets.
-- [src/app/layout/app.topbar.component.ts](src/app/layout/app.topbar.component.ts) — prepend an entry to the `updates` array. Thai bullets. Keep version + date in sync with `CHANGELOG.md`.
+- [CHANGELOG.md](CHANGELOG.md) — `## Extra vX.Y (DD-MM-YYYY)` section, Buddhist year (e.g., `2569`). English bullets.
+- [src/app/layout/app.topbar.component.ts](src/app/layout/app.topbar.component.ts) — prepend an entry to the `updates: []` array. Thai bullets.
 
-Both files are small — use `apply_patch` / `multi_replace_string_in_file`.
+**Decision: new version vs. append?**
+
+- If the latest entry's `date` equals today (พ.ศ., `DD-MM-YYYY`) → append a new bullet to the existing entry's `logs`.
+- Otherwise → bump the patch number (e.g., `v60.5` → `v60.6`) and create a new entry at the top with today's date.
+
+Both files are small — use `multi_replace_string_in_file` to update them in one call.
 
 ---
 
