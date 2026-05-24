@@ -178881,29 +178881,10 @@
   "29027": {
     "id": 29027,
     "aegisName": "EXP2",
-    "name": "EXP +2%",
-    "unidName": "EXP +2%",
+    "name": "EXP +2%(Middle)",
+    "unidName": "EXP +2%(Middle)",
     "resName": "블루젬스톤",
     "description": "เพิ่มค่าประสบการณ์ 2% เมื่อกำจัดมอนสเตอร์",
-    "slots": 0,
-    "itemTypeId": 6,
-    "itemSubTypeId": 71,
-    "itemLevel": null,
-    "attack": null,
-    "defense": null,
-    "weight": null,
-    "requiredLevel": null,
-    "location": null,
-    "compositionPos": 65535,
-    "script": {}
-  },
-  "29145": {
-    "id": 29145,
-    "aegisName": "EXP2MIDDLE",
-    "name": "EXP +2%",
-    "unidName": "EXP +2%",
-    "resName": "블루젬스톤",
-    "description": "เมื่อกำจัดมอนสเตอร์ จะได้รับค่าประสบการณ์เพิ่มขึ้น 2%",
     "slots": 0,
     "itemTypeId": 6,
     "itemSubTypeId": 72,
@@ -178914,7 +178895,30 @@
     "requiredLevel": null,
     "location": null,
     "compositionPos": 65535,
-    "script": {}
+    "script": {
+      "expBonus": ["2"]
+    }
+  },
+  "29145": {
+    "id": 29145,
+    "aegisName": "EXP2MIDDLE",
+    "name": "EXP +2%(Lower)",
+    "unidName": "EXP +2%(Lower)",
+    "resName": "블루젬스톤",
+    "description": "เมื่อกำจัดมอนสเตอร์ จะได้รับค่าประสบการณ์เพิ่มขึ้น 2%",
+    "slots": 0,
+    "itemTypeId": 6,
+    "itemSubTypeId": 73,
+    "itemLevel": null,
+    "attack": null,
+    "defense": null,
+    "weight": null,
+    "requiredLevel": null,
+    "location": null,
+    "compositionPos": 65535,
+    "script": {
+      "expBonus": ["2"]
+    }
   },
   "29159": {
     "id": 29159,
@@ -178925,7 +178929,7 @@
     "description": "เมื่อจัดการมอนสเตอร์ได้ EXP ที่ได้รับจะเพิ่มขึ้น 2%\n[EXP +2%] เมื่อสวมใส่ร่วมกับ Middle, Lower เมื่อจัดการมอนสเตอร์ได้ จะได้รับ EXP เพิ่มเติมอีก 3%",
     "slots": 0,
     "itemTypeId": 6,
-    "itemSubTypeId": 73,
+    "itemSubTypeId": 71,
     "itemLevel": null,
     "attack": null,
     "defense": null,
@@ -178933,6 +178937,8 @@
     "requiredLevel": null,
     "location": null,
     "compositionPos": null,
-    "script": {}
+    "script": {
+      "expBonus": ["2", "EQUIP[EXP +2%(Middle)&&EXP +2%(Lower)]3"]
+    }
   }
 }
