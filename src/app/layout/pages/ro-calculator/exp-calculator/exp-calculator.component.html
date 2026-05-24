@@ -329,6 +329,17 @@
             </div>
           </div>
 
+          <!-- Party Size -->
+          <div class="col-12 modifier-row">
+            <div class="modifier-label mb-1">Party Size</div>
+            <p-dropdown
+              [options]="partySizeOptions"
+              [(ngModel)]="partySize"
+              (onChange)="onModifierChange()"
+              [style]="{ width: '100%' }"
+            ></p-dropdown>
+          </div>
+
           <!-- EXP Tap Mod -->
           <div class="col-12 modifier-row">
             <div class="modifier-label mb-1">EXP Tap Multiplier</div>
@@ -429,6 +440,10 @@
               <span class="breakdown-label">EXP Tap</span>
               <span class="breakdown-value text-pink-300">×{{ tapMod }}</span>
             </div>
+            <div class="breakdown-row" *ngIf="partySize > 1">
+              <span class="breakdown-label">Party Share ({{ partySize }} members)</span>
+              <span class="breakdown-value text-purple-400">{{ result.partyModPercent }} %</span>
+            </div>
             <div class="breakdown-row total-row">
               <span class="breakdown-label font-bold">Total Base Mod</span>
               <span class="breakdown-value font-bold text-cyan-300">×{{ result.totalBaseMod.toFixed(4) }}</span>
@@ -442,7 +457,7 @@
           <!-- Formula Reference -->
           <p-divider></p-divider>
           <div class="formula-ref text-xs text-color-secondary mt-2">
-            Formula: Orig × LvDiff × [(1 + Equip + MrKim + MalangCan) × (1 + Event + VIP + Silvervine + SatanMorroc) + Manual + Kafra] × Tap
+            Formula: Orig × LvDiff × [(1 + Equip + MrKim + MalangCan) × (1 + Event + VIP + Silvervine + SatanMorroc) + Manual + Kafra] × Tap<span *ngIf="partySize > 1"> × PartyShare</span>
           </div>
         </ng-container>
 

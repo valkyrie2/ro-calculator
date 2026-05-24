@@ -9,6 +9,15 @@ import {
   SpotlightMonster,
 } from 'src/app/constants/exp-spotlight';
 
+function getPartyMod(size: number): number {
+  if (size <= 1) return 1.0;
+  const table: Record<number, number> = {
+    2: 0.60, 3: 0.47, 4: 0.40, 5: 0.36, 6: 0.33,
+    7: 0.31, 8: 0.30, 9: 0.29, 10: 0.28, 11: 0.27, 12: 0.27,
+  };
+  return table[Math.min(size, 12)] ?? 0.27;
+}
+
 /**
  * Level difference modifier: diff = monsterLevel - playerLevel
  * Source: Official RO EXP table
@@ -61,6 +70,7 @@ interface ExpResult {
   manualModPercent: number;
   totalBaseMod: number;
   totalJobMod: number;
+  partyModPercent: number;
 }
 
 interface CompareRow {
@@ -104,6 +114,7 @@ export class ExpCalculatorComponent implements OnChanges {
   /** Custom event EXP % (auto-filled when spotlight is active) */
   eventExpPercent = 0;
   tapMod = 1;
+  partySize: number = 1;
   /** Override equip bonus manually (instead of using the value from the calculator) */
   overrideEquipBonus: number = null;
   /** Override player level manually (instead of using the value from the calculator) */
@@ -139,6 +150,21 @@ export class ExpCalculatorComponent implements OnChanges {
     { label: '1×', value: 1 },
     { label: '2×', value: 2 },
     { label: '3×', value: 3 },
+  ];
+
+  readonly partySizeOptions = [
+    { label: '1 (Solo)', value: 1 },
+    { label: '2 members — 60%', value: 2 },
+    { label: '3 members — 47%', value: 3 },
+    { label: '4 members — 40%', value: 4 },
+    { label: '5 members — 36%', value: 5 },
+    { label: '6 members — 33%', value: 6 },
+    { label: '7 members — 31%', value: 7 },
+    { label: '8 members — 30%', value: 8 },
+    { label: '9 members — 29%', value: 9 },
+    { label: '10 members — 28%', value: 10 },
+    { label: '11 members — 27%', value: 11 },
+    { label: '12 members — 27%', value: 12 },
   ];
 
   constructor() {
@@ -479,8 +505,11 @@ export class ExpCalculatorComponent implements OnChanges {
     const jobManualMod = this.isJobManual ? (this.isVip ? 0.75 : 0.50) : 0;
     const totalJobMod = factorA * factorB + manualMod + kafraMod + jobManualMod;
 
-    const finalBaseExp = Math.floor(rawBaseExp * levelDiffMod * totalBaseMod * this.tapMod);
-    const finalJobExp = Math.floor(rawJobExp * levelDiffMod * totalJobMod * this.tapMod);
+    const partyMod = getPartyMod(this.partySize);
+    const partyModPercent = Math.round(partyMod * 100);
+
+    const finalBaseExp = Math.floor(rawBaseExp * levelDiffMod * totalBaseMod * this.tapMod * partyMod);
+    const finalJobExp = Math.floor(rawJobExp * levelDiffMod * totalJobMod * this.tapMod * partyMod);
 
     return {
       rawBaseExp,
@@ -499,6 +528,7 @@ export class ExpCalculatorComponent implements OnChanges {
       manualModPercent,
       totalBaseMod,
       totalJobMod,
+      partyModPercent,
     };
   }
 
