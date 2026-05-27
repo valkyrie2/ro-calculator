@@ -1,0 +1,79 @@
+{
+  "classNum": null,
+  "sets": [
+    {
+      "name": "315288_550202",
+      "items": [
+        {
+          "itemId": 315288,
+          "name": "Orrivane Orb (Arch Mage)"
+        },
+        {
+          "itemId": 550202,
+          "name": "Orrivane Arch Wand [2]"
+        }
+      ]
+    },
+    {
+      "name": "315288_640070",
+      "items": [
+        {
+          "itemId": 315288,
+          "name": "Orrivane Orb (Arch Mage)"
+        },
+        {
+          "itemId": 640070,
+          "name": "Orrivane Arch Staff [3]"
+        }
+      ]
+    }
+  ],
+  "soldBy": [],
+  "id": 315288,
+  "aegisName": "Orrivane_Enc_AG",
+  "flavorText": null,
+  "name": "Orrivane Orb (Arch Mage)",
+  "unidName": "Orrivane Orb (Arch Mage)",
+  "resName": "Auto_Orb_Priest",
+  "unidResName": "Auto_Orb_Priest",
+  "description": "เมื่อสวมใส่ร่วมกับ Orrivane Arch Wand,\nMATK + 10%,\nทุก ๆ 2 ขั้นอัพเกรดอาวุธ, เพิ่ม Damage สกิล Crimson Arrow, Floral Flare Road, All Bloom 4%\n\nเมื่อ Orrivane Arch Wand มี Grade C ขึ้นไป,\nS.MATK + 10,\nลด Cooldown สกิล Crimson Arrow 0.2 วินาที,\nลด Cooldown สกิล Floral Flare Road 2 วินาที,\nลด Cooldown สกิล All Bloom 2.5 วินาที\n\nเมื่อ Orrivane Arch Wand มี Grade C และขั้นอัพเกรด 10 ขึ้นไป,\nลด Cooldown สกิล Floral Flare Road 2 วินาที,\nลด Cooldown สกิล All Bloom 2.5 วินาที,\nเมื่อใช้งานสกิล Crimson Arrow มีโอกาส 30% ที่จะ Autospell สกิล Crimson Arrow Lv.1 (เมื่อเรียนสกิลในเลเวลที่สูงกว่า จะร่ายในเลเวลสูงสุด),\nเพิ่ม Damage สกิล Crimson Arrow, Floral Flare Road, All Bloom  20%\n\nเมื่อสวมใส่ร่วมกับ Orrivane Arch Staff,\nMATK + 10%,\nทุก ๆ 2 ขั้นอัพเกรดอาวุธ, ทุก ๆ 2 ขั้นอัพเกรดอาวุธ, เพิ่ม Damage สกิล Mystery Illusion, Soul Vulcan Strike 4%\n\nเมื่อ Orrivane Arch Staff มี Grade C ขึ้นไป,\nS.MATK + 10,\nลด Cooldown สกิล Mystery Illusion 1.3 วินาที,\nลด Cooldown สกิล Soul Vulcan Strike 0.7 วินาที\n\nเมื่อ Orrivane Arch Staff มี Grade C และขั้นอัพเกรด 10 ขึ้นไป,\nลด Cooldown สกิล Mystery Illusion 1.3 วินาที,\nลด Cooldown สกิล Intensification 200 วินาที,\nเมื่อใช้งานสกิล Soul Vulcan Strike มีโอกาส 30% ที่จะ Autospell สกิล Soul Vulcan Strike Lv.1 (เมื่อเรียนสกิลในเลเวลที่สูงกว่า จะร่ายในเลเวลสูงสุด),\nเพิ่ม Damage สกิล Mystery Illusion, Soul Vulcan Strike 20%",
+  "unidDescription": "เมื่อสวมใส่ร่วมกับ Orrivane Arch Wand,\nMATK + 10%,\nทุก ๆ 2 ขั้นอัพเกรดอาวุธ, เพิ่ม Damage สกิล Crimson Arrow, Floral Flare Road, All Bloom 4%\n\nเมื่อ Orrivane Arch Wand มี Grade C ขึ้นไป,\nS.MATK + 10,\nลด Cooldown สกิล Crimson Arrow 0.2 วินาที,\nลด Cooldown สกิล Floral Flare Road 2 วินาที,\nลด Cooldown สกิล All Bloom 2.5 วินาที\n\nเมื่อ Orrivane Arch Wand มี Grade C และขั้นอัพเกรด 10 ขึ้นไป,\nลด Cooldown สกิล Floral Flare Road 2 วินาที,\nลด Cooldown สกิล All Bloom 2.5 วินาที,\nเมื่อใช้งานสกิล Crimson Arrow มีโอกาส 30% ที่จะ Autospell สกิล Crimson Arrow Lv.1 (เมื่อเรียนสกิลในเลเวลที่สูงกว่า จะร่ายในเลเวลสูงสุด),\nเพิ่ม Damage สกิล Crimson Arrow, Floral Flare Road, All Bloom  20%\n\nเมื่อสวมใส่ร่วมกับ Orrivane Arch Staff,\nMATK + 10%,\nทุก ๆ 2 ขั้นอัพเกรดอาวุธ, ทุก ๆ 2 ขั้นอัพเกรดอาวุธ, เพิ่ม Damage สกิล Mystery Illusion, Soul Vulcan Strike 4%\n\nเมื่อ Orrivane Arch Staff มี Grade C ขึ้นไป,\nS.MATK + 10,\nลด Cooldown สกิล Mystery Illusion 1.3 วินาที,\nลด Cooldown สกิล Soul Vulcan Strike 0.7 วินาที\n\nเมื่อ Orrivane Arch Staff มี Grade C และขั้นอัพเกรด 10 ขึ้นไป,\nลด Cooldown สกิล Mystery Illusion 1.3 วินาที,\nลด Cooldown สกิล Intensification 200 วินาที,\nเมื่อใช้งานสกิล Soul Vulcan Strike มีโอกาส 30% ที่จะ Autospell สกิล Soul Vulcan Strike Lv.1 (เมื่อเรียนสกิลในเลเวลที่สูงกว่า จะร่ายในเลเวลสูงสุด),\nเพิ่ม Damage สกิล Mystery Illusion, Soul Vulcan Strike 20%",
+  "slots": 0,
+  "setname": null,
+  "itemTypeId": 11,
+  "itemSubTypeId": 0,
+  "itemSummonInfoContainedIn": [],
+  "itemSummonInfoContains": [],
+  "attack": null,
+  "defense": null,
+  "weight": null,
+  "requiredLevel": null,
+  "limitLevel": null,
+  "itemLevel": null,
+  "EQUIP": null,
+  "compositionPos": 65535,
+  "attribute": 0,
+  "location": null,
+  "LOCA": 0,
+  "accessory": null,
+  "price": null,
+  "range": null,
+  "matk": null,
+  "gender": null,
+  "refinable": null,
+  "indestructible": null,
+  "itemMoveInfo": {
+    "drop": true,
+    "trade": true,
+    "store": true,
+    "cart": true,
+    "sell": true,
+    "mail": true,
+    "auction": true,
+    "guildStore": true
+  },
+  "rewardForAchievement": [],
+  "cardPrefix": null,
+  "pets": [],
+  "hasScript": false
+}

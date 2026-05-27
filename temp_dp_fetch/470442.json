@@ -1,0 +1,83 @@
+﻿{
+  "classNum": null,
+  "sets": [
+    {
+      "name": "300754_470442_490966",
+      "items": [
+        {
+          "itemId": 300754,
+          "name": "Upgrade Memory of Thanatos Card"
+        },
+        {
+          "itemId": 470442,
+          "name": "Ayothaya Adventurer\u0027s Boots [1]"
+        },
+        {
+          "itemId": 490966,
+          "name": "6th Anniversary Ayothaya Ring [1]"
+        }
+      ]
+    },
+    {
+      "name": "470442_490966",
+      "items": [
+        {
+          "itemId": 470442,
+          "name": "Ayothaya Adventurer\u0027s Boots [1]"
+        },
+        {
+          "itemId": 490966,
+          "name": "6th Anniversary Ayothaya Ring [1]"
+        }
+      ]
+    }
+  ],
+  "soldBy": [],
+  "id": 470442,
+  "aegisName": "Ayothaya_Boots_TH",
+  "flavorText": null,
+  "name": "Ayothaya Adventurer\u0027s Boots [1]",
+  "unidName": "Ayothaya Adventurer\u0027s Boots",
+  "resName": "Gluttony_Variant_Shoes",
+  "unidResName": "Gluttony_Variant_Shoes",
+  "description": "^ff0000ไอเท็มนี้ไม่สามารถแลกเปลี่ยนกับผู้เล่นคนอื่นได้^000000\nรองเท้าสำหรับนักผจญภัยผู้กล้า สวมใส่เพื่อก้าวข้ามทุกอุปสรรค และออกเดินทางสู่การผจญภัยครั้งใหม่อย่างมั่นใจ\n\nเพิ่ม Damage ทางกายภาพระยะใกล้/ไกล +6 %, MATK + 6%\nASPD + 10%\nMaxHP + 10%\nMaxSP + 5%\n\nทุก ๆ การอัพเกรด 2 ขั้น, ATK/MATK + 10\nเมื่ออัพเกรดถึงขั้น 7, P.ATK, S.MATK + 6\nเมื่ออัพเกรดตั้งแต่ 9 ขึ้นไป, ลดระยะเวลาร่ายแบบแปรผัน 10%, ลดระยะเวลาร่ายแบบคงที่ 0.5 วินาที\nเมื่ออัพเกรดถึงขั้น 12, เพิ่ม Damage ทางกายภาพ/เวทมนตร์ต่อศัตรูทุกธาตุ 10%\n\nเมื่อสวมใส่ร่วมกับ 6th Anniversary Ayothaya Ring,\nมีโอกาส 3% ที่จะนำ 1% ของ Damage ทางกายภาพต่อศัตรู มาเป็น HP, SP ของตนเอง,\nเมื่อโจมตีทางเวทมนตร์ มีโอกาส 3% ที่จะฟื้นฟู HP 1000, SP 100 หน่วย 8 ครั้ง เป็นเวลา 10 วินาที,\nเพิ่ม Damage ทางกายภาพ/เวทมนตร์ต่อศัตรูทุกขนาด 10%\n\nเมื่อ Ayothaya Adventurer\u0027s Boots มี Grade A ขึ้นไป และสวมใส่กับ 6th Anniversary Ayothaya Ring  ,\nเพิ่มค่าประสบการณ์เมื่อกำจัดมอนสเตอร์ 5%, เพิ่มอัตรา Drop ไอเทม 5%,\nเพิ่ม Damage ทางกายภาพ/เวทมนตร์ต่อศัตรูทุกเผ่า 10% (ยกเว้น Player),\n\nเมื่อสวมใส่ 6th Anniversary Ayothaya Ring และสวมใส่ร่วมกับ Upgrade Memory of Thanatos Card,\nเพิกเฉยพลังป้องกันทางกายภาพต่อศัตรูทุกเผ่าลดลง -40%\n\n[Option เพิ่มเติมตาม Grade]\n[Grade D] ลดระยะเวลาร่ายแบบคงที่ 0.5 วินาที\n[Grade C] เพิ่ม Hit Dmage ทางกายภาพ 15%, Critical Damage + 15%, เพิ่ม Damage ทางเวทมนตร์ทุกธาตุ 20%\n[Grade B] P.ATK, S.MATK + 6\n[Grade A] ทุก ๆ การอัพเกรด 1 ขั้น All Status +1, All Trait + 1\nประเภท : ^777777Shoes^000000  พลังป้องกัน : ^77777720^000000\nน้ำหนัก : ^77777720^000000\nเลเวลที่ต้องการ : ^777777100^000000\nอาชีพที่ใส่ได้ : ^777777ทุกอาชีพ^000000",
+  "unidDescription": "^ff0000ไอเท็มนี้ไม่สามารถแลกเปลี่ยนกับผู้เล่นคนอื่นได้^000000\nรองเท้าสำหรับนักผจญภัยผู้กล้า สวมใส่เพื่อก้าวข้ามทุกอุปสรรค และออกเดินทางสู่การผจญภัยครั้งใหม่อย่างมั่นใจ\n\nเพิ่ม Damage ทางกายภาพระยะใกล้/ไกล +6 %, MATK + 6%\nASPD + 10%\nMaxHP + 10%\nMaxSP + 5%\n\nทุก ๆ การอัพเกรด 2 ขั้น, ATK/MATK + 10\nเมื่ออัพเกรดถึงขั้น 7, P.ATK, S.MATK + 6\nเมื่ออัพเกรดตั้งแต่ 9 ขึ้นไป, ลดระยะเวลาร่ายแบบแปรผัน 10%, ลดระยะเวลาร่ายแบบคงที่ 0.5 วินาที\nเมื่ออัพเกรดถึงขั้น 12, เพิ่ม Damage ทางกายภาพ/เวทมนตร์ต่อศัตรูทุกธาตุ 10%\n\nเมื่อสวมใส่ร่วมกับ 6th Anniversary Ayothaya Ring,\nมีโอกาส 3% ที่จะนำ 1% ของ Damage ทางกายภาพต่อศัตรู มาเป็น HP, SP ของตนเอง,\nเมื่อโจมตีทางเวทมนตร์ มีโอกาส 3% ที่จะฟื้นฟู HP 1000, SP 100 หน่วย 8 ครั้ง เป็นเวลา 10 วินาที,\nเพิ่ม Damage ทางกายภาพ/เวทมนตร์ต่อศัตรูทุกขนาด 10%\n\nเมื่อ Ayothaya Adventurer\u0027s Boots มี Grade A ขึ้นไป และสวมใส่กับ 6th Anniversary Ayothaya Ring  ,\nเพิ่มค่าประสบการณ์เมื่อกำจัดมอนสเตอร์ 5%, เพิ่มอัตรา Drop ไอเทม 5%,\nเพิ่ม Damage ทางกายภาพ/เวทมนตร์ต่อศัตรูทุกเผ่า 10% (ยกเว้น Player),\n\nเมื่อสวมใส่ 6th Anniversary Ayothaya Ring และสวมใส่ร่วมกับ Upgrade Memory of Thanatos Card,\nเพิกเฉยพลังป้องกันทางกายภาพต่อศัตรูทุกเผ่าลดลง -40%\n\n[Option เพิ่มเติมตาม Grade]\n[Grade D] ลดระยะเวลาร่ายแบบคงที่ 0.5 วินาที\n[Grade C] เพิ่ม Hit Dmage ทางกายภาพ 15%, Critical Damage + 15%, เพิ่ม Damage ทางเวทมนตร์ทุกธาตุ 20%\n[Grade B] P.ATK, S.MATK + 6\n[Grade A] ทุก ๆ การอัพเกรด 1 ขั้น All Status +1, All Trait + 1",
+  "slots": 1,
+  "setname": null,
+  "itemTypeId": 2,
+  "itemSubTypeId": 516,
+  "itemSummonInfoContainedIn": [],
+  "itemSummonInfoContains": [],
+  "attack": null,
+  "defense": 20,
+  "weight": 20.0,
+  "requiredLevel": 100,
+  "limitLevel": null,
+  "itemLevel": null,
+  "EQUIP": null,
+  "compositionPos": null,
+  "attribute": 0,
+  "location": null,
+  "LOCA": 64,
+  "accessory": null,
+  "price": null,
+  "range": null,
+  "matk": null,
+  "gender": null,
+  "refinable": null,
+  "indestructible": null,
+  "itemMoveInfo": {
+    "drop": true,
+    "trade": true,
+    "store": true,
+    "cart": true,
+    "sell": true,
+    "mail": true,
+    "auction": true,
+    "guildStore": true
+  },
+  "rewardForAchievement": [],
+  "cardPrefix": null,
+  "pets": [],
+  "hasScript": false
+}

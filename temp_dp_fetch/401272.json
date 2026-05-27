@@ -1,0 +1,79 @@
+﻿{
+  "classNum": 2662,
+  "sets": [
+    {
+      "name": "401272_560092",
+      "items": [
+        {
+          "itemId": 401272,
+          "name": "Orrivane Crown (Inquisitor) [1]"
+        },
+        {
+          "itemId": 560092,
+          "name": "Orrivane Judgment Claw [2]"
+        }
+      ]
+    },
+    {
+      "name": "401272_560091",
+      "items": [
+        {
+          "itemId": 401272,
+          "name": "Orrivane Crown (Inquisitor) [1]"
+        },
+        {
+          "itemId": 560091,
+          "name": "Orrivane Judgment Knuckle [2]"
+        }
+      ]
+    }
+  ],
+  "soldBy": [],
+  "id": 401272,
+  "aegisName": "LMN_Orrivane_C_IQ",
+  "flavorText": null,
+  "name": "Orrivane Crown (Inquisitor) [1]",
+  "unidName": "Cap",
+  "resName": "Gluttony_Crown",
+  "unidResName": "캡",
+  "description": "^ff0000ไอเท็มนี้ไม่สามารถแลกเปลี่ยนกับผู้เล่นคนอื่นได้^000000\nมงกุฎเกราะซึ่งถือกำเนิดจากเศษเสี้ยวความทรงจำแห่งสมรภูมิที่เวียนวนไม่รู้จบ\nเป็นสัญลักษณ์ของ Inquisitor ผู้ตัดขาดห่วงโซ่แห่งการเวียนว่าย ทอดทิ้งอดีตอันซ้ำซาก และก้าวสู่รุ่งอรุณของจุดเริ่มต้นใหม่\n\nทุก ๆ การอัพเกรด 3 ขั้น, MHP + 100, MSP + 15\nทุก ๆ การอัพเกรด 4 ขั้น, เพิ่ม Damage สกิล Third Flame Bomb, Explosion Blaster 5%\nเมื่ออัพเกรดถึงขั้น 7, เพิ่ม Damage ทางกายภาพระยะใกล้/ไกล 10%\nเมื่ออัพเกรดถึงขั้น 9, P.ATK + 5, ATK + 5%\nเมื่ออัพเกรดถึงขั้น 11, เพิ่ม Damage ทางกายภาพต่อศัตรูทุกขนาด 10%\n- \n[Option เพิ่มเติมตาม Grade]\n[Grade D] P.ATK + 5\n[Grade C] MHP + 5%, MSP + 5%\n[Grade B] เพิ่ม Damage ทางกายภาพต่อศัตรูทุกเผ่า 10% (ยกเว้น Player)\nประเภท : ^777777Headgear^000000 พลังป้องกัน : ^77777735^000000\nตำแหน่ง : ^777777Upper^000000 น้ำหนัก : ^77777750^000000\nเลเวล Armor : ^7777772^000000\nเลเวลที่ต้องการ : ^777777230^000000\nอาชีพที่ใส่ได้ : ^777777Inquisitor^000000",
+  "unidDescription": "ไอเท็มปริศนา จำเป็นต้องใช้ [Magnifier] ในการตรวจสอบ",
+  "slots": 1,
+  "setname": null,
+  "itemTypeId": 2,
+  "itemSubTypeId": 512,
+  "itemSummonInfoContainedIn": [],
+  "itemSummonInfoContains": [],
+  "attack": null,
+  "defense": 35,
+  "weight": 50.0,
+  "requiredLevel": 230,
+  "limitLevel": null,
+  "itemLevel": null,
+  "EQUIP": 1010,
+  "compositionPos": null,
+  "attribute": 0,
+  "location": "Upper",
+  "LOCA": 256,
+  "accessory": "ACCESSORY_Gluttony_Crown",
+  "price": null,
+  "range": null,
+  "matk": null,
+  "gender": null,
+  "refinable": null,
+  "indestructible": null,
+  "itemMoveInfo": {
+    "drop": true,
+    "trade": true,
+    "store": true,
+    "cart": true,
+    "sell": true,
+    "mail": true,
+    "auction": true,
+    "guildStore": true
+  },
+  "rewardForAchievement": [],
+  "cardPrefix": null,
+  "pets": [],
+  "hasScript": false
+}

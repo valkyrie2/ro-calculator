@@ -214,6 +214,17 @@ export class AppTopBarComponent implements OnInit, OnDestroy {
 
   updates: { v: string; date: string; logs: string[]; }[] = [
     {
+      v: 'Extra v61.0',
+      date: '27-05-2569',
+      logs: [
+        'เพิ่มอาวุธ Orrivane 38 ชิ้น (ทุกคลาส 4th/5th)',
+        'เพิ่ม Orrivane Crown 18 ชิ้น (ทุกคลาส) และ Orrivane Ring 3 ชิ้น (Wind Hawk, Abyss Chaser, Arch Mage) พร้อม Enchant 3 ช่อง และ Orrivane Orb 3 ชิ้น',
+        'เพิ่มไอเทม: [6th] Ayothaya Helm, Eye of Necromancer, Falling Star Shield, Ayothaya Boots, 6th Anniversary Ayothaya Ring, Amplify Blueprint',
+        'เพิ่มสกิล: Metalic Fury, Overbrand',
+        'มีบัคแจ้งไว้ก่อนนะครับ แข่งเก็บเวลแป๊ป'
+      ],
+    },
+    {
       v: 'Extra v60.6',
       date: '24-05-2569',
       logs: [

@@ -1,0 +1,83 @@
+﻿{
+  "classNum": null,
+  "sets": [
+    {
+      "name": "300754_470442_490966",
+      "items": [
+        {
+          "itemId": 300754,
+          "name": "Upgrade Memory of Thanatos Card"
+        },
+        {
+          "itemId": 470442,
+          "name": "Ayothaya Adventurer\u0027s Boots [1]"
+        },
+        {
+          "itemId": 490966,
+          "name": "6th Anniversary Ayothaya Ring [1]"
+        }
+      ]
+    },
+    {
+      "name": "470442_490966",
+      "items": [
+        {
+          "itemId": 470442,
+          "name": "Ayothaya Adventurer\u0027s Boots [1]"
+        },
+        {
+          "itemId": 490966,
+          "name": "6th Anniversary Ayothaya Ring [1]"
+        }
+      ]
+    }
+  ],
+  "soldBy": [],
+  "id": 490966,
+  "aegisName": "6th_Anni_Ring_TH",
+  "flavorText": null,
+  "name": "6th Anniversary Ayothaya Ring [1]",
+  "unidName": "6th Anniversary Ayothaya Ring",
+  "resName": "Gluttony_Expert_Ring",
+  "unidResName": "Gluttony_Expert_Ring",
+  "description": "^ff0000ไอเท็มนี้ไม่สามารถแลกเปลี่ยนกับผู้เล่นคนอื่นได้^000000\nแหวนที่ถูกสร้างขึ้นเพื่อเฉลิมฉลองการครบรอบปีที่ 6\nเต็มไปด้วยพลังแห่งคำอวยพรและความทรงจำของการผจญภัยที่ผ่านมา\n\n[สามารถ Refine ได้]\nAll State + 6, All Trait Status + 6\nทุก ๆ การอัพเกรด 1 ขั้น, เพิ่ม Damage ทางกายภาพระยะใกล้/ไกล 1%, MATK + 1%\nเมื่ออัพเกรดถึงขั้น 7, P.ATK, S.MATK + 3\nเมื่ออัพเกรดถึงขั้น 9, ลด Global Cooldown 10%\nเมื่ออัพเกรดถึงขั้น 12, เพิ่ม Damage ทางกายภาพ/เวทมนตร์ต่อศัตรูทุกเผ่า 10% (ยกเว้น Player)\n\n[Option เพิ่มเติมตาม Grade]\n[Grade D] ลดระยะเวลาร่ายแบบคงที่ 0.3 วินาที\n[Grade C] เพิ่มความต้านทานต่อศัตรูประเภท Boss 10%\n[Grade B] RES/MRES + 60, Perfect Dodge + 20\n[Grade A] เพิ่มอัตรา Drop 3%, เพิกเฉยต่อพลังป้องกันทางกายภาพ/เวทมนตร์ของศัตรูทุกเผ่า 40% (ยกเว้น Player)\nประเภท : ^777777Accessory (Left)^000000 พลังป้องกัน : ^7777770^000000\nน้ำหนัก : ^77777720^000000\nเลเวล Armor : ^7777772^000000\nเลเวลที่ต้องการ : ^777777200^000000\nอาชีพที่ใส่ได้ : ^777777ทุกอาชีพ^000000",
+  "unidDescription": "^ff0000ไอเท็มนี้ไม่สามารถแลกเปลี่ยนกับผู้เล่นคนอื่นได้^000000\nแหวนที่ถูกสร้างขึ้นเพื่อเฉลิมฉลองการครบรอบปีที่ 6\nเต็มไปด้วยพลังแห่งคำอวยพรและความทรงจำของการผจญภัยที่ผ่านมา\n\n[สามารถ Refine ได้]\nAll State + 6, All Trait Status + 6\nทุก ๆ การอัพเกรด 1 ขั้น, เพิ่ม Damage ทางกายภาพระยะใกล้/ไกล 1%, MATK + 1%\nเมื่ออัพเกรดถึงขั้น 7, P.ATK, S.MATK + 3\nเมื่ออัพเกรดถึงขั้น 9, ลด Global Cooldown 10%\nเมื่ออัพเกรดถึงขั้น 12, เพิ่ม Damage ทางกายภาพ/เวทมนตร์ต่อศัตรูทุกเผ่า 10% (ยกเว้น Player)\n\n[Option เพิ่มเติมตาม Grade]\n[Grade D] ลดระยะเวลาร่ายแบบคงที่ 0.3 วินาที\n[Grade C] เพิ่มความต้านทานต่อศัตรูประเภท Boss 10%\n[Grade B] RES/MRES + 60, Perfect Dodge + 20\n[Grade A] เพิ่มอัตรา Drop 3%, เพิกเฉยต่อพลังป้องกันทางกายภาพ/เวทมนตร์ของศัตรูทุกเผ่า 40% (ยกเว้น Player)",
+  "slots": 1,
+  "setname": null,
+  "itemTypeId": 2,
+  "itemSubTypeId": 517,
+  "itemSummonInfoContainedIn": [],
+  "itemSummonInfoContains": [],
+  "attack": null,
+  "defense": 0,
+  "weight": 20.0,
+  "requiredLevel": null,
+  "limitLevel": null,
+  "itemLevel": null,
+  "EQUIP": null,
+  "compositionPos": null,
+  "attribute": null,
+  "location": null,
+  "LOCA": 0,
+  "accessory": null,
+  "price": null,
+  "range": null,
+  "matk": null,
+  "gender": null,
+  "refinable": null,
+  "indestructible": null,
+  "itemMoveInfo": {
+    "drop": true,
+    "trade": true,
+    "store": true,
+    "cart": true,
+    "sell": true,
+    "mail": true,
+    "auction": true,
+    "guildStore": true
+  },
+  "rewardForAchievement": [],
+  "cardPrefix": null,
+  "pets": [],
+  "hasScript": false
+}

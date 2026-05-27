@@ -1,0 +1,66 @@
+﻿{
+  "classNum": 22,
+  "sets": [
+    {
+      "name": "401280_650064",
+      "items": [
+        {
+          "itemId": 401280,
+          "name": "Orrivane Crown (Shinkiro \u0026 Shiranui) [1]"
+        },
+        {
+          "itemId": 650064,
+          "name": "Orrivane Huuma Shuriken [3]"
+        }
+      ]
+    }
+  ],
+  "soldBy": [],
+  "id": 650064,
+  "aegisName": "LMN_SS_P_Humma",
+  "flavorText": null,
+  "name": "Orrivane Huuma Shuriken [3]",
+  "unidName": "Huuma Shuriken",
+  "resName": "LMN_SS_P_Humma",
+  "unidResName": "풍마_편익",
+  "description": "Huuma Shuriken ของนินจาผู้ตัดขาดห่วงโซ่แห่งการเวียนว่าย ทอดทิ้งอดีตอันซ้ำซาก และก้าวสู่รุ่งอรุณของจุดเริ่มต้นใหม่\n^ffffff_^000000\nCRI + 5, เพิ่ม Damage สกิล Shadow Flash 5%\nทุก ๆ การอัพเกรด 2 ขั้น ATK + 10, ATK + 1%\nทุก ๆ การอัพเกรด 3 ขั้น เพิ่ม Damage สกิล Shadow Flash 2%\nเมื่ออัพเกรดถึงขั้น 7, เพิ่ม Critical Damage 15%\nเมื่ออัพเกรดถึงขั้น 9, CRI + 10, C.Rate + 3\nเมื่ออัพเกรดถึงขั้น 11, เพิ่ม Damage สกิล Shadow Flash 10%\n^ffffff_^000000\nเมื่อสวมใส่ร่วมกับ Orrivane Crown (Shinkiro \u0026 Shiranui),\nเพิ่ม Damage สกิล Shadow Flash 10%,\nเพิ่ม Damage ทางกายภาพระยะใกล้ 5%\n\nเมื่อ Orrivane Crown (Shinkiro \u0026 Shiranui) มี Grade A ขึ้นไป,\nเมื่อขั้นอัพเกรดของ Weapon และ Helm รวมกันตั้งแต่ 22 ขึ้นไป, \nลด Cooldown สกิล Shadow Flash 0.1 วินาที\nเพิ่ม Damage สกิล Shadow Flash 10%\n\n^CC3D3D[Option เพิ่มเติมตาม Grade]^000000\n[Grade D] P.ATK + 2\n[Grade C] เพิ่ม Damage สกิล Shadow Flash 10%\n[Grade B] เพิ่ม Damage ทางกายภาพระยะใกล้ 10%\n[Grade A] ทุก ๆ การอัพเกรด 2 ขั้น P.ATK + 2\nประเภท : ^777777Huuma Shuriken^000000 พลังโจมตี : ^777777370^000000\nน้ำหนัก : ^777777320^000000\nเลเวลอาวุธ : ^7777775^000000\nเลเวลที่ต้องการ : ^777777230^000000\nอาชีพที่ใส่ได้ : ^777777Shinkiro, Shiranui^000000",
+  "unidDescription": "ไอเท็มปริศนา จำเป็นต้องใช้ [Magnifier] ในการตรวจสอบ",
+  "slots": 3,
+  "setname": null,
+  "itemTypeId": 1,
+  "itemSubTypeId": 0,
+  "itemSummonInfoContainedIn": [],
+  "itemSummonInfoContains": [],
+  "attack": 370,
+  "defense": null,
+  "weight": 320.0,
+  "requiredLevel": 230,
+  "limitLevel": null,
+  "itemLevel": null,
+  "EQUIP": null,
+  "compositionPos": null,
+  "attribute": 0,
+  "location": null,
+  "LOCA": 0,
+  "accessory": null,
+  "price": null,
+  "range": null,
+  "matk": null,
+  "gender": null,
+  "refinable": null,
+  "indestructible": null,
+  "itemMoveInfo": {
+    "drop": true,
+    "trade": true,
+    "store": true,
+    "cart": true,
+    "sell": true,
+    "mail": true,
+    "auction": true,
+    "guildStore": true
+  },
+  "rewardForAchievement": [],
+  "cardPrefix": null,
+  "pets": [],
+  "hasScript": false
+}

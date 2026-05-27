@@ -1,0 +1,66 @@
+﻿{
+  "classNum": 13,
+  "sets": [
+    {
+      "name": "401276_570094",
+      "items": [
+        {
+          "itemId": 401276,
+          "name": "Orrivane Crown (Troubadour \u0026 Trouvere) [1]"
+        },
+        {
+          "itemId": 570094,
+          "name": "Orrivane Musical Violin [2]"
+        }
+      ]
+    }
+  ],
+  "soldBy": [],
+  "id": 570094,
+  "aegisName": "LMN_TR_Violin",
+  "flavorText": null,
+  "name": "Orrivane Musical Violin [2]",
+  "unidName": "Violin",
+  "resName": "LMN_TR_Violin",
+  "unidResName": "바이올린",
+  "description": "Violin ของนักกวีผู้ตัดขาดห่วงโซ่แห่งการเวียนว่าย ทอดทิ้งอดีตอันซ้ำซาก และก้าวสู่รุ่งอรุณของจุดเริ่มต้นใหม่\n^ffffff_^000000\nMATK + 200, MATK + 3%,\nเพิ่ม Damage สกิล Metalic Fury 5%\nทุก ๆ การอัพเกรด 2 ขั้น MATK + 10, MATK + 1%\nทุก ๆ การอัพเกรด 3 ขั้น เพิ่ม Damage สกิล Metalic Fury 5%\nเมื่ออัพเกรดถึงขั้น 7, เพิ่ม Damage ทางเวทมนตร์ทุกธาตุ 15%\nเมื่ออัพเกรดถึงขั้น 9, ลดระยะเวลาร่ายแบบแปรผัน 10%, S.MATK + 3\nเมื่ออัพเกรดถึงขั้น 11, เพิ่ม Damage สกิล Metalic Fury ขึ้นอีก 10%\n^ffffff_^000000\nเมื่อสวมใส่ร่วมกับ Orrivane Crown (Troubadour \u0026 Trouvere),\nเพิ่ม Damage สกิล Metalic Fury 10%,\nเพิ่ม Damage ทางเวทมนตร์ทุกธาตุ 10%\n\nเมื่อ Orrivane Crown (Troubadour \u0026 Trouvere) มี Grade A ขึ้นไป,\nเมื่อขั้นอัพเกรดของ Weapon และ Helm รวมกันตั้งแต่ 22 ขึ้นไป, \nลด Cooldown สกิล Metalic Fury 0.1 วินาที,\nเพิ่ม Damage สกิล Metalic Fury 10%\n\n^CC3D3D[Option เพิ่มเติมตาม Grade]^000000\n[Grade D] S.MATK + 2\n[Grade C] เพิ่ม Damage สกิล Metalic Fury 10%\n[Grade B] เพิ่ม Damage ทางเวทมนตร์ทุกธาตุ 10%\n[Grade A] ทุก ๆ การอัพเกรด 2 ขั้น S.MATK + 2\n\nประเภท : ^777777Instrument^000000 พลังโจมตี : ^777777100^000000\nน้ำหนัก : ^777777180^000000\nเลเวลอาวุธ : ^7777775^000000\nเลเวลที่ต้องการ : ^777777230^000000\nอาชีพที่ใส่ได้ : ^777777Troubadour^000000",
+  "unidDescription": "ไอเท็มปริศนา จำเป็นต้องใช้ [Magnifier] ในการตรวจสอบ",
+  "slots": 2,
+  "setname": null,
+  "itemTypeId": 1,
+  "itemSubTypeId": 269,
+  "itemSummonInfoContainedIn": [],
+  "itemSummonInfoContains": [],
+  "attack": 100,
+  "defense": null,
+  "weight": 180.0,
+  "requiredLevel": 230,
+  "limitLevel": null,
+  "itemLevel": null,
+  "EQUIP": 1011,
+  "compositionPos": null,
+  "attribute": 0,
+  "location": null,
+  "LOCA": 0,
+  "accessory": null,
+  "price": null,
+  "range": null,
+  "matk": null,
+  "gender": null,
+  "refinable": null,
+  "indestructible": null,
+  "itemMoveInfo": {
+    "drop": true,
+    "trade": true,
+    "store": true,
+    "cart": true,
+    "sell": true,
+    "mail": true,
+    "auction": true,
+    "guildStore": true
+  },
+  "rewardForAchievement": [],
+  "cardPrefix": null,
+  "pets": [],
+  "hasScript": false
+}

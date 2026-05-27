@@ -1,0 +1,66 @@
+﻿{
+  "classNum": 15,
+  "sets": [
+    {
+      "name": "401277_540131",
+      "items": [
+        {
+          "itemId": 401277,
+          "name": "Orrivane Crown (Sky Emperor) [1]"
+        },
+        {
+          "itemId": 540131,
+          "name": "Orrivane Emperor Star Book [2]"
+        }
+      ]
+    }
+  ],
+  "soldBy": [],
+  "id": 540131,
+  "aegisName": "LMN_SE_Book_S",
+  "flavorText": null,
+  "name": "Orrivane Emperor Star Book [2]",
+  "unidName": "Book",
+  "resName": "LMN_SE_Book_S",
+  "unidResName": "북",
+  "description": "Star Book ของนักเตะผู้ตัดขาดห่วงโซ่แห่งการเวียนว่าย ทอดทิ้งอดีตอันซ้ำซาก และก้าวสู่รุ่งอรุณของจุดเริ่มต้นใหม่\n^ffffff_^000000\nATK + 3%, เพิ่ม Damage สกิล Star Cannon 5%\nทุก ๆ การอัพเกรด 2 ขั้น ATK + 10, ATK + 1%.\nทุก ๆ การอัพเกรด 3 ขั้น เพิ่ม Damage สกิล Star Cannon 2%\nเมื่ออัพเกรดถึงขั้น 7, เพิ่ม Damage ทางกายภาพระยะใกล้ 15%\nเมื่ออัพเกรดถึงขั้น 9, ลด Global Cooldown 10%, P.ATK + 3\nเมื่ออัพเกรดถึงขั้น 11, เพิ่ม Damage สกิล Star Cannon ขึ้นอีก 10%\n^ffffff_^000000\nเมื่อสวมใส่ร่วมกับ Orrivane Crown (Sky Emperor),\nเพิ่ม Damage สกิล Star Cannon 10%,\nเพิ่ม Damage ทางกายภาพระยะใกล้ 5%\n\nเมื่อ Orrivane Crown (Sky Emperor) มี Grade A ขึ้นไป,\nเมื่อขั้นอัพเกรดของ Weapon และ Helm รวมกันตั้งแต่ 22 ขึ้นไป, \nเมื่อโจมตีทางกายภาพระยะใกล้ มีโอกาส 40% ที่จะ Autospell สกิล Twinkling Galaxy Lv.1 (หากเรียนรู้ในระดับที่สูงกว่าจะใช้งานในระดับสูงสุด)\nเพิ่ม Damage สกิล Star Cannon 10%\n\n^CC3D3D[Option เพิ่มเติมตาม Grade]^000000\n[Grade D] P.ATK + 2\n[Grade C] เพิ่ม Damage สกิล Star Cannon 10%\n[Grade B] เพิ่ม Damage ทางกายภาพระยะใกล้ 10%\n[Grade A] ทุก ๆ การอัพเกรด 2 ขั้น P.ATK + 2\nประเภท : ^777777Book^000000 พลังโจมตี : ^777777240^000000\nน้ำหนัก : ^777777240^000000\nเลเวลอาวุธ : ^7777775^000000\nเลเวลที่ต้องการ : ^777777230^000000\nอาชีพที่ใส่ได้ : ^777777Sky Emperor^000000",
+  "unidDescription": "ไอเท็มปริศนา จำเป็นต้องใช้ [Magnifier] ในการตรวจสอบ",
+  "slots": 2,
+  "setname": null,
+  "itemTypeId": 1,
+  "itemSubTypeId": 271,
+  "itemSummonInfoContainedIn": [],
+  "itemSummonInfoContains": [],
+  "attack": 240,
+  "defense": null,
+  "weight": 240.0,
+  "requiredLevel": 230,
+  "limitLevel": null,
+  "itemLevel": null,
+  "EQUIP": null,
+  "compositionPos": null,
+  "attribute": 0,
+  "location": null,
+  "LOCA": 0,
+  "accessory": null,
+  "price": null,
+  "range": null,
+  "matk": null,
+  "gender": null,
+  "refinable": null,
+  "indestructible": null,
+  "itemMoveInfo": {
+    "drop": true,
+    "trade": true,
+    "store": true,
+    "cart": true,
+    "sell": true,
+    "mail": true,
+    "auction": true,
+    "guildStore": true
+  },
+  "rewardForAchievement": [],
+  "cardPrefix": null,
+  "pets": [],
+  "hasScript": false
+}

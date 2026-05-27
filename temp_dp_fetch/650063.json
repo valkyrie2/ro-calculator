@@ -1,0 +1,66 @@
+﻿{
+  "classNum": 22,
+  "sets": [
+    {
+      "name": "401280_650063",
+      "items": [
+        {
+          "itemId": 401280,
+          "name": "Orrivane Crown (Shinkiro \u0026 Shiranui) [1]"
+        },
+        {
+          "itemId": 650063,
+          "name": "Orrivane Wheel Shuriken [3]"
+        }
+      ]
+    }
+  ],
+  "soldBy": [],
+  "id": 650063,
+  "aegisName": "LMN_SS_M_Humma",
+  "flavorText": null,
+  "name": "Orrivane Wheel Shuriken [3]",
+  "unidName": "Huuma Shuriken",
+  "resName": "LMN_SS_M_Humma",
+  "unidResName": "풍마_편익",
+  "description": "Wheel Shuriken ของนินจาผู้มีผู้ตัดขาดห่วงโซ่แห่งการเวียนว่าย ทอดทิ้งอดีตอันซ้ำซาก และก้าวสู่รุ่งอรุณของจุดเริ่มต้นใหม่\n^ffffff_^000000\nMATK + 200, MATK + 3%,\nเพิ่ม Damage สกิล Cold Blooded Cannon 5%\nทุก ๆ การอัพเกรด 2 ขั้น MATK + 10, MATK + 1%\nทุก ๆ การอัพเกรด 3 ขั้น เพิ่ม Damage สกิล Cold Blooded Cannon 5%\nเมื่ออัพเกรดถึงขั้น 7, เพิ่ม Damage ทางเวทมนตร์ทุกธาตุ 15%\nเมื่ออัพเกรดถึงขั้น 9, ลดระยะเวลาร่ายแบบแปรผัน 10%, S.MATK + 3\nเมื่ออัพเกรดถึงขั้น 11, เพิ่ม Damage สกิล Cold Blooded Cannon ขึ้นอีก 10%\n^ffffff_^000000\nเมื่อสวมใส่ร่วมกับ Orrivane Crown (Shinkiro \u0026 Shiranui),\nเพิ่ม Damage สกิล Cold Blooded Cannon 10%,\nเพิ่ม Damage ทางเวทมนตร์ธาตุ Water 10%,\n\nเมื่อ Orrivane Crown (Shinkiro \u0026 Shiranui) มี Grade A ขึ้นไป,\nเมื่อขั้นอัพเกรดของ Weapon และ Helm รวมกันตั้งแต่ 22 ขึ้นไป, \nลด Cooldown สกิล Cold Blooded Cannon 0.1 วินาที,\nเพิ่ม Damage สกิล Cold Blooded Cannon 10%\n\n^CC3D3D[Option เพิ่มเติมตาม Grade]^000000\n[Grade D] S.MATK + 2\n[Grade C] เพิ่ม Damage สกิล Cold Blooded Cannon 10%\n[Grade B] เพิ่ม Damage ทางเวทมนตร์ทุกธาตุ 10%\n[Grade A] ทุก ๆ การอัพเกรด 2 ขั้น S.MATK + 2\nประเภท : ^777777Huuma Shuriken^000000 พลังโจมตี : ^777777120^000000\nน้ำหนัก : ^777777280^000000\nเลเวลอาวุธ : ^7777775^000000\nเลเวลที่ต้องการ : ^777777230^000000\nอาชีพที่ใส่ได้ : ^777777Shinkiro, Shiranui^000000",
+  "unidDescription": "ไอเท็มปริศนา จำเป็นต้องใช้ [Magnifier] ในการตรวจสอบ",
+  "slots": 3,
+  "setname": null,
+  "itemTypeId": 1,
+  "itemSubTypeId": 0,
+  "itemSummonInfoContainedIn": [],
+  "itemSummonInfoContains": [],
+  "attack": 120,
+  "defense": null,
+  "weight": 280.0,
+  "requiredLevel": 230,
+  "limitLevel": null,
+  "itemLevel": null,
+  "EQUIP": null,
+  "compositionPos": null,
+  "attribute": 0,
+  "location": null,
+  "LOCA": 0,
+  "accessory": null,
+  "price": null,
+  "range": null,
+  "matk": null,
+  "gender": null,
+  "refinable": null,
+  "indestructible": null,
+  "itemMoveInfo": {
+    "drop": true,
+    "trade": true,
+    "store": true,
+    "cart": true,
+    "sell": true,
+    "mail": true,
+    "auction": true,
+    "guildStore": true
+  },
+  "rewardForAchievement": [],
+  "cardPrefix": null,
+  "pets": [],
+  "hasScript": false
+}

@@ -1,0 +1,79 @@
+{
+  "classNum": null,
+  "sets": [
+    {
+      "name": "315287_510160",
+      "items": [
+        {
+          "itemId": 315287,
+          "name": "Orrivane Orb (Abyss Chaser)"
+        },
+        {
+          "itemId": 510160,
+          "name": "Orrivane Abyss Dagger [2]"
+        }
+      ]
+    },
+    {
+      "name": "315287_700133",
+      "items": [
+        {
+          "itemId": 315287,
+          "name": "Orrivane Orb (Abyss Chaser)"
+        },
+        {
+          "itemId": 700133,
+          "name": "Orrivane Abyss Crossbow [3]"
+        }
+      ]
+    }
+  ],
+  "soldBy": [],
+  "id": 315287,
+  "aegisName": "Orrivane_Enc_ABC",
+  "flavorText": null,
+  "name": "Orrivane Orb (Abyss Chaser)",
+  "unidName": "Orrivane Orb (Abyss Chaser)",
+  "resName": "Auto_Orb_Priest",
+  "unidResName": "Auto_Orb_Priest",
+  "description": "เมื่อสวมใส่ร่วมกับ Orrivane Abyss Dagger,\nเพิ่ม HIT Damage ทางกายภาพ 10%,\nทุก ๆ 2 ขั้นอัพเกรดอาวุธ, เพิ่ม Damage สกิล Deft Stab, Abyss Dagger 6%\n\nเมื่อ Orrivane Abyss Dagger มี Grade C ขึ้นไป,\nP.ATK + 10,\nลด Cooldown สกิล Abyss Dagger 0.3 วินาที,\nลด Cooldown สกิล Deft Stab 0.6 วินาที\n\nเมื่อ Orrivane Abyss Dagger มี Grade C และขั้นอัพเกรด 10 ขึ้นไป,\nสามารถใช้สกิล Power, Dark Claw Lv.4 ได้,\nลด Cooldown สกิล Dark Claw 30 วินาที,\nเมื่อใช้งานสกิล Deft Stab มีโอกาส 30% ที่จะ Autospell สกิล Deft Stab Lv.1 (เมื่อเรียนสกิลในเลเวลที่สูงกว่า จะร่ายในเลเวลสูงสุด),\nเพิ่ม Damage สกิล Deft Stab, Abyss Dagger 25%\n\nเมื่อสวมใส่ร่วมกับ Orrivane Abyss Crossbow,\nCritical Damage + 20%,\nทุก ๆ 2 ขั้นอัพเกรดอาวุธ, เพิ่ม Damage สกิล Frenzy Shot 4%, เพิ่ม Damage สกิล Chain Reaction Shot 6%\n\nเมื่อ Orrivane Abyss Crossbow มี Grade C ขึ้นไป,\nP.ATK + 10,\nลด Cooldown สกิล Chain Reaction Shot 0.5 วินาที,\nลด Cooldown สกิล Frenzy Shot 0.2 วินาที\n\nเมื่อ Orrivane Abyss Crossbow มี Grade C และขั้นอัพเกรด 10 ขึ้นไป,\nสามารถใช้สกิล Power Lv.2 ได้,\nสามารถใช้สกิล No Limits Lv.1 ได้,\nเมื่อใช้งานสกิล Frenzy Shot มีโอกาส 30% ที่จะใช้ Autospell สกิล Frenzy Shot Lv.1 (เมื่อเรียนสกิลในเลเวลที่สูงกว่า จะร่ายในเลเวลสูงสุด),\nเพิ่ม Damage สกิล Frenzy Shot 20%, เพิ่ม Damage สกิล Chain Reaction Shot 25%",
+  "unidDescription": "เมื่อสวมใส่ร่วมกับ Orrivane Abyss Dagger,\nเพิ่ม HIT Damage ทางกายภาพ 10%,\nทุก ๆ 2 ขั้นอัพเกรดอาวุธ, เพิ่ม Damage สกิล Deft Stab, Abyss Dagger 6%\n\nเมื่อ Orrivane Abyss Dagger มี Grade C ขึ้นไป,\nP.ATK + 10,\nลด Cooldown สกิล Abyss Dagger 0.3 วินาที,\nลด Cooldown สกิล Deft Stab 0.6 วินาที\n\nเมื่อ Orrivane Abyss Dagger มี Grade C และขั้นอัพเกรด 10 ขึ้นไป,\nสามารถใช้สกิล Power, Dark Claw Lv.4 ได้,\nลด Cooldown สกิล Dark Claw 30 วินาที,\nเมื่อใช้งานสกิล Deft Stab มีโอกาส 30% ที่จะ Autospell สกิล Deft Stab Lv.1 (เมื่อเรียนสกิลในเลเวลที่สูงกว่า จะร่ายในเลเวลสูงสุด),\nเพิ่ม Damage สกิล Deft Stab, Abyss Dagger 25%\n\nเมื่อสวมใส่ร่วมกับ Orrivane Abyss Crossbow,\nCritical Damage + 20%,\nทุก ๆ 2 ขั้นอัพเกรดอาวุธ, เพิ่ม Damage สกิล Frenzy Shot 4%, เพิ่ม Damage สกิล Chain Reaction Shot 6%\n\nเมื่อ Orrivane Abyss Crossbow มี Grade C ขึ้นไป,\nP.ATK + 10,\nลด Cooldown สกิล Chain Reaction Shot 0.5 วินาที,\nลด Cooldown สกิล Frenzy Shot 0.2 วินาที\n\nเมื่อ Orrivane Abyss Crossbow มี Grade C และขั้นอัพเกรด 10 ขึ้นไป,\nสามารถใช้สกิล Power Lv.2 ได้,\nสามารถใช้สกิล No Limits Lv.1 ได้,\nเมื่อใช้งานสกิล Frenzy Shot มีโอกาส 30% ที่จะใช้ Autospell สกิล Frenzy Shot Lv.1 (เมื่อเรียนสกิลในเลเวลที่สูงกว่า จะร่ายในเลเวลสูงสุด),\nเพิ่ม Damage สกิล Frenzy Shot 20%, เพิ่ม Damage สกิล Chain Reaction Shot 25%",
+  "slots": 0,
+  "setname": null,
+  "itemTypeId": 11,
+  "itemSubTypeId": 0,
+  "itemSummonInfoContainedIn": [],
+  "itemSummonInfoContains": [],
+  "attack": null,
+  "defense": null,
+  "weight": null,
+  "requiredLevel": null,
+  "limitLevel": null,
+  "itemLevel": null,
+  "EQUIP": null,
+  "compositionPos": 65535,
+  "attribute": 0,
+  "location": null,
+  "LOCA": 0,
+  "accessory": null,
+  "price": null,
+  "range": null,
+  "matk": null,
+  "gender": null,
+  "refinable": null,
+  "indestructible": null,
+  "itemMoveInfo": {
+    "drop": true,
+    "trade": true,
+    "store": true,
+    "cart": true,
+    "sell": true,
+    "mail": true,
+    "auction": true,
+    "guildStore": true
+  },
+  "rewardForAchievement": [],
+  "cardPrefix": null,
+  "pets": [],
+  "hasScript": false
+}

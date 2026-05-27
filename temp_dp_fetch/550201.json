@@ -1,0 +1,66 @@
+﻿{
+  "classNum": 69,
+  "sets": [
+    {
+      "name": "401271_550201",
+      "items": [
+        {
+          "itemId": 401271,
+          "name": "Orrivane Crown (Cardinal) [1]"
+        },
+        {
+          "itemId": 550201,
+          "name": "Orrivane Saint Wand [2]"
+        }
+      ]
+    }
+  ],
+  "soldBy": [],
+  "id": 550201,
+  "aegisName": "LMN_CD_Wand",
+  "flavorText": null,
+  "name": "Orrivane Saint Wand [2]",
+  "unidName": "Rod",
+  "resName": "LMN_CD_Wand",
+  "unidResName": "롯드",
+  "description": "Wand ของนักบวชผู้ตัดขาดห่วงโซ่แห่งการเวียนว่าย ทอดทิ้งอดีตอันซ้ำซาก และก้าวสู่รุ่งอรุณของจุดเริ่มต้นใหม่\n\nไม่สามารถทำลายได้\nMATK + 200, MATK + 3%\nเพิ่ม Damage สกิล Arbitrium 5%\nทุก ๆ การอัพเกรด 2 ขั้น, MATK + 10, MATK + 1%\nทุก ๆ การอัพเกรด 3 ขั้น, เพิ่ม Damage สกิล Arbitrium 2%\nเมื่ออัพเกรดถึงขั้น 7, เพิ่ม Damage ทางเวทมนตร์ธาตุ Holy 15%\nเมื่ออัพเกรดถึงขั้น 9, ลดระยะเวลาร่ายแบบแปรผัน 10%, S.MATK + 3\nเมื่ออัพเกรดถึงขั้น 11, เพิ่ม Damage สกิล Arbitrium 10%\n\nเมื่อสวมใส่ร่วมกับ Orrivane Crown (Cardinal),\nเพิ่ม Damage สกิล Arbitrium 10%,\nเพิ่ม Damage ทางเวทมนตร์ธาตุ Holy 10%\n\nเมื่อ Orrivane Crown (Cardinal) มี Grade A ขึ้นไป,\nเมื่อขั้นอัพเกรดของ Weapon และ Helm รวมกันตั้งแต่ 22 ขึ้นไป, \nลด Cooldown สกิล Arbitrium 0.3 วินาที,\nเพิ่ม Damage สกิล Arbitrium 10%\n\n[Option เพิ่มเติมตาม Grade]\n[Grade D] S.MATK + 2\n[Grade C] เพิ่ม Damage สกิล Arbitrium 10%\n[Grade B] เพิ่ม Damage ทางเวทมนตร์ธาตุ Holy 10%\n[Grade A] ทุก ๆ การอัพเกรด 2 ขั้น S.MATK + 2\n\nประเภท : ^777777One-handed Staff^000000 พลังโจมตี : ^777777100^000000\nน้ำหนัก : ^777777200^000000\nเลเวลอาวุธ : ^7777775^000000\nเลเวลที่ต้องการ : ^777777230^000000\nอาชีพที่ใส่ได้ : ^777777Cardinal^000000",
+  "unidDescription": "ไอเท็มปริศนา จำเป็นต้องใช้ [Magnifier] ในการตรวจสอบ",
+  "slots": 2,
+  "setname": null,
+  "itemTypeId": 1,
+  "itemSubTypeId": 265,
+  "itemSummonInfoContainedIn": [],
+  "itemSummonInfoContains": [],
+  "attack": 100,
+  "defense": null,
+  "weight": 200.0,
+  "requiredLevel": 230,
+  "limitLevel": null,
+  "itemLevel": null,
+  "EQUIP": 1004,
+  "compositionPos": null,
+  "attribute": 0,
+  "location": null,
+  "LOCA": 0,
+  "accessory": null,
+  "price": null,
+  "range": null,
+  "matk": null,
+  "gender": null,
+  "refinable": null,
+  "indestructible": null,
+  "itemMoveInfo": {
+    "drop": true,
+    "trade": true,
+    "store": true,
+    "cart": true,
+    "sell": true,
+    "mail": true,
+    "auction": true,
+    "guildStore": true
+  },
+  "rewardForAchievement": [],
+  "cardPrefix": null,
+  "pets": [],
+  "hasScript": false
+}

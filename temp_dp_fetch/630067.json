@@ -1,0 +1,66 @@
+﻿{
+  "classNum": 52,
+  "sets": [
+    {
+      "name": "401265_630067",
+      "items": [
+        {
+          "itemId": 401265,
+          "name": "Orrivane Crown (Dragon Knight) [1]"
+        },
+        {
+          "itemId": 630067,
+          "name": "Orrivane Dragon Lance [3]"
+        }
+      ]
+    }
+  ],
+  "soldBy": [],
+  "id": 630067,
+  "aegisName": "LMN_DK_Lance",
+  "flavorText": null,
+  "name": "Orrivane Dragon Lance [3]",
+  "unidName": "Lance",
+  "resName": "LMN_DK_Lance",
+  "unidResName": "랜스",
+  "description": "Lance ของอัศวินผู้ตัดขาดห่วงโซ่แห่งการเวียนว่าย ทอดทิ้งอดีตอันซ้ำซาก และก้าวสู่รุ่งอรุณของจุดเริ่มต้นใหม่\n^ffffff_^000000\nMaxHp + 5%, เพิ่ม Damage สกิล Dragonic Breath 5%\nทุก ๆ การอัพเกรด 2 ขั้น, ATK + 10, ATK + 1%\nทุก ๆ การอัพเกรด 3 ขั้น, เพิ่ม Damage สกิล Dragonic Breath 2%\nเมื่ออัพเกรดถึงขั้น 7, เพิ่ม Damage ทางกายภาพระยะไกล 15%\nเมื่ออัพเกรดถึงขั้น 9, ลดระยะเวลาร่ายแบบแปรผัน 10%, P.ATK + 3\nเมื่ออัพเกรดถึงขั้น 11, เพิ่ม Damage สกิล Dragonic Breath ขึ้นอีก 10%\n^ffffff_^000000\n\nเมื่อสวมใส่ร่วมกับ Orrivane Crown (Dragon Knight),\nเพิ่ม Damage สกิล Dragonic Breath 10%,\nเพิ่ม Damage ทางกายภาพระยะไกล 5%\n\nเมื่อ Orrivane Crown (Dragon Knight) มี Grade A ขึ้นไป,\nเมื่อขั้นอัพเกรดของ Weapon และ Helm รวมกันตั้งแต่ 22 ขึ้นไป, \nลด Cooldown สกิล Dragonic Breath 0.1 วินาที\nเพิ่ม Damage สกิล Dragonic Breath 10%\n\n^CC3D3D[Option เพิ่มเติมตาม Grade]^000000\n[Grade D] P.ATK + 2\n[Grade C] เพิ่ม Damage สกิล Dragonic Breath 10%\n[Grade B] เพิ่ม Damage ทางกายภาพระยะไกล 10%\n[Grade A] ทุก ๆ การอัพเกรด 2 ขั้น P.ATK + 2\nประเภท : ^777777Two-handed Spear^000000 พลังโจมตี : ^777777300^000000\nน้ำหนัก : ^777777650^000000\nเลเวลอาวุธ : ^7777775^000000\nเลเวลที่ต้องการ : ^777777230^000000\nอาชีพที่ใส่ได้ : ^777777Dragon Knight^000000",
+  "unidDescription": "ไอเท็มปริศนา จำเป็นต้องใช้ [Magnifier] ในการตรวจสอบ",
+  "slots": 3,
+  "setname": null,
+  "itemTypeId": 1,
+  "itemSubTypeId": 260,
+  "itemSummonInfoContainedIn": [],
+  "itemSummonInfoContains": [],
+  "attack": 300,
+  "defense": null,
+  "weight": 650.0,
+  "requiredLevel": 230,
+  "limitLevel": null,
+  "itemLevel": null,
+  "EQUIP": null,
+  "compositionPos": null,
+  "attribute": 0,
+  "location": null,
+  "LOCA": 0,
+  "accessory": null,
+  "price": null,
+  "range": null,
+  "matk": null,
+  "gender": null,
+  "refinable": null,
+  "indestructible": null,
+  "itemMoveInfo": {
+    "drop": true,
+    "trade": true,
+    "store": true,
+    "cart": true,
+    "sell": true,
+    "mail": true,
+    "auction": true,
+    "guildStore": true
+  },
+  "rewardForAchievement": [],
+  "cardPrefix": null,
+  "pets": [],
+  "hasScript": false
+}

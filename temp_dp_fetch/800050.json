@@ -1,0 +1,66 @@
+﻿{
+  "classNum": 17,
+  "sets": [
+    {
+      "name": "401279_800050",
+      "items": [
+        {
+          "itemId": 401279,
+          "name": "Orrivane Crown (Night Watch) [1]"
+        },
+        {
+          "itemId": 800050,
+          "name": "Orrivane Night Pistol [3]"
+        }
+      ]
+    }
+  ],
+  "soldBy": [],
+  "id": 800050,
+  "aegisName": "LMN_NW_Pistol",
+  "flavorText": null,
+  "name": "Orrivane Night Pistol [3]",
+  "unidName": "Sixth Shooter",
+  "resName": "LMN_NW_Pistol",
+  "unidResName": "식스슈터",
+  "description": "Pistol ของมือปืนผู้ตัดขาดห่วงโซ่แห่งการเวียนว่าย ทอดทิ้งอดีตอันซ้ำซาก และก้าวสู่รุ่งอรุณของจุดเริ่มต้นใหม่\n^ffffff_^000000\nCRI + 5, เพิ่ม Damage สกิล Magazine for One 5%\nทุก ๆ การอัพเกรด 2 ขั้น ATK + 10, ATK + 1%\nทุก ๆ การอัพเกรด 3 ขั้น เพิ่ม Damage สกิล Magazine for One 2%\nเมื่ออัพเกรดถึงขั้น 7, เพิ่ม Critical Damage 15%\nเมื่ออัพเกรดถึงขั้น 9, CRI + 10, C.Rate + 3\nเมื่ออัพเกรดถึงขั้น 11, เพิ่ม Damage สกิล Magazine for One ขึ้นอีก 10%\n^ffffff_^000000\nเมื่อสวมใส่ร่วมกับ Orrivane Crown (Night Watch),\nเพิ่ม Damage สกิล Magazine for One 5%,\nเพิ่ม Damage ทางกายภาพระยะไกล 5%\n\nเมื่อ Orrivane Crown (Night Watch) มี Grade A ขึ้นไป,\nเมื่อขั้นอัพเกรดของ Weapon และ Helm รวมกันตั้งแต่ 22 ขึ้นไป, \nลด Cooldown สกิล Magazine for One 0.1 วินาที,\nเพิ่ม Damage สกิล Magazine for One 10%\n\n^CC3D3D[Option เพิ่มเติมตาม Grade]^000000\n[Grade D] P.ATK + 2\n[Grade C] เพิ่ม Damage สกิล Magazine for One 10%\n[Grade B] เพิ่ม Damage ทางกายภาพระยะไกล 10%\n[Grade A] ทุก ๆ การอัพเกรด 2 ขั้น P.ATK + 2\nประเภท : ^777777Revolver^000000 พลังโจมตี : ^777777230^000000\nน้ำหนัก : ^777777220^000000\nเลเวลอาวุธ : ^7777775^000000\nเลเวลที่ต้องการ : ^777777230^000000\nอาชีพที่ใส่ได้ : ^777777Night Watch^000000",
+  "unidDescription": "ไอเท็มปริศนา จำเป็นต้องใช้ [Magnifier] ในการตรวจสอบ",
+  "slots": 3,
+  "setname": null,
+  "itemTypeId": 1,
+  "itemSubTypeId": 273,
+  "itemSummonInfoContainedIn": [],
+  "itemSummonInfoContains": [],
+  "attack": 230,
+  "defense": null,
+  "weight": 220.0,
+  "requiredLevel": 230,
+  "limitLevel": null,
+  "itemLevel": null,
+  "EQUIP": null,
+  "compositionPos": null,
+  "attribute": 0,
+  "location": null,
+  "LOCA": 0,
+  "accessory": null,
+  "price": null,
+  "range": null,
+  "matk": null,
+  "gender": null,
+  "refinable": null,
+  "indestructible": null,
+  "itemMoveInfo": {
+    "drop": true,
+    "trade": true,
+    "store": true,
+    "cart": true,
+    "sell": true,
+    "mail": true,
+    "auction": true,
+    "guildStore": true
+  },
+  "rewardForAchievement": [],
+  "cardPrefix": null,
+  "pets": [],
+  "hasScript": false
+}

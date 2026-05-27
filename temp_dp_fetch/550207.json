@@ -1,0 +1,66 @@
+﻿{
+  "classNum": 100,
+  "sets": [
+    {
+      "name": "401282_550207",
+      "items": [
+        {
+          "itemId": 401282,
+          "name": "Orrivane Crown (Spirit Handler) [1]"
+        },
+        {
+          "itemId": 550207,
+          "name": "Orrivane Spirit Foxtail Model [2]"
+        }
+      ]
+    }
+  ],
+  "soldBy": [],
+  "id": 550207,
+  "aegisName": "LMN_SH_F_Foxtail",
+  "flavorText": null,
+  "name": "Orrivane Spirit Foxtail Model [2]",
+  "unidName": "Rod",
+  "resName": "LMN_SH_F_Foxtail",
+  "unidResName": "롯드",
+  "description": "Foxtail Model ของผู้อัญเชิญผู้ตัดขาดห่วงโซ่แห่งการเวียนว่าย ทอดทิ้งอดีตอันซ้ำซาก และก้าวสู่รุ่งอรุณของจุดเริ่มต้นใหม่\n^ffffff_^000000\nไม่สามารถทำลายได้\nMATK + 300, MATK + 3%,\nเพิ่ม Damage สกิล Hyunrok Breeze 5%\nทุก ๆ การอัพเกรด 2 ขั้น MATK + 10, MATK + 1%\nทุก ๆ การอัพเกรด 3 ขั้น เพิ่ม Damage สกิล Hyunrok Breeze 2%\nเมื่ออัพเกรดถึงขั้น 7, เพิ่ม Damage ทางเวทมนตร์ทุกธาตุ 15%\nเมื่ออัพเกรดถึงขั้น 9, ลดระยะเวลาร่ายแบบแปรผัน 10%, S.MATK + 3\nเมื่ออัพเกรดถึงขั้น 11, เพิ่ม Damage สกิล Hyunrok Breeze 10%\n^ffffff_^000000\nเมื่อสวมใส่ร่วมกันกับ Orrivane Crown (Spirit Handler),\nเพิ่ม Damage สกิล Hyunrok Breeze 10%,\nเพิ่ม Damage ทางเวทมนตร์ทุกธาตุ 10%\n\nเมื่อ Orrivane Crown (Spirit Hanlder) มี Grade A ขึ้นไป,\nเมื่อขั้นอัพเกรดของ Weapon และ Helm รวมกันตั้งแต่ 22 ขึ้นไป, \nเพิ่ม Damage สกิล Hyunrok Breeze 10%,\nลด Cooldown สกิล Hyunrok Breeze 1 วินาที\n\n^CC3D3D[Option เพิ่มเติมตาม Grade]^000000\n[Grade D] S.MATK +2\n[Grade C] เพิ่ม Damage สกิล Hyunrok Breeze 10%\n[Grade B] เพิ่ม Damage ทางเวทมนตร์ทุกธาตุ 10%\n[Grade A] ทุก ๆ การอัพเกรด 2 ขั้น S.MATK + 2\nประเภท : ^777777One-handed Staff^000000 พลังโจมตี : ^777777300^000000\nน้ำหนัก : ^777777200^000000\nเลเวลอาวุธ : ^7777775^000000\nเลเวลที่ต้องการ : ^777777230^000000\nอาชีพที่ใส่ได้ : ^777777Spirit Hanlder^000000",
+  "unidDescription": "ไอเท็มปริศนา จำเป็นต้องใช้ [Magnifier] ในการตรวจสอบ",
+  "slots": 2,
+  "setname": null,
+  "itemTypeId": 1,
+  "itemSubTypeId": 265,
+  "itemSummonInfoContainedIn": [],
+  "itemSummonInfoContains": [],
+  "attack": 300,
+  "defense": null,
+  "weight": 200.0,
+  "requiredLevel": 230,
+  "limitLevel": null,
+  "itemLevel": null,
+  "EQUIP": null,
+  "compositionPos": null,
+  "attribute": 0,
+  "location": null,
+  "LOCA": 0,
+  "accessory": null,
+  "price": null,
+  "range": null,
+  "matk": null,
+  "gender": null,
+  "refinable": null,
+  "indestructible": null,
+  "itemMoveInfo": {
+    "drop": true,
+    "trade": true,
+    "store": true,
+    "cart": true,
+    "sell": true,
+    "mail": true,
+    "auction": true,
+    "guildStore": true
+  },
+  "rewardForAchievement": [],
+  "cardPrefix": null,
+  "pets": [],
+  "hasScript": false
+}

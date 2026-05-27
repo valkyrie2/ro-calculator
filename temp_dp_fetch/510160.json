@@ -1,0 +1,79 @@
+﻿{
+  "classNum": 31,
+  "sets": [
+    {
+      "name": "401270_510160",
+      "items": [
+        {
+          "itemId": 401270,
+          "name": "Orrivane Crown (Abyss Chaser) [1]"
+        },
+        {
+          "itemId": 510160,
+          "name": "Orrivane Abyss Dagger [2]"
+        }
+      ]
+    },
+    {
+      "name": "315287_510160",
+      "items": [
+        {
+          "itemId": 315287,
+          "name": "Orrivane Orb (Abyss Chaser)"
+        },
+        {
+          "itemId": 510160,
+          "name": "Orrivane Abyss Dagger [2]"
+        }
+      ]
+    }
+  ],
+  "soldBy": [],
+  "id": 510160,
+  "aegisName": "LMN_ABC_Dagger",
+  "flavorText": null,
+  "name": "Orrivane Abyss Dagger [2]",
+  "unidName": "Knife",
+  "resName": "LMN_ABC_Dagger",
+  "unidResName": "나이프",
+  "description": "Dagger ของนักรบไร้เงาผู้ตัดขาดห่วงโซ่แห่งการเวียนว่าย ทอดทิ้งอดีตอันซ้ำซาก และก้าวสู่รุ่งอรุณของจุดเริ่มต้นใหม่\n^ffffff_^000000\nATK + 3%, เพิ่ม Damage สกิล Deft Stab 5%\nทุก ๆ การอัพเกรด 2 ขั้น, ATK + 10, ATK + 1%\nทุก ๆ การอัพเกรด 3 ขั้น, เพิ่ม Damage สกิล Deft Stab 2%\nเมื่ออัพเกรดถึงขั้น 7, เพิ่ม Damage ทางกายภาพระยะใกล้ 15%\nเมื่ออัพเกรดถึงขั้น 9, ลด Global Cooldown 10%, P.ATK  + 3\nเมื่ออัพเกรดถึงขั้น 11, เพิ่ม Damage สกิล Deft Stab ขึ้นอีก 10%\n^ffffff_^000000\nเมื่อสวมใส่ร่วมกับ Orrivane Crown (Abyss Chaser),\nเพิ่ม Damage สกิล Deft Stab 10%,\nเพิ่ม Damage ทางกายภาพระยะใกล้ 5%\n\nเมื่อ Orrivane Crown (Abyss Chaser) มี Grade A ขึ้นไป,\nเมื่อขั้นอัพเกรดของ Weapon และ Helm รวมกันตั้งแต่ 22 ขึ้นไป, \nลด Cooldown สกิล Deft Stab 0.1 วินาที,\nเพิ่ม Damage สกิล Deft Stab 10%\n\n^CC3D3D[Option เพิ่มเติมตาม Grade]^000000\n[Grade D] P.ATK + 2\n[Grade C] เพิ่ม Damage สกิล Deft Stab 10%\n[Grade B] เพิ่ม Damage ทางกายภาพระยะใกล้ 10%\n[Grade A] ทุก ๆ การอัพเกรด 2 ขั้น P.ATK + 2\n\nประเภท : ^777777Dagger^000000 พลังโจมตี : ^777777240^000000\nน้ำหนัก : ^777777180^000000\nเลเวลอาวุธ : ^7777775^000000\nเลเวลที่ต้องการ : ^777777230^000000\nอาชีพที่ใส่ได้ : ^777777Abyss Chaser^000000",
+  "unidDescription": "ไอเท็มปริศนา จำเป็นต้องใช้ [Magnifier] ในการตรวจสอบ",
+  "slots": 2,
+  "setname": null,
+  "itemTypeId": 1,
+  "itemSubTypeId": 256,
+  "itemSummonInfoContainedIn": [],
+  "itemSummonInfoContains": [],
+  "attack": 240,
+  "defense": null,
+  "weight": 180.0,
+  "requiredLevel": 230,
+  "limitLevel": null,
+  "itemLevel": null,
+  "EQUIP": 1048575,
+  "compositionPos": null,
+  "attribute": 0,
+  "location": null,
+  "LOCA": 0,
+  "accessory": null,
+  "price": null,
+  "range": null,
+  "matk": null,
+  "gender": null,
+  "refinable": null,
+  "indestructible": null,
+  "itemMoveInfo": {
+    "drop": true,
+    "trade": true,
+    "store": true,
+    "cart": true,
+    "sell": true,
+    "mail": true,
+    "auction": true,
+    "guildStore": true
+  },
+  "rewardForAchievement": [],
+  "cardPrefix": null,
+  "pets": [],
+  "hasScript": false
+}

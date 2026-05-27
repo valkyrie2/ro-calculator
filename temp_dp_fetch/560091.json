@@ -1,0 +1,66 @@
+﻿{
+  "classNum": 78,
+  "sets": [
+    {
+      "name": "401272_560091",
+      "items": [
+        {
+          "itemId": 401272,
+          "name": "Orrivane Crown (Inquisitor) [1]"
+        },
+        {
+          "itemId": 560091,
+          "name": "Orrivane Judgment Knuckle [2]"
+        }
+      ]
+    }
+  ],
+  "soldBy": [],
+  "id": 560091,
+  "aegisName": "LMN_IQ_Knuckle",
+  "flavorText": null,
+  "name": "Orrivane Judgment Knuckle [2]",
+  "unidName": "Waghnak",
+  "resName": "LMN_IQ_Knuckle",
+  "unidResName": "바그낙",
+  "description": "Knuckle ของผู้พิพากษาผู้ตัดขาดห่วงโซ่แห่งการเวียนว่าย ทอดทิ้งอดีตอันซ้ำซาก และก้าวสู่รุ่งอรุณของจุดเริ่มต้นใหม่\n^ffffff_^000000\nATK + 3%, เพิ่ม Damage สกิล Third Flame Bomb 5%\nทุก ๆ การอัพเกรด 2 ขั้น, ATK + 10, ATK + 1%\nทุก ๆ การอัพเกรด 3 ขั้น, เพิ่ม Damage สกิล Third Flame Bomb 2%\nเมื่ออัพเกรดถึงขั้น 7, เพิ่ม Damage ทางกายภาพระยะใกล้ 15%\nเมื่ออัพเกรดถึงขั้น 9, ลด Global Cooldown 10%, P.ATK + 3\nเมื่ออัพเกรดถึงขั้น 11, เพิ่ม Damage สกิล Third Flame Bomb ขึ้นอีก 10%\n^ffffff_^000000\nเมื่อสวมใส่ร่วมกับ Orrivane Crown (Inquisitor),\nเพิ่ม Damage สกิล Third Flame Bomb 10%,\nเพิ่ม Damage ทางกายภาพระยะใกล้ 5%\n\nเมื่อ Orrivane Crown (Inquisitor) มี Grade A ขึ้นไป,\nเมื่อขั้นอัพเกรดของ Weapon และ Helm รวมกันตั้งแต่ 22 ขึ้นไป, \nเพิ่ม Damage ทางกายภาพระยะใกล้ 10%,\nเพิ่ม Damage สกิล Third Flame Bomb 10%\n\n^CC3D3D[Option เพิ่มเติมตาม Grade]^000000\n[Grade D] P.ATK + 2\n[Grade C] เพิ่ม Damage สกิล Third Flame Bomb 10%\n[Grade B] เพิ่ม Damage ทางกายภาพระยะใกล้ 10%\n[Grade A] ทุก ๆ การอัพเกรด 2 ขั้น P.ATK + 2\nประเภท : ^777777Knuckle^000000 พลังโจมตี : ^777777240^000000\nน้ำหนัก : ^777777230^000000\nเลเวลอาวุธ : ^7777775^000000\nเลเวลที่ต้องการ : ^777777230^000000\nอาชีพที่ใส่ได้ : ^777777Inquisitor^000000",
+  "unidDescription": "ไอเท็มปริศนา จำเป็นต้องใช้ [Magnifier] ในการตรวจสอบ",
+  "slots": 2,
+  "setname": null,
+  "itemTypeId": 1,
+  "itemSubTypeId": 268,
+  "itemSummonInfoContainedIn": [],
+  "itemSummonInfoContains": [],
+  "attack": 240,
+  "defense": null,
+  "weight": 230.0,
+  "requiredLevel": 230,
+  "limitLevel": null,
+  "itemLevel": null,
+  "EQUIP": 1010,
+  "compositionPos": null,
+  "attribute": 0,
+  "location": null,
+  "LOCA": 0,
+  "accessory": null,
+  "price": null,
+  "range": null,
+  "matk": null,
+  "gender": null,
+  "refinable": null,
+  "indestructible": null,
+  "itemMoveInfo": {
+    "drop": true,
+    "trade": true,
+    "store": true,
+    "cart": true,
+    "sell": true,
+    "mail": true,
+    "auction": true,
+    "guildStore": true
+  },
+  "rewardForAchievement": [],
+  "cardPrefix": null,
+  "pets": [],
+  "hasScript": false
+}

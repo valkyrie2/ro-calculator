@@ -1,0 +1,66 @@
+﻿{
+  "classNum": 14,
+  "sets": [
+    {
+      "name": "401276_580094",
+      "items": [
+        {
+          "itemId": 401276,
+          "name": "Orrivane Crown (Troubadour \u0026 Trouvere) [1]"
+        },
+        {
+          "itemId": 580094,
+          "name": "Orrivane Musical Rope [2]"
+        }
+      ]
+    }
+  ],
+  "soldBy": [],
+  "id": 580094,
+  "aegisName": "LMN_TR_Rope",
+  "flavorText": null,
+  "name": "Orrivane Musical Rope [2]",
+  "unidName": "Rope",
+  "resName": "LMN_TR_Rope",
+  "unidResName": "로프",
+  "description": "Whip ของนักเต้นผู้ตัดขาดห่วงโซ่แห่งการเวียนว่าย ทอดทิ้งอดีตอันซ้ำซาก และก้าวสู่รุ่งอรุณของจุดเริ่มต้นใหม่\n\nATK + 3%, เพิ่ม Damage สกิล Rhythm Shooting 5%\nทุก ๆ การอัพเกรด 2 ขั้น ATK + 10, ATK + 1%\nทุก ๆ การอัพเกรด 3 ขั้น เพิ่ม Damage สกิล Rhythm Shooting 2%\nเมื่ออัพเกรดถึงขั้น 7, เพิ่ม Damage ทางกายภาพระยะไกล 15%\nเมื่ออัพเกรดถึงขั้น 9, ลด Global Cooldown 10%, P.ATK + 3\nเมื่ออัพเกรดถึงขั้น 11, เพิ่ม Damage สกิล Rhythm Shooting ขึ้นอีก 10%\n\nเมื่อสวมใส่ร่วมกับ Orrivane Crown (Troubadour \u0026 Trouvere),\nเพิ่ม Damage สกิล Rhythm Shooting 10%,\nเพิ่ม Damage ทางกายภาพระยะไกล 5%\n\nเมื่อ Orrivane Crown (Troubadour \u0026 Trouvere) มี Grade A ขึ้นไป,\nเมื่อขั้นอัพเกรดของ Weapon และ Helm รวมกันตั้งแต่ 22 ขึ้นไป, \nเพิ่ม Damage ทางกายภาพระยะไกล 10%\nเพิ่ม Damage สกิล Rhythm Shooting 10%\n\n[Option เพิ่มเติมตาม Grade]\n[Grade D] P.ATK + 2\n[Grade C] เพิ่ม Damage สกิล Rhythm Shooting 10%\n[Grade B] เพิ่ม Damage ทางกายภาพระยะไกล 10%\n[Grade A] ทุก ๆ การอัพเกรด 2 ขั้น P.ATK + 2\nประเภท : ^777777Whip^000000 พลังโจมตี : ^777777230^000000\nน้ำหนัก : ^777777180^000000\nเลเวลอาวุธ : ^7777775^000000\nเลเวลที่ต้องการ : ^777777230^000000\nอาชีพที่ใส่ได้ : ^777777Trouvere^000000",
+  "unidDescription": "ไอเท็มปริศนา จำเป็นต้องใช้ [Magnifier] ในการตรวจสอบ",
+  "slots": 2,
+  "setname": null,
+  "itemTypeId": 1,
+  "itemSubTypeId": 270,
+  "itemSummonInfoContainedIn": [],
+  "itemSummonInfoContains": [],
+  "attack": 230,
+  "defense": null,
+  "weight": 180.0,
+  "requiredLevel": 230,
+  "limitLevel": null,
+  "itemLevel": null,
+  "EQUIP": 1012,
+  "compositionPos": null,
+  "attribute": 0,
+  "location": null,
+  "LOCA": 0,
+  "accessory": null,
+  "price": null,
+  "range": null,
+  "matk": null,
+  "gender": null,
+  "refinable": null,
+  "indestructible": null,
+  "itemMoveInfo": {
+    "drop": true,
+    "trade": true,
+    "store": true,
+    "cart": true,
+    "sell": true,
+    "mail": true,
+    "auction": true,
+    "guildStore": true
+  },
+  "rewardForAchievement": [],
+  "cardPrefix": null,
+  "pets": [],
+  "hasScript": false
+}

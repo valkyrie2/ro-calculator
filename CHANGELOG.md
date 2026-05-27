@@ -1,5 +1,15 @@
 # Changelog
 
+## Extra v60.7 (27-05-2569)
+
+- Added 38 Orrivane weapons (all 4th/5th job classes): Imperial Sword, Biologic Sword, Hyper Sword, Abyss Dagger, Imperial Spear, Saint Book, Elemental Magic/Spell Books, Emperor Star/Noon Books, Saint/Arch/Soul Wands, Soul Stick, Hyper Wand, Spirit Foxtail/Model, Judgment Knuckle/Claw, Musical Violin/Harp/Rope/Ribbon, Mechanical Mace, Biologic Scepter, Dragon Sword, Shadow Katar/Cakram, Mechanical Axe, Dragon Lance, Arch Staff, Wheel/Huuma Shurikens, Abyss/Wind Crossbow, Wind Bow, Night Pistol/Gatling
+- Added 18 Orrivane Crowns (Dragon Knight, Imperial Guard, Meister, Biolo, Shadow Cross, Abyss Chaser, Cardinal, Inquisitor, Arch Mage, Elemental Master, Wind Hawk, Troubadour & Trouvere, Sky Emperor, Soul Ascetic, Night Watch, Shinkiro & Shiranui, Hyper Novice, Spirit Handler)
+- Added 3 Orrivane Rings (Wind Hawk 491049, Abyss Chaser 491050, Arch Mage 491051) with 3-slot enchants (Orrivane Orb class-specific / Varmundt Acc3 / Dim Ring LT4)
+- Added 3 Orrivane Orb enchant items (Wind Hawk 315286, Abyss Chaser 315287, Arch Mage 315288)
+- Fixed Orrivane Rings: canGrade set to false
+- Added misc items: [6th] Ayothaya Helm (401390), Eye of Necromancer (410657), Falling Star Shield (460166), Ayothaya Adventurer's Boots (470442), 6th Anniversary Ayothaya Ring (490966), Amplify Metal Detector MK47-2 (102126)
+- Added skill names: Metalic Fury, Overbrand
+
 ## Extra v60.6 (24-05-2569)
 
 - Added item: Costume Poring Noodle Head (400319) with event EXP +20% bonus expiring on 03-06-2569

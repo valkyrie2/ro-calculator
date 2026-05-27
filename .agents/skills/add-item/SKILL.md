@@ -97,7 +97,7 @@ Copy verbatim from the source (Thai/original). Preserve `\n`, `^RRGGBB...^000000
 อาชีพที่ใส่ได้ : ^777777<Class>^000000
 ```
 
-If the Divine Pride API truncates the middle (it sometimes does for long Thai text), write a short faithful Thai summary of the flavor text — but **always include the full footer and any time-limited bonus block** exactly as the in-game text shows them.
+If the Divine Pride API truncates the middle (it sometimes does for long Thai text), write a short faithful Thai summary of the flavor text yourself — do not block on getting the exact original wording. **Always include the full footer and any time-limited bonus block** exactly as the in-game text shows them.
 
 **Time-limited bonus block** (standard pattern):
 
@@ -222,7 +222,7 @@ The file is very large (>180k lines). Tools to prefer/avoid:
 - **AVOID**: generic single-line replacements such as `"atk": ["20"]` — they will silently match many unrelated items. (This has happened; always audit.)
 - **AVOID** `apply_patch` on `item.json` — it has failed with stack overflows on this file. Use it freely on the smaller TypeScript / Markdown files.
 
-**Insertion point heuristic:** `item.json` is only loosely sorted by ID. Use `grep_search` for ID prefixes (e.g., `"4003[0-9]{2}":`) to find existing neighbours in the same numeric band, then insert before the next-higher existing ID. Do not assume `id + 1` exists.
+**Insertion point heuristic:** `item.json` is only loosely sorted by ID. Append the new entry directly after the highest existing ID in the file — do NOT try to place it in numeric order within gaps. Use `grep_search` once to find the last item block, then anchor on its closing `}` + the file's trailing `}` to insert.
 
 After ANY scripted edit, audit:
 
@@ -262,8 +262,10 @@ Update BOTH files. Keep the version string and date IDENTICAL between them.
 
 **Decision: new version vs. append?**
 
-- If the latest entry's `date` equals today (พ.ศ., `DD-MM-YYYY`) → append a new bullet to the existing entry's `logs`.
-- Otherwise → bump the patch number (e.g., `v60.5` → `v60.6`) and create a new entry at the top with today's date.
+- **Bump version only on the last week of the month.** Otherwise append to the latest entry's `logs`.
+  - "Last week" = the final 7 days of the calendar month (e.g., May has 31 days → 25–31 May).
+  - When bumping, increment the patch (e.g., `v60.5` → `v60.6`) and create a new entry at the top with today's date (พ.ศ., `DD-MM-YYYY`).
+- All edits outside the last week → add a new bullet to the existing top entry's `logs` (do not change its date).
 
 Both files are small — use `multi_replace_string_in_file` to update them in one call.
 

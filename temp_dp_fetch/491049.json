@@ -1,0 +1,66 @@
+﻿{
+  "classNum": null,
+  "sets": [
+    {
+      "name": "401275_491049",
+      "items": [
+        {
+          "itemId": 401275,
+          "name": "Orrivane Crown (Wind Hawk) [1]"
+        },
+        {
+          "itemId": 491049,
+          "name": "Orrivane Ring (Wind Hawk) [1]"
+        }
+      ]
+    }
+  ],
+  "soldBy": [],
+  "id": 491049,
+  "aegisName": "WH_Orrivane_R_TH",
+  "flavorText": null,
+  "name": "Orrivane Ring (Wind Hawk) [1]",
+  "unidName": "Orrivane Ring (Wind Hawk)",
+  "resName": "Colourful_Ring",
+  "unidResName": "Colourful_Ring",
+  "description": "แหวนแห่ง Orrivance ที่เมื่อสวมใส่จะสัมผัสได้ถึงพลังแห่งสายลมอันเฉียบคมและรวดเร็วราวนักล่าแห่งท้องนภา\n\nATK + 100\nลด Global Cooldown 10%\nCON + 10\nCRI + 15\nเพิ่ม Damage ทางกายภาพต่อศัตรูทุกประเภท 15%\n\nเมื่อสวมใส่ร่วมกับ Orrivane Crown (Windhawk),\nเพิ่ม Damage ทางกายภาพต่อศัตรูทุกขนาด 15%,\nเพิ่ม Damage สกิล Gale Storm, Crescive Bolt 20%\n\nเมื่อ Orrivane Crown (Windhawk) มีขั้นอัพเกรดตั้งแต่ 10 ขึ้นไป,\nเพิ่ม Damage ทางกายภาพต่อศัตรูทุกธาตุ 15%,\nเพิ่ม Damage สกิล Gale Storm, Crescive Bolt 20%\n\nเมื่อ Orrivane Crown (Windhawk) มี Grade C ขึ้นไป,\nP.ATK + 10,\nเพิ่ม Damage สกิล Gale Storm, Crescive Bolt 20%\nประเภท : ^777777Accessory (Right)^000000 พลังป้องกัน : ^7777770^000000\nน้ำหนัก : ^77777720^000000\nเลเวลที่ต้องการ : ^777777230^000000\nอาชีพที่ใส่ได้ : ^777777Wind Hawk^000000",
+  "unidDescription": "แหวนแห่ง Orrivance ที่เมื่อสวมใส่จะสัมผัสได้ถึงพลังแห่งสายลมอันเฉียบคมและรวดเร็วราวนักล่าแห่งท้องนภา\n\nATK + 100\nลด Global Cooldown 10%\nCON + 10\nCRI + 15\nเพิ่ม Damage ทางกายภาพต่อศัตรูทุกประเภท 15%\n\nเมื่อสวมใส่ร่วมกับ Orrivane Crown (Windhawk),\nเพิ่ม Damage ทางกายภาพต่อศัตรูทุกขนาด 15%,\nเพิ่ม Damage สกิล Gale Storm, Crescive Bolt 20%\n\nเมื่อ Orrivane Crown (Windhawk) มีขั้นอัพเกรดตั้งแต่ 10 ขึ้นไป,\nเพิ่ม Damage ทางกายภาพต่อศัตรูทุกธาตุ 15%,\nเพิ่ม Damage สกิล Gale Storm, Crescive Bolt 20%\n\nเมื่อ Orrivane Crown (Windhawk) มี Grade C ขึ้นไป,\nP.ATK + 10,\nเพิ่ม Damage สกิล Gale Storm, Crescive Bolt 20%",
+  "slots": 1,
+  "setname": null,
+  "itemTypeId": 2,
+  "itemSubTypeId": 517,
+  "itemSummonInfoContainedIn": [],
+  "itemSummonInfoContains": [],
+  "attack": null,
+  "defense": 0,
+  "weight": 20.0,
+  "requiredLevel": 230,
+  "limitLevel": null,
+  "itemLevel": null,
+  "EQUIP": 1005,
+  "compositionPos": null,
+  "attribute": 0,
+  "location": null,
+  "LOCA": 0,
+  "accessory": null,
+  "price": null,
+  "range": null,
+  "matk": null,
+  "gender": null,
+  "refinable": null,
+  "indestructible": null,
+  "itemMoveInfo": {
+    "drop": true,
+    "trade": true,
+    "store": true,
+    "cart": true,
+    "sell": true,
+    "mail": true,
+    "auction": true,
+    "guildStore": true
+  },
+  "rewardForAchievement": [],
+  "cardPrefix": null,
+  "pets": [],
+  "hasScript": false
+}

@@ -1,0 +1,66 @@
+﻿{
+  "classNum": 15,
+  "sets": [
+    {
+      "name": "401274_540129",
+      "items": [
+        {
+          "itemId": 401274,
+          "name": "Orrivane Crown (Elemental Master) [1]"
+        },
+        {
+          "itemId": 540129,
+          "name": "Orrivane Elemental Magic Book [2]"
+        }
+      ]
+    }
+  ],
+  "soldBy": [],
+  "id": 540129,
+  "aegisName": "LMN_EM_Book",
+  "flavorText": null,
+  "name": "Orrivane Elemental Magic Book [2]",
+  "unidName": "Book",
+  "resName": "LMN_EM_Book",
+  "unidResName": "북",
+  "description": "Book ของผู้ชำนาญธาตุผู้ตัดขาดห่วงโซ่แห่งการเวียนว่าย ทอดทิ้งอดีตอันซ้ำซาก และก้าวสู่รุ่งอรุณของจุดเริ่มต้นใหม่\n^ffffff_^000000\nMATK + 200, MATK + 3%,\nเพิ่ม Damage สกิล Lightning Land 5%\nทุก ๆ การอัพเกรด 2 ขั้น MATK + 10, MATK + 1%\nทุก ๆ การอัพเกรด 3 ขั้น เพิ่ม Damage สกิล Lightning Land 5%\nเมื่ออัพเกรดถึงขั้น 7, เพิ่ม Damage ทางเวทมนตร์ทุกธาตุ 15%\nเมื่ออัพเกรดถึงขั้น 9, ลดระยะเวลาร่ายแบบแปรผัน 10%, S.MATK + 3\nเมื่ออัพเกรดถึงขั้น 11,เพิ่ม Damage สกิล Lightning Land ขึ้นอีก 10%\n^ffffff_^000000\nเมื่อสวมใส่ร่วมกับ Orrivane Crown (Elemental Master),\nเพิ่ม Damage สกิล Lightning Land 10%,\nเพิ่ม Damage ทางเวทมนตร์ธาตุ Wind 10%\n\nเมื่อ Orrivane Crown (Elemental Master) มี Grade A ขึ้นไป,\nเมื่อขั้นอัพเกรดของ Weapon และ Helm รวมกันตั้งแต่ 22 ขึ้นไป, \nลด Cooldown สกิล Lightning Land 0.5 วินาที,\nเพิ่ม Damage สกิล Lightning Land 10%\n\n^CC3D3D[Option เพิ่มเติมตาม Grade]^000000\n[Grade D] S.MATK + 2.\n[Grade C] เพิ่ม Damage สกิล Lightning Land 10%\n[Grade B] เพิ่ม Damage ทางเวทมนตร์ทุกธาตุ 10%\n[Grade A] ทุก ๆ การอัพเกรด 2 ขั้น S.MATK + 2\nประเภท : ^777777Book^000000 พลังโจมตี : ^777777100^000000\nน้ำหนัก : ^777777180^000000\nเลเวลอาวุธ : ^7777775^000000\nเลเวลที่ต้องการ : ^777777230^000000\nอาชีพที่ใส่ได้ : ^777777Elemental Master^000000",
+  "unidDescription": "ไอเท็มปริศนา จำเป็นต้องใช้ [Magnifier] ในการตรวจสอบ",
+  "slots": 2,
+  "setname": null,
+  "itemTypeId": 1,
+  "itemSubTypeId": 271,
+  "itemSummonInfoContainedIn": [],
+  "itemSummonInfoContains": [],
+  "attack": 100,
+  "defense": null,
+  "weight": 180.0,
+  "requiredLevel": 230,
+  "limitLevel": null,
+  "itemLevel": null,
+  "EQUIP": null,
+  "compositionPos": null,
+  "attribute": 0,
+  "location": null,
+  "LOCA": 0,
+  "accessory": null,
+  "price": null,
+  "range": null,
+  "matk": null,
+  "gender": null,
+  "refinable": null,
+  "indestructible": null,
+  "itemMoveInfo": {
+    "drop": true,
+    "trade": true,
+    "store": true,
+    "cart": true,
+    "sell": true,
+    "mail": true,
+    "auction": true,
+    "guildStore": true
+  },
+  "rewardForAchievement": [],
+  "cardPrefix": null,
+  "pets": [],
+  "hasScript": false
+}

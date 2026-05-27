@@ -1917,6 +1917,10 @@ export const EnchantTable: EntTable[] = [
   { name: "Lucky_Ring_LT", enchants: [null, luckyringLT2, luckyringLT3, luckyringLT4] },
 
   { name: "SnowPromised_Ring_TH", enchants: [null, promise2, promise3, promise4] },
+
+  { name: "WH_Orrivane_R_TH",  enchants: [null, ['Orrivane_Enc_WH'],  varmundtAcc3, dim_ring_LT4] },
+  { name: "ABC_Orrivane_R_TH", enchants: [null, ['Orrivane_Enc_ABC'], varmundtAcc3, dim_ring_LT4] },
+  { name: "AG_Orrivane_R_TH",  enchants: [null, ['Orrivane_Enc_AG'],  varmundtAcc3, dim_ring_LT4] },
 ];
 
 Object.freeze(EnchantTable);

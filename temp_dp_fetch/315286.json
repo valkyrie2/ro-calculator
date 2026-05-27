@@ -1,0 +1,79 @@
+{
+  "classNum": null,
+  "sets": [
+    {
+      "name": "315286_700134",
+      "items": [
+        {
+          "itemId": 315286,
+          "name": "Orrivane Orb (Windhawk)"
+        },
+        {
+          "itemId": 700134,
+          "name": "Orrivane Wind Bow [3]"
+        }
+      ]
+    },
+    {
+      "name": "315286_700135",
+      "items": [
+        {
+          "itemId": 315286,
+          "name": "Orrivane Orb (Windhawk)"
+        },
+        {
+          "itemId": 700135,
+          "name": "Orrivane Wind Crossbow [3]"
+        }
+      ]
+    }
+  ],
+  "soldBy": [],
+  "id": 315286,
+  "aegisName": "Orrivane_Enc_WH",
+  "flavorText": null,
+  "name": "Orrivane Orb (Windhawk)",
+  "unidName": "Orrivane Orb (Windhawk)",
+  "resName": "Auto_Orb_Priest",
+  "unidResName": "Auto_Orb_Priest",
+  "description": "เมื่อสวมใส่ร่วมกับ Orrivane Wind Bow,\nCritical Damage + 20%,\nทุก ๆ 2 ขั้นอัพเกรดอาวุธ, เพิ่ม Damage สกิล Gale Storm 4%\n\nเมื่อ Orrivane Wind Bow มี Grade C ขึ้นไป,\nP.ATK + 10,\nลด Cooldown สกิล Gale Storm 1 วินาที\n\nเมื่อ Orrivane Wind Bow มี Grade C และขั้นอัพเกรด 10 ขึ้นไป,\nสามารถใช้สกิล Power Lv.2 ได้,\nสามารถใช้สกิล Pneuma Lv.1 ได้,\nลด Cooldown สกิล Calamity Gale 30 วินาที,\nเพิ่ม Damage สกิล Gale Storm 20%\n\nเมื่อสวมใส่ร่วมกับ Orrivane Wind Crossbow,\nCritical Damage + 20%,\nทุก ๆ 2 ขั้นอัพเกรดอาวุธ, เพิ่ม Damage สกิล Crescive Bolt 4%\n\nเมื่อ Orrivane Wind Crossbow มี Grade C ขึ้นไป,\nP.ATK + 10,\nลด Cooldown สกิล Crescive Bolt 0.2 วินาที\n\nเมื่อ Orrivane Wind Crossbow มี Grade C และขั้นอัพเกรด 10 ขึ้นไป,\nสามารถใช้สกิล Power Lv.2 ได้,\nเมื่อใช้สกิล Crescive Bolt, มีโอกาส 30% ที่จะ Autospell สกิล Crescive Bolt Lv.1 (เมื่อเรียนสกิลในเลเวลที่สูงกว่า จะร่ายในเลเวลสูงสุด),\nลด Cooldown สกิล Calamity Gale 30 วินาที,\nเพิ่ม Damage สกิล Crescive Bolt 20%",
+  "unidDescription": "เมื่อสวมใส่ร่วมกับ Orrivane Wind Bow,\nCritical Damage + 20%,\nทุก ๆ 2 ขั้นอัพเกรดอาวุธ, เพิ่ม Damage สกิล Gale Storm 4%\n\nเมื่อ Orrivane Wind Bow มี Grade C ขึ้นไป,\nP.ATK + 10,\nลด Cooldown สกิล Gale Storm 1 วินาที\n\nเมื่อ Orrivane Wind Bow มี Grade C และขั้นอัพเกรด 10 ขึ้นไป,\nสามารถใช้สกิล Power Lv.2 ได้,\nสามารถใช้สกิล Pneuma Lv.1 ได้,\nลด Cooldown สกิล Calamity Gale 30 วินาที,\nเพิ่ม Damage สกิล Gale Storm 20%\n\nเมื่อสวมใส่ร่วมกับ Orrivane Wind Crossbow,\nCritical Damage + 20%,\nทุก ๆ 2 ขั้นอัพเกรดอาวุธ, เพิ่ม Damage สกิล Crescive Bolt 4%\n\nเมื่อ Orrivane Wind Crossbow มี Grade C ขึ้นไป,\nP.ATK + 10,\nลด Cooldown สกิล Crescive Bolt 0.2 วินาที\n\nเมื่อ Orrivane Wind Crossbow มี Grade C และขั้นอัพเกรด 10 ขึ้นไป,\nสามารถใช้สกิล Power Lv.2 ได้,\nเมื่อใช้สกิล Crescive Bolt, มีโอกาส 30% ที่จะ Autospell สกิล Crescive Bolt Lv.1 (เมื่อเรียนสกิลในเลเวลที่สูงกว่า จะร่ายในเลเวลสูงสุด),\nลด Cooldown สกิล Calamity Gale 30 วินาที,\nเพิ่ม Damage สกิล Crescive Bolt 20%",
+  "slots": 0,
+  "setname": null,
+  "itemTypeId": 11,
+  "itemSubTypeId": 0,
+  "itemSummonInfoContainedIn": [],
+  "itemSummonInfoContains": [],
+  "attack": null,
+  "defense": null,
+  "weight": null,
+  "requiredLevel": null,
+  "limitLevel": null,
+  "itemLevel": null,
+  "EQUIP": null,
+  "compositionPos": 65535,
+  "attribute": 0,
+  "location": null,
+  "LOCA": 0,
+  "accessory": null,
+  "price": null,
+  "range": null,
+  "matk": null,
+  "gender": null,
+  "refinable": null,
+  "indestructible": null,
+  "itemMoveInfo": {
+    "drop": true,
+    "trade": true,
+    "store": true,
+    "cart": true,
+    "sell": true,
+    "mail": true,
+    "auction": true,
+    "guildStore": true
+  },
+  "rewardForAchievement": [],
+  "cardPrefix": null,
+  "pets": [],
+  "hasScript": false
+}
