@@ -179665,9 +179665,10 @@
     "attack": null,
     "defense": 0,
     "weight": 20,
-    "requiredLevel": 1,
+    "requiredLevel": 200,
     "location": null,
     "compositionPos": null,
+    "isRefinable": true,
     "canGrade": true,
     "usableClass": ["all"],
     "script": {

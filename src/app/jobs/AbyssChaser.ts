@@ -529,11 +529,23 @@ export class AbyssChaser extends ShadowChaser {
       ],
     },
     {
-      label: 'Power (Good&Evil)',
+      name: 'Dark Claw',
+      label: 'Dark Claw',
+      isDebuff: true,
+      inputType: 'dropdown',
+      dropdown: [
+        { label: '-', value: 0, isUse: false },
+        { label: 'Lv 4', value: 4, isUse: true, bonus: { darkClaw: 120 } },
+        { label: 'Lv 5', value: 5, isUse: true, bonus: { darkClaw: 150 } },
+      ],
+    },
+    {
+      label: 'Power',
       name: 'Power',
       inputType: 'dropdown',
       dropdown: [
         { label: '-', value: 0, isUse: false },
+        { label: 'Lv 2', value: 2, isUse: true },
         { label: 'Lv 4', value: 4, isUse: true },
       ],
     },

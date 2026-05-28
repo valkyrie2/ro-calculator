@@ -1764,7 +1764,7 @@ export const EnchantTable: EntTable[] = [
   { name: "Angel_R_Wing_RD_LT", enchants: [null, null, angelRibbonWing3, angelRibbonWing4] },
   { name: "Angel_R_Wing_WH_LT", enchants: [null, null, angelRibbonWing3, angelRibbonWing4] },
 
-  { name: '6th_Anni_Ayo_Ring', enchants: [null, anni6thRing2, anni6thRing3, anni6thRing4] },
+  { name: '6th_Anni_Ring_TH', enchants: [null, anni6thRing2, anni6thRing3, anni6thRing4] },
 
   { name: "5th_Mask_Melee", enchants: [null, anni5th, anni5th, anni5th] },
   { name: "5th_Mask_Magic", enchants: [null, anni5th, anni5th, anni5th] },
