@@ -180965,7 +180965,7 @@
     "location": null,
     "compositionPos": null,
     "canGrade": true,
-    "usableClass": ["Shinkiro, Shiranui"],
+    "usableClass": ["Shinkiro", "Shiranui"],
     "script": {
       "matk": ["200", "REFINE[weapon==2]---10"],
       "matkPercent": ["3", "REFINE[weapon==2]---1"],
@@ -181001,7 +181001,7 @@
     "location": null,
     "compositionPos": null,
     "canGrade": true,
-    "usableClass": ["Shinkiro, Shiranui"],
+    "usableClass": ["Shinkiro", "Shiranui"],
     "script": {
       "cri": ["5", "9===10"],
       "Shadow Flash": [
