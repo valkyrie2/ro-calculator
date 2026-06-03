@@ -1833,8 +1833,9 @@
                     (onChange)="onMonsterChange()"
                   >
                     <ng-template let-group pTemplate="group">
-                      <div class="flex align-items-center font-bold dropdown_monster_group_label">
+                      <div class="flex align-items-center font-bold dropdown_monster_group_label" [class.dropdown_monster_group_label--active]="group.label === selectedMonsterGroupLabel">
                         <span>{{ group.label }}</span>
+                        <p-tag *ngIf="group.label === selectedMonsterGroupLabel" value="map นี้" styleClass="ml-2" severity="warning"></p-tag>
                         <p-tag *ngIf="isDailyDungeonGroup(group.label)" [value]="getDailyDungeonTagValue(group.label)" styleClass="ml-2" [style]="getDailyDungeonTagStyle(group.label)"></p-tag>
                       </div>
                     </ng-template>

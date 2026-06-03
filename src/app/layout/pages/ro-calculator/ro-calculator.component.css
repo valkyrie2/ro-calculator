@@ -303,6 +303,11 @@
   color: white;
 }
 
+.dropdown_monster_group_label--active {
+  background-color: var(--yellow-800);
+  color: white;
+}
+
 .img_monster {
   background-color: white;
   /* max-width: 7rem; */

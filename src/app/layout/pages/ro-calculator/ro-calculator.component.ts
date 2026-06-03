@@ -252,6 +252,7 @@ export class RoCalculatorComponent implements OnInit, OnDestroy {
   monsterList: DropdownModel[] = [];
   selectedMonsterName = '';
   selectedMonster = Number(localStorage.getItem('monster')) || 21067;
+  selectedMonsterGroupLabel = '';
   isShowMonsterEle = false;
   allSelectedMonsterIds: number[];
 
@@ -2093,6 +2094,7 @@ export class RoCalculatorComponent implements OnInit, OnDestroy {
       if (aDaily === 0) return getDayRank(a.label) - getDayRank(b.label);
       return a.label > b.label ? 1 : -1;
     });
+    this.highlightMonsterGroup();
   }
 
   private setItemList() {
@@ -2730,7 +2732,16 @@ export class RoCalculatorComponent implements OnInit, OnDestroy {
   onMonsterChange() {
     localStorage.setItem('monster', this.selectedMonster.toString());
     this.selectedMonsterName = this.monsterDataMap?.[this.selectedMonster]?.name;
+    this.highlightMonsterGroup();
     this.updateItemEvent.next(1);
+  }
+
+  private highlightMonsterGroup() {
+    const matchingGroup = this.groupMonsterList.find(g => g.items.some(item => item.value === this.selectedMonster));
+    if (matchingGroup) {
+      this.selectedMonsterGroupLabel = matchingGroup.label;
+      this.groupMonsterList = [matchingGroup, ...this.groupMonsterList.filter(g => g.label !== matchingGroup.label)];
+    }
   }
 
   onSelectItemDescription(isCompareItem = false) {

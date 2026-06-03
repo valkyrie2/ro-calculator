@@ -47,6 +47,30 @@ export const createBonusNameList = () => {
       });
     }
 
+    const penePrefix = bonusType === 'p' ? 'เจาะกาย' : 'เจาะเวท';
+    item.children.push({
+      value: `${bonusType}_pene_Race`,
+      label: `Pene Race`,
+      children: atkProps.Race.map((label2) => {
+        const finalPropLow = label2.toLowerCase();
+        return {
+          value: `${bonusType}_pene_race_${finalPropLow}`,
+          label: `${penePrefix} Race ${label2}`,
+        };
+      }),
+    });
+    item.children.push({
+      value: `${bonusType}_pene_Class`,
+      label: `Pene Class`,
+      children: atkProps.Class.map((label2) => {
+        const finalPropLow = label2.toLowerCase();
+        return {
+          value: `${bonusType}_pene_class_${finalPropLow}`,
+          label: `${penePrefix} Class ${label2}`,
+        };
+      }),
+    });
+
     items.push(item);
   }
 
