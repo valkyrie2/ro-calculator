@@ -612,6 +612,7 @@ export const OFFENSIVE_SKILL_NAMES = [
   'Venom Swamp',
   'Vulcan Arm',
   'Warmer',
+  'Earth Insignia',
   'Water Insignia',
   'Wild Fire',
   'Wild Shot',

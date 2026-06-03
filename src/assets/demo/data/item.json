@@ -1,4 +1,4 @@
-{
+﻿{
   "645": {
     "id": 645,
     "aegisName": "Center_Potion",
@@ -179697,13 +179697,13 @@
     "description": "แหวนแห่ง Orrivance ที่เมื่อสวมใส่จะสัมผัสได้ถึงพลังแห่งสายลมอันเฉียบคมและรวดเร็วราวนักล่าแห่งท้องนภา\n\nATK + 100\nลด Global Cooldown 10%\nCON + 10\nCRI + 15\nเพิ่ม Damage ทางกายภาพต่อศัตรูทุกประเภท 15%\n\nเมื่อสวมใส่ร่วมกับ Orrivane Crown (Windhawk),\nเพิ่ม Damage ทางกายภาพต่อศัตรูทุกขนาด 15%,\nเพิ่ม Damage สกิล Gale Storm, Crescive Bolt 20%\n\nเมื่อ Orrivane Crown (Windhawk) มีขั้นอัพเกรดตั้งแต่ 10 ขึ้นไป,\nเพิ่ม Damage ทางกายภาพต่อศัตรูทุกธาตุ 15%,\nเพิ่ม Damage สกิล Gale Storm, Crescive Bolt 20%\n\nเมื่อ Orrivane Crown (Windhawk) มี Grade C ขึ้นไป,\nP.ATK + 10,\nเพิ่ม Damage สกิล Gale Storm, Crescive Bolt 20%\nประเภท : ^777777Accessory (Right)^000000 พลังป้องกัน : ^7777770^000000\nน้ำหนัก : ^77777720^000000\nเลเวลที่ต้องการ : ^777777230^000000\nอาชีพที่ใส่ได้ : ^777777Wind Hawk^000000",
     "slots": 1,
     "itemTypeId": 2,
-    "itemSubTypeId": 517,
+    "itemSubTypeId": 510,
     "itemLevel": null,
     "attack": null,
     "defense": 0,
     "weight": 20,
     "requiredLevel": 230,
-    "location": null,
+    "location": "AccessoryRight",
     "compositionPos": null,
     "canGrade": false,
     "usableClass": ["Windhawk"],
@@ -179737,13 +179737,13 @@
     "description": "แหวนแห่ง Orrivance ที่เมื่อสวมใส่จะสัมผัสได้ถึงพลังแห่งสายลมอันเฉียบคมและรวดเร็วราวนักล่าแห่งท้องนภา\n\nATK + 100\nลด Global Cooldown 10%\nPOW, CON + 10\nเพิ่ม HIT Damage ทางกายภาพ 10%, CRI + 15\nเพิ่ม Damage ทางกายภาพต่อศัตรูทุกประเภท 15%\n\nเมื่อสวมใส่ร่วมกับ Orrivane Crown (Abyss Chaser),\nเพิ่ม Damage ทางกายภาพต่อศัตรูทุกขนาด 15%,\nเพิ่ม Damage สกิล Deft Stab, Frenzy Shot 20%\n\nเมื่อ Orrivane Crown (Abyss Chaser) มีขั้นอัพเกรดตั้งแต่ 10 ขึ้นไป,\nเพิ่ม Damage ทางกายภาพต่อศัตรูทุกธาตุ 15%,\nเพิ่ม Damage สกิล Deft Stab, Frenzy Shot 20%\n\nเมื่อ Orrivane Crown (Abyss Chaser) มี Grade C ขึ้นไป,\nP.ATK + 10,\nเพิ่ม Damage สกิล Deft Stab, Frenzy Shot 20%\nประเภท : ^777777Accessory (Right)^000000 พลังป้องกัน : ^7777770^000000\nน้ำหนัก : ^77777720^000000\nเลเวลที่ต้องการ : ^777777230^000000\nอาชีพที่ใส่ได้ : ^777777Abyss Chaser^000000",
     "slots": 1,
     "itemTypeId": 2,
-    "itemSubTypeId": 517,
+    "itemSubTypeId": 510,
     "itemLevel": null,
     "attack": null,
     "defense": 0,
     "weight": 20,
     "requiredLevel": 230,
-    "location": null,
+    "location": "AccessoryRight",
     "compositionPos": null,
     "canGrade": false,
     "usableClass": ["AbyssChaser"],
@@ -179779,13 +179779,13 @@
     "description": "แหวนแห่ง Orrivance ที่เมื่อสวมใส่จะสัมผัสได้ถึงพลังแห่งสายลมอันเฉียบคมและรวดเร็วราวนักล่าแห่งท้องนภา\n\nMATK + 100\nลด Global Cooldown 10%\nSPL + 10\nลดระยะเวลาร่ายแบบคงที่ 0.5 วินาที,\nเพิ่ม Damage ทางเวทมนตร์ต่อศัตรูทุกประเภท 15%\n\nเมื่อสวมใส่ร่วมกับ Orrivane Crown (Arch Mage),\nเพิ่ม Damage ทางเวทมนตร์ต่อศัตรูทุกขนาด 15%,\nเพิ่ม Damage สกิล Crimson Arrow, Mystery Illusion 20%\n\nเมื่อ Orrivane Crown (Arch Mage) มีขั้นอัพเกรดตั้งแต่ 10 ขึ้นไป,\nเพิ่ม Damage ทางเวทมนตร์ต่อศัตรูทุกธาตุ 15%,\nเพิ่ม Damage สกิล Crimson Arrow, Mystery Illusion 20%\n\nเมื่อ Orrivane Crown (Arch Mage) มี Grade C ขึ้นไป,\nS.MATK + 10,\nเพิ่ม Damage สกิล Crimson Arrow, Mystery Illusion 20%\nประเภท : ^777777Accessory (Right)^000000 พลังป้องกัน : ^7777770^000000\nน้ำหนัก : ^77777720^000000\nเลเวลที่ต้องการ : ^777777230^000000\nอาชีพที่ใส่ได้ : ^777777Arch Mage^000000",
     "slots": 1,
     "itemTypeId": 2,
-    "itemSubTypeId": 517,
+    "itemSubTypeId": 510,
     "itemLevel": null,
     "attack": null,
     "defense": 0,
     "weight": 20,
     "requiredLevel": 230,
-    "location": null,
+    "location": "AccessoryRight",
     "compositionPos": null,
     "canGrade": false,
     "usableClass": ["ArchMage"],
@@ -180381,7 +180381,7 @@
     "location": null,
     "compositionPos": null,
     "canGrade": true,
-    "usableClass": ["Spirit Hanlder"],
+    "usableClass": ["SpiritHandler"],
     "script": {
       "matk": ["200", "REFINE[weapon==2]---10"],
       "matkPercent": ["3", "REFINE[weapon==2]---1"],
@@ -180416,7 +180416,7 @@
     "location": null,
     "compositionPos": null,
     "canGrade": true,
-    "usableClass": ["Spirit Hanlder"],
+    "usableClass": ["SpiritHandler"],
     "script": {
       "matk": ["300", "REFINE[weapon==2]---10"],
       "matkPercent": ["3", "REFINE[weapon==2]---1"],
@@ -180944,7 +180944,8 @@
       "m_element_all": ["7===15", "GRADE[me==B]===10"],
       "vct": ["9===10"],
       "sMatk": ["9===3", "GRADE[me==D]===2", "GRADE[me==A]REFINE[weapon==2]---2"],
-      "m_element_dark": ["EQUIP[Orrivane Crown (Arch Mage)]===10"]
+      "m_element_dark": ["EQUIP[Orrivane Crown (Arch Mage)]===10"],
+      "cd__Mystery Illusion": ["EQUIP[Orrivane Crown (Arch Mage)]GRADE[headUpper==A]REFINE[weapon,headUpper==22]===1"]
     }
   },
   "650063": {
@@ -181094,7 +181095,8 @@
         "GRADE[me==B]===10"
       ],
       "acd": ["9===10"],
-      "pAtk": ["9===3", "GRADE[me==D]===2", "GRADE[me==A]REFINE[weapon==2]---2"]
+      "pAtk": ["9===3", "GRADE[me==D]===2", "GRADE[me==A]REFINE[weapon==2]---2"],
+      "cd__Gale Storm": ["EQUIP[Orrivane Crown (Wind Hawk)]GRADE[headUpper==A]REFINE[weapon,headUpper==22]===0.1"]
     }
   },
   "700135": {
