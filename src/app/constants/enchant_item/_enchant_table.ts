@@ -1921,6 +1921,16 @@ export const EnchantTable: EntTable[] = [
   { name: "WH_Orrivane_R_TH",  enchants: [null, ['Orrivane_Enc_WH'],  varmundtAcc3, dim_ring_LT4] },
   { name: "ABC_Orrivane_R_TH", enchants: [null, ['Orrivane_Enc_ABC'], varmundtAcc3, dim_ring_LT4] },
   { name: "AG_Orrivane_R_TH",  enchants: [null, ['Orrivane_Enc_AG'],  varmundtAcc3, dim_ring_LT4] },
+
+  {
+    name: "All Above Time(Supreme)-LT",
+    enchants: [
+      null,
+      ['Spirit_Of_Star_03_CN', 'Spirit_Of_Star_04_CN', 'Spirit_Of_Star_05_CN', 'Spirit_Of_Star_06_CN', 'Spirit_Of_Star_07_CN'],
+      ['Gem_Str_TH_1', 'Gem_Vit_TH_1', 'Gem_Agi_TH_1', 'Gem_Int_TH_1', 'Gem_Dex_TH_1', 'Gem_Luk_TH_1'],
+      ['Gem_Str_TH_1', 'Gem_Vit_TH_1', 'Gem_Agi_TH_1', 'Gem_Int_TH_1', 'Gem_Dex_TH_1', 'Gem_Luk_TH_1'],
+    ],
+  },
 ];
 
 Object.freeze(EnchantTable);

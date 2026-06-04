@@ -214,6 +214,13 @@ export class AppTopBarComponent implements OnInit, OnDestroy {
 
   updates: { v: string; date: string; logs: string[]; }[] = [
     {
+      v: 'Extra v61.1',
+      date: '04-06-2569',
+      logs: [
+        'เพิ่ม Enchant ให้ All Above Time(Supreme)-LT',
+      ],
+    },
+    {
       v: 'Extra v61.0',
       date: '27-05-2569',
       logs: [

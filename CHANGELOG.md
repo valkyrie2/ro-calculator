@@ -1,5 +1,9 @@
 # Changelog
 
+## Extra v61.1 (04-06-2569)
+
+- Added enchants for All Above Time(Supreme)-LT: slot 2 Spirit of Knight Lv.3–7, slots 3–4 all gem types Lv.1 (Ruby of Strength / Amethyst of Vitality / Topaz of Agility / Sapphire of Intelligence / Emerald of Dexterity / Diamond of Fatality)
+
 ## Extra v60.7 (27-05-2569)
 
 - Added 38 Orrivane weapons (all 4th/5th job classes): Imperial Sword, Biologic Sword, Hyper Sword, Abyss Dagger, Imperial Spear, Saint Book, Elemental Magic/Spell Books, Emperor Star/Noon Books, Saint/Arch/Soul Wands, Soul Stick, Hyper Wand, Spirit Foxtail/Model, Judgment Knuckle/Claw, Musical Violin/Harp/Rope/Ribbon, Mechanical Mace, Biologic Scepter, Dragon Sword, Shadow Katar/Cakram, Mechanical Axe, Dragon Lance, Arch Staff, Wheel/Huuma Shurikens, Abyss/Wind Crossbow, Wind Bow, Night Pistol/Gatling
