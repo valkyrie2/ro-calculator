@@ -181304,5 +181304,66 @@
       "cd__Soul Vulcan Strike": ["EQUIP[Orrivane Arch Staff]GRADE[weapon==C]===0.7"],
       "cd__Intensification": ["EQUIP[Orrivane Arch Staff]GRADE[weapon==C]REFINE[weapon==10]===200"]
     }
+  },
+  "24769": {
+    "id": 24769,
+    "aegisName": "Limit_Break_SH_W",
+    "name": "Limit Break Shadow Weapon",
+    "unidName": "Shadow Weapon",
+    "resName": "Limit_Break_SH_W",
+    "description": "All Status + 3\n\nเพิกเฉยต่อพลังป้องกันทางกายภาพ/เวทมนตร์ของศัตรูประเภททั่วไป 50%\nทุก ๆ การอัพเกรด 1 ขั้น, เพิกเฉยต่อพลังป้องกันทางกายภาพ/เวทมนตร์ของศัตรูประเภททั่วไปขึ้นอีก 2%\nเมื่อ Base Lv.100 และทุก ๆ Base Lv.5 ลดการเพิกเฉยพลังป้องกันทางกายภาพ/เวทมนตร์ของศัตรูประเภททั่วไป 2%\nประเภท : ^777777Shadow Equipment^000000\nตำแหน่ง : ^777777Weapon^000000 น้ำหนัก : ^7777770^000000\nเลเวล Armor : ^7777771^000000\nเลเวลที่ต้องการ : ^777777100^000000\nอาชีพที่ใส่ได้ : ^777777ทุกอาชีพ^000000",
+    "slots": 0,
+    "itemTypeId": 10,
+    "itemSubTypeId": 280,
+    "itemLevel": 1,
+    "attack": null,
+    "defense": null,
+    "weight": 0,
+    "requiredLevel": 100,
+    "location": "Weapon",
+    "compositionPos": null,
+    "usableClass": ["all"],
+    "script": {
+      "str": ["3"],
+      "agi": ["3"],
+      "vit": ["3"],
+      "int": ["3"],
+      "dex": ["3"],
+      "luk": ["3"],
+      "p_pene_class_normal": ["50", "1---2", "level:5(100)----2"],
+      "m_pene_class_normal": ["50", "1---2", "level:5(100)----2"]
+    }
+  },
+  "24771": {
+    "id": 24771,
+    "aegisName": "Limit_Break_SH_SH",
+    "name": "Limit Break Shadow Shield",
+    "unidName": "Shadow Shield",
+    "resName": "Limit_Break_SH_SH",
+    "description": "โล่เล็กที่สามารถสวมใส่ที่แขนได้ สามารถใช้งานแบบชิ้นเดียวได้แต่เอฟเฟกต์การป้องกันของมันจะลดน้อยลง\n\nเพิ่มค่าประสบการณ์ที่ได้รับเมื่อกำจัดมอนสเตอร์ 4%\nทุก ๆ การอัพเกรด 2 ขั้น, All Status + 1\n\nเมื่อสวมใส่ร่วมกับ Limit Break Shadow Weapon,\nเมื่อโจมตีทางกายภาพ, มีโอกาส 1% ที่จะเพิ่ม Damage ทางกายภาพต่อศัตรูประเภททั่วไป 20% เป็นเวลา 5 วินาที\nเมื่อโจมตีทางเวทมนตร์, มีโอกาส 1% ที่จะเพิ่ม Damage ทางเวทมนตร์ต่อศัตรูประเภททั่วไป 20% เป็นเวลา 5 วินาที\nเมื่อ Base Lv.100 และทุก ๆ Base Lv.5 เพิกเฉยต่อพลังป้องกันทางกายภาพ/เวทมนตร์ของศัตรูประเภททั่วไป 2%\nประเภท : ^777777Shadow Equipment^000000\nตำแหน่ง : ^777777Shield^000000 น้ำหนัก : ^7777770^000000\nเลเวล Armor : ^7777771^000000\nเลเวลที่ต้องการ : ^777777100^000000\nอาชีพที่ใส่ได้ : ^777777ทุกอาชีพ^000000",
+    "slots": 0,
+    "itemTypeId": 10,
+    "itemSubTypeId": 527,
+    "itemLevel": 1,
+    "attack": null,
+    "defense": null,
+    "weight": 0,
+    "requiredLevel": 100,
+    "location": "Shield",
+    "compositionPos": null,
+    "usableClass": ["all"],
+    "script": {
+      "expBonus": ["4"],
+      "str": ["2---1"],
+      "agi": ["2---1"],
+      "vit": ["2---1"],
+      "int": ["2---1"],
+      "dex": ["2---1"],
+      "luk": ["2---1"],
+      "chance__p_class_normal": ["EQUIP[Limit Break Shadow Weapon]===20"],
+      "chance__m_class_normal": ["EQUIP[Limit Break Shadow Weapon]===20"],
+      "p_pene_class_normal": ["EQUIP[Limit Break Shadow Weapon]level:5(100)---2"],
+      "m_pene_class_normal": ["EQUIP[Limit Break Shadow Weapon]level:5(100)---2"]
+    }
   }
 }

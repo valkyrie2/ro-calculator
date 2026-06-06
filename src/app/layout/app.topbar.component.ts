@@ -218,6 +218,7 @@ export class AppTopBarComponent implements OnInit, OnDestroy {
       date: '04-06-2569',
       logs: [
         'เพิ่ม Enchant ให้ All Above Time(Supreme)-LT',
+        'เพิ่ม Shadow Equipment: Limit Break Shadow Weapon (24769) และ Limit Break Shadow Shield (24771)',
       ],
     },
     {

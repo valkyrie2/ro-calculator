@@ -3,6 +3,7 @@
 ## Extra v61.1 (04-06-2569)
 
 - Added enchants for All Above Time(Supreme)-LT: slot 2 Spirit of Knight Lv.3–7, slots 3–4 all gem types Lv.1 (Ruby of Strength / Amethyst of Vitality / Topaz of Agility / Sapphire of Intelligence / Emerald of Dexterity / Diamond of Fatality)
+- Added shadow equipment: Limit Break Shadow Weapon (24769) and Limit Break Shadow Shield (24771)
 
 ## Extra v60.7 (27-05-2569)
 
