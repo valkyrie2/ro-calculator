@@ -219,6 +219,12 @@ export class AppTopBarComponent implements OnInit, OnDestroy {
       logs: [
         'เพิ่ม Enchant ให้ All Above Time(Supreme)-LT',
         'เพิ่ม Shadow Equipment: Limit Break Shadow Weapon (24769) และ Limit Break Shadow Shield (24771)',
+        'เพิ่ม Orrivane Ring 3 ชิ้น: Dragon Knight (491063), Meister (491064), Imperial Guard (491065)',
+        'เพิ่ม Orrivane Orb 3 ชิ้น: Dragon Knight (315321), Meister (315322), Imperial Guard (315323)',
+        'เพิ่ม Soul Demon Shield [1] (460171) และ Soul Demon Shield-LT [1] (460174) สำหรับ Soul Ascetic',
+        'เพิ่ม Soul Demon Shield-LT: Proc Soul of the Abyss (Refine 11+ โอกาสได้รับ SPL+50, S.MATK+10; Grade B: เพิ่มอีก SPL+50, S.MATK+10)',
+        'เพิ่มสกิล Power Lv2/Lv4 ให้ Dragon Knight พร้อม modifyFinalAtk',
+        'เพิ่ม Enchant ให้ Loyal Servant of Demon God Morocc: Slot 2/3/4 เลือกได้จาก Dark Lord Essence Force/Intelligence/Speed/Vitality/Concentration/Luck 3',
       ],
     },
     {

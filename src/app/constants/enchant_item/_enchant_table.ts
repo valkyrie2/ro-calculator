@@ -1921,6 +1921,19 @@ export const EnchantTable: EntTable[] = [
   { name: "WH_Orrivane_R_TH",  enchants: [null, ['Orrivane_Enc_WH'],  varmundtAcc3, dim_ring_LT4] },
   { name: "ABC_Orrivane_R_TH", enchants: [null, ['Orrivane_Enc_ABC'], varmundtAcc3, dim_ring_LT4] },
   { name: "AG_Orrivane_R_TH",  enchants: [null, ['Orrivane_Enc_AG'],  varmundtAcc3, dim_ring_LT4] },
+  { name: "DK_Orrivane_R_TH",  enchants: [null, ['Orrivane_Enc_DK'],  varmundtAcc3, dim_ring_LT4] },
+  { name: "MT_Orrivane_R_TH",  enchants: [null, ['Orrivane_Enc_MT'],  varmundtAcc3, dim_ring_LT4] },
+  { name: "IG_Orrivane_R_TH",  enchants: [null, ['Orrivane_Enc_IG'],  varmundtAcc3, dim_ring_LT4] },
+
+  {
+    name: "Moroc_Slave_TW",
+    enchants: [
+      null,
+      ['Force3', 'Intellect3', 'Swiftness3', 'Tough3', 'Artful3', 'Fortune3'],
+      ['Force3', 'Intellect3', 'Swiftness3', 'Tough3', 'Artful3', 'Fortune3'],
+      ['Force3', 'Intellect3', 'Swiftness3', 'Tough3', 'Artful3', 'Fortune3'],
+    ],
+  },
 
   {
     name: "All Above Time(Supreme)-LT",

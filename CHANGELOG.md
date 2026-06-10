@@ -4,6 +4,12 @@
 
 - Added enchants for All Above Time(Supreme)-LT: slot 2 Spirit of Knight Lv.3–7, slots 3–4 all gem types Lv.1 (Ruby of Strength / Amethyst of Vitality / Topaz of Agility / Sapphire of Intelligence / Emerald of Dexterity / Diamond of Fatality)
 - Added shadow equipment: Limit Break Shadow Weapon (24769) and Limit Break Shadow Shield (24771)
+- Added 3 Orrivane Rings: Dragon Knight (491063), Meister (491064), Imperial Guard (491065)
+- Added 3 Orrivane Orbs: Dragon Knight (315321), Meister (315322), Imperial Guard (315323)
+- Added Soul Demon Shield [1] (460171) and Soul Demon Shield-LT [1] (460174) for Soul Ascetic
+- Added Soul Demon Shield-LT: Soul of the Abyss proc (refine 11+ chance → SPL+50, S.MATK+10; Grade B: +50 SPL, +10 S.MATK additional)
+- Added Dragon Knight Power skill (Lv 2, Lv 4) with modifyFinalAtk (totalAtk × powerLv × 20%)
+- Added enchants for Loyal Servant of Demon God Morocc: slots 2/3/4 all support Dark Lord Essence Force/Intelligence/Speed/Vitality/Concentration/Luck 3
 
 ## Extra v60.7 (27-05-2569)
 
