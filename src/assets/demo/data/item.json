@@ -181646,5 +181646,80 @@
       "m_size_all": ["GRADE[me==A]===20"],
       "acd": ["GRADE[me==A]===15"]
     }
+  },
+  "491066": {
+    "id": 491066,
+    "aegisName": "SHC_Orrivane_R_TH",
+    "name": "Orrivane Ring (Shadow Cross) [1]",
+    "unidName": "Orrivane Ring (Shadow Cross)",
+    "resName": "Colourful_Ring",
+    "description": "^FF0000[ไอเท็มคาดการณ์] ยังไม่มีข้อมูล official — ค่าความสามารถประเมินจาก Orrivane Ring (Dragon Knight)^000000\n\nแหวนแห่ง Orrivane ที่เมื่อสวมใส่จะสัมผัสได้ถึงพลังแห่งเงาสังหารของนักฆ่าผู้ตัดขาดห่วงโซ่แห่งการเวียนว่าย\n\nATK + 100\nลด Global Cooldown 10%\nPOW + 10\nCRI + 15, เพิ่ม Critical Damage 10%\nเพิ่ม Damage ทางกายภาพต่อศัตรูทุกประเภท 15%\n\nเมื่อสวมใส่ร่วมกับ Orrivane Crown (Shadow Cross),\nเพิ่ม Damage ทางกายภาพต่อศัตรูทุกขนาด 15%,\nเพิ่ม Damage สกิล Savage Impact, Eternal Slash 20%\n\nเมื่อ Orrivane Crown (Shadow Cross) มีขั้นอัพเกรดตั้งแต่ 10 ขึ้นไป,\nเพิ่ม Damage ทางกายภาพต่อศัตรูทุกธาตุ 15%,\nเพิ่ม Damage สกิล Savage Impact, Eternal Slash 20%\n\nเมื่อ Orrivane Crown (Shadow Cross) มี Grade C ขึ้นไป,\nP.ATK + 10,\nเพิ่ม Damage สกิล Savage Impact, Eternal Slash 20%\nประเภท : ^777777Accessory (Right)^000000 พลังป้องกัน : ^7777770^000000\nน้ำหนัก : ^77777720^000000\nเลเวลที่ต้องการ : ^777777230^000000\nอาชีพที่ใส่ได้ : ^777777Shadow Cross^000000",
+    "slots": 1,
+    "itemTypeId": 2,
+    "itemSubTypeId": 510,
+    "itemLevel": null,
+    "attack": null,
+    "defense": 0,
+    "weight": 20,
+    "requiredLevel": 230,
+    "location": "AccessoryRight",
+    "compositionPos": null,
+    "canGrade": false,
+    "releaseDate": "2027-12-31T00:00:00+07:00",
+    "usableClass": ["ShadowCross"],
+    "script": {
+      "atk": ["100"],
+      "acd": ["10"],
+      "pow": ["10"],
+      "cri": ["15"],
+      "criDmg": ["10"],
+      "p_class_all": ["15"],
+      "p_size_all": ["EQUIP[Orrivane Crown (Shadow Cross)]===15"],
+      "Savage Impact": [
+        "EQUIP[Orrivane Crown (Shadow Cross)]===20",
+        "EQUIP[Orrivane Crown (Shadow Cross)]REFINE[headUpper==10]===20",
+        "EQUIP[Orrivane Crown (Shadow Cross)]GRADE[headUpper==C]===20"
+      ],
+      "Eternal Slash": [
+        "EQUIP[Orrivane Crown (Shadow Cross)]===20",
+        "EQUIP[Orrivane Crown (Shadow Cross)]REFINE[headUpper==10]===20",
+        "EQUIP[Orrivane Crown (Shadow Cross)]GRADE[headUpper==C]===20"
+      ],
+      "p_element_all": ["EQUIP[Orrivane Crown (Shadow Cross)]REFINE[headUpper==10]===15"],
+      "pAtk": ["EQUIP[Orrivane Crown (Shadow Cross)]GRADE[headUpper==C]===10"]
+    }
+  },
+  "315324": {
+    "id": 315324,
+    "aegisName": "Orrivane_Enc_SHC",
+    "name": "Orrivane Orb (Shadow Cross)",
+    "unidName": "Orrivane Orb (Shadow Cross)",
+    "resName": "Auto_Orb_Priest",
+    "description": "^FF0000[ไอเท็มคาดการณ์] ยังไม่มีข้อมูล official — ค่าความสามารถประเมินจาก Orrivane Orb (Dragon Knight)^000000\n\nเมื่อสวมใส่ร่วมกับ Orrivane Shadow Katar,\nCritical Damage + 20%,\nทุก ๆ 2 ขั้นอัพเกรดอาวุธ, เพิ่ม Damage สกิล Savage Impact 4%\n\nเมื่อ Orrivane Shadow Katar มี Grade C ขึ้นไป,\nP.ATK + 10,\nลด Cooldown สกิล Savage Impact 0.5 วินาที\n\nเมื่อ Orrivane Shadow Katar มี Grade C และขั้นอัพเกรด 10 ขึ้นไป,\nสามารถใช้งานสกิล Power Lv.2,\nเมื่อใช้งานสกิล Savage Impact มีโอกาส 30% ที่จะ Autospell สกิล Savage Impact Lv.1 (เมื่อเรียนสกิลในเลเวลที่สูงกว่า จะร่ายในเลเวลสูงสุด),\nลด Cooldown สกิล Shadow Exceed 30 วินาที,\nเพิ่ม Damage สกิล Savage Impact 20%\n\nเมื่อสวมใส่ร่วมกับ Orrivane Shadow Cakram,\nCritical Damage + 20%,\nทุก ๆ 2 ขั้นอัพเกรดอาวุธ, เพิ่ม Damage สกิล Eternal Slash 4%\n\nเมื่อ Orrivane Shadow Cakram มี Grade C ขึ้นไป,\nP.ATK + 10,\nลด Cooldown สกิล Eternal Slash 0.35 วินาที\n\nเมื่อ Orrivane Shadow Cakram มี Grade C และขั้นอัพเกรด 10 ขึ้นไป,\nสามารถใช้งานสกิล Power Lv.2,\nเมื่อใช้งานสกิล Eternal Slash มีโอกาส 30% ที่จะ Autospell สกิล Eternal Slash Lv.1 (เมื่อเรียนสกิลในเลเวลที่สูงกว่า จะร่ายในเลเวลสูงสุด),\nลด Cooldown สกิล Shadow Exceed 30 วินาที,\nเพิ่ม Damage สกิล Eternal Slash 20%",
+    "slots": 0,
+    "itemTypeId": 11,
+    "itemSubTypeId": 0,
+    "itemLevel": null,
+    "attack": null,
+    "defense": null,
+    "weight": null,
+    "requiredLevel": null,
+    "location": null,
+    "compositionPos": 65535,
+    "canGrade": false,
+    "releaseDate": "2027-12-31T00:00:00+07:00",
+    "usableClass": ["ShadowCross"],
+    "script": {
+      "criDmg": ["EQUIP[Orrivane Shadow Katar]===20", "EQUIP[Orrivane Shadow Cakram]===20"],
+      "Savage Impact": ["EQUIP[Orrivane Shadow Katar]REFINE[weapon==2]---4", "EQUIP[Orrivane Shadow Katar]GRADE[weapon==C]REFINE[weapon==10]===20"],
+      "pAtk": ["EQUIP[Orrivane Shadow Katar]GRADE[weapon==C]===10", "EQUIP[Orrivane Shadow Cakram]GRADE[weapon==C]===10"],
+      "cd__Savage Impact": ["EQUIP[Orrivane Shadow Katar]GRADE[weapon==C]===0.5"],
+      "cd__Shadow Exceed": [
+        "EQUIP[Orrivane Shadow Katar]GRADE[weapon==C]REFINE[weapon==10]===30",
+        "EQUIP[Orrivane Shadow Cakram]GRADE[weapon==C]REFINE[weapon==10]===30"
+      ],
+      "Eternal Slash": ["EQUIP[Orrivane Shadow Cakram]REFINE[weapon==2]---4", "EQUIP[Orrivane Shadow Cakram]GRADE[weapon==C]REFINE[weapon==10]===20"],
+      "cd__Eternal Slash": ["EQUIP[Orrivane Shadow Cakram]GRADE[weapon==C]===0.35"]
+    }
   }
 }

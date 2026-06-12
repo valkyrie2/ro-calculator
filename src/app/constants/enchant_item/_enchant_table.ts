@@ -1924,6 +1924,7 @@ export const EnchantTable: EntTable[] = [
   { name: "DK_Orrivane_R_TH",  enchants: [null, ['Orrivane_Enc_DK'],  varmundtAcc3, dim_ring_LT4] },
   { name: "MT_Orrivane_R_TH",  enchants: [null, ['Orrivane_Enc_MT'],  varmundtAcc3, dim_ring_LT4] },
   { name: "IG_Orrivane_R_TH",  enchants: [null, ['Orrivane_Enc_IG'],  varmundtAcc3, dim_ring_LT4] },
+  { name: "SHC_Orrivane_R_TH", enchants: [null, ['Orrivane_Enc_SHC'], varmundtAcc3, dim_ring_LT4] },
 
   {
     name: "Moroc_Slave_TW",

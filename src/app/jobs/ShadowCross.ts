@@ -1,8 +1,8 @@
 import { JOB_4_MAX_JOB_LEVEL, JOB_4_MIN_MAX_LEVEL } from '../app-config';
 import { WeaponTypeName } from '../constants';
 import { EquipmentSummaryModel } from '../models/equipment-summary.model';
-import { AdditionalBonusInput } from '../models/info-for-class.model';
-import { addBonus, genSkillList, genSkillListWithLabel } from '../utils';
+import { AdditionalBonusInput, InfoForClass } from '../models/info-for-class.model';
+import { addBonus, floor, genSkillList, genSkillListWithLabel } from '../utils';
 import { GuillotineCross } from './GuillotineCross';
 import { ActiveSkillModel, AtkSkillFormulaInput, AtkSkillModel, PassiveSkillModel } from './_character-base.abstract';
 import { ClassName } from './_class-name';
@@ -409,6 +409,15 @@ export class ShadowCross extends GuillotineCross {
         { label: 'No', value: 0, isUse: false },
       ],
     },
+    {
+      label: 'Power',
+      name: 'Power',
+      inputType: 'dropdown',
+      dropdown: [
+        { label: '-', value: 0, isUse: false },
+        { label: 'Lv 2', value: 2, isUse: true },
+      ],
+    },
   ];
   private readonly passiveSkillList4th: PassiveSkillModel[] = [
     {
@@ -450,5 +459,16 @@ export class ShadowCross extends GuillotineCross {
     }
 
     return totalBonus;
+  }
+
+  override modifyFinalAtk(currentAtk: number, _params: InfoForClass) {
+    const powerLv = this.bonuses.usedSkillMap.get('Power');
+
+    let totalAtk = currentAtk;
+    if (powerLv >= 1) {
+      totalAtk = totalAtk + floor(totalAtk * (powerLv * 20) * 0.01);
+    }
+
+    return totalAtk;
   }
 }

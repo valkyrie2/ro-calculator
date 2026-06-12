@@ -1,6 +1,8 @@
 import { z } from 'zod';
 
-const PRESET_LABEL_PATTERN = /^[a-zA-Z0-9 _\-./()]+$/;
+// \p{M} is required alongside \p{L}: Thai vowel/tone marks (e.g. ◌ั ◌่ ◌์)
+// are Unicode category Mark, not Letter.
+const PRESET_LABEL_PATTERN = /^[\p{L}\p{M}\p{N} _\-./()]+$/u;
 const PRESET_TAG_PATTERN = /^[a-zA-Z0-9_-]+$/;
 
 export const PRESET_LABEL_MAX = 60;
@@ -54,7 +56,7 @@ export const PublishNameSchema = z
   .trim()
   .min(1)
   .max(80)
-  .regex(/^[\p{L}\p{N} _\-./()]+$/u, 'Publish name has invalid characters');
+  .regex(/^[\p{L}\p{M}\p{N} _\-./()]+$/u, 'Publish name has invalid characters');
 
 export type PresetLabel = z.infer<typeof PresetLabelSchema>;
 export type PresetTag = z.infer<typeof PresetTagSchema>;

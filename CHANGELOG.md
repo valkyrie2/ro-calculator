@@ -10,6 +10,9 @@
 - Added Soul Demon Shield-LT: Soul of the Abyss proc (refine 11+ chance → SPL+50, S.MATK+10; Grade B: +50 SPL, +10 S.MATK additional)
 - Added Dragon Knight Power skill (Lv 2, Lv 4) with modifyFinalAtk (totalAtk × powerLv × 20%)
 - Added enchants for Loyal Servant of Demon God Morocc: slots 2/3/4 all support Dark Lord Essence Force/Intelligence/Speed/Vitality/Concentration/Luck 3
+- Added Orrivane Ring (Shadow Cross) (491066) and Orrivane Orb (Shadow Cross) (315324) — estimated stats (no official data yet), restricted via future releaseDate so only admin/premium can see them
+- Added Shadow Cross Power skill (Lv 2) to Active Skill list with modifyFinalAtk (totalAtk × powerLv × 20%)
+- Fixed "Label has invalid characters" when saving a preset with a Thai (or any non-Latin) name — label/publish-name validation now accepts Unicode letters and combining marks (requires applying migration 20260612000000 with `supabase db push`)
 
 ## Extra v60.7 (27-05-2569)
 
