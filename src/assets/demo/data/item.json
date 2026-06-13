@@ -181709,6 +181709,10 @@
     "canGrade": false,
     "releaseDate": "2027-12-31T00:00:00+07:00",
     "usableClass": ["ShadowCross"],
+    "autoSpellOnUse": [
+      { "onSkill": "Savage Impact", "skill": "Savage Impact", "chance": 30, "condition": "EQUIP[Orrivane Shadow Katar]GRADE[weapon==C]REFINE[weapon==10]===1" },
+      { "onSkill": "Eternal Slash", "skill": "Eternal Slash", "chance": 30, "condition": "EQUIP[Orrivane Shadow Cakram]GRADE[weapon==C]REFINE[weapon==10]===1" }
+    ],
     "script": {
       "criDmg": ["EQUIP[Orrivane Shadow Katar]===20", "EQUIP[Orrivane Shadow Cakram]===20"],
       "Savage Impact": ["EQUIP[Orrivane Shadow Katar]REFINE[weapon==2]---4", "EQUIP[Orrivane Shadow Katar]GRADE[weapon==C]REFINE[weapon==10]===20"],
