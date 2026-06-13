@@ -11,14 +11,14 @@ import {
 import { SKILL_NAME } from 'src/app/constants/skill-name';
 import { Monster, Weapon } from 'src/app/domain';
 import { CharacterBase } from 'src/app/jobs';
-import { createRawTotalBonus, floor, isNumber, round } from 'src/app/utils';
+import { calcAutoSpellDps, createRawTotalBonus, floor, getDmgPerCast, isNumber, round } from 'src/app/utils';
 import { logger } from 'src/app/api-services/logger.service';
 import { ChanceModel } from '../../../models/chance-model';
 import { BasicAspdModel, BasicDamageSummaryModel, MiscModel, SkillAspdModel, SkillDamageSummaryModel } from '../../../models/damage-summary.model';
 import { EquipmentSummaryModel } from '../../../models/equipment-summary.model';
 import { HpSpTable } from '../../../models/hp-sp-table.model';
 import { AdditionalBonusInput } from '../../../models/info-for-class.model';
-import { ItemModel } from '../../../models/item.model';
+import { AutoSpellOnUse, ItemModel } from '../../../models/item.model';
 import { MainModel } from '../../../models/main.model';
 import { MonsterModel } from '../../../models/monster.model';
 import { DamageCalculator } from './damage-calculator';
@@ -255,6 +255,7 @@ export class Calculator {
 
   private selectedChanceList = [] as string[];
   private _chanceList = [] as ChanceModel[];
+  private _autoSpellList = [] as AutoSpellOnUse[];
   private equipCombo = new Set<string>();
 
   private skillFrequency: SkillAspdModel = {
@@ -1100,6 +1101,7 @@ export class Calculator {
     this.propertyBasicAtkNoAmmo = ElementType.Neutral;
     this.propertyWindmind = undefined;
     this._chanceList = [];
+    this._autoSpellList = [];
     this.equipCombo.clear();
 
     const updateTotalStatus = (attr: keyof EquipmentSummaryModel, value: number) => {
@@ -1164,6 +1166,16 @@ export class Calculator {
         this.equipStatus[itemType].weight = itemData.weight;
       }
 
+      if (Array.isArray(itemData.autoSpellOnUse)) {
+        for (const entry of itemData.autoSpellOnUse) {
+          const isValid = !entry.condition
+            ? true
+            : this.validateCondition({ itemType, itemRefine: refine, script: entry.condition }).isValid;
+          if (isValid) {
+            this._autoSpellList.push(entry);
+          }
+        }
+      }
       const calculatedItem = this.calcItemStatus({ itemType, itemRefine: refine, item: itemData });
       for (const [attr, value] of Object.entries(calculatedItem)) {
         if (attr === 'p_final') {
@@ -1334,6 +1346,49 @@ export class Calculator {
     return this;
   }
 
+  private calcAutoSpellSummary(
+    dmg: DamageCalculator,
+    mainSkillValue: string,
+    mainSkillDmg: SkillDamageSummaryModel | undefined,
+    maxHp: number,
+    maxSp: number,
+  ): { label: string; abcMin: number; abcMax: number; dmgPerCast: number; autoSpellDps: number } | null {
+    if (!mainSkillDmg) return null;
+
+    const mainName = (mainSkillValue.match(/(.+)==(\d+)/) ?? [])[1];
+    if (!mainName) return null;
+
+    const entry = this._autoSpellList.find((a) => a.onSkill === mainName);
+    if (!entry) return null;
+
+    const abcSkill = this._class.atkSkills.find((a) => a.name === entry.skill);
+    if (!abcSkill) return null;
+
+    const abcSkillValue = entry.level ? `${entry.skill}==${entry.level}` : abcSkill.value;
+    const { skillDmg: abc } = dmg.calculateAllDamages({
+      skillValue: abcSkillValue,
+      propertyAtk: this.propertyBasicAtk,
+      maxHp,
+      maxSp,
+    });
+    if (!abc) return null;
+
+    const dmgPerCast = getDmgPerCast(abc);
+    const autoSpellDps = calcAutoSpellDps({
+      dmgPerCast,
+      mainCastsPerSec: mainSkillDmg.skillHitsPerSec ?? 0,
+      chancePercent: entry.chance,
+    });
+
+    return {
+      label: `${entry.skill} @ ${entry.chance}%`,
+      abcMin: abc.skillMinDamage,
+      abcMax: abc.skillMaxDamage,
+      dmgPerCast,
+      autoSpellDps,
+    };
+  }
+
   calculateAllDamages(skillValue: string) {
     const { basicDmg, misc, skillDmg, skillAspd, basicAspd } = this.dmgCalculator
       .setExtraBonus([])
@@ -1343,6 +1398,15 @@ export class Calculator {
       ...basicDmg,
       ...(skillDmg || {}),
     };
+
+    const autoBase = this.calcAutoSpellSummary(this.dmgCalculator, skillValue, skillDmg, this.maxHp, this.maxSp);
+    if (autoBase) {
+      this.damageSummary.autoSpellLabel = autoBase.label;
+      this.damageSummary.autoSpellDmgMin = autoBase.abcMin;
+      this.damageSummary.autoSpellDmgMax = autoBase.abcMax;
+      this.damageSummary.autoSpellDmgPerCast = autoBase.dmgPerCast;
+      this.damageSummary.combinedDpsBase = (skillDmg?.skillDps || 0) + autoBase.autoSpellDps;
+    }
 
     this.skillFrequency = skillAspd || ({} as any);
     this.miscSummary = misc;
@@ -1405,6 +1469,11 @@ export class Calculator {
       effectedSkillDps: skillDmg?.skillDps || 0,
       effectedSkillHitsPerSec: skillAspd?.totalHitPerSec || 0,
     };
+
+    const autoTriggered = this.calcAutoSpellSummary(calc, skillValue, skillDmg, maxHp, maxSp);
+    if (autoTriggered) {
+      this.damageSummary.combinedDpsTriggered = (skillDmg?.skillDps || 0) + autoTriggered.autoSpellDps;
+    }
 
     return this;
   }

@@ -145,4 +145,29 @@ describe('Calculator', () => {
       expect(internalRefineMap.get(ItemTypeEnum.armor)).toBe(4);
     });
   });
+
+  describe('autoSpellOnUse collection', () => {
+    it('collects entries with no condition and skips entries whose condition fails', () => {
+      // แนบ autoSpellOnUse บน card (id 3) ซึ่งโหลดเป็น armorCard ตามแพทเทิร์น test เดิม
+      mockItems[3] = {
+        ...mockItems[3],
+        autoSpellOnUse: [
+          { onSkill: 'Skill A', skill: 'Skill A', chance: 30 },
+          { onSkill: 'Skill B', skill: 'Skill B', chance: 50, condition: 'EQUIP[Nonexistent Weapon]===1' },
+        ],
+      } as any;
+
+      mockModel.weapon = 1;
+      mockModel.armor = 2;
+      mockModel.armorCard = 3;
+
+      calculator.setMasterItems(mockItems);
+      calculator.loadItemFromModel(mockModel);
+      calculator.prepareAllItemBonus();
+
+      const list = (calculator as any)._autoSpellList;
+      expect(list.length).toBe(1);
+      expect(list[0].onSkill).toBe('Skill A');
+    });
+  });
 });
