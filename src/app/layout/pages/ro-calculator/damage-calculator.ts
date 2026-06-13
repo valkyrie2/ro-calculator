@@ -1317,7 +1317,9 @@ export class DamageCalculator {
     };
 
     const [, _skillName, skillLevelStr] = skillValue?.match(/(.+)==(\d+)/) ?? [];
-    const skillData = this._class.atkSkills.find((a) => a.value === skillValue || a.levelList?.findIndex((b) => b.value === skillValue) >= 0);
+    const skillData =
+      this._class.atkSkills.find((a) => a.value === skillValue || a.levelList?.findIndex((b) => b.value === skillValue) >= 0) ??
+      this._class.atkSkills.find((a) => a.name === _skillName);
     const isValidSkill = !!_skillName && !!skillLevelStr && typeof skillData?.formula === 'function';
 
     if (!isValidSkill) return { basicDmg, misc, basicAspd };
@@ -1536,6 +1538,7 @@ export class DamageCalculator {
       skillHit: skillData?.hit || 1,
       skillAccuracy: skillAccRate,
       skillDps,
+      skillHitsPerSec,
       skillHitKill: hitKill,
       skillCriRateToMonster: actualCri,
       skillCriDmgToMonster: calculated.criDmgToMonster,

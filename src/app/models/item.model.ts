@@ -1,3 +1,16 @@
+export interface AutoSpellOnUse {
+  /** SKILL_NAME ที่เป็นทริกเกอร์ — ต้องตรงกับสกิลหลักที่เลือกถึงจะคิด */
+  onSkill: string;
+  /** SKILL_NAME ที่ถูกร่าย (ABC) */
+  skill: string;
+  /** โอกาส proc เป็นเปอร์เซ็นต์ เช่น 30 */
+  chance: number;
+  /** เลเวลตายตัว (ออปชัน); ไม่ใส่ = ใช้เลเวลสูงสุด (value ของ atkSkill ABC) */
+  level?: number;
+  /** เงื่อนไข gate (ออปชัน) ใช้ไวยากรณ์เดียวกับ script line เช่น "EQUIP[X]GRADE[weapon==C]===1" */
+  condition?: string;
+}
+
 export interface ItemModel {
   id: number;
   aegisName: string;
@@ -40,4 +53,5 @@ export interface ItemModel {
    */
   isExpiredSim?: boolean;
   script: Record<string, any[]>;
+  autoSpellOnUse?: AutoSpellOnUse[];
 }

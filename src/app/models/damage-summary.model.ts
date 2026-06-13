@@ -48,6 +48,8 @@ export interface SkillDamageSummaryModel {
   skillHit: number;
   skillAccuracy: number;
   skillDps: number;
+  /** อัตราการร่ายสกิล/วินาที ที่ใช้คำนวณ skillDps (สำหรับคำนวณ autospell) */
+  skillHitsPerSec?: number;
   skillHitKill: number;
   skillCriRateToMonster: number;
   skillCriDmgToMonster: number;
@@ -79,6 +81,14 @@ export interface SkillDamageSummaryModel {
   effectedSkillDamageMax?: number;
   effectedSkillHitsPerSec?: number;
   effectedSkillDps?: number;
+
+  /** ----- Autospell-on-use ----- */
+  autoSpellLabel?: string;        // เช่น "Savage Impact @ 30%"
+  autoSpellDmgMin?: number;       // ดาเมจ ABC ต่อ hit (min)
+  autoSpellDmgMax?: number;       // ดาเมจ ABC ต่อ hit (max)
+  autoSpellDmgPerCast?: number;   // ดาเมจเฉลี่ยต่อ cast ของ ABC
+  combinedDpsBase?: number;       // แถว A: DPS สกิลหลัก (ฐานปกติ) + autospell
+  combinedDpsTriggered?: number;  // แถว B: DPS สกิลหลัก (Triggered) + autospell
 }
 
 export interface SkillAspdModel {
