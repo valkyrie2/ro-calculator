@@ -23,6 +23,16 @@ describe('PresetLabelSchema', () => {
     expect(valid('프리셋')).toBeTrue();
   });
 
+  it('accepts emoji and common punctuation in build names', () => {
+    // Regression: the old allowlist rejected all of these, blocking legitimate
+    // build names ("Invalid preset: label: Label has invalid characters").
+    expect(valid('Crit Build 🔥')).toBeTrue();
+    expect(valid("Sniper's ATK+ (PvP)!")).toBeTrue();
+    expect(valid('DPS: 100% & rising')).toBeTrue();
+    // ZWJ emoji sequence relies on \p{Cf} (U+200D) staying allowed.
+    expect(valid('combo 👨‍👩‍👧 family')).toBeTrue();
+  });
+
   it('rejects angle brackets and control characters', () => {
     expect(valid('evil<script>')).toBeFalse();
     expect(valid('tab\tchar')).toBeFalse();
@@ -45,6 +55,10 @@ describe('PublishNameSchema', () => {
 
   it('accepts Thai publish names with vowel/tone marks', () => {
     expect(valid('เวอร์ชั่นเทพ')).toBeTrue();
+  });
+
+  it('accepts emoji and punctuation', () => {
+    expect(valid('Best Build 🔥 (2026)!')).toBeTrue();
   });
 
   it('rejects angle brackets and control characters', () => {

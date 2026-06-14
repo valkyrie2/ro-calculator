@@ -1,8 +1,15 @@
 import { z } from 'zod';
 
-// \p{M} is required alongside \p{L}: Thai vowel/tone marks (e.g. ◌ั ◌่ ◌์)
-// are Unicode category Mark, not Letter.
-const PRESET_LABEL_PATTERN = /^[\p{L}\p{M}\p{N} _\-./()]+$/u;
+// Display names (labels, publish names) are free-form: users put emoji and
+// punctuation (e.g. "Sniper's ATK+ Build 🔥") in build names, and labels span
+// every script (Thai vowel/tone marks, CJK, etc.). These values are only ever
+// shown via Angular interpolation (auto-escaped) and stored via parameterized
+// queries, so there is no injection sink to guard. We therefore allow everything
+// EXCEPT control characters (\p{Cc}, incl. tab/newline) and angle brackets
+// (`<`/`>` kept out as cheap defence-in-depth). An allowlist here only produced
+// false positives. \p{Cf} (zero-width joiner) stays allowed so emoji ZWJ
+// sequences keep working.
+const DISPLAY_NAME_PATTERN = /^[^\p{Cc}<>]+$/u;
 const PRESET_TAG_PATTERN = /^[a-zA-Z0-9_-]+$/;
 
 export const PRESET_LABEL_MAX = 60;
@@ -14,7 +21,7 @@ export const PresetLabelSchema = z
   .trim()
   .min(1, 'Label is required')
   .max(PRESET_LABEL_MAX, `Label must be \u2264 ${PRESET_LABEL_MAX} chars`)
-  .regex(PRESET_LABEL_PATTERN, 'Label has invalid characters');
+  .regex(DISPLAY_NAME_PATTERN, 'Label has invalid characters');
 
 export const PresetTagSchema = z
   .string()
@@ -56,7 +63,7 @@ export const PublishNameSchema = z
   .trim()
   .min(1)
   .max(80)
-  .regex(/^[\p{L}\p{M}\p{N} _\-./()]+$/u, 'Publish name has invalid characters');
+  .regex(DISPLAY_NAME_PATTERN, 'Publish name has invalid characters');
 
 export type PresetLabel = z.infer<typeof PresetLabelSchema>;
 export type PresetTag = z.infer<typeof PresetTagSchema>;
