@@ -68,7 +68,7 @@ export class BugReportService {
     return this.supabaseClient.client;
   }
 
-  async submit(input: SubmitBugReportInput): Promise<BugReportRow> {
+  async submit(input: SubmitBugReportInput): Promise<void> {
     const title = (input.title || '').trim();
     if (!title) throw new Error('Title is required.');
 
@@ -91,17 +91,20 @@ export class BugReportService {
       reporter_email: profile?.email || null,
     };
 
-    const { data, error } = await this.client
-      .from('bug_reports')
-      .insert(row)
-      .select()
-      .single();
+    // Do NOT chain `.select()` here. That sets `Prefer: return=representation`,
+    // asking PostgREST to read the inserted row back — which is filtered by the
+    // SELECT RLS policy (admins, or owners where reporter_id = auth.uid()).
+    // Anonymous reporters (reporter_id null, auth.uid() null) fail that policy,
+    // so the read-back is rejected and the whole insert is rolled back with
+    // "new row violates row-level security policy for table bug_reports".
+    // Anyone may INSERT (policy `with check (true)`); only admins/owners may read.
+    // `return=minimal` (no `.select()`) skips the read-back, so anon submits work.
+    const { error } = await this.client.from('bug_reports').insert(row);
 
     if (error) {
       logger.error({ submitBugReportError: error });
       throw new Error(error.message);
     }
-    return data as BugReportRow;
   }
 
   async list(): Promise<BugReportRow[]> {
