@@ -123497,7 +123497,7 @@
   },
   "460121": {
     "id": 460121,
-    "autoSpellOnUse": [{ "onSkill": "Metalic Sound", "skill": "Metallic Fury", "chance": 20, "level": 5 }],
+    "autoSpellOnUse": [{ "onSkill": "Metalic Sound", "skill": "Metallic Fury", "chance": 20, "level": 5, "condition": "REFINE[9]===1" }],
     "aegisName": "Melody_Shield_TH",
     "name": "Melody Rose Shield [1]",
     "unidName": "Melody Rose Shield",
@@ -123554,7 +123554,7 @@
   },
   "460123": {
     "id": 460123,
-    "autoSpellOnUse": [{ "onSkill": "Metalic Sound", "skill": "Metallic Fury", "chance": 40, "level": 5 }],
+    "autoSpellOnUse": [{ "onSkill": "Metalic Sound", "skill": "Metallic Fury", "chance": 40, "level": 5, "condition": "REFINE[9]===1" }],
     "aegisName": "Melody_Shield_LT_TH",
     "name": "Melody Rose Shield-LT [1]",
     "unidName": "Melody Rose Shield-LT",
