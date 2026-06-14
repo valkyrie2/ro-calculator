@@ -55,6 +55,7 @@ import { CalcBreakdownComponent } from './calc-breakdown/calc-breakdown.componen
 import { CustomBonusComponent } from './custom-bonus/custom-bonus.component';
 import { DpsCompareComponent } from './dps-compare/dps-compare.component';
 import { ExpCalculatorComponent } from './exp-calculator/exp-calculator.component';
+import { CascadeSelectNoHoverFocusDirective } from '../../../directives/cascade-select-no-hover-focus.directive';
 
 @NgModule({
   imports: [
@@ -94,6 +95,7 @@ import { ExpCalculatorComponent } from './exp-calculator/exp-calculator.componen
     TabViewModule,
     RoCalculatorRoutingModule,
     SharedPipesModule,
+    CascadeSelectNoHoverFocusDirective,
   ],
   declarations: [
     RoCalculatorComponent,

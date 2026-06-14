@@ -19,6 +19,7 @@ import { RoCalculatorModule } from '../ro-calculator/ro-calculator.module';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { SkillDetailComponent } from './skill-detail/skill-detail.component';
 import { CascadeSelectModule } from 'primeng/cascadeselect';
+import { CascadeSelectNoHoverFocusDirective } from '../../../directives/cascade-select-no-hover-focus.directive';
 
 @NgModule({
   imports: [
@@ -37,6 +38,7 @@ import { CascadeSelectModule } from 'primeng/cascadeselect';
     SharedPresetRoutingModule,
     ConfirmDialogModule,
     CascadeSelectModule,
+    CascadeSelectNoHoverFocusDirective,
     RoCalculatorModule,
   ],
   declarations: [SharedPresetComponent, EquipmentUiComponent, EquipmentInDetailComponent, SkillDetailComponent],
