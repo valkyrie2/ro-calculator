@@ -214,6 +214,15 @@ export class AppTopBarComponent implements OnInit, OnDestroy {
 
   updates: { v: string; date: string; logs: string[]; }[] = [
     {
+      v: 'Extra v62.0',
+      date: '14-06-2569',
+      logs: [
+        'เพิ่มระบบคำนวณ Autospell DPS: เมื่อใช้สกิลแล้วมีโอกาส Autospell สกิลอื่น จะแสดงแถว AutoSpell + DPS รวม (ฐานปกติ / Triggered) ใน Battle Summary',
+        'ใส่ข้อมูล Autospell ให้ไอเทม 49 ชิ้น (Dim Crystal, Orrivane Orb, Ring of Good/Evil, Poenitentia Ring, Melody Rose Shield ฯลฯ)',
+        'จำกัด Skill/s สูงสุดที่ 7 Hits/s',
+      ],
+    },
+    {
       v: 'Extra v61.1',
       date: '04-06-2569',
       logs: [

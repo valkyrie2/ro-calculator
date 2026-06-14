@@ -5,6 +5,9 @@ import { StatusSummary } from '../models/status-summary.model';
 import { floor } from './floor';
 import { round, roundUp } from './round';
 
+/** สูงสุดของ Skill/s (ความถี่ร่ายสกิล/วินาที) */
+const MAX_SKILL_HITS_PER_SEC = 7;
+
 export const calcSkillAspd = (params: {
   skillData: AtkSkillModel;
   totalEquipStatus: EquipmentSummaryModel;
@@ -70,6 +73,6 @@ export const calcSkillAspd = (params: {
     reducedAcd,
     castPeriod: castPeriod,
     hitPeriod,
-    totalHitPerSec: floor(1 / hitPeriod, 1),
+    totalHitPerSec: Math.min(floor(1 / hitPeriod, 1), MAX_SKILL_HITS_PER_SEC),
   };
 };
