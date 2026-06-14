@@ -108878,6 +108878,7 @@
   },
   "314237": {
     "id": 314237,
+    "autoSpellOnUse": [{ "onSkill": "Howling of Chulho", "skill": "Hogogong Strike", "chance": 100, "level": 7, "condition": "EQUIP[Wicked Plant]===1" }],
     "aegisName": "ClockAcc_DR1",
     "name": "Doram Clock",
     "unidName": "Doram Clock",
@@ -108902,6 +108903,7 @@
   },
   "314238": {
     "id": 314238,
+    "autoSpellOnUse": [{ "onSkill": "Rose Blossom", "skill": "Rose Blossom", "chance": 30, "level": 5, "condition": "EQUIP[Precision Lute||Precision Whip]===1" }],
     "aegisName": "ClockAcc_WM1",
     "name": "Wanderer \u0026 Minstrel Clock",
     "unidName": "Wanderer \u0026 Minstrel Clock",
@@ -123495,6 +123497,7 @@
   },
   "460121": {
     "id": 460121,
+    "autoSpellOnUse": [{ "onSkill": "Metalic Sound", "skill": "Metallic Fury", "chance": 20, "level": 5 }],
     "aegisName": "Melody_Shield_TH",
     "name": "Melody Rose Shield [1]",
     "unidName": "Melody Rose Shield",
@@ -123551,6 +123554,7 @@
   },
   "460123": {
     "id": 460123,
+    "autoSpellOnUse": [{ "onSkill": "Metalic Sound", "skill": "Metallic Fury", "chance": 40, "level": 5 }],
     "aegisName": "Melody_Shield_LT_TH",
     "name": "Melody Rose Shield-LT [1]",
     "unidName": "Melody Rose Shield-LT",
@@ -136067,6 +136071,9 @@
   },
   "490752": {
     "id": 490752,
+    "autoSpellOnUse": [
+      { "onSkill": "Rolling Cutter", "skill": "Impact Crater", "chance": 40, "level": 5, "condition": "EQUIP[Poenitentia Manus]REFINE[weapon==10]===1" }
+    ],
     "aegisName": "Poenitentia_Ring_SHC",
     "name": "Poenitentia Ring(Shadow Cross) [1]",
     "unidName": "Poenitentia Ring(Shadow Cross)",
@@ -136309,6 +136316,7 @@
   },
   "490768": {
     "id": 490768,
+    "autoSpellOnUse": [{ "onSkill": "Deft Stab", "skill": "Deft Stab", "chance": 40, "level": 10, "condition": "EQUIP[Poenitentia Dilacero]REFINE[weapon==10]===1" }],
     "aegisName": null,
     "name": "Poenitentia Ring (Abyss Chaser) [1]",
     "unidName": "Poenitentia Ring (Abyss Chaser)",
@@ -136425,6 +136433,7 @@
   },
   "490772": {
     "id": 490772,
+    "autoSpellOnUse": [{ "onSkill": "Aimed Bolt", "skill": "Crescive Bolt", "chance": 40, "level": 5, "condition": "EQUIP[Poenitentia Nervus]REFINE[weapon==10]===1" }],
     "aegisName": null,
     "name": "Poenitentia Ring (Wind Hawk) [1]",
     "unidName": "Poenitentia Ring (Wind Hawk)",
@@ -136481,6 +136490,15 @@
   },
   "490774": {
     "id": 490774,
+    "autoSpellOnUse": [
+      {
+        "onSkill": "Golden Dragon Cannon",
+        "skill": "Thundering Cannon",
+        "chance": 30,
+        "level": 10,
+        "condition": "EQUIP[Poenitentia Jana]POS_SPECIFIC[weapon==Poenitentia Jana]REFINE[weapon==10]===1"
+      }
+    ],
     "aegisName": null,
     "name": "Poenitentia Ring (Shinkiro\u0026Shiranui) [1]",
     "unidName": "Poenitentia Ring (Shinkiro\u0026Shiranui)",
@@ -136509,6 +136527,7 @@
   },
   "490775": {
     "id": 490775,
+    "autoSpellOnUse": [{ "onSkill": "Chulho Sonic Claw", "skill": "Chulho Sonic Claw", "chance": 30, "level": 7, "condition": "EQUIP[Vivatus Fides Foxtail Model]===1" }],
     "aegisName": null,
     "name": "Lumora of Claw Ring [1]",
     "unidName": "Lumora of Claw Ring",
@@ -172241,6 +172260,7 @@
   },
   "490812": {
     "id": 490812,
+    "autoSpellOnUse": [{ "onSkill": "Hack and Slasher", "skill": "Storm Slash", "chance": 40, "condition": "EQUIP[Evil Spell]===1" }],
     "aegisName": null,
     "flavorText": null,
     "name": "Ring of Evil (Dragon Knight) [1]",
@@ -172280,6 +172300,7 @@
   },
   "490813": {
     "id": 490813,
+    "autoSpellOnUse": [{ "onSkill": "Overslash", "skill": "Overslash", "chance": 30, "condition": "EQUIP[Good Spell]===1" }],
     "aegisName": null,
     "flavorText": null,
     "name": "Ring of Good (Imperial Guard) [1]",
@@ -172402,6 +172423,7 @@
   },
   "490816": {
     "id": 490816,
+    "autoSpellOnUse": [{ "onSkill": "Arbitrium", "skill": "Arbitrium", "chance": 30, "level": 10, "condition": "EQUIP[Good Spell]===1" }],
     "aegisName": null,
     "flavorText": null,
     "name": "Ring of Good (Cardinal) [1]",
@@ -173319,6 +173341,7 @@
   },
   "490837": {
     "id": 490837,
+    "autoSpellOnUse": [{ "onSkill": "Frenzy Shot", "skill": "Frenzy Shot", "chance": 30, "condition": "EQUIP[Evil Spell]===1" }],
     "aegisName": "ABC_Evil_Ring_TH",
     "flavorText": null,
     "name": "Ring of Evil (Abyss Chaser) [1]",
@@ -173390,6 +173413,7 @@
   },
   "490838": {
     "id": 490838,
+    "autoSpellOnUse": [{ "onSkill": "Savage Impact", "skill": "Eternal Slash", "chance": 40, "condition": "EQUIP[Good Spell]===1" }],
     "aegisName": "SHC_Good_Ring_TH",
     "flavorText": null,
     "name": "Ring of Good (Shadow Cross) [1]",
@@ -173425,6 +173449,7 @@
   },
   "490839": {
     "id": 490839,
+    "autoSpellOnUse": [{ "onSkill": "Mighty Smash", "skill": "Axe Stomp", "chance": 40, "condition": "EQUIP[Good Spell]===1" }],
     "aegisName": "MT_Good_Ring_TH",
     "flavorText": null,
     "name": "Ring of Good (Meister) [1]",
@@ -173461,6 +173486,7 @@
   },
   "490841": {
     "id": 490841,
+    "autoSpellOnUse": [{ "onSkill": "Rhythm Shooting", "skill": "Rose Blossom", "chance": 40, "condition": "EQUIP[Good Spell]===1" }],
     "aegisName": "TR_Good_Ring_TH",
     "flavorText": null,
     "name": "Ring of Good (Troubadour \u0026 Trouvere) [1]",
@@ -173794,6 +173820,7 @@
   },
   "490851": {
     "id": 490851,
+    "autoSpellOnUse": [{ "onSkill": "Deft Stab", "skill": "Deft Stab", "chance": 30, "condition": "EQUIP[Good Spell]===1" }],
     "aegisName": "ABC_Good_Ring_TH",
     "flavorText": null,
     "name": "Ring of Good (Abyss Chaser) [1]",
@@ -173865,6 +173892,7 @@
   },
   "490853": {
     "id": 490853,
+    "autoSpellOnUse": [{ "onSkill": "Triple Laser", "skill": "Mayhemic Thorns", "chance": 40, "level": 10, "condition": "EQUIP[Evil Spell]===1" }],
     "aegisName": null,
     "flavorText": null,
     "name": "Ring of Evil (Meister) [1]",
@@ -174203,6 +174231,7 @@
   },
   "490857": {
     "id": 490857,
+    "autoSpellOnUse": [{ "onSkill": "Mayhemic Thorns", "skill": "Mayhemic Thorns", "chance": 30, "condition": "EQUIP[Evil Spell]===1" }],
     "aegisName": null,
     "flavorText": null,
     "name": "Ring of Evil (Biolo) [1]",
@@ -174235,6 +174264,10 @@
   },
   "490858": {
     "id": 490858,
+    "autoSpellOnUse": [
+      { "onSkill": "Spiral Shooting", "skill": "Spiral Shooting", "chance": 30, "condition": "EQUIP[Good Spell]===1" },
+      { "onSkill": "Magazine for One", "skill": "Magazine for One", "chance": 30, "condition": "EQUIP[Good Spell]===1" }
+    ],
     "aegisName": null,
     "flavorText": null,
     "name": "Ring of Good (Night Watch) [1]",
@@ -174407,6 +174440,10 @@
   },
   "490862": {
     "id": 490862,
+    "autoSpellOnUse": [
+      { "onSkill": "First Brand", "skill": "Second Faith", "chance": 100, "condition": "EQUIP[Good Spell]===1" },
+      { "onSkill": "Second Faith", "skill": "Third Punish", "chance": 100, "condition": "EQUIP[Good Spell]===1" }
+    ],
     "aegisName": null,
     "flavorText": null,
     "name": "Ring of Good (Inquisitor) [1]",
@@ -174667,6 +174704,7 @@
   },
   "490868": {
     "id": 490868,
+    "autoSpellOnUse": [{ "onSkill": "Talisman of Four Bearing God", "skill": "Talisman of Four Bearing God", "chance": 30, "condition": "EQUIP[Good Spell]===1" }],
     "aegisName": null,
     "name": "Ring of Good (Soul Ascetic) [1]",
     "unidName": "Ring of Good (Soul Ascetic)",
@@ -174699,6 +174737,7 @@
   },
   "490869": {
     "id": 490869,
+    "autoSpellOnUse": [{ "onSkill": "Midnight Kick", "skill": "Dawn Break", "chance": 40, "condition": "EQUIP[Evil Spell]===1" }],
     "aegisName": null,
     "name": "Ring of Evil (Sky Emperor) [1]",
     "unidName": "Ring of Evil (Sky Emperor)",
@@ -174763,6 +174802,10 @@
   },
   "490871": {
     "id": 490871,
+    "autoSpellOnUse": [
+      { "onSkill": "Howling of Chulho", "skill": "Hogogong Strike", "chance": 100, "condition": "EQUIP[Good Spell]===1" },
+      { "onSkill": "Chulho Sonic Claw", "skill": "Chulho Sonic Claw", "chance": 30, "condition": "EQUIP[Good Spell]===1" }
+    ],
     "aegisName": null,
     "name": "Ring of Good (Spirit Handler) [1]",
     "unidName": "Ring of Good (Spirit Handler)",
@@ -174898,6 +174941,7 @@
   },
   "490874": {
     "id": 490874,
+    "autoSpellOnUse": [{ "onSkill": "Soul Vulcan Strike", "skill": "Mystery Illusion", "chance": 40, "condition": "EQUIP[Evil Spell]===1" }],
     "aegisName": null,
     "name": "Ring of Evil (Arch Mage) [1]",
     "unidName": "Ring of Evil (Arch Mage)",
@@ -175291,6 +175335,10 @@
   },
   "314812": {
     "id": 314812,
+    "autoSpellOnUse": [
+      { "onSkill": "First Brand", "skill": "Second Flame", "chance": 100, "condition": "EQUIP[Dim Glacier Knuckle]GRADE[weapon==C]REFINE[weapon==12]===1" },
+      { "onSkill": "Second Flame", "skill": "Third Flame Bomb", "chance": 100, "condition": "EQUIP[Dim Glacier Knuckle]GRADE[weapon==C]REFINE[weapon==12]===1" }
+    ],
     "aegisName": "DimAcc_IQ",
     "flavorText": null,
     "name": "Inquisitor Dim Crystal",
@@ -175316,6 +175364,7 @@
   },
   "490882": {
     "id": 490882,
+    "autoSpellOnUse": [{ "onSkill": "Talisman of Soul Stealing", "skill": "Talisman of Soul Stealing", "chance": 30, "condition": "EQUIP[Evil Spell]===1" }],
     "aegisName": null,
     "flavorText": null,
     "name": "Ring of Evil (Soul Ascetic) [1]",
@@ -175352,6 +175401,7 @@
   },
   "490886": {
     "id": 490886,
+    "autoSpellOnUse": [{ "onSkill": "Napalm Vulcan Strike", "skill": "Napalm Vulcan Strike", "chance": 30, "condition": "EQUIP[Evil Spell]===1" }],
     "aegisName": null,
     "flavorText": null,
     "name": "Ring of Evil (Hyper Novice) [1]",
@@ -175387,6 +175437,7 @@
   },
   "490888": {
     "id": 490888,
+    "autoSpellOnUse": [{ "onSkill": "Frozen Slash", "skill": "Rain of Crystal", "chance": 40, "condition": "EQUIP[Good Spell]===1" }],
     "aegisName": null,
     "flavorText": null,
     "name": "Ring of Good (Arch Mage) [1]",
@@ -175423,6 +175474,7 @@
   },
   "490883": {
     "id": 490883,
+    "autoSpellOnUse": [{ "onSkill": "Noon Blast", "skill": "Noon Blast", "chance": 30, "condition": "EQUIP[Good Spell]===1" }],
     "aegisName": null,
     "flavorText": null,
     "name": "Ring of Good (Sky Emperor) [1]",
@@ -175457,6 +175509,7 @@
   },
   "490887": {
     "id": 490887,
+    "autoSpellOnUse": [{ "onSkill": "Shield Chain Rush", "skill": "Shield Chain Rush", "chance": 30, "condition": "EQUIP[Good Spell]===1" }],
     "aegisName": null,
     "flavorText": null,
     "name": "Ring of Good (Hyper Novice) [1]",
@@ -176119,6 +176172,9 @@
   },
   "314821": {
     "id": 314821,
+    "autoSpellOnUse": [
+      { "onSkill": "Hawk Rush", "skill": "Focused Arrow Strike", "chance": 40, "level": 5, "condition": "EQUIP[Dim Glacier Bow]GRADE[weapon==C]REFINE[weapon==12]===1" }
+    ],
     "aegisName": "DimAcc_WH",
     "flavorText": null,
     "name": "Windhawk Dim Crystal",
@@ -176144,6 +176200,9 @@
   },
   "314904": {
     "id": 314904,
+    "autoSpellOnUse": [
+      { "onSkill": "Petitio", "skill": "Petitio", "chance": 30, "condition": "EQUIP[Dim Glacier Book||Dim Glacier Mace]GRADE[weapon==C]REFINE[weapon==12]===1" }
+    ],
     "aegisName": "DimAcc_CD",
     "flavorText": null,
     "name": "Cardinal Dim Crystal",
@@ -176170,6 +176229,9 @@
   },
   "314905": {
     "id": 314905,
+    "autoSpellOnUse": [
+      { "onSkill": "Spark Blaster", "skill": "Spark Blaster", "chance": 30, "condition": "EQUIP[Dim Glacier Mechanic Mace]GRADE[weapon==C]REFINE[weapon==12]===1" }
+    ],
     "aegisName": "DimAcc_MT",
     "flavorText": null,
     "name": "Meister Dim Crystal",
@@ -176195,6 +176257,14 @@
   },
   "314906": {
     "id": 314906,
+    "autoSpellOnUse": [
+      {
+        "onSkill": "Rhythm Shooting",
+        "skill": "Rhythm Shooting",
+        "chance": 30,
+        "condition": "EQUIP[Dim Glacier Violin||Dim Glacier Whip]GRADE[weapon==C]REFINE[weapon==12]===1"
+      }
+    ],
     "aegisName": "DimAcc_TR",
     "flavorText": null,
     "name": "Troubadour \u0026 Trouvere Dim Crystal",
@@ -176784,6 +176854,9 @@
   },
   "300784": {
     "id": 300784,
+    "autoSpellOnUse": [
+      { "onSkill": "Savage Impact", "skill": "Eternal Slash", "chance": 40, "condition": "EQUIP[Dim Glacier Katar]GRADE[weapon==C]REFINE[weapon==12]===1" }
+    ],
     "aegisName": "DimAcc_SHC",
     "flavorText": null,
     "name": "Shadow Cross Dim Crystal",
@@ -176811,6 +176884,9 @@
   },
   "300785": {
     "id": 300785,
+    "autoSpellOnUse": [
+      { "onSkill": "Shadow Flash", "skill": "Shadow Flash", "chance": 30, "condition": "EQUIP[Dim Glacier Huuma Shuriken]GRADE[weapon==C]REFINE[weapon==12]===1" }
+    ],
     "aegisName": "DimAcc_SS",
     "flavorText": null,
     "name": "Shinkiro\u0026Shiranui Dim Crystal",
@@ -176837,6 +176913,14 @@
   },
   "314986": {
     "id": 314986,
+    "autoSpellOnUse": [
+      {
+        "onSkill": "Dragonic Breath",
+        "skill": "Dragonic Breath",
+        "chance": 30,
+        "condition": "EQUIP[Dim Glacier Two-handed Sword||Dim Glacier Lance]GRADE[weapon==C]REFINE[weapon==12]===1"
+      }
+    ],
     "aegisName": "DimAcc_DK",
     "flavorText": null,
     "name": "Dragon Knight Dim Crystal",
@@ -177847,6 +177931,10 @@
   },
   "315109": {
     "id": 315109,
+    "autoSpellOnUse": [
+      { "onSkill": "Shield Shooting", "skill": "Shield Shooting", "chance": 30, "condition": "EQUIP[Dim Glacier Spear]GRADE[weapon==c]REFINE[weapon==12]===1" },
+      { "onSkill": "Cannon Spear", "skill": "Cannon Spear", "chance": 30, "condition": "EQUIP[Dim Glacier Spear]GRADE[weapon==c]REFINE[weapon==12]===1" }
+    ],
     "aegisName": "DimAcc_IG",
     "flavorText": null,
     "name": "Imperial Guard Dim Crystal",
@@ -177875,6 +177963,14 @@
   },
   "315110": {
     "id": 315110,
+    "autoSpellOnUse": [
+      {
+        "onSkill": "Mega Sonic Blow",
+        "skill": "Mega Sonic Blow",
+        "chance": 30,
+        "condition": "EQUIP[Dim Glacier Basic Knife||Dim Glacier Basic Sword]GRADE[weapon==c]REFINE[weapon==12]===1"
+      }
+    ],
     "aegisName": "DimAcc_HN",
     "flavorText": null,
     "name": "Hyper Novice Dim Crystal",
@@ -177968,6 +178064,7 @@
   },
   "315113": {
     "id": 315113,
+    "autoSpellOnUse": [{ "onSkill": "Gale Storm", "skill": "Gale Storm", "chance": 30, "condition": "EQUIP[Dim Glacier Bow]GRADE[weapon==c]REFINE[weapon==12]===1" }],
     "aegisName": "DimAcc_WH_Gl",
     "flavorText": null,
     "name": "Windhawk Dim Gale Crystal",
@@ -178539,6 +178636,9 @@
   },
   "315163": {
     "id": 315163,
+    "autoSpellOnUse": [
+      { "onSkill": "Magazine for One", "skill": "Magazine for One", "chance": 30, "condition": "EQUIP[Dim Glacier Revolver]REFINE[weapon==12]GRADE[weapon==C]===1" }
+    ],
     "aegisName": "DimAcc_NW",
     "name": "Night Watch Dim Crystal",
     "unidName": "Night Watch Dim Crystal",
@@ -181210,6 +181310,9 @@
   },
   "315286": {
     "id": 315286,
+    "autoSpellOnUse": [
+      { "onSkill": "Crescive Bolt", "skill": "Crescive Bolt", "chance": 30, "condition": "EQUIP[Orrivane Wind Crossbow]GRADE[weapon==C]REFINE[weapon==10]===1" }
+    ],
     "aegisName": "Orrivane_Enc_WH",
     "name": "Orrivane Orb (Windhawk)",
     "unidName": "Orrivane Orb (Windhawk)",
@@ -181239,6 +181342,10 @@
   },
   "315287": {
     "id": 315287,
+    "autoSpellOnUse": [
+      { "onSkill": "Deft Stab", "skill": "Deft Stab", "chance": 30, "condition": "EQUIP[Orrivane Abyss Dagger]GRADE[weapon==C]REFINE[weapon==10]===1" },
+      { "onSkill": "Frenzy Shot", "skill": "Frenzy Shot", "chance": 30, "condition": "EQUIP[Orrivane Abyss Crossbow]GRADE[weapon==C]REFINE[weapon==10]===1" }
+    ],
     "aegisName": "Orrivane_Enc_ABC",
     "name": "Orrivane Orb (Abyss Chaser)",
     "unidName": "Orrivane Orb (Abyss Chaser)",
@@ -181273,6 +181380,10 @@
   },
   "315288": {
     "id": 315288,
+    "autoSpellOnUse": [
+      { "onSkill": "Crimson Arrow", "skill": "Crimson Arrow", "chance": 30, "condition": "EQUIP[Orrivane Arch Wand]GRADE[weapon==C]REFINE[weapon==10]===1" },
+      { "onSkill": "Soul Vulcan Strike", "skill": "Soul Vulcan Strike", "chance": 30, "condition": "EQUIP[Orrivane Arch Staff]GRADE[weapon==C]REFINE[weapon==10]===1" }
+    ],
     "aegisName": "Orrivane_Enc_AG",
     "name": "Orrivane Orb (Arch Mage)",
     "unidName": "Orrivane Orb (Arch Mage)",
@@ -181495,6 +181606,10 @@
   },
   "315321": {
     "id": 315321,
+    "autoSpellOnUse": [
+      { "onSkill": "Hack and Slasher", "skill": "Hack and Slasher", "chance": 30, "condition": "EQUIP[Orrivane Dragon Sword]GRADE[weapon==C]REFINE[weapon==10]===1" },
+      { "onSkill": "Dragonic Breath", "skill": "Dragonic Breath", "chance": 30, "condition": "EQUIP[Orrivane Dragon Lance]GRADE[weapon==C]REFINE[weapon==10]===1" }
+    ],
     "aegisName": "Orrivane_Enc_DK",
     "name": "Orrivane Orb (Dragon Knight)",
     "unidName": "Orrivane Orb (Dragon Knight)",
@@ -181526,6 +181641,10 @@
   },
   "315322": {
     "id": 315322,
+    "autoSpellOnUse": [
+      { "onSkill": "Mighty Smash", "skill": "Mighty Smash", "chance": 30, "condition": "EQUIP[Orrivane Mechanical Axe]GRADE[weapon==C]REFINE[weapon==10]===1" },
+      { "onSkill": "Spark Blaster", "skill": "Spark Blaster", "chance": 30, "condition": "EQUIP[Orrivane Mechanical Mace]GRADE[weapon==C]REFINE[weapon==10]===1" }
+    ],
     "aegisName": "Orrivane_Enc_MT",
     "name": "Orrivane Orb (Meister)",
     "unidName": "Orrivane Orb (Meister)",
@@ -181554,6 +181673,10 @@
   },
   "315323": {
     "id": 315323,
+    "autoSpellOnUse": [
+      { "onSkill": "Overslash", "skill": "Overslash", "chance": 30, "condition": "EQUIP[Orrivane Imperial Spear]GRADE[weapon==C]REFINE[weapon==10]===1" },
+      { "onSkill": "Overslash", "skill": "Grand Judgement", "chance": 40, "condition": "EQUIP[Orrivane Imperial Spear]GRADE[weapon==C]REFINE[weapon==10]===1" }
+    ],
     "aegisName": "Orrivane_Enc_IG",
     "name": "Orrivane Orb (Imperial Guard)",
     "unidName": "Orrivane Orb (Imperial Guard)",
