@@ -179667,7 +179667,7 @@
     "requiredLevel": 100,
     "location": "Middle",
     "compositionPos": null,
-    "canGrade": true,
+    "canGrade": false,
     "usableClass": ["all"],
     "script": {
       "acd": ["10"],
