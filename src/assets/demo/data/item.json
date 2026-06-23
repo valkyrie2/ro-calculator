@@ -179986,9 +179986,9 @@
       ],
       "atk": ["REFINE[weapon==2]---10"],
       "atkPercent": ["REFINE[weapon==2]---1"],
-      "criDmg": ["7===15", "GRADE[me==B]===10"],
+      "criDmg": ["7===15"],
       "cRate": ["9===3"],
-      "range": ["EQUIP[Orrivane Crown (Biolo)]===5"],
+      "range": ["EQUIP[Orrivane Crown (Biolo)]===5", "GRADE[me==B]===10"],
       "pAtk": ["GRADE[me==D]===2", "GRADE[me==A]REFINE[weapon==2]---2"],
       "cd__Mayhemic Thorns": ["EQUIP[Orrivane Crown (Biolo)]GRADE[headUpper==A]REFINE[weapon,headUpper==22]===0.1"]
     }
@@ -180140,9 +180140,9 @@
       ],
       "atk": ["REFINE[weapon==2]---10"],
       "atkPercent": ["REFINE[weapon==2]---1"],
-      "criDmg": ["7===15", "GRADE[me==B]===10"],
+      "criDmg": ["7===15"],
       "cRate": ["9===3"],
-      "melee": ["EQUIP[Orrivane Crown (Cardinal)]===5"],
+      "melee": ["EQUIP[Orrivane Crown (Cardinal)]===5", "GRADE[me==B]===10"],
       "pAtk": ["GRADE[me==D]===2", "GRADE[me==A]REFINE[weapon==2]---2"],
       "cd__Petitio": ["EQUIP[Orrivane Crown (Cardinal)]GRADE[headUpper==A]REFINE[weapon,headUpper==22]===0.1"]
     }
@@ -180287,9 +180287,9 @@
       ],
       "atk": ["REFINE[weapon==2]---10"],
       "atkPercent": ["REFINE[weapon==2]---1"],
-      "criDmg": ["7===15", "GRADE[me==B]===10"],
+      "criDmg": ["7===15"],
       "cRate": ["9===3"],
-      "melee": ["EQUIP[Orrivane Crown (Sky Emperor)]===5"],
+      "melee": ["EQUIP[Orrivane Crown (Sky Emperor)]===5", "GRADE[me==B]===10"],
       "pAtk": ["GRADE[me==D]===2", "GRADE[me==A]REFINE[weapon==2]---2"],
       "cd__Noon Blast": ["EQUIP[Orrivane Crown (Sky Emperor)]GRADE[headUpper==A]REFINE[weapon,headUpper==22]===0.1"]
     }
@@ -180615,9 +180615,9 @@
       ],
       "atk": ["REFINE[weapon==2]---10"],
       "atkPercent": ["REFINE[weapon==2]---1"],
-      "criDmg": ["7===15", "GRADE[me==B]===10"],
+      "criDmg": ["7===15"],
       "cRate": ["9===3"],
-      "range": ["EQUIP[Orrivane Crown (Inquisitor)]===5"],
+      "range": ["EQUIP[Orrivane Crown (Inquisitor)]===5", "GRADE[me==B]===10"],
       "pAtk": ["GRADE[me==D]===2", "GRADE[me==A]REFINE[weapon==2]---2"],
       "cd__Explosion Blaster": ["EQUIP[Orrivane Crown (Inquisitor)]GRADE[headUpper==A]REFINE[weapon,headUpper==22]===0.1"]
     }
@@ -180877,9 +180877,9 @@
       ],
       "atk": ["REFINE[weapon==2]---10"],
       "atkPercent": ["REFINE[weapon==2]---1"],
-      "criDmg": ["7===15", "GRADE[me==B]===10"],
+      "criDmg": ["7===15"],
       "cRate": ["9===3"],
-      "melee": ["EQUIP[Orrivane Crown (Dragon Knight)]===5"],
+      "melee": ["EQUIP[Orrivane Crown (Dragon Knight)]===5", "GRADE[me==B]===10"],
       "cd__Hack and Slasher": ["EQUIP[Orrivane Crown (Dragon Knight)]GRADE[headUpper==A]REFINE[weapon,headUpper==22]===0.1"],
       "pAtk": ["GRADE[me==D]===2", "GRADE[me==A]REFINE[weapon==2]---2"]
     }
@@ -180915,9 +180915,9 @@
       ],
       "atk": ["REFINE[weapon==2]---10"],
       "atkPercent": ["REFINE[weapon==2]---1"],
-      "criDmg": ["7===15", "GRADE[me==B]===10"],
+      "criDmg": ["7===15"],
       "cRate": ["9===3"],
-      "melee": ["EQUIP[Orrivane Crown (Shadow Cross)]===5"],
+      "melee": ["EQUIP[Orrivane Crown (Shadow Cross)]===5", "GRADE[me==B]===10"],
       "cd__Savage Impact": ["EQUIP[Orrivane Crown (Shadow Cross)]GRADE[headUpper==A]REFINE[weapon,headUpper==22]===0.1"],
       "pAtk": ["GRADE[me==D]===2", "GRADE[me==A]REFINE[weapon==2]---2"]
     }
@@ -180953,9 +180953,9 @@
       ],
       "atk": ["REFINE[weapon==2]---10"],
       "atkPercent": ["REFINE[weapon==2]---1"],
-      "criDmg": ["7===15", "GRADE[me==B]===10"],
+      "criDmg": ["7===15"],
       "cRate": ["9===3"],
-      "melee": ["EQUIP[Orrivane Crown (Shadow Cross)]===5"],
+      "melee": ["EQUIP[Orrivane Crown (Shadow Cross)]===5", "GRADE[me==B]===10"],
       "pAtk": ["GRADE[me==D]===2", "GRADE[me==A]REFINE[weapon==2]---2"],
       "cd__Eternal Slash": ["EQUIP[Orrivane Crown (Shadow Cross)]GRADE[headUpper==A]REFINE[weapon,headUpper==22]===0.1"]
     }
@@ -181137,9 +181137,9 @@
       ],
       "atk": ["REFINE[weapon==2]---10"],
       "atkPercent": ["REFINE[weapon==2]---1"],
-      "criDmg": ["7===15", "GRADE[me==B]===10"],
+      "criDmg": ["7===15"],
       "cRate": ["9===3"],
-      "melee": ["EQUIP[Orrivane Crown (Shinkiro & Shiranui)]===5"],
+      "melee": ["EQUIP[Orrivane Crown (Shinkiro & Shiranui)]===5", "GRADE[me==B]===10"],
       "pAtk": ["GRADE[me==D]===2", "GRADE[me==A]REFINE[weapon==2]---2"],
       "cd__Shadow Flash": ["EQUIP[Orrivane Crown (Shinkiro & Shiranui)]GRADE[headUpper==A]REFINE[weapon,headUpper==22]===0.1"]
     }
