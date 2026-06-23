@@ -3,5 +3,5 @@
  * Keyed by item aegisName.
  */
 export const RefineCapTable: Record<string, number> = {
-  Ayothaya_Helm: 20,
+  Custom_401390: 20, // [6th] Ayothaya Helm
 };

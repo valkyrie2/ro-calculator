@@ -257,7 +257,7 @@ export class EquipmentComponent implements OnChanges, OnInit {
       }
 
       const refineCapOverride = RefineCapTable[item?.aegisName];
-      if (refineCapOverride && this.isRefinable) {
+      if (refineCapOverride) {
         this.refineList = createNumberDropdownList({ from: 0, to: refineCapOverride });
       }
     } else {

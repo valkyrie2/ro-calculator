@@ -179720,7 +179720,7 @@
     "slots": 1,
     "itemTypeId": 2,
     "itemSubTypeId": 516,
-    "itemLevel": null,
+    "itemLevel": 2,
     "attack": null,
     "defense": 20,
     "weight": 20,
@@ -179989,7 +179989,8 @@
       "criDmg": ["7===15", "GRADE[me==B]===10"],
       "cRate": ["9===3"],
       "range": ["EQUIP[Orrivane Crown (Biolo)]===5"],
-      "pAtk": ["GRADE[me==D]===2", "GRADE[me==A]REFINE[weapon==2]---2"]
+      "pAtk": ["GRADE[me==D]===2", "GRADE[me==A]REFINE[weapon==2]---2"],
+      "cd__Mayhemic Thorns": ["EQUIP[Orrivane Crown (Biolo)]GRADE[headUpper==A]REFINE[weapon,headUpper==22]===0.1"]
     }
   },
   "500141": {
@@ -180026,7 +180027,8 @@
       "criDmg": ["7===15"],
       "cRate": ["9===3"],
       "melee": ["EQUIP[Orrivane Crown (Hyper Novice)]===5", "GRADE[me==B]===10"],
-      "pAtk": ["GRADE[me==D]===2", "GRADE[me==A]REFINE[weapon==2]---2"]
+      "pAtk": ["GRADE[me==D]===2", "GRADE[me==A]REFINE[weapon==2]---2"],
+      "cd__Mega Sonic Blow": ["EQUIP[Orrivane Crown (Hyper Novice)]GRADE[headUpper==A]REFINE[weapon,headUpper==22]===0.1"]
     }
   },
   "510160": {
@@ -180061,7 +180063,8 @@
       "atk": ["REFINE[weapon==2]---10"],
       "melee": ["7===15", "EQUIP[Orrivane Crown (Abyss Chaser)]===5", "GRADE[me==B]===10"],
       "acd": ["9===10"],
-      "pAtk": ["9===3", "GRADE[me==D]===2", "GRADE[me==A]REFINE[weapon==2]---2"]
+      "pAtk": ["9===3", "GRADE[me==D]===2", "GRADE[me==A]REFINE[weapon==2]---2"],
+      "cd__Deft Stab": ["EQUIP[Orrivane Crown (Abyss Chaser)]GRADE[headUpper==A]REFINE[weapon,headUpper==22]===0.1"]
     }
   },
   "530083": {
@@ -180140,7 +180143,8 @@
       "criDmg": ["7===15", "GRADE[me==B]===10"],
       "cRate": ["9===3"],
       "melee": ["EQUIP[Orrivane Crown (Cardinal)]===5"],
-      "pAtk": ["GRADE[me==D]===2", "GRADE[me==A]REFINE[weapon==2]---2"]
+      "pAtk": ["GRADE[me==D]===2", "GRADE[me==A]REFINE[weapon==2]---2"],
+      "cd__Petitio": ["EQUIP[Orrivane Crown (Cardinal)]GRADE[headUpper==A]REFINE[weapon,headUpper==22]===0.1"]
     }
   },
   "540129": {
@@ -180176,7 +180180,8 @@
       "m_element_all": ["7===15", "GRADE[me==B]===10"],
       "vct": ["9===10"],
       "sMatk": ["9===3", "GRADE[me==D]===2", "GRADE[me==A]REFINE[weapon==2]---2"],
-      "m_element_wind": ["EQUIP[Orrivane Crown (Elemental Master)]===10"]
+      "m_element_wind": ["EQUIP[Orrivane Crown (Elemental Master)]===10"],
+      "cd__Lightning Land": ["EQUIP[Orrivane Crown (Elemental Master)]GRADE[headUpper==A]REFINE[weapon,headUpper==22]===0.5"]
     }
   },
   "540130": {
@@ -180212,7 +180217,8 @@
       "m_element_all": ["7===15", "GRADE[me==B]===10"],
       "vct": ["9===10"],
       "sMatk": ["9===3", "GRADE[me==D]===2", "GRADE[me==A]REFINE[weapon==2]---2"],
-      "m_element_poison": ["EQUIP[Orrivane Crown (Elemental Master)]===10"]
+      "m_element_poison": ["EQUIP[Orrivane Crown (Elemental Master)]===10"],
+      "cd__Venom Swamp": ["EQUIP[Orrivane Crown (Elemental Master)]GRADE[headUpper==A]REFINE[weapon,headUpper==22]===0.5"]
     }
   },
   "540131": {
@@ -180284,7 +180290,8 @@
       "criDmg": ["7===15", "GRADE[me==B]===10"],
       "cRate": ["9===3"],
       "melee": ["EQUIP[Orrivane Crown (Sky Emperor)]===5"],
-      "pAtk": ["GRADE[me==D]===2", "GRADE[me==A]REFINE[weapon==2]---2"]
+      "pAtk": ["GRADE[me==D]===2", "GRADE[me==A]REFINE[weapon==2]---2"],
+      "cd__Noon Blast": ["EQUIP[Orrivane Crown (Sky Emperor)]GRADE[headUpper==A]REFINE[weapon,headUpper==22]===0.1"]
     }
   },
   "550201": {
@@ -180356,7 +180363,8 @@
       "m_element_all": ["7===15", "GRADE[me==B]===10"],
       "vct": ["9===10"],
       "sMatk": ["9===3", "GRADE[me==D]===2", "GRADE[me==A]REFINE[weapon==2]---2"],
-      "m_element_fire": ["EQUIP[Orrivane Crown (Arch Mage)]===10"]
+      "m_element_fire": ["EQUIP[Orrivane Crown (Arch Mage)]===10"],
+      "cd__Crimson Arrow": ["EQUIP[Orrivane Crown (Arch Mage)]GRADE[headUpper==A]REFINE[weapon,headUpper==22]===0.1"]
     }
   },
   "550203": {
@@ -180391,7 +180399,8 @@
       ],
       "m_element_all": ["7===15", "GRADE[me==B]===10"],
       "vct": ["9===10"],
-      "sMatk": ["9===3", "GRADE[me==D]===2", "GRADE[me==A]REFINE[weapon==2]---2"]
+      "sMatk": ["9===3", "GRADE[me==D]===2", "GRADE[me==A]REFINE[weapon==2]---2"],
+      "cd__Talisman of Four Bearing God": ["EQUIP[Orrivane Crown (Soul Ascetic)]GRADE[headUpper==A]REFINE[weapon,headUpper==22]===0.2"]
     }
   },
   "550204": {
@@ -180426,7 +180435,8 @@
       ],
       "m_element_all": ["7===15", "GRADE[me==B]===10"],
       "vct": ["9===10"],
-      "sMatk": ["9===3", "GRADE[me==D]===2", "GRADE[me==A]REFINE[weapon==2]---2"]
+      "sMatk": ["9===3", "GRADE[me==D]===2", "GRADE[me==A]REFINE[weapon==2]---2"],
+      "cd__Exorcism of Malicious Soul": ["EQUIP[Orrivane Crown (Soul Ascetic)]GRADE[headUpper==A]REFINE[weapon,headUpper==22]===0.2"]
     }
   },
   "550205": {
@@ -180461,7 +180471,8 @@
       ],
       "m_element_all": ["7===15", "GRADE[me==B]===10"],
       "vct": ["9===10"],
-      "sMatk": ["9===3", "GRADE[me==D]===2", "GRADE[me==A]REFINE[weapon==2]---2"]
+      "sMatk": ["9===3", "GRADE[me==D]===2", "GRADE[me==A]REFINE[weapon==2]---2"],
+      "cd__Jack Frost Nova": ["EQUIP[Orrivane Crown (Hyper Novice)]GRADE[headUpper==A]REFINE[weapon,headUpper==22]===0.5"]
     }
   },
   "550206": {
@@ -180484,8 +180495,7 @@
     "canGrade": true,
     "usableClass": ["SpiritHandler"],
     "script": {
-      "matk": ["200", "REFINE[weapon==2]---10"],
-      "matkPercent": ["3", "REFINE[weapon==2]---1"],
+      "cri": ["5", "9===15"],
       "Hogogong Strike": [
         "5",
         "REFINE[weapon==3]---2",
@@ -180494,9 +180504,13 @@
         "EQUIP[Orrivane Crown (Spirit Handler)]GRADE[headUpper==A]REFINE[weapon,headUpper==22]===10",
         "GRADE[me==C]===10"
       ],
-      "m_element_all": ["7===15", "GRADE[me==B]===10"],
-      "vct": ["9===10"],
-      "sMatk": ["9===3", "GRADE[me==D]===2", "GRADE[me==A]REFINE[weapon==2]---2"]
+      "atk": ["REFINE[weapon==2]---10"],
+      "atkPercent": ["REFINE[weapon==2]---1"],
+      "criDmg": ["7===15"],
+      "cRate": ["9===3"],
+      "range": ["EQUIP[Orrivane Crown (Spirit Handler)]===5", "GRADE[me==B]===10"],
+      "pAtk": ["GRADE[me==D]===2", "GRADE[me==A]REFINE[weapon==2]---2"],
+      "cd__Hogogong Strike": ["EQUIP[Orrivane Crown (Spirit Handler)]GRADE[headUpper==A]REFINE[weapon,headUpper==22]===0.1"]
     }
   },
   "550207": {
@@ -180531,7 +180545,8 @@
       ],
       "m_element_all": ["7===15", "GRADE[me==B]===10"],
       "vct": ["9===10"],
-      "sMatk": ["9===3", "GRADE[me==D]===2", "GRADE[me==A]REFINE[weapon==2]---2"]
+      "sMatk": ["9===3", "GRADE[me==D]===2", "GRADE[me==A]REFINE[weapon==2]---2"],
+      "cd__Hyunrok Breeze": ["EQUIP[Orrivane Crown (Spirit Handler)]GRADE[headUpper==A]REFINE[weapon,headUpper==22]===1"]
     }
   },
   "560091": {
@@ -180603,7 +180618,8 @@
       "criDmg": ["7===15", "GRADE[me==B]===10"],
       "cRate": ["9===3"],
       "range": ["EQUIP[Orrivane Crown (Inquisitor)]===5"],
-      "pAtk": ["GRADE[me==D]===2", "GRADE[me==A]REFINE[weapon==2]---2"]
+      "pAtk": ["GRADE[me==D]===2", "GRADE[me==A]REFINE[weapon==2]---2"],
+      "cd__Explosion Blaster": ["EQUIP[Orrivane Crown (Inquisitor)]GRADE[headUpper==A]REFINE[weapon,headUpper==22]===0.1"]
     }
   },
   "570094": {
@@ -180790,7 +180806,8 @@
       "atk": ["REFINE[weapon==2]---10"],
       "range": ["7===15", "EQUIP[Orrivane Crown (Meister)]===5", "GRADE[me==B]===10"],
       "acd": ["9===10"],
-      "pAtk": ["9===3", "GRADE[me==D]===2", "GRADE[me==A]REFINE[weapon==2]---2"]
+      "pAtk": ["9===3", "GRADE[me==D]===2", "GRADE[me==A]REFINE[weapon==2]---2"],
+      "cd__Spark Blaster": ["EQUIP[Orrivane Crown (Meister)]GRADE[headUpper==A]REFINE[weapon,headUpper==22]===0.1"]
     }
   },
   "590120": {
@@ -180825,7 +180842,8 @@
       "atk": ["REFINE[weapon==2]---10"],
       "melee": ["7===15", "EQUIP[Orrivane Crown (Biolo)]===5", "GRADE[me==B]===10"],
       "acd": ["9===10"],
-      "pAtk": ["9===3", "GRADE[me==D]===2", "GRADE[me==A]REFINE[weapon==2]---2"]
+      "pAtk": ["9===3", "GRADE[me==D]===2", "GRADE[me==A]REFINE[weapon==2]---2"],
+      "cd__Explosive Powder": ["EQUIP[Orrivane Crown (Biolo)]GRADE[headUpper==A]REFINE[weapon,headUpper==22]===0.1"]
     }
   },
   "600079": {
@@ -180938,7 +180956,8 @@
       "criDmg": ["7===15", "GRADE[me==B]===10"],
       "cRate": ["9===3"],
       "melee": ["EQUIP[Orrivane Crown (Shadow Cross)]===5"],
-      "pAtk": ["GRADE[me==D]===2", "GRADE[me==A]REFINE[weapon==2]---2"]
+      "pAtk": ["GRADE[me==D]===2", "GRADE[me==A]REFINE[weapon==2]---2"],
+      "cd__Eternal Slash": ["EQUIP[Orrivane Crown (Shadow Cross)]GRADE[headUpper==A]REFINE[weapon,headUpper==22]===0.1"]
     }
   },
   "620066": {
@@ -181009,7 +181028,8 @@
       "atkPercent": ["REFINE[weapon==2]---1"],
       "range": ["7===15", "EQUIP[Orrivane Crown (Dragon Knight)]===5", "GRADE[me==B]===10"],
       "vct": ["9===10"],
-      "pAtk": ["9===3", "GRADE[me==D]===2", "GRADE[me==A]REFINE[weapon==2]---2"]
+      "pAtk": ["9===3", "GRADE[me==D]===2", "GRADE[me==A]REFINE[weapon==2]---2"],
+      "cd__Dragonic Breath": ["EQUIP[Orrivane Crown (Dragon Knight)]GRADE[headUpper==A]REFINE[weapon,headUpper==22]===0.1"]
     }
   },
   "640070": {
@@ -181082,7 +181102,8 @@
       "m_element_all": ["7===15", "GRADE[me==B]===10"],
       "vct": ["9===10"],
       "sMatk": ["9===3", "GRADE[me==D]===2", "GRADE[me==A]REFINE[weapon==2]---2"],
-      "m_element_water": ["EQUIP[Orrivane Crown (Shinkiro & Shiranui)]===10"]
+      "m_element_water": ["EQUIP[Orrivane Crown (Shinkiro & Shiranui)]===10"],
+      "cd__Cold Blooded Cannon": ["EQUIP[Orrivane Crown (Shinkiro & Shiranui)]GRADE[headUpper==A]REFINE[weapon,headUpper==22]===0.1"]
     }
   },
   "650064": {
@@ -181119,7 +181140,8 @@
       "criDmg": ["7===15", "GRADE[me==B]===10"],
       "cRate": ["9===3"],
       "melee": ["EQUIP[Orrivane Crown (Shinkiro & Shiranui)]===5"],
-      "pAtk": ["GRADE[me==D]===2", "GRADE[me==A]REFINE[weapon==2]---2"]
+      "pAtk": ["GRADE[me==D]===2", "GRADE[me==A]REFINE[weapon==2]---2"],
+      "cd__Shadow Flash": ["EQUIP[Orrivane Crown (Shinkiro & Shiranui)]GRADE[headUpper==A]REFINE[weapon,headUpper==22]===0.1"]
     }
   },
   "700133": {
@@ -181153,10 +181175,11 @@
       ],
       "atk": ["REFINE[weapon==2]---10"],
       "atkPercent": ["REFINE[weapon==2]---1"],
-      "criDmg": ["7===15", "GRADE[me==B]===10"],
+      "criDmg": ["7===15"],
       "cRate": ["9===3"],
-      "range": ["EQUIP[Orrivane Crown (Abyss Chaser)]===5"],
-      "pAtk": ["GRADE[me==D]===2", "GRADE[me==A]REFINE[weapon==2]---2"]
+      "range": ["EQUIP[Orrivane Crown (Abyss Chaser)]===5", "GRADE[me==B]===10"],
+      "pAtk": ["GRADE[me==D]===2", "GRADE[me==A]REFINE[weapon==2]---2"],
+      "cd__Frenzy Shot": ["EQUIP[Orrivane Crown (Abyss Chaser)]GRADE[headUpper==A]REFINE[weapon,headUpper==22]===0.1"]
     }
   },
   "700134": {
@@ -181232,7 +181255,8 @@
       "atk": ["REFINE[weapon==2]---10"],
       "range": ["7===15", "EQUIP[Orrivane Crown (Wind Hawk)]===5", "GRADE[me==B]===10"],
       "acd": ["9===10"],
-      "pAtk": ["9===3", "GRADE[me==D]===2", "GRADE[me==A]REFINE[weapon==2]---2"]
+      "pAtk": ["9===3", "GRADE[me==D]===2", "GRADE[me==A]REFINE[weapon==2]---2"],
+      "cd__Crescive Bolt": ["EQUIP[Orrivane Crown (Wind Hawk)]GRADE[headUpper==A]REFINE[weapon,headUpper==22]===0.1"]
     }
   },
   "800050": {
@@ -181269,7 +181293,8 @@
       "criDmg": ["7===15"],
       "cRate": ["9===3"],
       "range": ["EQUIP[Orrivane Crown (Night Watch)]===5", "GRADE[me==B]===10"],
-      "pAtk": ["GRADE[me==D]===2", "GRADE[me==A]REFINE[weapon==2]---2"]
+      "pAtk": ["GRADE[me==D]===2", "GRADE[me==A]REFINE[weapon==2]---2"],
+      "cd__Magazine for One": ["EQUIP[Orrivane Crown (Night Watch)]GRADE[headUpper==A]REFINE[weapon,headUpper==22]===0.1"]
     }
   },
   "830048": {
