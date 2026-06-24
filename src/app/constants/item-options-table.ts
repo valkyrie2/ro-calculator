@@ -21,8 +21,8 @@ export const ItemOptionTable: [ItemTypeEnum, ItemOptionNumber[]][] = [
 ];
 
 const WeaponTable: typeof ItemOptionTable = [
-  [ItemTypeEnum.leftWeapon, [ItemOptionNumber.W_Right_1, ItemOptionNumber.W_Right_2, ItemOptionNumber.W_Right_3]],
-  [ItemTypeEnum.weapon, [ItemOptionNumber.W_Left_1, ItemOptionNumber.W_Left_2, ItemOptionNumber.W_Left_3]],
+  [ItemTypeEnum.leftWeapon, [ItemOptionNumber.W_Right_1, ItemOptionNumber.W_Right_2, ItemOptionNumber.W_Right_3, ItemOptionNumber.W_Right_4]],
+  [ItemTypeEnum.weapon, [ItemOptionNumber.W_Left_1, ItemOptionNumber.W_Left_2, ItemOptionNumber.W_Left_3, ItemOptionNumber.W_Left_4]],
 ];
 const allTable: typeof ItemOptionTable = [...WeaponTable, ...ItemOptionTable];
 

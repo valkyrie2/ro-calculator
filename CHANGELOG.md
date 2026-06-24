@@ -1,5 +1,15 @@
 # Changelog
 
+## Extra v62.1 (24-06-2569)
+
+- Rechecked the 24-06 thROG history items against official Divine Pride API data
+- Corrected 491066: previously added as a predicted "Orrivane Ring (Shadow Cross)", it is actually **Furious Ring (Dragon Knight)** — official stats, sets with Furious Slayer (ATK+100, POW+10, CRI+15, +15% phys dmg vs all class; refine 10 / Grade C / Grade B add +20% Servant Weapon & Hack and Slasher, Grade C also -0.5s Hack and Slasher cooldown). Note: Grade B "can use Dark Claw/Power" and the 30% auto-attack/autospell procs are not modeled
+- Added Orrivane Ring (Shadow Cross) (491067), Orrivane Ring (Biolo) (491068), Orrivane Ring (Shinkiro & Shiranui) (491069) with official stats and Orrivane Crown set bonuses
+- Added Robot Spark Shield [1] (460175) for Meister (RES/MRES+15, refine 7/9/11/12 bonuses incl. Spark Blaster cooldown/damage and ranged dmg, Grade D–A options). Damage-taken reduction vs normal/boss is not modeled
+- Added Furious Ring enchants (FuriousRing_DK): slot 2 = Warrior/Shooter/Magician Orb Lv.15; slot 3 = Spell 3/5, Attack Delay 2/4, Expert Archer/Fighter/Magician 3/5; slot 4 = all 13 POW/SPL/STA/WIS/CON/CRT Assistance & Enforcement stat enchants
+- Added 4 stat enchant items (Base Lv.240+, capped at 100 base stat): POW Assistance (313131, RES+1/DEF+3 per 7 POW), SPL Assistance (313133, MRES+1/MDEF+3 per 7 SPL), CRT Assistance (313142, HIT+5/FLEE+5 per 7 CRT), WIS Enforcement (313138, MSP+1% per 10 WIS — MSP% not modeled, no DPS effect)
+- Corrected Orrivane Orb (Shadow Cross): replaced predicted 315324 with official 315361 — cooldown reduction is on Dark Claw (not Shadow Exceed), Savage Impact cooldown is 0.35s (was 0.5s); removed the future release-date lock
+
 ## Extra v61.1 (04-06-2569)
 
 - Added enchants for All Above Time(Supreme)-LT: slot 2 Spirit of Knight Lv.3–7, slots 3–4 all gem types Lv.1 (Ruby of Strength / Amethyst of Vitality / Topaz of Agility / Sapphire of Intelligence / Emerald of Dexterity / Diamond of Fatality)

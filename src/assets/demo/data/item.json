@@ -105463,6 +105463,91 @@
       "m_race_undead": ["5", "GRADE[me==B]===5", "GRADE[me==A]===5"]
     }
   },
+  "313131": {
+    "id": 313131,
+    "aegisName": "Pow_Assist",
+    "name": "POW Assistance",
+    "unidName": "POW Assistance",
+    "resName": "Wolf_Orb_Str_1",
+    "description": "If the user's base level is 240 or higher,\r\nEvery 7 base POW, RES + 1, DEF + 3.\r\n(Applies up to 100 base POW)",
+    "slots": 0,
+    "itemTypeId": 11,
+    "itemSubTypeId": 0,
+    "itemLevel": null,
+    "attack": null,
+    "defense": null,
+    "weight": null,
+    "requiredLevel": null,
+    "location": null,
+    "compositionPos": 65535,
+    "script": {
+      "res": ["SUM[level==240]SUM[pow==7]---1", "SUM[pow==105]LEVEL[240]===-1"],
+      "def": ["SUM[level==240]SUM[pow==7]---3", "SUM[pow==105]LEVEL[240]===-3"]
+    }
+  },
+  "313133": {
+    "id": 313133,
+    "aegisName": "SPL_Assist",
+    "name": "SPL Assistance",
+    "unidName": "SPL Assistance",
+    "resName": "Wolf_Orb_Int_1",
+    "description": "If the user's base level is 240 or higher,\r\nEvery 7 base SPL, MRES + 1, MDEF + 3.\r\n(Applies up to 100 base SPL)",
+    "slots": 0,
+    "itemTypeId": 11,
+    "itemSubTypeId": 0,
+    "itemLevel": null,
+    "attack": null,
+    "defense": null,
+    "weight": null,
+    "requiredLevel": null,
+    "location": null,
+    "compositionPos": 65535,
+    "script": {
+      "mres": ["SUM[level==240]SUM[spl==7]---1", "SUM[spl==105]LEVEL[240]===-1"],
+      "mdef": ["SUM[level==240]SUM[spl==7]---3", "SUM[spl==105]LEVEL[240]===-3"]
+    }
+  },
+  "313138": {
+    "id": 313138,
+    "aegisName": "WIS_Enforce",
+    "name": "WIS Enforcement",
+    "unidName": "WIS Enforcement",
+    "resName": "Wolf_Orb_Vit_1",
+    "description": "If the user's base level is 240 or higher,\r\nEvery 10 base WIS, MSP + 1%.\r\n(Applies up to 100 base WIS)",
+    "slots": 0,
+    "itemTypeId": 11,
+    "itemSubTypeId": 0,
+    "itemLevel": null,
+    "attack": null,
+    "defense": null,
+    "weight": null,
+    "requiredLevel": null,
+    "location": null,
+    "compositionPos": 65535,
+    "script": {}
+  },
+  "313142": {
+    "id": 313142,
+    "aegisName": "CRT_Assist",
+    "name": "CRT Assistance",
+    "unidName": "CRT Assistance",
+    "resName": "Wolf_Orb_luk_1",
+    "description": "If the user's base level is 240 or higher,\r\nEvery 7 base CRT, HIT + 5, FLEE + 5.\r\n(Applies up to 100 base CRT)",
+    "slots": 0,
+    "itemTypeId": 11,
+    "itemSubTypeId": 0,
+    "itemLevel": null,
+    "attack": null,
+    "defense": null,
+    "weight": null,
+    "requiredLevel": null,
+    "location": null,
+    "compositionPos": 65535,
+    "script": {
+      "hit": ["SUM[level==240]SUM[crt==7]---5", "SUM[crt==105]LEVEL[240]===-5"],
+      "flee": ["SUM[level==240]SUM[crt==7]---5", "SUM[crt==105]LEVEL[240]===-5"]
+    }
+  },
   "313132": {
     "id": 313132,
     "aegisName": "Pow_Enforce",
@@ -116517,6 +116602,9 @@
       "hp": ["1000"],
       "sp": ["200"],
       "acd": ["5"],
+      "range": ["EQUIP[Modification Orb (Speed)]4"],
+      "melee": ["EQUIP[Modification Orb (Speed)]4"],
+      "matkPercent": ["EQUIP[Modification Orb (Speed)]4"],
       "p_class_all": ["6"],
       "m_class_all": ["6"]
     }
@@ -177742,6 +177830,42 @@
       "hp": ["GRADE[me==A]===5000"]
     }
   },
+  "460175": {
+    "id": 460175,
+    "aegisName": "Robot_Spark_Shield",
+    "flavorText": null,
+    "name": "Robot Spark Shield [1]",
+    "unidName": "Robot Spark Shield",
+    "resName": "Hard_T_shell",
+    "unidResName": "Hard_T_shell",
+    "description": "RES/MRES + 15\nลด Damage ทางกายภาพ/เวทมนตร์ที่ได้รับจากมอนสเตอร์ทั่วไปและบอส 15%\n\nเมื่อขั้นอัพเกรดตั้งแต่ 7 ขึ้นไป, ASPD + 2, MaxHP + 10%\nเมื่อขั้นอัพเกรดตั้งแต่ 9 ขึ้นไป, ลด Cooldown สกิล Spark Blaster 0.1 วินาที\nเมื่อขั้นอัพเกรดตั้งแต่ 11 ขึ้นไป, ลด Global Cooldown 10%, เพิ่ม Damage ทางกายภาพระยะไกล 20%\nเมื่อขั้นอัพเกรดตั้งแต่ 12 ขึ้นไป, เพิ่ม Damage สกิล Spark Blaster 20%\n\n[Option เพิ่มเติมตาม Grade]\n[Grade D] MaxHP + 20%\n[Grade C] เพิ่ม Hit Damage ทางกายภาพ 10%, P.ATK + 4\n[Grade B] MaxHP + 5000, P.ATK + 6\n[Grade A] เพิ่ม Damage ทางกายภาพต่อศัตรูทุกขนาด 20%\nประเภท : ^777777Shield^000000  พลังป้องกัน : ^77777750^000000\nน้ำหนัก : ^77777750^000000\nเลเวลที่ต้องการ : ^777777200^000000\nอาชีพที่ใส่ได้ : ^777777Meister^000000",
+    "slots": 1,
+    "itemTypeId": 2,
+    "itemSubTypeId": 514,
+    "itemLevel": null,
+    "attack": null,
+    "defense": 50,
+    "weight": 50,
+    "requiredLevel": 200,
+    "location": null,
+    "compositionPos": null,
+    "canGrade": true,
+    "usableClass": ["Meister"],
+    "script": {
+      "res": ["15"],
+      "mres": ["15"],
+      "aspd": ["7===2"],
+      "hpPercent": ["7===10", "GRADE[me==D]===20"],
+      "cd__Spark Blaster": ["9===0.1"],
+      "acd": ["11===10"],
+      "range": ["11===20"],
+      "Spark Blaster": ["12===20"],
+      "hitDmg": ["GRADE[me==C]===10"],
+      "pAtk": ["GRADE[me==C]===4", "GRADE[me==B]===6"],
+      "hp": ["GRADE[me==B]===5000"],
+      "p_size_all": ["GRADE[me==A]===20"]
+    }
+  },
   "460151": {
     "id": 460151,
     "aegisName": "Rose_Quartz_Shield_LT",
@@ -181797,11 +181921,54 @@
   },
   "491066": {
     "id": 491066,
+    "aegisName": "FuriousRing_DK",
+    "name": "Furious Ring (Dragon Knight) [1]",
+    "unidName": "Furious Ring (Dragon Knight)",
+    "resName": "Ring_Of_Brave",
+    "description": "แหวนที่สั่นพ้องกับ Furious Weapon เพื่อปลุกพลังที่หลับใหลภายใน\n\nATK + 100\nลด Global Cooldown 10%\nPOW + 10\nCRI + 15\nเพิ่ม Damage ทางกายภาพต่อศัตรูทุกประเภท 15%\n\nเมื่อสวมใส่ร่วมกับ Furious Slayer,\nเพิ่ม Damage ทางกายภาพต่อศัตรูทุกขนาด 15%,\nเพิ่ม Damage สกิล Servant Weapon, Hack and Slasher 20%\n\nเมื่อ Furious Slayer มีขั้นอัพเกรดตั้งแต่ 10 ขึ้นไป,\nเพิ่ม Damage ทางกายภาพต่อศัตรูทุกธาตุ 15%,\nเพิ่ม Damage สกิล Servant Weapon, Hack and Slasher 20%\n\nเมื่อ Furious Slayer มี Grade C ขึ้นไป,\nP.ATK + 10,\nลด Cooldown สกิล Hack and Slasher 0.5 วินาที,\nเพิ่ม Damage สกิล Servant Weapon, Hack and Slasher 20%\n\nเมื่อ Furious Slayer มี Grade B ขึ้นไป,\nสามารถใช้งานสกิล Dark Claw Lv.5 ได้,\nสามารถใช้งานสกิล Power Lv.2 ได้,\nเมื่อโจมตีทางกายภาพระยะใกล้ทั่วไป มีโอกาส 30% ที่จะโจมตีเพิ่มเติมโดยใช้เอฟเฟกต์ของ Servant Weapon Lv.5 (สามารถทำงานได้แม้ไม่ได้เปิดใช้งาน Servant Weapon อยู่),\nเมื่อใช้งานสกิล Hack And Slasher มีโอกาส 30% ที่จะ Autospell สกิล Hack And Slasher Lv.1 (เมื่อเรียนสกิลในเลเวลที่สูงกว่า จะร่ายในเลเวลสูงสุด),\nเพิ่ม Damage สกิล Servant Weapon, Hack and Slasher 20%\nประเภท : ^777777Accessory (Right)^000000 พลังป้องกัน : ^7777770^000000\nน้ำหนัก : ^77777720^000000\nเลเวลที่ต้องการ : ^777777205^000000\nอาชีพที่ใส่ได้ : ^777777Dragon Knight^000000",
+    "slots": 1,
+    "itemTypeId": 2,
+    "itemSubTypeId": 510,
+    "itemLevel": null,
+    "attack": null,
+    "defense": 0,
+    "weight": 20,
+    "requiredLevel": 205,
+    "location": "AccessoryRight",
+    "compositionPos": null,
+    "canGrade": false,
+    "usableClass": ["DragonKnight"],
+    "script": {
+      "atk": ["100"],
+      "acd": ["10"],
+      "pow": ["10"],
+      "cri": ["15"],
+      "p_class_all": ["15"],
+      "p_size_all": ["EQUIP[Furious Slayer]===15"],
+      "Servant Weapon": [
+        "EQUIP[Furious Slayer]===20",
+        "EQUIP[Furious Slayer]REFINE[weapon==10]===20",
+        "EQUIP[Furious Slayer]GRADE[weapon==C]===20",
+        "EQUIP[Furious Slayer]GRADE[weapon==B]===20"
+      ],
+      "Hack and Slasher": [
+        "EQUIP[Furious Slayer]===20",
+        "EQUIP[Furious Slayer]REFINE[weapon==10]===20",
+        "EQUIP[Furious Slayer]GRADE[weapon==C]===20",
+        "EQUIP[Furious Slayer]GRADE[weapon==B]===20"
+      ],
+      "p_element_all": ["EQUIP[Furious Slayer]REFINE[weapon==10]===15"],
+      "pAtk": ["EQUIP[Furious Slayer]GRADE[weapon==C]===10"],
+      "cd__Hack and Slasher": ["EQUIP[Furious Slayer]GRADE[weapon==C]===0.5"]
+    }
+  },
+  "491067": {
+    "id": 491067,
     "aegisName": "SHC_Orrivane_R_TH",
     "name": "Orrivane Ring (Shadow Cross) [1]",
     "unidName": "Orrivane Ring (Shadow Cross)",
     "resName": "Colourful_Ring",
-    "description": "^FF0000[ไอเท็มคาดการณ์] ยังไม่มีข้อมูล official — ค่าความสามารถประเมินจาก Orrivane Ring (Dragon Knight)^000000\n\nแหวนแห่ง Orrivane ที่เมื่อสวมใส่จะสัมผัสได้ถึงพลังแห่งเงาสังหารของนักฆ่าผู้ตัดขาดห่วงโซ่แห่งการเวียนว่าย\n\nATK + 100\nลด Global Cooldown 10%\nPOW + 10\nCRI + 15, เพิ่ม Critical Damage 10%\nเพิ่ม Damage ทางกายภาพต่อศัตรูทุกประเภท 15%\n\nเมื่อสวมใส่ร่วมกับ Orrivane Crown (Shadow Cross),\nเพิ่ม Damage ทางกายภาพต่อศัตรูทุกขนาด 15%,\nเพิ่ม Damage สกิล Savage Impact, Eternal Slash 20%\n\nเมื่อ Orrivane Crown (Shadow Cross) มีขั้นอัพเกรดตั้งแต่ 10 ขึ้นไป,\nเพิ่ม Damage ทางกายภาพต่อศัตรูทุกธาตุ 15%,\nเพิ่ม Damage สกิล Savage Impact, Eternal Slash 20%\n\nเมื่อ Orrivane Crown (Shadow Cross) มี Grade C ขึ้นไป,\nP.ATK + 10,\nเพิ่ม Damage สกิล Savage Impact, Eternal Slash 20%\nประเภท : ^777777Accessory (Right)^000000 พลังป้องกัน : ^7777770^000000\nน้ำหนัก : ^77777720^000000\nเลเวลที่ต้องการ : ^777777230^000000\nอาชีพที่ใส่ได้ : ^777777Shadow Cross^000000",
+    "description": "แหวนแห่ง Orrivance ที่เมื่อสวมใส่จะสัมผัสได้ถึงพลังแห่งนักฆ่าที่ซ่อนตัวอยู่ในเงามืด\n\nATK + 100\nลด Global Cooldown 10%\nPOW + 10\nCRI + 15\nเพิ่ม Damage ทางกายภาพต่อศัตรูทุกประเภท 15%\n\nเมื่อสวมใส่ร่วมกับ Orrivane Crown (Shadow Cross),\nเพิ่ม Damage ทางกายภาพต่อศัตรูทุกขนาด 15%,\nเพิ่ม Damage สกิล Eternal Slash, Savage Impact 20%\n\nเมื่อ Orrivane Crown (Shadow Cross) มีขั้นอัพเกรดตั้งแต่ 10 ขึ้นไป,\nเพิ่ม Damage ทางกายภาพต่อศัตรูทุกธาตุ 15%,\nเพิ่ม Damage สกิล Eternal Slash, Savage Impact 20%\n\nเมื่อ Orrivane Crown (Shadow Cross) มี Grade C ขึ้นไป,\nP.ATK + 10,\nเพิ่ม Damage สกิล Eternal Slash, Savage Impact 20%\nประเภท : ^777777Accessory (Right)^000000 พลังป้องกัน : ^7777770^000000\nน้ำหนัก : ^77777720^000000\nเลเวลที่ต้องการ : ^777777230^000000\nอาชีพที่ใส่ได้ : ^777777Shadow Cross^000000",
     "slots": 1,
     "itemTypeId": 2,
     "itemSubTypeId": 510,
@@ -181813,14 +181980,12 @@
     "location": "AccessoryRight",
     "compositionPos": null,
     "canGrade": false,
-    "releaseDate": "2027-12-31T00:00:00+07:00",
     "usableClass": ["ShadowCross"],
     "script": {
       "atk": ["100"],
       "acd": ["10"],
       "pow": ["10"],
       "cri": ["15"],
-      "criDmg": ["10"],
       "p_class_all": ["15"],
       "p_size_all": ["EQUIP[Orrivane Crown (Shadow Cross)]===15"],
       "Savage Impact": [
@@ -181837,13 +182002,100 @@
       "pAtk": ["EQUIP[Orrivane Crown (Shadow Cross)]GRADE[headUpper==C]===10"]
     }
   },
-  "315324": {
-    "id": 315324,
+  "491068": {
+    "id": 491068,
+    "aegisName": "BO_Orrivane_R_TH",
+    "name": "Orrivane Ring (Biolo) [1]",
+    "unidName": "Orrivane Ring (Biolo)",
+    "resName": "Colourful_Ring",
+    "description": "แหวนแห่ง Orrivance ที่เมื่อสวมใส่จะสัมผัสได้ถึงพลังแห่งนักวิจัยแห่งเมืองอโยธยา\n\nATK + 100\nลด Global Cooldown 10%\nPOW + 10\nCRI + 15, เพิ่ม HIT Damage ทางกายภาพ 10%\nเพิ่ม Damage ทางกายภาพต่อศัตรูทุกประเภท 15%\n\nเมื่อสวมใส่ร่วมกับ Orrivane Crown (Biolo),\nเพิ่ม Damage ทางกายภาพต่อศัตรูทุกขนาด 15%,\nเพิ่ม Damage สกิล Explosive Powder, Mayhemic Thorns 20%\n\nเมื่อ Orrivane Crown (Biolo) มีขั้นอัพเกรดตั้งแต่ 10 ขึ้นไป,\nเพิ่ม Damage ทางกายภาพต่อศัตรูทุกธาตุ 15%,\nเพิ่ม Damage สกิล Explosive Powder, Mayhemic Thorns 20%\n\nเมื่อ Orrivane Crown (Biolo) มี Grade C ขึ้นไป,\nP.ATK + 10,\nเพิ่ม Damage สกิล Explosive Powder, Mayhemic Thorns 20%\nประเภท : ^777777Accessory (Right)^000000 พลังป้องกัน : ^7777770^000000\nน้ำหนัก : ^77777720^000000\nเลเวลที่ต้องการ : ^777777230^000000\nอาชีพที่ใส่ได้ : ^777777Biolo^000000",
+    "slots": 1,
+    "itemTypeId": 2,
+    "itemSubTypeId": 510,
+    "itemLevel": null,
+    "attack": null,
+    "defense": 0,
+    "weight": 20,
+    "requiredLevel": 230,
+    "location": "AccessoryRight",
+    "compositionPos": null,
+    "canGrade": false,
+    "usableClass": ["Biolo"],
+    "script": {
+      "atk": ["100"],
+      "acd": ["10"],
+      "pow": ["10"],
+      "cri": ["15"],
+      "hitDmg": ["10"],
+      "p_class_all": ["15"],
+      "p_size_all": ["EQUIP[Orrivane Crown (Biolo)]===15"],
+      "Explosive Powder": [
+        "EQUIP[Orrivane Crown (Biolo)]===20",
+        "EQUIP[Orrivane Crown (Biolo)]REFINE[headUpper==10]===20",
+        "EQUIP[Orrivane Crown (Biolo)]GRADE[headUpper==C]===20"
+      ],
+      "Mayhemic Thorns": [
+        "EQUIP[Orrivane Crown (Biolo)]===20",
+        "EQUIP[Orrivane Crown (Biolo)]REFINE[headUpper==10]===20",
+        "EQUIP[Orrivane Crown (Biolo)]GRADE[headUpper==C]===20"
+      ],
+      "p_element_all": ["EQUIP[Orrivane Crown (Biolo)]REFINE[headUpper==10]===15"],
+      "pAtk": ["EQUIP[Orrivane Crown (Biolo)]GRADE[headUpper==C]===10"]
+    }
+  },
+  "491069": {
+    "id": 491069,
+    "aegisName": "SS_Orrivane_R_TH",
+    "name": "Orrivane Ring (Shinkiro & Shiranui) [1]",
+    "unidName": "Orrivane Ring (Shinkiro & Shiranui)",
+    "resName": "Colourful_Ring",
+    "description": "แหวนแห่ง Orrivance ที่เมื่อสวมใส่จะสัมผัสได้ถึงพลังแห่งนักฆ่าไร้เงา\nATK, MATK + 100\nลด Global Cooldown 10%\nPOW, SPL + 10\nCRI + 15, ลดระยะเวลาร่ายแบบคงที่ 0.5 วินาที\nเพิ่ม Damage ทางกายภาพ/เวทมนตร์ต่อศัตรูทุกประเภท 15%\n\nเมื่อสวมใส่ร่วมกับ Orrivane Crown (Shinkiro & Shiranui),\nเพิ่ม Damage ทางกายภาพ/เวทมนตร์ต่อศัตรูทุกขนาด 15%,\nเพิ่ม Damage สกิล Shadow Flash, Cold Blooded Cannon 20%\n\nเมื่อ Orrivane Crown (Shinkiro & Shiranui) มีขั้นอัพเกรดตั้งแต่ 10 ขึ้นไป,\nเพิ่ม Damage ทางกายภาพต่อศัตรูทุกธาตุ 15%,\nเพิ่ม Damage สกิล Shadow Flash, Cold Blooded Cannon 20%\n\nเมื่อ Orrivane Crown (Shinkiro & Shiranui) มี Grade C ขึ้นไป,\nP.ATK,S.MATK + 10,\nเพิ่ม Damage สกิล Shadow Flash, Cold Blooded Cannon 20%\nประเภท : ^777777Accessory (Right)^000000 พลังป้องกัน : ^7777770^000000\nน้ำหนัก : ^77777720^000000\nเลเวลที่ต้องการ : ^777777230^000000\nอาชีพที่ใส่ได้ : ^777777Shinkiro, Shiranui^000000",
+    "slots": 1,
+    "itemTypeId": 2,
+    "itemSubTypeId": 510,
+    "itemLevel": null,
+    "attack": null,
+    "defense": 0,
+    "weight": 20,
+    "requiredLevel": 230,
+    "location": "AccessoryRight",
+    "compositionPos": null,
+    "canGrade": false,
+    "usableClass": ["Shinkiro", "Shiranui"],
+    "script": {
+      "atk": ["100"],
+      "matk": ["100"],
+      "acd": ["10"],
+      "pow": ["10"],
+      "spl": ["10"],
+      "cri": ["15"],
+      "fct": ["0.5"],
+      "p_class_all": ["15"],
+      "m_class_all": ["15"],
+      "p_size_all": ["EQUIP[Orrivane Crown (Shinkiro & Shiranui)]===15"],
+      "m_size_all": ["EQUIP[Orrivane Crown (Shinkiro & Shiranui)]===15"],
+      "Shadow Flash": [
+        "EQUIP[Orrivane Crown (Shinkiro & Shiranui)]===20",
+        "EQUIP[Orrivane Crown (Shinkiro & Shiranui)]REFINE[headUpper==10]===20",
+        "EQUIP[Orrivane Crown (Shinkiro & Shiranui)]GRADE[headUpper==C]===20"
+      ],
+      "Cold Blooded Cannon": [
+        "EQUIP[Orrivane Crown (Shinkiro & Shiranui)]===20",
+        "EQUIP[Orrivane Crown (Shinkiro & Shiranui)]REFINE[headUpper==10]===20",
+        "EQUIP[Orrivane Crown (Shinkiro & Shiranui)]GRADE[headUpper==C]===20"
+      ],
+      "p_element_all": ["EQUIP[Orrivane Crown (Shinkiro & Shiranui)]REFINE[headUpper==10]===15"],
+      "pAtk": ["EQUIP[Orrivane Crown (Shinkiro & Shiranui)]GRADE[headUpper==C]===10"],
+      "sMatk": ["EQUIP[Orrivane Crown (Shinkiro & Shiranui)]GRADE[headUpper==C]===10"]
+    }
+  },
+  "315361": {
+    "id": 315361,
     "aegisName": "Orrivane_Enc_SHC",
     "name": "Orrivane Orb (Shadow Cross)",
     "unidName": "Orrivane Orb (Shadow Cross)",
     "resName": "Auto_Orb_Priest",
-    "description": "^FF0000[ไอเท็มคาดการณ์] ยังไม่มีข้อมูล official — ค่าความสามารถประเมินจาก Orrivane Orb (Dragon Knight)^000000\n\nเมื่อสวมใส่ร่วมกับ Orrivane Shadow Katar,\nCritical Damage + 20%,\nทุก ๆ 2 ขั้นอัพเกรดอาวุธ, เพิ่ม Damage สกิล Savage Impact 4%\n\nเมื่อ Orrivane Shadow Katar มี Grade C ขึ้นไป,\nP.ATK + 10,\nลด Cooldown สกิล Savage Impact 0.5 วินาที\n\nเมื่อ Orrivane Shadow Katar มี Grade C และขั้นอัพเกรด 10 ขึ้นไป,\nสามารถใช้งานสกิล Power Lv.2,\nเมื่อใช้งานสกิล Savage Impact มีโอกาส 30% ที่จะ Autospell สกิล Savage Impact Lv.1 (เมื่อเรียนสกิลในเลเวลที่สูงกว่า จะร่ายในเลเวลสูงสุด),\nลด Cooldown สกิล Shadow Exceed 30 วินาที,\nเพิ่ม Damage สกิล Savage Impact 20%\n\nเมื่อสวมใส่ร่วมกับ Orrivane Shadow Cakram,\nCritical Damage + 20%,\nทุก ๆ 2 ขั้นอัพเกรดอาวุธ, เพิ่ม Damage สกิล Eternal Slash 4%\n\nเมื่อ Orrivane Shadow Cakram มี Grade C ขึ้นไป,\nP.ATK + 10,\nลด Cooldown สกิล Eternal Slash 0.35 วินาที\n\nเมื่อ Orrivane Shadow Cakram มี Grade C และขั้นอัพเกรด 10 ขึ้นไป,\nสามารถใช้งานสกิล Power Lv.2,\nเมื่อใช้งานสกิล Eternal Slash มีโอกาส 30% ที่จะ Autospell สกิล Eternal Slash Lv.1 (เมื่อเรียนสกิลในเลเวลที่สูงกว่า จะร่ายในเลเวลสูงสุด),\nลด Cooldown สกิล Shadow Exceed 30 วินาที,\nเพิ่ม Damage สกิล Eternal Slash 20%",
+    "description": "เมื่อสวมใส่ร่วมกับ Orrivane Shadow Cakram,\nCritical Damage + 20%,\nทุก ๆ 2 ขั้นอัพเกรดอาวุธ, เพิ่ม Damage สกิล Eternal Slash 4%\n\nเมื่อ Orrivane Shadow Cakram มี Grade C ขึ้นไป,\nP.ATK + 10,\nลด Cooldown สกิล Eternal Slash 0.35 วินาที\n\nเมื่อ Orrivane Shadow Cakram มี Grade C และขั้นอัพเกรด 10 ขึ้นไป,\nสามารถใช้งานสกิล Power Lv.2 ได้,\nเมื่อใช้งานสกิล Eternal Slash มีโอกาส 30% ที่จะ Autospell สกิล Eternal Slash Lv.1 (เมื่อเรียนสกิลในเลเวลที่สูงกว่า จะร่ายในเลเวลสูงสุด),\nลด Cooldown สกิล Dark Claw 30 วินาที,\nเพิ่ม Damage สกิล Eternal Slash 20%\n\nเมื่อสวมใส่ร่วมกับ Orrivane Shadow Katar,\nCritical Damage + 20%,\nทุก ๆ 2 ขั้นอัพเกรดอาวุธ, เพิ่ม Damage สกิล Savage Impact 4%\n\nเมื่อ Orrivane Shadow Katar มี Grade C ขึ้นไป,\nP.ATK + 10,\nลด Cooldown สกิล Savage Impact 0.35 วินาที\n\nเมื่อ Orrivane Shadow Katar มี Grade C และขั้นอัพเกรด 10 ขึ้นไป,\nสามารถใช้งานสกิล Power Lv.2 ได้,\nเมื่อใช้งานสกิล Savage Impact  มีโอกาส 30% ที่จะ Autospell สกิล Savage Impact Lv.1 (เมื่อเรียนสกิลในเลเวลที่สูงกว่า จะร่ายในเลเวลสูงสุด),\nลด Cooldown สกิล Dark Claw 30 วินาที,\nเพิ่ม Damage สกิล Savage Impact 20%",
     "slots": 0,
     "itemTypeId": 11,
     "itemSubTypeId": 0,
@@ -181855,7 +182107,6 @@
     "location": null,
     "compositionPos": 65535,
     "canGrade": false,
-    "releaseDate": "2027-12-31T00:00:00+07:00",
     "usableClass": ["ShadowCross"],
     "autoSpellOnUse": [
       { "onSkill": "Savage Impact", "skill": "Savage Impact", "chance": 30, "condition": "EQUIP[Orrivane Shadow Katar]GRADE[weapon==C]REFINE[weapon==10]===1" },
@@ -181865,11 +182116,8 @@
       "criDmg": ["EQUIP[Orrivane Shadow Katar]===20", "EQUIP[Orrivane Shadow Cakram]===20"],
       "Savage Impact": ["EQUIP[Orrivane Shadow Katar]REFINE[weapon==2]---4", "EQUIP[Orrivane Shadow Katar]GRADE[weapon==C]REFINE[weapon==10]===20"],
       "pAtk": ["EQUIP[Orrivane Shadow Katar]GRADE[weapon==C]===10", "EQUIP[Orrivane Shadow Cakram]GRADE[weapon==C]===10"],
-      "cd__Savage Impact": ["EQUIP[Orrivane Shadow Katar]GRADE[weapon==C]===0.5"],
-      "cd__Shadow Exceed": [
-        "EQUIP[Orrivane Shadow Katar]GRADE[weapon==C]REFINE[weapon==10]===30",
-        "EQUIP[Orrivane Shadow Cakram]GRADE[weapon==C]REFINE[weapon==10]===30"
-      ],
+      "cd__Savage Impact": ["EQUIP[Orrivane Shadow Katar]GRADE[weapon==C]===0.35"],
+      "cd__Dark Claw": ["EQUIP[Orrivane Shadow Katar]GRADE[weapon==C]REFINE[weapon==10]===30", "EQUIP[Orrivane Shadow Cakram]GRADE[weapon==C]REFINE[weapon==10]===30"],
       "Eternal Slash": ["EQUIP[Orrivane Shadow Cakram]REFINE[weapon==2]---4", "EQUIP[Orrivane Shadow Cakram]GRADE[weapon==C]REFINE[weapon==10]===20"],
       "cd__Eternal Slash": ["EQUIP[Orrivane Shadow Cakram]GRADE[weapon==C]===0.35"]
     }

@@ -378,6 +378,21 @@
               (onClear)="onOptionChange('option3Value', $event)"
             ></p-cascadeSelect>
           </div>
+          <div class="col-4" *ngIf="isWeapon">
+            <p-cascadeSelect
+              [(ngModel)]="option4Value"
+              [disabled]="!itemId"
+              [options]="optionList"
+              optionValue="value"
+              optionGroupLabel="label"
+              optionLabel="label"
+              [optionGroupChildren]="['children', 'children', 'children']"
+              placeholder="Option 4"
+              [showClear]="true"
+              (onChange)="onOptionChange('option4Value', $event)"
+              (onClear)="onOptionChange('option4Value', $event)"
+            ></p-cascadeSelect>
+          </div>
         </div>
       </div>
     </div>

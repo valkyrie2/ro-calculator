@@ -907,7 +907,7 @@ export class RoCalculatorComponent implements OnInit, OnDestroy {
       // if compare the item, should get options from its.
       if (this.compareItemNames?.includes(ItemTypeEnum.weapon)) {
         const itemId = this.model2[ItemTypeEnum.weapon];
-        for (let slot = ItemOptionNumber.W_Left_1; slot <= ItemOptionNumber.W_Left_3; slot++) {
+        for (const slot of [ItemOptionNumber.W_Left_1, ItemOptionNumber.W_Left_2, ItemOptionNumber.W_Left_3, ItemOptionNumber.W_Left_4]) {
           if (!itemId) {
             this.model2.rawOptionTxts[slot] = null;
           }
@@ -915,7 +915,7 @@ export class RoCalculatorComponent implements OnInit, OnDestroy {
         }
 
         const isAllowShield = calc.isAllowShield();
-        for (let slot = ItemOptionNumber.W_Right_1; slot <= ItemOptionNumber.W_Right_3; slot++) {
+        for (const slot of [ItemOptionNumber.W_Right_1, ItemOptionNumber.W_Right_2, ItemOptionNumber.W_Right_3, ItemOptionNumber.W_Right_4]) {
           if (!itemId || !isAllowShield) {
             this.model2.rawOptionTxts[slot] = null;
             rawOptionTxts[slot] = this.model2.rawOptionTxts[slot];
@@ -2679,12 +2679,15 @@ export class RoCalculatorComponent implements OnInit, OnDestroy {
       for (let i = 0; i <= 5; i++) {
         this.model.rawOptionTxts[i] = undefined;
       }
+      this.model.rawOptionTxts[ItemOptionNumber.W_Left_4] = undefined;
+      this.model.rawOptionTxts[ItemOptionNumber.W_Right_4] = undefined;
 
       this.onClearItem(ItemTypeEnum.leftWeapon);
     } else if (itemType === ItemTypeEnum.leftWeapon) {
       for (let i = 3; i <= 5; i++) {
         this.model.rawOptionTxts[i] = undefined;
       }
+      this.model.rawOptionTxts[ItemOptionNumber.W_Right_4] = undefined;
     }
 
     const relatedItems = MainItemWithRelations[itemType as ItemTypeEnum] || [];

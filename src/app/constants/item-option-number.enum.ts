@@ -10,6 +10,10 @@ export enum ItemOptionNumber {
   W_Right_2 = 4,
   W_Right_3 = 5,
 
+  // 4th weapon option slot (non-contiguous: appended after the original range).
+  W_Left_4 = 30,
+  W_Right_4 = 31,
+
   Shield_1 = 6,
   Shield_2 = 7,
   // Shield_3,

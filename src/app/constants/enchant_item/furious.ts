@@ -1,4 +1,4 @@
-import { Acute, MagicEess, MasterArc, Mettle, Tenacity, sp13 } from "./_basic"
+import { Acute, AttackDelay, EA, ExpertFighter, ExpertMagician, MagicEess, MasterArc, Mettle, Spell, Tenacity, sp13 } from "./_basic"
 
 export const furiousHeadUp4 = [
   "Pow_Enforce",
@@ -53,4 +53,38 @@ export const furiousWeaponUp3 = [
   'FuriousEnergy_Hum',
   'FuriousEnergy_Ang',
   'FuriousEnergy_Dra',
+]
+
+// Furious Ring: slot 2 = orb, slot 3 = furiousRing3, slot 4 = furiousRingUp4 (full 13 stat enchants).
+export const furiousRing2 = [
+  'Warrior_Orb_15',
+  'Shooter_Orb_15',
+  'Magician_Orb_15',
+]
+export const furiousRing3 = [
+  Spell._3,
+  Spell._5,
+  AttackDelay._2,
+  AttackDelay._4,
+  EA._3,
+  EA._5,
+  ExpertFighter._3,
+  ExpertFighter._5,
+  ExpertMagician._3,
+  ExpertMagician._5,
+]
+export const furiousRingUp4 = [
+  'Pow_Assist',
+  'Pow_Enforce',
+  'SPL_Assist',
+  'SPL_Enforce',
+  'STA_Assist',
+  'STA_Enforce',
+  'WIS_Assist',
+  'WIS_Enforce',
+  'CON_Assist',
+  'CON_Enforce_Melee',
+  'CON_Enforce_Magic',
+  'CRT_Assist',
+  'CRT_Enforce',
 ]

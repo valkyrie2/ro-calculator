@@ -36,7 +36,8 @@ export const createExtraOptionList = () => {
           return {
             value: `${atk}_${dmgType}_${finalProp}`,
             label: finalProp,
-            children: Array.from({ length: 25 }, (_, k) => {
+            // Class% damage options go up to 30%; the rest stay at 25%.
+            children: Array.from({ length: dmgType === 'Class' ? 30 : 25 }, (_, k) => {
               const num = k + 1;
               return {
                 value: `${atk}_${propLow}_${fixedSize}:${num}`,

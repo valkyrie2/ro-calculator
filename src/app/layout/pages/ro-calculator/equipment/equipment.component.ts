@@ -80,6 +80,10 @@ export class EquipmentComponent implements OnChanges, OnInit {
   @Input() option3Value = undefined;
   @Output() option3ValueChange = new EventEmitter<string>();
 
+  // 4th option, weapons only.
+  @Input() option4Value = undefined;
+  @Output() option4ValueChange = new EventEmitter<string>();
+
   totalCardSlots = 0;
   enchant1List: DropdownModel[] = [];
   enchant2List: DropdownModel[] = [];

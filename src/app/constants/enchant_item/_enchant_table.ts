@@ -104,7 +104,7 @@ import { crafted3, crafted4 } from './crafted_weapon';
 import { dimGlaArmor2, dimGlaArmor3, dimGlaArmor4, dimGlaBoot2, dimGlaBoot3, dimGlaBoot4, dimGlaGarment2, dimGlaGarment3, dimGlaGarment4, dimWeapon2, dimWeapon3, dimWeapon4 } from './dim_glacier';
 import { dimensionAcc3, dimensionAcc4, dimensionHead2, dimensionHead3, dimensionHead4, dimensionWeapon3, dimensionWeapon4, timeGap3, timeGap4 } from './dimention';
 import { droopingLt3, droopingLt4, redBlueLt3, redBlueLt4 } from './drooping_thanatos_lt';
-import { furiousHeadUp3, furiousHeadUp4, furiousWeaponUp3, furiousWeaponUp4 } from './furious';
+import { furiousHeadUp3, furiousHeadUp4, furiousRing2, furiousRing3, furiousRingUp4, furiousWeaponUp3, furiousWeaponUp4 } from './furious';
 import { gbAcc2, gbAcc3, gbAcc4, gbArmor2, gbArmor3, gbArmor4, gbBoot2, gbBoot3, gbBoot4, gbGarment2, gbGarment3, gbGarment4 } from './gaebolg';
 import { glacierAcc2, glacierAcc3, glacierAccL4, glacierAccR4, glacierArmor2, glacierArmor3, glacierArmor4, glacierBoot2, glacierBoot3, glacierBoot4, glacierGarment2, glacierGarment3, glacierGarment4, glacierGuard2, glacierGuard3, glacierGuard4, glacierWea1, glacierWea2, glacierWea3, glacierWea4, issgardCrown2, issgardCrown3, issgardCrown4 } from './glacier';
 import {
@@ -1675,6 +1675,7 @@ export const EnchantTable: EntTable[] = [
   { name: 'TornadoBow_Furious', enchants: [null, null, furiousWeaponUp3, furiousWeaponUp4] },
   { name: 'Rifle_Furious', enchants: [null, null, furiousWeaponUp3, furiousWeaponUp4] },
   { name: 'Gatling_Furious', enchants: [null, null, furiousWeaponUp3, furiousWeaponUp4] },
+  { name: 'FuriousRing_DK', enchants: [null, furiousRing2, furiousRing3, furiousRingUp4] },
 
   { name: 'Gaebolg_Armor', enchants: [null, gbArmor2, gbArmor3, gbArmor4] },
   { name: 'Gaebolg_Robe', enchants: [null, gbArmor2, gbArmor3, gbArmor4] },
