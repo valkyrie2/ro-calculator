@@ -1,11 +1,11 @@
 import { JOB_4_MAX_JOB_LEVEL, JOB_4_MIN_MAX_LEVEL } from '../app-config';
 import { WeaponTypeName } from '../constants';
 import { EquipmentSummaryModel } from '../models/equipment-summary.model';
-import { AdditionalBonusInput } from '../models/info-for-class.model';
+import { AdditionalBonusInput, InfoForClass } from '../models/info-for-class.model';
 import { Ranger } from './Ranger';
 import { ActiveSkillModel, AtkSkillFormulaInput, AtkSkillModel, PassiveSkillModel } from './_character-base.abstract';
 import { ClassName } from './_class-name';
-import { genSkillList } from '../utils';
+import { floor, genSkillList } from '../utils';
 import { ElementType } from '../constants/element-type.const';
 
 const jobBonusTable: Record<number, [number, number, number, number, number, number]> = {
@@ -331,6 +331,15 @@ export class Windhawk extends Ranger {
         { label: 'No', value: 0, isUse: false },
       ],
     },
+    {
+      label: 'Power',
+      name: 'Power',
+      inputType: 'dropdown',
+      dropdown: [
+        { label: '-', value: 0, isUse: false },
+        { label: 'Lv 2', value: 2, isUse: true },
+      ],
+    },
   ];
   private readonly passiveSkillList4th: PassiveSkillModel[] = [
     {
@@ -396,6 +405,17 @@ export class Windhawk extends Ranger {
     }
 
     return totalBonus;
+  }
+
+  override modifyFinalAtk(currentAtk: number, _params: InfoForClass) {
+    const powerLv = this.bonuses.usedSkillMap.get('Power');
+
+    let totalAtk = currentAtk;
+    if (powerLv >= 1) {
+      totalAtk = totalAtk + floor(totalAtk * (powerLv * 20) * 0.01);
+    }
+
+    return totalAtk;
   }
 
   // override modifyFinalAtk(currentAtk: number, params: InfoForClass): number {

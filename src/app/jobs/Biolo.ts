@@ -284,11 +284,12 @@ export class Biolo extends Genetic {
       ],
     },
     {
-      label: 'Power (Good&Evil)',
+      label: 'Power',
       name: 'Power',
       inputType: 'dropdown',
       dropdown: [
         { label: '-', value: 0, isUse: false },
+        { label: 'Lv 2', value: 2, isUse: true },
         { label: 'Lv 4', value: 4, isUse: true },
       ],
     },
