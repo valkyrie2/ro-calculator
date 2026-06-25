@@ -11,7 +11,7 @@ import {
 import { SKILL_NAME } from 'src/app/constants/skill-name';
 import { Monster, Weapon } from 'src/app/domain';
 import { CharacterBase } from 'src/app/jobs';
-import { calcAutoSpellDps, createRawTotalBonus, floor, getDmgPerCast, isNumber, round } from 'src/app/utils';
+import { calcAutoSpellDps, createRawTotalBonus, floor, getDmgPerCast, isNumber, resolveAutoSpellChain, round } from 'src/app/utils';
 import { logger } from 'src/app/api-services/logger.service';
 import { ChanceModel } from '../../../models/chance-model';
 import { BasicAspdModel, BasicDamageSummaryModel, MiscModel, SkillAspdModel, SkillDamageSummaryModel } from '../../../models/damage-summary.model';
@@ -1359,31 +1359,18 @@ export class Calculator {
     if (!mainName) return null;
 
     const mainCastsPerSec = mainSkillDmg.skillHitsPerSec ?? 0;
-    // An autospelled skill counts as "used" and can autospell again (chain).
-    // visited stops infinite loops (incl. same-skill self-procs); chance multiplies along the chain.
-    const visited = new Set<string>([mainName]);
+    // An autospelled skill counts as "used" and can autospell again (chain, incl. same-skill).
     const parts: { label: string; min: number; max: number; dmgPerCast: number; dps: number }[] = [];
-    let frontier = [{ onSkill: mainName, chanceFraction: 1 }];
 
-    while (frontier.length) {
-      const next: typeof frontier = [];
-      for (const node of frontier) {
-        for (const entry of this._autoSpellList.filter((a) => a.onSkill === node.onSkill)) {
-          if (visited.has(entry.skill)) continue;
-          visited.add(entry.skill);
-          const abcSkill = this._class.atkSkills.find((a) => a.name === entry.skill);
-          if (!abcSkill) continue;
-          const abcSkillValue = entry.level ? `${entry.skill}==${entry.level}` : abcSkill.value;
-          const { skillDmg: abc } = dmg.calculateAllDamages({ skillValue: abcSkillValue, propertyAtk: this.propertyBasicAtk, maxHp, maxSp });
-          if (!abc) continue;
-          const dmgPerCast = getDmgPerCast(abc);
-          const chanceFraction = node.chanceFraction * (entry.chance / 100);
-          const dps = calcAutoSpellDps({ dmgPerCast, mainCastsPerSec, chancePercent: chanceFraction * 100 });
-          parts.push({ label: `${entry.skill} @ ${entry.chance}%`, min: abc.skillMinDamage, max: abc.skillMaxDamage, dmgPerCast, dps });
-          next.push({ onSkill: entry.skill, chanceFraction });
-        }
-      }
-      frontier = next;
+    for (const link of resolveAutoSpellChain(this._autoSpellList, mainName)) {
+      const abcSkill = this._class.atkSkills.find((a) => a.name === link.skill);
+      if (!abcSkill) continue;
+      const abcSkillValue = link.level ? `${link.skill}==${link.level}` : abcSkill.value;
+      const { skillDmg: abc } = dmg.calculateAllDamages({ skillValue: abcSkillValue, propertyAtk: this.propertyBasicAtk, maxHp, maxSp });
+      if (!abc) continue;
+      const dmgPerCast = getDmgPerCast(abc);
+      const dps = calcAutoSpellDps({ dmgPerCast, mainCastsPerSec, chancePercent: link.chanceFraction * 100 });
+      parts.push({ label: `${link.skill} @ ${link.chance}%`, min: abc.skillMinDamage, max: abc.skillMaxDamage, dmgPerCast, dps });
     }
 
     if (!parts.length) return null;

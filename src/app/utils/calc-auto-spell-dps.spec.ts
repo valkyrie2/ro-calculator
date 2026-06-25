@@ -1,4 +1,35 @@
-import { calcAutoSpellDps, getDmgPerCast } from './calc-auto-spell-dps';
+import { calcAutoSpellDps, getDmgPerCast, resolveAutoSpellChain } from './calc-auto-spell-dps';
+
+describe('resolveAutoSpellChain', () => {
+  it('procs a same-skill autospell once (the common case)', () => {
+    const list = [{ onSkill: 'Savage Impact', skill: 'Savage Impact', chance: 30 }];
+    const chain = resolveAutoSpellChain(list, 'Savage Impact');
+    expect(chain.map((c) => c.skill)).toEqual(['Savage Impact']);
+    expect(chain[0].chanceFraction).toBeCloseTo(0.3);
+  });
+
+  it('chains different skills, multiplying chance along the way', () => {
+    const list = [
+      { onSkill: 'First Brand', skill: 'Second Flame', chance: 100 },
+      { onSkill: 'Second Flame', skill: 'Third Flame Bomb', chance: 50 },
+    ];
+    const chain = resolveAutoSpellChain(list, 'First Brand');
+    expect(chain.map((c) => c.skill)).toEqual(['Second Flame', 'Third Flame Bomb']);
+    expect(chain[1].chanceFraction).toBeCloseTo(0.5);
+  });
+
+  it('terminates on a cycle (each skill procs at most once)', () => {
+    const list = [
+      { onSkill: 'A', skill: 'B', chance: 100 },
+      { onSkill: 'B', skill: 'A', chance: 100 },
+    ];
+    expect(resolveAutoSpellChain(list, 'A').map((c) => c.skill)).toEqual(['B', 'A']);
+  });
+
+  it('returns empty when nothing matches the main skill', () => {
+    expect(resolveAutoSpellChain([{ onSkill: 'X', skill: 'Y', chance: 30 }], 'Z')).toEqual([]);
+  });
+});
 
 describe('getDmgPerCast', () => {
   it('returns skillDps / skillHitsPerSec when hitsPerSec > 0', () => {

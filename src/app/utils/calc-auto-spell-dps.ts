@@ -34,3 +34,33 @@ export const calcAutoSpellDps = (params: {
 
   return floor(dmgPerCast * mainCastsPerSec * (chancePercent / 100));
 };
+
+/**
+ * เดินสาย autospell: ใช้สกิล mainName -> autospell สกิลถัดไป ซึ่งนับเป็นการใช้สกิลและ autospell ต่อได้
+ * คืนแต่ละ entry ที่ proc พร้อม chanceFraction สะสม (คูณกันตามสาย)
+ * visited กันลูป (รวม same-skill self-proc) — แต่ละสกิล autospell ได้ครั้งเดียวต่อสาย
+ */
+export const resolveAutoSpellChain = <T extends { onSkill: string; skill: string; chance: number }>(
+  list: T[],
+  mainName: string,
+): (T & { chanceFraction: number })[] => {
+  const visited = new Set<string>();
+  const out: (T & { chanceFraction: number })[] = [];
+  let frontier = [{ onSkill: mainName, chanceFraction: 1 }];
+
+  while (frontier.length) {
+    const next: typeof frontier = [];
+    for (const node of frontier) {
+      for (const entry of list.filter((a) => a.onSkill === node.onSkill)) {
+        if (visited.has(entry.skill)) continue;
+        visited.add(entry.skill);
+        const chanceFraction = node.chanceFraction * (entry.chance / 100);
+        out.push({ ...entry, chanceFraction });
+        next.push({ onSkill: entry.skill, chanceFraction });
+      }
+    }
+    frontier = next;
+  }
+
+  return out;
+};
