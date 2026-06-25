@@ -9,6 +9,7 @@
 - Added Furious Ring enchants (FuriousRing_DK): slot 2 = Warrior/Shooter/Magician Orb Lv.15; slot 3 = Spell 3/5, Attack Delay 2/4, Expert Archer/Fighter/Magician 3/5; slot 4 = all 13 POW/SPL/STA/WIS/CON/CRT Assistance & Enforcement stat enchants
 - Added 4 stat enchant items (Base Lv.240+, capped at 100 base stat): POW Assistance (313131, RES+1/DEF+3 per 7 POW), SPL Assistance (313133, MRES+1/MDEF+3 per 7 SPL), CRT Assistance (313142, HIT+5/FLEE+5 per 7 CRT), WIS Enforcement (313138, MSP+1% per 10 WIS — MSP% not modeled, no DPS effect)
 - Corrected Orrivane Orb (Shadow Cross): replaced predicted 315324 with official 315361 — cooldown reduction is on Dark Claw (not Shadow Exceed), Savage Impact cooldown is 0.35s (was 0.5s); removed the future release-date lock
+- Added Orrivane Orb (Biolo) (315362) and Orrivane Orb (Shinkiro & Shiranui) (315363) with official weapon set bonuses, and wired enchant slots 2/3/4 for Orrivane Ring (Biolo) and (Shinkiro & Shiranui) — slot 2 = class Orrivane Orb, slot 3 = Varmundt Acc, slot 4 = Dim Glacier Ring — matching the other Orrivane Rings
 
 ## Extra v61.1 (04-06-2569)
 

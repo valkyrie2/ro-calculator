@@ -182121,5 +182121,81 @@
       "Eternal Slash": ["EQUIP[Orrivane Shadow Cakram]REFINE[weapon==2]---4", "EQUIP[Orrivane Shadow Cakram]GRADE[weapon==C]REFINE[weapon==10]===20"],
       "cd__Eternal Slash": ["EQUIP[Orrivane Shadow Cakram]GRADE[weapon==C]===0.35"]
     }
+  },
+  "315362": {
+    "id": 315362,
+    "aegisName": "Orrivane_Enc_BO",
+    "name": "Orrivane Orb (Biolo)",
+    "unidName": "Orrivane Orb (Biolo)",
+    "resName": "Auto_Orb_Priest",
+    "description": "เมื่อสวมใส่ร่วมกับ Orrivane Biologic Scepter,\nเพิ่ม HIT Damage ทางกายภาพ 10%,\nทุก ๆ 2 ขั้นอัพเกรดอาวุธ, เพิ่ม Damage สกิล Explosive Powder 6%\n\nเมื่อ Orrivane Biologic Scepter มี Grade C ขึ้นไป,\nP.ATK + 10,\nลด Cooldown สกิล Explosive Powder 0.5 วินาที\n\nเมื่อ Orrivane Biologic Scepter มี Grade C และขั้นอัพเกรด 10 ขึ้นไป,\nสามารถใช้งานสกิล Power Lv.4 ได้,\nสามารถใช้งานสกิล Flying Kick Lv.7 ได้,\nเมื่อใช้งานสกิล Flying Kick จะเกิด Autospell สกิล Explosive Powder Lv.1 (เมื่อเรียนสกิลในเลเวลที่สูงกว่า จะร่ายในเลเวลสูงสุด),\nเมื่อใช้งานสกิล Explosive Powder มีโอกาส 30% ที่จะ Autospell สกิล Explosive Powder Lv.1 (เมื่อเรียนสกิลในเลเวลที่สูงกว่า จะร่ายในเลเวลสูงสุด),\nเพิ่ม Damage สกิล Explosive Powder 25%\n\nเมื่อสวมใส่ร่วมกับ Orrivane Biologic Sword,\nCritical Damage + 20%,\nทุก ๆ 2 ขั้นอัพเกรดอาวุธ, เพิ่ม Damage สกิล Mayhemic Thorns 4%,\n\nเมื่อ Orrivane Biologic Sword มี Grade C ขึ้นไป,\nP.ATK + 10,\nลด Cooldown สกิล Mayhemic Thorns 0.4 วินาที\n\nเมื่อ Orrivane Biologic Sword มี Grade C และขั้นอัพเกรด 10 ขึ้นไป,\nสามารถใช้งานสกิล Power Lv.2 ได้,\nเมื่อใช้งานสกิล Mayhemic Thorns  มีโอกาส 30% ที่จะ Autospell สกิล Mayhemic Thorns Lv.1 (เมื่อเรียนสกิลในเลเวลที่สูงกว่า จะร่ายในเลเวลสูงสุด),\nเพิ่ม Damage สกิล Mayhemic Thorns 20%",
+    "slots": 0,
+    "itemTypeId": 11,
+    "itemSubTypeId": 0,
+    "itemLevel": null,
+    "attack": null,
+    "defense": null,
+    "weight": null,
+    "requiredLevel": null,
+    "location": null,
+    "compositionPos": 65535,
+    "canGrade": false,
+    "usableClass": ["Biolo"],
+    "autoSpellOnUse": [
+      { "onSkill": "Explosive Powder", "skill": "Explosive Powder", "chance": 30, "condition": "EQUIP[Orrivane Biologic Scepter]GRADE[weapon==C]REFINE[weapon==10]===1" },
+      { "onSkill": "Mayhemic Thorns", "skill": "Mayhemic Thorns", "chance": 30, "condition": "EQUIP[Orrivane Biologic Sword]GRADE[weapon==C]REFINE[weapon==10]===1" }
+    ],
+    "script": {
+      "hitDmg": ["EQUIP[Orrivane Biologic Scepter]===10"],
+      "criDmg": ["EQUIP[Orrivane Biologic Sword]===20"],
+      "Explosive Powder": ["EQUIP[Orrivane Biologic Scepter]REFINE[weapon==2]---6", "EQUIP[Orrivane Biologic Scepter]GRADE[weapon==C]REFINE[weapon==10]===25"],
+      "Mayhemic Thorns": ["EQUIP[Orrivane Biologic Sword]REFINE[weapon==2]---4", "EQUIP[Orrivane Biologic Sword]GRADE[weapon==C]REFINE[weapon==10]===20"],
+      "pAtk": ["EQUIP[Orrivane Biologic Scepter]GRADE[weapon==C]===10", "EQUIP[Orrivane Biologic Sword]GRADE[weapon==C]===10"],
+      "cd__Explosive Powder": ["EQUIP[Orrivane Biologic Scepter]GRADE[weapon==C]===0.5"],
+      "cd__Mayhemic Thorns": ["EQUIP[Orrivane Biologic Sword]GRADE[weapon==C]===0.4"]
+    }
+  },
+  "315363": {
+    "id": 315363,
+    "aegisName": "Orrivane_Enc_SS",
+    "name": "Orrivane Orb (Shinkiro & Shiranui)",
+    "unidName": "Orrivane Orb (Shinkiro & Shiranui)",
+    "resName": "Auto_Orb_Priest",
+    "description": "เมื่อสวมใส่ร่วมกับ Orrivane Wheel Shuriken,\nMATK + 10%,\nทุก ๆ 2 ขั้นอัพเกรดอาวุธ, เพิ่ม Damage สกิล Cold Blooded Cannon, Thundering Cannon 4%\n\nเมื่อ Orrivane Wheel Shuriken มี Grade C ขึ้นไป,\nS.MATK + 10,\nลด Cooldown สกิล Cold Blooded Cannon 0.35 วินาที,\nลด Cooldown สกิล Thundering Cannon 0.2 วินาที\n\nเมื่อ Orrivane Wheel Shuriken มี Grade C และขั้นอัพเกรด 10 ขึ้นไป,\nเพิ่ม Damage ทางเวทมนตร์ธาตุ Wind, Water 25%,\nเมื่อใช้งานสกิล Thundering Cannon จะเกิด Autospell สกิล Cold Blooded Cannon Lv.1 (เมื่อเรียนสกิลในเลเวลที่สูงกว่า จะร่ายในเลเวลสูงสุด),\nเพิ่ม Damage สกิล Cold Blooded Cannon, Thundering Cannon 20%\n\nเมื่อสวมใส่ร่วมกับ Orrivane Huuma Shuriken,\nCritical Damage + 20%,\nทุก ๆ 2 ขั้นอัพเกรดอาวุธ, เพิ่ม Damage สกิล Shadow Flash 4%\n\nเมื่อ Orrivane Huuma Shuriken มี Grade C ขึ้นไป,\nP.ATK + 10,\nลด Cooldown สกิล Shadow Flash 0.35 วินาที\n\nเมื่อ Orrivane Huuma Shuriken มี Grade C และขั้นอัพเกรด 10 ขึ้นไป,\nสามารถใช้งานสกิล Power Lv.2 ได้,\nสามารถใช้งาน Dark Claw Lv.5 ได้,\nเมื่อใช้งานสกิล Shadow Flash มีโอกาส 30% ที่จะ Autospell สกิล Shadow Flash Lv.1 (เมื่อเรียนสกิลในเลเวลที่สูงกว่า จะร่ายในเลเวลสูงสุด),\nเพิ่ม Damage สกิล Shadow Flash 20%",
+    "slots": 0,
+    "itemTypeId": 11,
+    "itemSubTypeId": 0,
+    "itemLevel": null,
+    "attack": null,
+    "defense": null,
+    "weight": null,
+    "requiredLevel": null,
+    "location": null,
+    "compositionPos": 65535,
+    "canGrade": false,
+    "usableClass": ["Shinkiro", "Shiranui"],
+    "autoSpellOnUse": [
+      {
+        "onSkill": "Thundering Cannon",
+        "skill": "Cold Blooded Cannon",
+        "chance": 100,
+        "condition": "EQUIP[Orrivane Wheel Shuriken]GRADE[weapon==C]REFINE[weapon==10]===1"
+      },
+      { "onSkill": "Shadow Flash", "skill": "Shadow Flash", "chance": 30, "condition": "EQUIP[Orrivane Huuma Shuriken]GRADE[weapon==C]REFINE[weapon==10]===1" }
+    ],
+    "script": {
+      "matkPercent": ["EQUIP[Orrivane Wheel Shuriken]===10"],
+      "criDmg": ["EQUIP[Orrivane Huuma Shuriken]===20"],
+      "Cold Blooded Cannon": ["EQUIP[Orrivane Wheel Shuriken]REFINE[weapon==2]---4", "EQUIP[Orrivane Wheel Shuriken]GRADE[weapon==C]REFINE[weapon==10]===20"],
+      "Thundering Cannon": ["EQUIP[Orrivane Wheel Shuriken]REFINE[weapon==2]---4", "EQUIP[Orrivane Wheel Shuriken]GRADE[weapon==C]REFINE[weapon==10]===20"],
+      "Shadow Flash": ["EQUIP[Orrivane Huuma Shuriken]REFINE[weapon==2]---4", "EQUIP[Orrivane Huuma Shuriken]GRADE[weapon==C]REFINE[weapon==10]===20"],
+      "sMatk": ["EQUIP[Orrivane Wheel Shuriken]GRADE[weapon==C]===10"],
+      "pAtk": ["EQUIP[Orrivane Huuma Shuriken]GRADE[weapon==C]===10"],
+      "cd__Cold Blooded Cannon": ["EQUIP[Orrivane Wheel Shuriken]GRADE[weapon==C]===0.35"],
+      "cd__Thundering Cannon": ["EQUIP[Orrivane Wheel Shuriken]GRADE[weapon==C]===0.2"],
+      "cd__Shadow Flash": ["EQUIP[Orrivane Huuma Shuriken]GRADE[weapon==C]===0.35"],
+      "m_element_wind": ["EQUIP[Orrivane Wheel Shuriken]GRADE[weapon==C]REFINE[weapon==10]===25"],
+      "m_element_water": ["EQUIP[Orrivane Wheel Shuriken]GRADE[weapon==C]REFINE[weapon==10]===25"]
+    }
   }
 }
