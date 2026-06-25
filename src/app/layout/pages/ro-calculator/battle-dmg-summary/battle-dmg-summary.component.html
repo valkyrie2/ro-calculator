@@ -391,6 +391,17 @@
       [max2]="totalSummary2?.dmg?.autoSpellDmgMax"
     ></app-calc-value>
   </div>
+  <div class="col-12" [hidden]="!totalSummary?.dmg?.autoSpellDpsBase">
+    <app-calc-value
+      [enableCompare]="isEnableCompare && totalSummary2?.dmg"
+      label="AutoSpell DPS (ฐานปกติ):"
+      styleClass="summary_chance"
+      styleClass2="summary_compare"
+      [showPercentDiff]="true"
+      [max]="totalSummary?.dmg?.autoSpellDpsBase"
+      [max2]="totalSummary2?.dmg?.autoSpellDpsBase"
+    ></app-calc-value>
+  </div>
   <div class="col-12" [hidden]="!totalSummary?.dmg?.combinedDpsBase">
     <app-calc-value
       [enableCompare]="isEnableCompare && totalSummary2?.dmg"
@@ -400,6 +411,20 @@
       [showPercentDiff]="true"
       [max]="totalSummary?.dmg?.combinedDpsBase"
       [max2]="totalSummary2?.dmg?.combinedDpsBase"
+    ></app-calc-value>
+  </div>
+  <div
+    class="col-12"
+    [hidden]="!totalSummary?.dmg?.autoSpellDpsTriggered || !(selectedChances?.length || selectedChances2?.length)"
+  >
+    <app-calc-value
+      [enableCompare]="isEnableCompare && totalSummary2?.dmg"
+      label="AutoSpell DPS (Triggered):"
+      styleClass="summary_chance"
+      styleClass2="summary_compare"
+      [showPercentDiff]="true"
+      [max]="totalSummary?.dmg?.autoSpellDpsTriggered"
+      [max2]="totalSummary2?.dmg?.autoSpellDpsTriggered"
     ></app-calc-value>
   </div>
   <div

@@ -87,6 +87,8 @@ export interface SkillDamageSummaryModel {
   autoSpellDmgMin?: number;       // ดาเมจ ABC ต่อ hit (min)
   autoSpellDmgMax?: number;       // ดาเมจ ABC ต่อ hit (max)
   autoSpellDmgPerCast?: number;   // ดาเมจเฉลี่ยต่อ cast ของ ABC
+  autoSpellDpsBase?: number;      // DPS เฉพาะ autospell (ฐานปกติ, รวม chain)
+  autoSpellDpsTriggered?: number; // DPS เฉพาะ autospell (Triggered)
   combinedDpsBase?: number;       // แถว A: DPS สกิลหลัก (ฐานปกติ) + autospell
   combinedDpsTriggered?: number;  // แถว B: DPS สกิลหลัก (Triggered) + autospell
 }
