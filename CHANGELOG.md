@@ -10,6 +10,7 @@
 - Added 4 stat enchant items (Base Lv.240+, capped at 100 base stat): POW Assistance (313131, RES+1/DEF+3 per 7 POW), SPL Assistance (313133, MRES+1/MDEF+3 per 7 SPL), CRT Assistance (313142, HIT+5/FLEE+5 per 7 CRT), WIS Enforcement (313138, MSP+1% per 10 WIS — MSP% not modeled, no DPS effect)
 - Corrected Orrivane Orb (Shadow Cross): replaced predicted 315324 with official 315361 — cooldown reduction is on Dark Claw (not Shadow Exceed), Savage Impact cooldown is 0.35s (was 0.5s); removed the future release-date lock
 - Added Orrivane Orb (Biolo) (315362) and Orrivane Orb (Shinkiro & Shiranui) (315363) with official weapon set bonuses, and wired enchant slots 2/3/4 for Orrivane Ring (Biolo) and (Shinkiro & Shiranui) — slot 2 = class Orrivane Orb, slot 3 = Varmundt Acc, slot 4 = Dim Glacier Ring — matching the other Orrivane Rings
+- Added 3 event -LT items (01-07 thROG history), all stronger than their base counterparts: Feather Shield-LT (460176), Ayothaya Adventurer's Boots-LT (470456), and 6th Anniversary Ayothaya Ring-LT (491070); the boots/ring set bonus references the -LT partner. Ring-LT reuses the base Ayothaya Ring enchant slots (slot 2 Biosphere Gem, slot 3 Star series, slot 4 Varmundt Acc). Chance-based leech/heal procs, status resist, and Boss/RES/Perfect-Dodge grade options are not modeled
 
 ## Extra v61.1 (04-06-2569)
 
