@@ -35,6 +35,11 @@ import { logger } from 'src/app/api-services/logger.service';
         border-bottom-color: rgba(var(--primary-color-rgb, 76, 175, 80), 0.22);
       }
 
+      .report-status-backlog .bug-column-heading {
+        background: linear-gradient(90deg, rgba(245, 158, 11, 0.16), rgba(245, 158, 11, 0.04));
+        border-bottom-color: rgba(245, 158, 11, 0.22);
+      }
+
       .report-status-in_progress .bug-column-heading {
         background: linear-gradient(90deg, rgba(59, 130, 246, 0.18), rgba(59, 130, 246, 0.045));
         border-bottom-color: rgba(59, 130, 246, 0.22);
@@ -57,8 +62,8 @@ import { logger } from 'src/app/api-services/logger.service';
       .bug-board-columns {
         display: grid;
         gap: 1rem;
-        grid-template-columns: repeat(3, minmax(285px, 1fr));
-        min-width: 900px;
+        grid-template-columns: repeat(4, minmax(285px, 1fr));
+        min-width: 1200px;
       }
 
       .bug-board-column {
@@ -130,6 +135,10 @@ import { logger } from 'src/app/api-services/logger.service';
 
       .bug-board-card.report-status-open {
         box-shadow: inset 4px 0 0 rgba(var(--primary-color-rgb, 76, 175, 80), 0.6);
+      }
+
+      .bug-board-card.report-status-backlog {
+        box-shadow: inset 4px 0 0 rgba(251, 191, 36, 0.55);
       }
 
       .bug-board-card.report-status-in_progress {
@@ -263,6 +272,12 @@ import { logger } from 'src/app/api-services/logger.service';
         border: 1px solid rgba(34, 197, 94, 0.28);
       }
 
+      .status-backlog {
+        color: #f4d78a;
+        background: rgba(245, 158, 11, 0.13);
+        border: 1px solid rgba(245, 158, 11, 0.28);
+      }
+
       .status-in_progress {
         color: #b7d5ff;
         background: rgba(59, 130, 246, 0.13);
@@ -302,12 +317,14 @@ export class AdminBugReportsComponent implements OnInit {
 
   readonly firstByStatus: Partial<Record<BugReportStatus, number>> = {
     open: 0,
+    backlog: 0,
     in_progress: 0,
     closed: 0,
   };
 
   readonly statusOptions: { label: string; value: BugReportStatus }[] = [
     { label: 'Open', value: 'open' },
+    { label: 'Backlog', value: 'backlog' },
     { label: 'In Progress', value: 'in_progress' },
     { label: 'Closed', value: 'closed' },
   ];
@@ -324,6 +341,7 @@ export class AdminBugReportsComponent implements OnInit {
     description: string;
   }[] = [
     { label: 'New Issues', value: 'open', icon: 'pi pi-bell', description: 'Fresh reports waiting for first triage' },
+    { label: 'Backlog', value: 'backlog', icon: 'pi pi-inbox', description: 'Parked — not planned for now' },
     { label: 'In Progress', value: 'in_progress', icon: 'pi pi-wrench', description: 'Reports currently being investigated' },
     { label: 'Closed', value: 'closed', icon: 'pi pi-lock', description: 'Archived reports' },
   ];

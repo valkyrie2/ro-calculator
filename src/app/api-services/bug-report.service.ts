@@ -3,7 +3,7 @@ import { AuthService } from './auth.service';
 import { logger } from './logger.service';
 import { SupabaseClientService } from './supabase-client.service';
 
-export type BugReportStatus = 'open' | 'in_progress' | 'resolved' | 'closed';
+export type BugReportStatus = 'open' | 'backlog' | 'in_progress' | 'resolved' | 'closed';
 export type BugReportType = 'bug' | 'request';
 
 export interface BugReportRow {
