@@ -67,6 +67,7 @@ import { logger } from 'src/app/api-services/logger.service';
 
       .bug-card-list {
         display: flex;
+        flex: 1;
         flex-direction: column;
         gap: 0.75rem;
         min-height: 7rem;
