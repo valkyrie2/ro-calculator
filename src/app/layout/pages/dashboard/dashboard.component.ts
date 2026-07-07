@@ -21,6 +21,7 @@ export class DashboardComponent implements OnInit {
 
   readonly firstByStatus: Record<BugReportStatus, number> = {
     open: 0,
+    backlog: 0,
     in_progress: 0,
     resolved: 0,
     closed: 0,
