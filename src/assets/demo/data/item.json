@@ -177596,7 +177596,7 @@
     "unidName": "Gatchaman Card",
     "resName": "이름없는카드",
     "unidResName": "이름없는카드",
-    "description": "ทุก ๆ Base Lv.10, ATK + 10, DEF + 3, MDEF + 1\n(สูงสุดจนถึง Base Lv.200)\n^CC3D3D[ความสามารถช่วงระยะเวลากิจกรรม]^000000\nเพิ่ม Damage ทางกายภาพ/เวทมนตร์ต่อมอนสเตอร์ทุกเผ่า 10% (ยกเว้น Player)\nเพิ่ม Damage ทางกายภาพ/เวทมนตร์ต่อศัตรูทุกขนาด 10%\nเพิ่มค่าประสบการณ์ที่ได้รับเมื่อกำจัดมอนสเตอร์ 15%\nเพิ่มอัตราดรอปไอเทม 7%\n(ความสามารถของไอเท็มชิ้นนี้จะถูกลบหลังสิ้นสุดระยะเวลากิจกรรม)\nประเภท : ^777777Card^000000\nใช้กับ : ^777777Garment^000000\nน้ำหนัก : ^7777771^000000",
+    "description": "ทุก ๆ Base Lv.10, ATK + 10, DEF + 3, MDEF + 1\n(สูงสุดจนถึง Base Lv.200)\nประเภท : ^777777Card^000000\nใช้กับ : ^777777Garment^000000\nน้ำหนัก : ^7777771^000000",
     "slots": 0,
     "itemTypeId": 6,
     "itemSubTypeId": 0,
@@ -177610,12 +177610,7 @@
     "script": {
       "atk": ["level:10(1-200)---10"],
       "def": ["level:10(1-200)---3"],
-      "mdef": ["level:10(1-200)---1"],
-      "p_race_all": ["10"],
-      "m_race_all": ["10"],
-      "p_size_all": ["10"],
-      "m_size_all": ["10"],
-      "expBonus": ["15"]
+      "mdef": ["level:10(1-200)---1"]
     }
   },
   "300734": {
@@ -182312,6 +182307,39 @@
       "m_pene_race_all": ["12===40"],
       "fct": ["GRADE[me==D]===0.5"],
       "expBonus": ["GRADE[me==A]===10"]
+    }
+  },
+  "420864": {
+    "id": 420864,
+    "aegisName": "Worg_In_Mouth_LT",
+    "name": "Baby Gray Wolf In Mouth-LT",
+    "unidName": "Ribbon",
+    "resName": "입에문워그",
+    "description": "เมื่อโจมตีทางกายภาพ มีโอกาส 4% ที่จะฟื้นฟู HP 4% ของ Damage ที่ทำ\nเมื่อโจมตีทางกายภาพ มีโอกาส 2% ที่จะฟื้นฟู SP 2% ของ Damage ที่ทำ\n\nเมื่อกำจัดมอนสเตอร์ด้วยเวทมนตร์ ฟื้นฟู HP 600, SP 10 หน่วย\nลด Global Cooldown 10%\nเพิ่ม EXP ที่ได้รับจากมอนสเตอร์ 10%\nเพิ่มอัตราดรอปไอเทม 10%\n\nเมื่อสวมใส่ร่วมกับ Gray Wolf Manteau หรือ Gray Wolf Muffler,\nเพิ่ม EXP ที่ได้รับจากมอนสเตอร์ขึ้นอีก 4%,\nทุก ๆ การอัพเกรด Garment 2 ขั้น, เพิ่ม EXP ที่ได้รับจากมอนสเตอร์ขึ้นอีก 1%,\nทุก ๆ การอัพเกรด Garment 3 ขั้น, เพิ่ม Damage ทางกายภาพ/เวทมนตร์ต่อศัตรูทุกขนาด 4%\n\nเมื่อสวมใส่ร่วมกับ Gray Wolf Suit หรือ Gray Wolf Robe,\nเพิ่ม Damage ทางกายภาพ/เวทมนตร์ต่อศัตรูทุกเผ่า 10%,\nทุก ๆ การอัพเกรด Armor 2 ขั้น, ลด Global Cooldown 2%,\nทุก ๆ การอัพเกรด Armor 3 ขั้น, P.ATK + 2 S.MATK + 2\n\nเมื่อสวมใส่ร่วมกับ Gray Wolf Manteau หรือ Gray Wolf Muffler ที่มีขั้นอัพเกรด 11 ขึ้นไป,\nเพิ่ม Damage ทางกายภาพ/เวทมนตร์ต่อศัตรูทุกธาตุ 10%,\nเพิกเฉยต่อพลังป้องกันทางกายภาพ/เวทมนตร์ของศัตรูทุกเผ่า 30%\nประเภท : ^777777Headgear^000000 พลังป้องกัน : ^7777770^000000\nตำแหน่ง : ^777777Lower^000000 น้ำหนัก : ^77777710^000000\nเลเวลที่ต้องการ : ^7777771^000000\nอาชีพที่ใส่ได้ : ^777777ทุกอาชีพ^000000",
+    "slots": 0,
+    "itemTypeId": 2,
+    "itemSubTypeId": 512,
+    "itemLevel": null,
+    "attack": null,
+    "defense": 0,
+    "weight": 10,
+    "requiredLevel": 1,
+    "location": "Lower",
+    "compositionPos": null,
+    "usableClass": ["all"],
+    "script": {
+      "acd": ["10", "EQUIP[Gray Wolf Suit||Gray Wolf Robe]REFINE[armor==2]---2"],
+      "expBonus": ["10", "EQUIP[Gray Wolf Manteau||Gray Wolf Muffler]===4", "EQUIP[Gray Wolf Manteau||Gray Wolf Muffler]REFINE[garment==2]---1"],
+      "p_size_all": ["EQUIP[Gray Wolf Manteau||Gray Wolf Muffler]REFINE[garment==3]---4"],
+      "m_size_all": ["EQUIP[Gray Wolf Manteau||Gray Wolf Muffler]REFINE[garment==3]---4"],
+      "p_race_all": ["EQUIP[Gray Wolf Suit||Gray Wolf Robe]===10"],
+      "m_race_all": ["EQUIP[Gray Wolf Suit||Gray Wolf Robe]===10"],
+      "pAtk": ["EQUIP[Gray Wolf Suit||Gray Wolf Robe]REFINE[armor==3]---2"],
+      "sMatk": ["EQUIP[Gray Wolf Suit||Gray Wolf Robe]REFINE[armor==3]---2"],
+      "p_element_all": ["EQUIP[Gray Wolf Manteau||Gray Wolf Muffler]REFINE[garment==11]===10"],
+      "m_element_all": ["EQUIP[Gray Wolf Manteau||Gray Wolf Muffler]REFINE[garment==11]===10"],
+      "p_pene_race_all": ["EQUIP[Gray Wolf Manteau||Gray Wolf Muffler]REFINE[garment==11]===30"],
+      "m_pene_race_all": ["EQUIP[Gray Wolf Manteau||Gray Wolf Muffler]REFINE[garment==11]===30"]
     }
   }
 }

@@ -217,7 +217,8 @@ export class AppTopBarComponent implements OnInit, OnDestroy {
       v: 'Extra v62.1',
       date: '24-06-2569',
       logs: [
-        'เพิ่มไอเท็มใหม่'
+        'เพิ่มไอเท็มใหม่',
+        'เพิ่ม Baby Gray Wolf In Mouth-LT',
       ],
     },
     {

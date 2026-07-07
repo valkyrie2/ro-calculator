@@ -11,6 +11,7 @@
 - Corrected Orrivane Orb (Shadow Cross): replaced predicted 315324 with official 315361 — cooldown reduction is on Dark Claw (not Shadow Exceed), Savage Impact cooldown is 0.35s (was 0.5s); removed the future release-date lock
 - Added Orrivane Orb (Biolo) (315362) and Orrivane Orb (Shinkiro & Shiranui) (315363) with official weapon set bonuses, and wired enchant slots 2/3/4 for Orrivane Ring (Biolo) and (Shinkiro & Shiranui) — slot 2 = class Orrivane Orb, slot 3 = Varmundt Acc, slot 4 = Dim Glacier Ring — matching the other Orrivane Rings
 - Added 3 event -LT items (01-07 thROG history), all stronger than their base counterparts: Feather Shield-LT (460176), Ayothaya Adventurer's Boots-LT (470456), and 6th Anniversary Ayothaya Ring-LT (491070); the boots/ring set bonus references the -LT partner. Ring-LT reuses the base Ayothaya Ring enchant slots (slot 2 Biosphere Gem, slot 3 Star series, slot 4 Varmundt Acc). Chance-based leech/heal procs, status resist, and Boss/RES/Perfect-Dodge grade options are not modeled
+- Added Baby Gray Wolf In Mouth-LT (420864), Lower headgear: -10% Global Cooldown, +10% EXP; Gray Wolf Manteau/Muffler set (EXP +4%, +1% per 2 garment refine, +4% phys/magic dmg vs all size per 3 refine); Gray Wolf Suit/Robe set (+10% phys/magic dmg vs all race, -2% GCD per 2 armor refine, P.ATK/S.MATK +2 per 3 refine); garment refine 11+ adds +10% phys/magic dmg vs all element and 30% phys/magic race penetration. Chance-based HP/SP leech, magic-kill recovery, and drop rate are not modeled
 
 ## Extra v61.1 (04-06-2569)
 
