@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CdkDragDrop } from '@angular/cdk/drag-drop';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { PaginatorState } from 'primeng/paginator';
-import { BugReportRow, BugReportService, BugReportStatus, BugReportType } from 'src/app/api-services';
+import { BugReportComment, BugReportRow, BugReportService, BugReportStatus, BugReportType } from 'src/app/api-services';
 import { logger } from 'src/app/api-services/logger.service';
 
 @Component({
@@ -221,6 +221,41 @@ import { logger } from 'src/app/api-services/logger.service';
         text-align: center;
       }
 
+      .comment-thread {
+        display: flex;
+        flex-direction: column;
+        gap: 0.6rem;
+        max-height: 320px;
+        overflow-y: auto;
+      }
+
+      .comment-item {
+        border: 1px solid var(--surface-border);
+        border-radius: 6px;
+        background: rgba(255, 255, 255, 0.03);
+        padding: 0.6rem 0.75rem;
+      }
+
+      .comment-item.comment-admin {
+        border-left: 3px solid var(--primary-color);
+      }
+
+      .comment-item.comment-reporter {
+        border-left: 3px solid var(--yellow-400);
+      }
+
+      .comment-head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0.5rem;
+      }
+
+      .comment-body {
+        margin-top: 0.4rem;
+        white-space: pre-wrap;
+      }
+
       .bug-title-button {
         appearance: none;
         border: 0;
@@ -348,8 +383,10 @@ export class AdminBugReportsComponent implements OnInit {
 
   selected: BugReportRow | null = null;
   detailVisible = false;
-  replyText = '';
-  savingReply = false;
+  comments: BugReportComment[] = [];
+  loadingComments = false;
+  commentText = '';
+  savingComment = false;
 
   constructor(
     private readonly bugReportService: BugReportService,
@@ -459,26 +496,54 @@ export class AdminBugReportsComponent implements OnInit {
     }
   }
 
-  async saveReply() {
+  async addComment() {
     if (!this.selected) return;
+    const body = this.commentText.trim();
+    if (!body) return;
 
     const row = this.selected;
-    this.savingReply = true;
+    this.savingComment = true;
     try {
-      await this.bugReportService.updateReply(row.id, this.replyText);
-      const trimmed = this.replyText.trim();
-      row.admin_reply = trimmed || null;
-      row.admin_replied_at = trimmed ? new Date().toISOString() : null;
-      row.public_reply = null;
-      row.public_replied_at = null;
-      row.public_reply_admin_replied_at = null;
-      this.messageService.add({ severity: 'success', summary: trimmed ? 'Reply saved' : 'Reply cleared' });
+      await this.bugReportService.addAdminComment(row.id, body);
+      this.commentText = '';
+      // Keep the card's Replied badge in sync without a full board refresh.
+      row.bug_report_comments = [...(row.bug_report_comments ?? []), { author_role: 'admin', created_at: new Date().toISOString() }];
+      this.messageService.add({ severity: 'success', summary: 'Comment added' });
+      await this.loadComments(row.id);
     } catch (err) {
-      const detail = err instanceof Error ? err.message : 'Failed to save reply.';
-      this.messageService.add({ severity: 'error', summary: 'Reply failed', detail });
+      const detail = err instanceof Error ? err.message : 'Failed to add comment.';
+      this.messageService.add({ severity: 'error', summary: 'Comment failed', detail });
     } finally {
-      this.savingReply = false;
+      this.savingComment = false;
     }
+  }
+
+  private async loadComments(reportId: number) {
+    this.loadingComments = true;
+    this.comments = [];
+    try {
+      this.comments = await this.bugReportService.listComments(reportId);
+    } catch (err) {
+      logger.error({ listBugReportComments: err });
+      const detail = err instanceof Error ? err.message : 'Failed to load comments.';
+      this.messageService.add({ severity: 'error', summary: 'Load failed', detail });
+    } finally {
+      this.loadingComments = false;
+    }
+  }
+
+  lastCommentRole(row: BugReportRow): 'admin' | 'reporter' | null {
+    const comments = row.bug_report_comments ?? [];
+    if (!comments.length) return null;
+    let last = comments[0];
+    for (const comment of comments) {
+      if (comment.created_at >= last.created_at) last = comment;
+    }
+    return last.author_role;
+  }
+
+  isReplied(row: BugReportRow): boolean {
+    return this.lastCommentRole(row) === 'admin';
   }
 
   confirmDelete(row: BugReportRow) {
@@ -507,8 +572,9 @@ export class AdminBugReportsComponent implements OnInit {
 
   openDetail(row: BugReportRow) {
     this.selected = row;
-    this.replyText = row.admin_reply ?? '';
+    this.commentText = '';
     this.detailVisible = true;
+    this.loadComments(row.id);
   }
 
   openDetailFromCard(row: BugReportRow, event: Event) {

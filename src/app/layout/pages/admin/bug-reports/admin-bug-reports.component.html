@@ -53,8 +53,8 @@
 
               <div class="bug-card-meta">
                 <span><i class="pi pi-calendar"></i>{{ row.created_at | date: 'yyyy-MM-dd HH:mm' }}</span>
-                <span *ngIf="row.admin_reply" class="status-badge reply-badge">Replied</span>
-                <span *ngIf="!row.admin_reply" class="text-xs text-color-secondary">No reply</span>
+                <span *ngIf="isReplied(row)" class="status-badge reply-badge">Replied</span>
+                <span *ngIf="!isReplied(row)" class="text-xs text-color-secondary">No reply</span>
               </div>
 
               <div class="bug-card-reporter">
@@ -151,37 +151,44 @@
       </a>
     </div>
     <div>
-      <div class="font-semibold mb-1">Admin Reply</div>
+      <div class="font-semibold mb-1">Comments</div>
+      <div class="comment-thread" [class.bug-card-list-loading]="loadingComments">
+        <div
+          *ngFor="let c of comments"
+          class="comment-item"
+          [class.comment-admin]="c.author_role === 'admin'"
+          [class.comment-reporter]="c.author_role === 'reporter'"
+        >
+          <div class="comment-head">
+            <span class="status-badge" [ngClass]="c.author_role === 'admin' ? 'reply-badge' : 'status-open'">
+              {{ c.author_role === 'admin' ? 'Admin' : 'Reporter' }}
+            </span>
+            <small class="text-color-secondary">{{ c.created_at | date: 'yyyy-MM-dd HH:mm' }}</small>
+          </div>
+          <div class="comment-body">{{ c.body }}</div>
+        </div>
+        <div *ngIf="!loadingComments && comments.length === 0" class="text-color-secondary text-sm">No comments yet.</div>
+      </div>
       <textarea
         pInputTextarea
-        [(ngModel)]="replyText"
-        rows="5"
-        class="w-full"
-        placeholder="Write a reply or resolution note for this report"
+        [(ngModel)]="commentText"
+        rows="4"
+        maxlength="4000"
+        class="w-full mt-2"
+        placeholder="Write a comment (reporter can reply once per admin comment)"
       ></textarea>
-      <div class="flex justify-content-between align-items-center mt-2 gap-2">
-        <small class="text-color-secondary">
-          <ng-container *ngIf="selected.admin_replied_at; else noReplyDate">
-            Last replied {{ selected.admin_replied_at | date: 'yyyy-MM-dd HH:mm' }}
-          </ng-container>
-          <ng-template #noReplyDate>No reply yet.</ng-template>
-        </small>
+      <div class="flex justify-content-end mt-2">
         <button
           pButton
           type="button"
           icon="pi pi-send"
-          label="Save Reply"
+          label="Add Comment"
           class="p-button-sm"
-          [loading]="savingReply"
-          [disabled]="savingReply"
-          (click)="saveReply()"
+          [loading]="savingComment"
+          [disabled]="savingComment || !commentText.trim()"
+          (click)="addComment()"
         ></button>
       </div>
-    </div>
-    <div *ngIf="selected.public_reply">
-      <div class="font-semibold mb-1">Public Reply</div>
-      <div style="white-space: pre-wrap">{{ selected.public_reply }}</div>
-      <small class="text-color-secondary">{{ selected.public_replied_at | date: 'yyyy-MM-dd HH:mm' }}</small>
     </div>
   </div>
 </p-dialog>
