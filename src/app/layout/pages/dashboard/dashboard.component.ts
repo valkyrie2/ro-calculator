@@ -29,6 +29,7 @@ export class DashboardComponent implements OnInit {
 
   readonly sections: { label: string; status: BugReportStatus; icon: string }[] = [
     { label: 'Open', status: 'open', icon: 'pi pi-bell' },
+    { label: 'Backlog', status: 'backlog', icon: 'pi pi-inbox' },
     { label: 'In Progress', status: 'in_progress', icon: 'pi pi-wrench' },
     { label: 'Closed', status: 'closed', icon: 'pi pi-lock' },
   ];
@@ -93,6 +94,7 @@ export class DashboardComponent implements OnInit {
   }
 
   statusLabel(status: BugReportStatus): string {
+    if (status === 'backlog') return 'Backlog';
     if (status === 'in_progress') return 'In Progress';
     if (status === 'closed') return 'Closed';
     if (status === 'resolved') return 'Resolved';
