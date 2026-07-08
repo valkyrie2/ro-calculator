@@ -6,6 +6,20 @@ import { SupabaseClientService } from './supabase-client.service';
 export type BugReportStatus = 'open' | 'backlog' | 'in_progress' | 'resolved' | 'closed';
 export type BugReportType = 'bug' | 'request';
 
+export interface BugReportCommentSummary {
+  author_role: 'admin' | 'reporter';
+  created_at: string;
+}
+
+export interface BugReportComment {
+  id: number;
+  report_id: number;
+  author_role: 'admin' | 'reporter';
+  author_id: string | null;
+  body: string;
+  created_at: string;
+}
+
 export interface BugReportRow {
   id: number;
   title: string;
@@ -26,6 +40,7 @@ export interface BugReportRow {
   public_reply_admin_replied_at: string | null;
   created_at: string;
   updated_at: string;
+  bug_report_comments?: BugReportCommentSummary[];
 }
 
 export interface PublicBugReportRow {
@@ -40,6 +55,7 @@ export interface PublicBugReportRow {
   public_replied_at: string | null;
   created_at: string;
   updated_at: string;
+  answered: boolean;
   can_reply: boolean;
 }
 
@@ -110,7 +126,7 @@ export class BugReportService {
   async list(): Promise<BugReportRow[]> {
     const { data, error } = await this.client
       .from('bug_reports')
-      .select('*')
+      .select('*, bug_report_comments(author_role, created_at)')
       .order('created_at', { ascending: false });
     if (error) {
       logger.error({ listBugReportsError: error });
@@ -129,6 +145,43 @@ export class BugReportService {
       throw new Error(error.message);
     }
     return (data ?? []) as PublicBugReportRow[];
+  }
+
+  async listComments(reportId: number): Promise<BugReportComment[]> {
+    const { data, error } = await this.client
+      .from('bug_report_comments')
+      .select('*')
+      .eq('report_id', reportId)
+      .order('created_at', { ascending: true })
+      .order('id', { ascending: true });
+    if (error) {
+      logger.error({ listBugReportCommentsError: error });
+      throw new Error(error.message);
+    }
+    return (data ?? []) as BugReportComment[];
+  }
+
+  /** Admin-side comment: direct insert allowed by RLS (admins only, unlimited). */
+  async addAdminComment(reportId: number, body: string): Promise<void> {
+    const trimmed = body.trim();
+    if (!trimmed) throw new Error('Comment is required.');
+    const profile = this.authService.getProfile();
+    const { error } = await this.client.from('bug_report_comments').insert({
+      report_id: reportId,
+      author_role: 'admin',
+      author_id: profile?.id ?? null,
+      body: trimmed,
+    });
+    if (error) throw new Error(error.message);
+  }
+
+  /** Reporter-side comment: RPC enforces the 1-reply-per-admin-comment gate. */
+  async addPublicComment(reportId: number, body: string): Promise<void> {
+    const { error } = await this.client.rpc('add_bug_report_comment', {
+      report_id: reportId,
+      body,
+    });
+    if (error) throw new Error(error.message);
   }
 
   async updateStatus(id: number, status: BugReportStatus, updatedAt = new Date().toISOString()): Promise<string> {
