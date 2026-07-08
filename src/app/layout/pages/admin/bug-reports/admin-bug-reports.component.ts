@@ -505,11 +505,13 @@ export class AdminBugReportsComponent implements OnInit {
     this.savingComment = true;
     try {
       await this.bugReportService.addAdminComment(row.id, body);
-      this.commentText = '';
       // Keep the card's Replied badge in sync without a full board refresh.
       row.bug_report_comments = [...(row.bug_report_comments ?? []), { author_role: 'admin', created_at: new Date().toISOString() }];
       this.messageService.add({ severity: 'success', summary: 'Comment added' });
-      await this.loadComments(row.id);
+      if (this.selected === row) {
+        this.commentText = '';
+        await this.loadComments(row.id);
+      }
     } catch (err) {
       const detail = err instanceof Error ? err.message : 'Failed to add comment.';
       this.messageService.add({ severity: 'error', summary: 'Comment failed', detail });
@@ -522,7 +524,8 @@ export class AdminBugReportsComponent implements OnInit {
     this.loadingComments = true;
     this.comments = [];
     try {
-      this.comments = await this.bugReportService.listComments(reportId);
+      const comments = await this.bugReportService.listComments(reportId);
+      if (this.selected?.id === reportId) this.comments = comments;
     } catch (err) {
       logger.error({ listBugReportComments: err });
       const detail = err instanceof Error ? err.message : 'Failed to load comments.';
