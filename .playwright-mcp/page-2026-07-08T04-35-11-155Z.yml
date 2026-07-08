@@ -1,0 +1,235 @@
+- generic [ref=e4]:
+  - generic:
+    - generic:
+      - alertdialog
+    - generic [ref=e5]:
+      - generic [ref=e6]: Extra v62.1
+      - button " 180" [ref=e7] [cursor=pointer]:
+        - generic [ref=e8]:
+          - text: 
+          - generic [ref=e9]: "180"
+      - button "References" [ref=e10] [cursor=pointer]
+      - menubar [ref=e16]:
+        - menuitem "Calculator" [ref=e17] [cursor=pointer]:
+          - link "Calculator" [ref=e18]:
+            - /url: /
+            - generic [ref=e19]: 
+            - generic [ref=e20]: Calculator
+        - menuitem "Report Tracking" [ref=e21] [cursor=pointer]:
+          - link "Report Tracking" [ref=e22]:
+            - /url: /dashboard
+            - generic [ref=e23]: 
+            - generic [ref=e24]: Report Tracking
+      - insertion [ref=e27]
+      - generic [ref=e28]:
+        - img "Emuto Shop" [ref=e31] [cursor=pointer]
+        - button "Report Bug" [ref=e32] [cursor=pointer]:
+          - generic [ref=e33]: 
+          - generic [ref=e34]: Report Bug
+        - button "Login" [ref=e35] [cursor=pointer]:
+          - generic [ref=e36]: 
+          - generic [ref=e37]: Login
+  - generic [ref=e1848]:
+    - generic [ref=e1850]:
+      - alert [ref=e2064]:
+        - generic [ref=e2065]:
+          - img [ref=e2068]
+          - generic [ref=e2071]: Reply sent
+          - button "Close" [active] [ref=e2073] [cursor=pointer]:
+            - img [ref=e2075]
+      - generic [ref=e1851]:
+        - generic [ref=e1852]:
+          - generic [ref=e1853]:
+            - heading "Report Tracking" [level=3] [ref=e1854]
+            - generic [ref=e1855]: Open, backlog, in-progress, and closed bug reports or requests with admin replies.
+          - button "Refresh" [ref=e1888] [cursor=pointer]:
+            - generic [ref=e1889]: 
+            - generic [ref=e1890]: Refresh
+        - generic [ref=e1857]:
+          - generic [ref=e1859]:
+            - generic [ref=e1861]:
+              - generic [ref=e1862]: 
+              - generic [ref=e1863]: Open
+            - generic [ref=e1891]:
+              - button "#125 Request บอสทานาโอลิแวน ช่วยเพิ่มบอสทานาใหม่ 2 ตัวให้หน่อยครับขอบคุฯครับ  2026-07-05 19:11" [ref=e2077] [cursor=pointer]:
+                - generic [ref=e2078]:
+                  - generic [ref=e2079]: "#125"
+                  - generic [ref=e2080]: Request
+                - button "บอสทานาโอลิแวน" [ref=e2081]
+                - generic [ref=e2082]: ช่วยเพิ่มบอสทานาใหม่ 2 ตัวให้หน่อยครับขอบคุฯครับ
+                - generic [ref=e2084]:
+                  - generic [ref=e2085]: 
+                  - text: 2026-07-05 19:11
+              - button "#123 Bug enchant แหวน Ayo ช่อง 2 ไม่แสดงผลกับมอน normal ออปช่อง 2 ตีมอนธรรมดา ไม่แสดงผล  2026-07-02 11:47 Answered" [ref=e2086] [cursor=pointer]:
+                - generic [ref=e2087]:
+                  - generic [ref=e2088]: "#123"
+                  - generic [ref=e2089]: Bug
+                - button "enchant แหวน Ayo ช่อง 2 ไม่แสดงผลกับมอน normal" [ref=e2090]
+                - generic [ref=e2091]: ออปช่อง 2 ตีมอนธรรมดา ไม่แสดงผล
+                - generic [ref=e2092]:
+                  - generic [ref=e2093]:
+                    - generic [ref=e2094]: 
+                    - text: 2026-07-02 11:47
+                  - generic [ref=e2095]: Answered
+              - button "#122 Bug ปรับระดับเกรดแหวนAyoแล้วDMGไม่ขึ้น ปรับระดับเกรดแหวนAyoแล้วDMGไม่ขึ้น ครับ  2026-06-30 23:06 Answered" [ref=e2096] [cursor=pointer]:
+                - generic [ref=e2097]:
+                  - generic [ref=e2098]: "#122"
+                  - generic [ref=e2099]: Bug
+                - button "ปรับระดับเกรดแหวนAyoแล้วDMGไม่ขึ้น" [ref=e2100]
+                - generic [ref=e2101]: ปรับระดับเกรดแหวนAyoแล้วDMGไม่ขึ้น ครับ
+                - generic [ref=e2102]:
+                  - generic [ref=e2103]:
+                    - generic [ref=e2104]: 
+                    - text: 2026-06-30 23:06
+                  - generic [ref=e2105]: Answered
+              - button "#116 Bug ปรับระดับเกรดแหวนAyoแล้วDMGไม่ขึ้น +12 DMGขึ้นครับ แต่ ปรับเกรด D-A ไม่ขึ้น  2026-06-24 22:44 Answered" [ref=e2106] [cursor=pointer]:
+                - generic [ref=e2107]:
+                  - generic [ref=e2108]: "#116"
+                  - generic [ref=e2109]: Bug
+                - button "ปรับระดับเกรดแหวนAyoแล้วDMGไม่ขึ้น" [ref=e2110]
+                - generic [ref=e2111]: +12 DMGขึ้นครับ แต่ ปรับเกรด D-A ไม่ขึ้น
+                - generic [ref=e2112]:
+                  - generic [ref=e2113]:
+                    - generic [ref=e2114]: 
+                    - text: 2026-06-24 22:44
+                  - generic [ref=e2115]: Answered
+              - button "#115 Bug Limit Break Shadow เจาะไม่ขึ้น No description  2026-06-24 21:00 Answered" [ref=e2116] [cursor=pointer]:
+                - generic [ref=e2117]:
+                  - generic [ref=e2118]: "#115"
+                  - generic [ref=e2119]: Bug
+                - button "Limit Break Shadow เจาะไม่ขึ้น" [ref=e2120]
+                - generic [ref=e2121]: No description
+                - generic [ref=e2122]:
+                  - generic [ref=e2123]:
+                    - generic [ref=e2124]: 
+                    - text: 2026-06-24 21:00
+                  - generic [ref=e2125]: Answered
+              - generic [ref=e1942]:
+                - button "First Page" [disabled]:
+                  - generic:
+                    - img
+                - button "Previous Page" [disabled]:
+                  - generic:
+                    - img
+                - generic [ref=e1943]:
+                  - button "1" [ref=e1944] [cursor=pointer]
+                  - button "2" [ref=e1945] [cursor=pointer]
+                - button "Next Page" [ref=e1946] [cursor=pointer]:
+                  - img [ref=e1948]
+                - button "Last Page" [ref=e1950] [cursor=pointer]:
+                  - img [ref=e1952]
+          - generic [ref=e1865]:
+            - generic [ref=e1867]:
+              - generic [ref=e1868]: 
+              - generic [ref=e1869]: Backlog
+            - generic [ref=e2126]: No backlog reports.
+          - generic [ref=e1871]:
+            - generic [ref=e1873]:
+              - generic [ref=e1874]: 
+              - generic [ref=e1875]: In Progress
+            - button "#100 Bug report bugs - ผลของ full throttle ไม่เพิ่ม status 20% ครับ - บัพ crazy uproar ผมว่าสูตรสกิลน่าจะผิดครับ atk 30 เหมือนจะหายไป  2026-06-14 01:56" [ref=e2127] [cursor=pointer]:
+              - generic [ref=e2128]:
+                - generic [ref=e2129]: "#100"
+                - generic [ref=e2130]: Bug
+              - button "report bugs" [ref=e2131]
+              - generic [ref=e2132]: "- ผลของ full throttle ไม่เพิ่ม status 20% ครับ - บัพ crazy uproar ผมว่าสูตรสกิลน่าจะผิดครับ atk 30 เหมือนจะหายไป"
+              - generic [ref=e2134]:
+                - generic [ref=e2135]: 
+                - text: 2026-06-14 01:56
+          - generic [ref=e1877]:
+            - generic [ref=e1879]:
+              - generic [ref=e1880]: 
+              - generic [ref=e1881]: Closed
+            - generic [ref=e1966]:
+              - button "#126 Request ช่วยเพิ่ม Baby Gray Wolf In Mouth-LT ให้หน่อย ครับ  2026-07-07 12:15" [ref=e2136] [cursor=pointer]:
+                - generic [ref=e2137]:
+                  - generic [ref=e2138]: "#126"
+                  - generic [ref=e2139]: Request
+                - button "ช่วยเพิ่ม Baby Gray Wolf In Mouth-LT ให้หน่อย ครับ" [ref=e2140]
+                - generic [ref=e2142]:
+                  - generic [ref=e2143]: 
+                  - text: 2026-07-07 12:15
+              - button "#124 Request Baby Gray Wolf In Mouth LT  2026-07-05 11:28" [ref=e2144] [cursor=pointer]:
+                - generic [ref=e2145]:
+                  - generic [ref=e2146]: "#124"
+                  - generic [ref=e2147]: Request
+                - button "Baby Gray Wolf In Mouth LT" [ref=e2148]
+                - generic [ref=e2150]:
+                  - generic [ref=e2151]: 
+                  - text: 2026-07-05 11:28
+              - button "#121 Bug Gatchaman Card คุณสมบัติหมดไปแล้วขอให้แก้ไขเอาค่านี้ออกไปครับ  2026-06-27 17:18" [ref=e2152] [cursor=pointer]:
+                - generic [ref=e2153]:
+                  - generic [ref=e2154]: "#121"
+                  - generic [ref=e2155]: Bug
+                - button "Gatchaman Card คุณสมบัติหมดไปแล้วขอให้แก้ไขเอาค่านี้ออกไปครับ" [ref=e2156]
+                - generic [ref=e2158]:
+                  - generic [ref=e2159]: 
+                  - text: 2026-06-27 17:18
+              - button "#120 Request ช่วยเพิ่มไอทเม Baby Gray Wolf In Mouth-LT ให้ได้ไหม ครับ  2026-06-25 22:32" [ref=e2160] [cursor=pointer]:
+                - generic [ref=e2161]:
+                  - generic [ref=e2162]: "#120"
+                  - generic [ref=e2163]: Request
+                - button "ช่วยเพิ่มไอทเม Baby Gray Wolf In Mouth-LT ให้ได้ไหม ครับ" [ref=e2164]
+                - generic [ref=e2166]:
+                  - generic [ref=e2167]: 
+                  - text: 2026-06-25 22:32
+              - button "#119 Bug Orrivane Ring (Biolo) Bug no enchant  2026-06-25 14:22" [ref=e2168] [cursor=pointer]:
+                - generic [ref=e2169]:
+                  - generic [ref=e2170]: "#119"
+                  - generic [ref=e2171]: Bug
+                - button "Orrivane Ring (Biolo) Bug no enchant" [ref=e2172]
+                - generic [ref=e2174]:
+                  - generic [ref=e2175]: 
+                  - text: 2026-06-25 14:22
+              - generic [ref=e2008]:
+                - button "First Page" [disabled]:
+                  - generic:
+                    - img
+                - button "Previous Page" [disabled]:
+                  - generic:
+                    - img
+                - generic [ref=e2009]:
+                  - button "1" [ref=e2010] [cursor=pointer]
+                  - button "2" [ref=e2011] [cursor=pointer]
+                  - button "3" [ref=e2012] [cursor=pointer]
+                  - button "4" [ref=e2013] [cursor=pointer]
+                  - button "5" [ref=e2014] [cursor=pointer]
+                - button "Next Page" [ref=e2015] [cursor=pointer]:
+                  - img [ref=e2017]
+                - button "Last Page" [ref=e2019] [cursor=pointer]:
+                  - img [ref=e2021]
+      - dialog "#115 - Limit Break Shadow เจาะไม่ขึ้น" [ref=e2024]:
+        - generic [ref=e2026]:
+          - generic [ref=e2027]: "#115 - Limit Break Shadow เจาะไม่ขึ้น"
+          - button [ref=e2177] [cursor=pointer]:
+            - img [ref=e2179]
+        - generic [ref=e2035]:
+          - generic [ref=e2036]:
+            - generic [ref=e2037]: Open
+            - generic [ref=e2038]: Bug
+            - generic [ref=e2039]: 2026-06-24 21:00
+          - generic [ref=e2040]:
+            - generic [ref=e2041]: Description
+            - generic [ref=e2042]: (none)
+          - generic [ref=e2043]:
+            - generic [ref=e2044]: Comments
+            - generic [ref=e2045]:
+              - generic [ref=e2181]:
+                - generic [ref=e2182]:
+                  - generic [ref=e2183]: Admin
+                  - generic [ref=e2184]: 2026-06-25 00:24
+                - generic [ref=e2185]: เจาะเฉพาะ Class normal นะครับ บอสไม่เจาะ
+              - generic [ref=e2186]:
+                - generic [ref=e2187]:
+                  - generic [ref=e2188]: Reporter
+                  - generic [ref=e2189]: 2026-07-08 11:35
+                - generic [ref=e2190]: ทดสอบระบบ comment thread หลังอัพเดต (test — admin ลบ/ตอบทับได้เลยครับ)
+          - generic [ref=e2191]: This admin comment has already been replied to.
+        - button "Close" [ref=e2056] [cursor=pointer]:
+          - generic [ref=e2057]: Close
+    - generic [ref=e1883]:
+      - img "Logo" [ref=e1884]
+      - text: by
+      - generic [ref=e1885]: PrimeNG
+  - button "" [ref=e1886] [cursor=pointer]:
+    - generic [ref=e1887]: 
