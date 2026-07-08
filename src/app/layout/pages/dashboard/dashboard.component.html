@@ -40,7 +40,7 @@
 
               <div class="report-card-meta">
                 <span><i class="pi pi-calendar"></i>{{ row.created_at | date: 'yyyy-MM-dd HH:mm' }}</span>
-                <span *ngIf="row.admin_reply" class="dashboard-badge status-in_progress">Answered</span>
+                <span *ngIf="row.answered" class="dashboard-badge status-in_progress">Answered</span>
               </div>
 
             </article>
@@ -87,15 +87,24 @@
     </div>
 
     <div>
-      <div class="font-semibold mb-1">Admin Comment</div>
-      <div class="dashboard-message admin-message">{{ selected.admin_reply || 'ยังไม่มีคำตอบจาก admin' }}</div>
-      <small *ngIf="selected.admin_replied_at" class="text-color-secondary">{{ selected.admin_replied_at | date: 'yyyy-MM-dd HH:mm' }}</small>
-    </div>
-
-    <div *ngIf="selected.public_reply">
-      <div class="font-semibold mb-1">Public Reply</div>
-      <div class="dashboard-message public-message">{{ selected.public_reply }}</div>
-      <small class="text-color-secondary">{{ selected.public_replied_at | date: 'yyyy-MM-dd HH:mm' }}</small>
+      <div class="font-semibold mb-1">Comments</div>
+      <div class="comment-thread">
+        <div
+          *ngFor="let c of comments"
+          class="comment-item"
+          [class.comment-admin]="c.author_role === 'admin'"
+          [class.comment-reporter]="c.author_role === 'reporter'"
+        >
+          <div class="comment-head">
+            <span class="dashboard-badge" [ngClass]="c.author_role === 'admin' ? 'status-open' : 'type-request'">
+              {{ c.author_role === 'admin' ? 'Admin' : 'Reporter' }}
+            </span>
+            <small class="text-color-secondary">{{ c.created_at | date: 'yyyy-MM-dd HH:mm' }}</small>
+          </div>
+          <div class="comment-body">{{ c.body }}</div>
+        </div>
+        <div *ngIf="!loadingComments && comments.length === 0" class="text-color-secondary text-sm">ยังไม่มีคำตอบจาก admin</div>
+      </div>
     </div>
 
     <div *ngIf="canReply(selected)">
@@ -111,7 +120,7 @@
       <small class="block mt-1 text-color-secondary">หลังส่งแล้วจะตอบซ้ำไม่ได้ จนกว่า admin จะตอบหรือแก้ comment ใหม่</small>
     </div>
 
-    <div *ngIf="!canReply(selected) && selected.admin_reply && !selected.public_reply" class="text-color-secondary text-sm">
+    <div *ngIf="!canReply(selected) && selected.answered" class="text-color-secondary text-sm">
       This admin comment has already been replied to.
     </div>
   </div>

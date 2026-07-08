@@ -264,10 +264,37 @@
   white-space: pre-wrap;
 }
 
-.admin-message {
+.comment-thread {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  max-height: 320px;
+  overflow-y: auto;
+}
+
+.comment-item {
+  border: 1px solid var(--surface-border);
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.03);
+  padding: 0.6rem 0.75rem;
+}
+
+.comment-item.comment-admin {
   border-left: 3px solid var(--primary-color);
 }
 
-.public-message {
+.comment-item.comment-reporter {
   border-left: 3px solid var(--yellow-400);
+}
+
+.comment-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.comment-body {
+  margin-top: 0.4rem;
+  white-space: pre-wrap;
 }

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MessageService } from 'primeng/api';
 import { PaginatorState } from 'primeng/paginator';
-import { BugReportService, BugReportStatus, BugReportType, PublicBugReportRow } from 'src/app/api-services';
+import { BugReportComment, BugReportService, BugReportStatus, BugReportType, PublicBugReportRow } from 'src/app/api-services';
 import { logger } from 'src/app/api-services/logger.service';
 
 @Component({
@@ -17,6 +17,8 @@ export class DashboardComponent implements OnInit {
   detailVisible = false;
   replyText = '';
   savingReply = false;
+  comments: BugReportComment[] = [];
+  loadingComments = false;
   readonly reportRowsPerPage = 5;
 
   readonly firstByStatus: Record<BugReportStatus, number> = {
@@ -81,12 +83,26 @@ export class DashboardComponent implements OnInit {
     this.selected = row;
     this.replyText = '';
     this.detailVisible = true;
+    this.loadComments(row.id);
   }
 
   openDetailFromCard(row: PublicBugReportRow, event: Event) {
     if (this.isInteractiveCardTarget(event)) return;
     if (event instanceof KeyboardEvent && event.key === ' ') event.preventDefault();
     this.openDetail(row);
+  }
+
+  private async loadComments(reportId: number) {
+    this.loadingComments = true;
+    this.comments = [];
+    try {
+      const comments = await this.bugReportService.listComments(reportId);
+      if (this.selected?.id === reportId) this.comments = comments;
+    } catch (err) {
+      logger.error({ listBugReportComments: err });
+    } finally {
+      this.loadingComments = false;
+    }
   }
 
   canReply(row: PublicBugReportRow | null): boolean {
@@ -121,12 +137,17 @@ export class DashboardComponent implements OnInit {
       return;
     }
 
+    const row = this.selected;
     this.savingReply = true;
     try {
-      await this.bugReportService.replyToAdminComment(this.selected.id, reply);
+      await this.bugReportService.addPublicComment(row.id, reply);
       this.messageService.add({ severity: 'success', summary: 'Reply sent' });
-      this.detailVisible = false;
-      await this.refresh();
+      row.can_reply = false;
+      if (this.selected === row) {
+        this.replyText = '';
+        await this.loadComments(row.id);
+      }
+      this.refresh();
     } catch (err) {
       const detail = err instanceof Error ? err.message : 'Failed to send reply.';
       this.messageService.add({ severity: 'error', summary: 'Reply failed', detail });

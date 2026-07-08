@@ -32,12 +32,6 @@ export interface BugReportRow {
   reporter_id: string | null;
   reporter_name: string | null;
   reporter_email: string | null;
-  admin_reply: string | null;
-  admin_replied_at: string | null;
-  admin_replied_by: string | null;
-  public_reply: string | null;
-  public_replied_at: string | null;
-  public_reply_admin_replied_at: string | null;
   created_at: string;
   updated_at: string;
   bug_report_comments?: BugReportCommentSummary[];
@@ -49,10 +43,6 @@ export interface PublicBugReportRow {
   description: string | null;
   status: BugReportStatus;
   report_type: BugReportType;
-  admin_reply: string | null;
-  admin_replied_at: string | null;
-  public_reply: string | null;
-  public_replied_at: string | null;
   created_at: string;
   updated_at: string;
   answered: boolean;
@@ -200,30 +190,6 @@ export class BugReportService {
     if (error) throw new Error(error.message);
   }
 
-  async updateReply(id: number, reply: string): Promise<void> {
-    const trimmed = reply.trim();
-    const profile = this.authService.getProfile();
-    const { error } = await this.client
-      .from('bug_reports')
-      .update({
-        admin_reply: trimmed || null,
-        admin_replied_at: trimmed ? new Date().toISOString() : null,
-        admin_replied_by: trimmed ? profile?.id ?? null : null,
-        public_reply: null,
-        public_replied_at: null,
-        public_reply_admin_replied_at: null,
-      })
-      .eq('id', id);
-    if (error) throw new Error(error.message);
-  }
-
-  async replyToAdminComment(id: number, reply: string): Promise<void> {
-    const { error } = await this.client.rpc('reply_to_bug_report_admin_comment', {
-      report_id: id,
-      reply,
-    });
-    if (error) throw new Error(error.message);
-  }
 
   async delete(id: number): Promise<void> {
     const { error } = await this.client.from('bug_reports').delete().eq('id', id);
