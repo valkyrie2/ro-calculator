@@ -43,7 +43,7 @@ const refinableItemTypes = [
   ItemTypeEnum.shadowPendant,
   ItemTypeEnum.shadowShield,
 ];
-const mainStatuses: (keyof EquipmentSummaryModel)[] = ['str', 'dex', 'int', 'agi', 'luk', 'vit'];
+const mainStatuses = ['str', 'dex', 'int', 'agi', 'luk', 'vit'] as const;
 const traitStatuses: (keyof EquipmentSummaryModel)[] = ['pow', 'sta', 'wis', 'spl', 'con', 'crt'];
 
 interface ValidationResult {
@@ -1080,14 +1080,9 @@ export class Calculator {
     return 0;
   }
 
-  private calcStatBoost(boostPercent: number, stat: 'agi' | 'dex'): number {
-    const { agi, jobAgi, dex, jobDex } = this.model;
-    let base = 0;
-    if (stat === 'agi') {
-      base = agi + jobAgi + (this.baseEquipmentStat['agi'] || 0);
-    } else if (stat === 'dex') {
-      base = dex + jobDex + (this.baseEquipmentStat['dex'] || 0);
-    }
+  private calcStatBoost(boostPercent: number, stat: (typeof mainStatuses)[number]): number {
+    const jobStat = `job${stat[0].toUpperCase()}${stat.slice(1)}`;
+    const base = (Number(this.model[stat]) || 0) + (Number(this.model[jobStat]) || 0) + (this.baseEquipmentStat[stat] || 0);
 
     return floor(base * (Number(boostPercent) / 100));
   }
@@ -1318,13 +1313,11 @@ export class Calculator {
       updateTotalStatus(status as any, allTrait);
     }
 
-    if (this.totalEquipStatus['agiBoost'] > 0) {
-      const boost = this.totalEquipStatus['agiBoost'];
-      this.totalEquipStatus.agi += this.calcStatBoost(Number(boost), 'agi');
-    }
-    if (this.totalEquipStatus['dexBoost'] > 0) {
-      const boost = this.totalEquipStatus['dexBoost'];
-      this.totalEquipStatus.dex += this.calcStatBoost(Number(boost), 'dex');
+    for (const status of mainStatuses) {
+      const boost = Number(this.totalEquipStatus[`${status}Boost`]) || 0;
+      if (boost > 0) {
+        this.totalEquipStatus[status] += this.calcStatBoost(boost, status);
+      }
     }
 
     if (this.weaponData.data.typeName === 'bow') {

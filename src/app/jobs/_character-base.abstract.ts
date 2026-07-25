@@ -149,7 +149,14 @@ export abstract class CharacterBase {
     inputType: 'dropdown',
     dropdown: [
       { label: '-', value: 0, isUse: false },
-      { label: 'Lv 5', value: 5, skillLv: 5, isUse: true },
+      // all levels give the same +20% stats, only duration/SP drain scale
+      {
+        label: 'Lv 5',
+        value: 5,
+        skillLv: 5,
+        isUse: true,
+        bonus: { strBoost: 20, agiBoost: 20, vitBoost: 20, intBoost: 20, dexBoost: 20, lukBoost: 20 },
+      },
     ],
   };
   private readonly fullThrottlePassiveSkill: PassiveSkillModel = {

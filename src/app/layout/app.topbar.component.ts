@@ -219,6 +219,13 @@ export class AppTopBarComponent implements OnInit, OnDestroy {
       logs: [
         'เพิ่มไอเท็มใหม่',
         'เพิ่ม Baby Gray Wolf In Mouth-LT',
+        'เพิ่ม Upgrade Card ของอาชีพ 4 (Garment) 17 ใบ: Arch Mage, Elemental Master, Meister, Biolo, Cardinal, Inquisitor, Shadow Cross, Abyss Chaser, Windhawk, Trouvere, Soul Ascetic, Shiranui, Shinkiro, Night Watch, Hyper Novice, Spirit Handler, Sky Emperor',
+        'เพิ่ม Orrivane Orb 3 ชิ้น: Cardinal (315412), Sky Emperor (315413), Hyper Novice (315414)',
+        'เพิ่ม Orrivane Ring 3 ชิ้น: Cardinal (491076), Sky Emperor (491077), Hyper Novice (491078)',
+        'เพิ่ม White Furious Ring: Elemental Master (491074) และ Dragon Knight (491075)',
+        'เพิ่ม Ignis Flame Guard [1] (460178), Ignis Flame Guard-LT [1] (460179) สำหรับ Arch Mage และ Forbidden Grimoire-LT [1] (460180) สำหรับ Elemental Master',
+        'เพิ่ม ROS 2026 Pheonix Glory Crown [1] (401483), Ragnarok Stars 2026 Card (300934) และ Ragnarok Stars 2026 Ring (Right) (491079)',
+        'เพิ่ม Enchant ให้ Orrivane Ring 3 ชิ้นใหม่: Slot 2 = Orrivane Orb ตามอาชีพ, Slot 3 = Varmundt Acc, Slot 4 = Dim Glacier Ring',
       ],
     },
     {

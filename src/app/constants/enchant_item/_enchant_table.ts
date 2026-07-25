@@ -1884,9 +1884,12 @@ export const EnchantTable: EntTable[] = [
   { name: "S_BP8_Magic_S", enchants: [null, nebulaShadow2, nebulaShadow3, nebulaShadow4] },
 
   { name: "Snow_Fox_TH", enchants: [null, ['NY_Enchant_2026'], snowfox3, snowfox4] },
-  { name: "Snow_Fox_TH_LT", enchants: [null, ['NY_Enchant_2026'], snowfox3, snowfox4] },
+  { name: "Snow_Fox_TH_LT", enchants: [null, ['NY_Enchant_2026', ...snowfox3], snowfox3, snowfox4] },
 
   { name: "Temporal_Ring_LT_TH", enchants: [null, temringLT2, temringLT3, temringLT4] },
+
+  // ponytail: slot 2 skips Spirit of Knight Lv.1-2 (not in item.json), same as heroCape/fallenAngel
+  { name: "Temporal_Sprout_LT", enchants: [null, heroCapeSlot2, rockPaperScissor, rockPaperScissor] },
 
   { name: "Auto_E_WingC_TH_LT", enchants: [null, type_c_LT2, type_c_LT3, type_c_LT4] },
 
@@ -1929,6 +1932,9 @@ export const EnchantTable: EntTable[] = [
   { name: "SHC_Orrivane_R_TH", enchants: [null, ['Orrivane_Enc_SHC'], varmundtAcc3, dim_ring_LT4] },
   { name: "BO_Orrivane_R_TH",  enchants: [null, ['Orrivane_Enc_BO'],  varmundtAcc3, dim_ring_LT4] },
   { name: "SS_Orrivane_R_TH",  enchants: [null, ['Orrivane_Enc_SS'],  varmundtAcc3, dim_ring_LT4] },
+  { name: "CA_Orrivane_R_TH",  enchants: [null, ['Orrivane_Enc_CA'],  varmundtAcc3, dim_ring_LT4] },
+  { name: "SKE_Orrivane_R_TH", enchants: [null, ['Orrivane_Enc_SKE'], varmundtAcc3, dim_ring_LT4] },
+  { name: "HN_Orrivane_R_TH",  enchants: [null, ['Orrivane_Enc_HN'],  varmundtAcc3, dim_ring_LT4] },
 
   {
     name: "Moroc_Slave_TW",
