@@ -32,15 +32,30 @@ export function runScenario(s: ScenarioFixture) {
   // getSkillBonusAndName(). In production this is always called from
   // ro-calculator.component.ts:865-869 before the Calculator chain runs; skipping it leaves
   // `bonuses` undefined and crashes the first job formula that calls isSkillActive() (e.g.
-  // RuneKnight.setAdditionalBonus). This scenario harness has no UI-driven active/passive
-  // skill dropdowns, so we run it with empty selections -- the offensive skill itself flows
-  // through setOffensiveSkill/calculateAllDamages below, not through this path.
-  classEntry.instant
+  // RuneKnight.setAdditionalBonus).
+  //
+  // Production destructures ALL FOUR return values and forwards them into the Calculator
+  // (ro-calculator.component.ts:864-869: `equipAtks`/`masteryAtks` -> setEquipAtkSkillAtk /
+  // setMasterySkillAtk, `activeSkillNames`/`learnedSkillMap` -> setUsedSkillNames /
+  // setLearnedSkills). An earlier version of this harness threw the first two away and passed
+  // hardcoded `{}` -- that silently zeroed out every skill-granted flat ATK bonus (e.g. Asir
+  // Runestone's `atk: 70`) in every snapshot, since the equip/mastery-atk merge in
+  // calculator.ts (~1189-1236) only ever sees whatever setEquipAtkSkillAtk/setMasterySkillAtk
+  // were given.
+  const { equipAtks, masteryAtks, activeSkillNames, learnedSkillMap } = classEntry.instant
     .setLearnSkills({
       activeSkillIds: s.activeSkillIds ?? [],
       passiveSkillIds: s.passiveSkillIds ?? [],
     })
     .getSkillBonusAndName();
+
+  // Fixture values layer on top of the derived ones: a fixture names its offensive skill
+  // directly via `learnedSkills`/`activeSkillNames`, which the active/passive selections
+  // above don't grant (Hundred Spears isn't in _activeSkillList/_passiveSkillList at all).
+  // Merging rather than replacing keeps that working for the three empty-selection fixtures
+  // (where the derived sets are empty and this is a no-op) as well as the buffed one.
+  const mergedSkillNames = new Set([...activeSkillNames, ...s.activeSkillNames]);
+  const mergedLearned = new Map([...learnedSkillMap, ...new Map(s.learnedSkills)]);
 
   const calc = new Calculator();
   calc.setMasterItems(items).setHpSpTable(hpSpTable).setClass(classEntry.instant);
@@ -51,14 +66,16 @@ export function runScenario(s: ScenarioFixture) {
   // src/app/layout/pages/ro-calculator/ro-calculator.component.ts:1010-1029
   calc
     .setMonster(monsters[s.monsterId])
-    .setEquipAtkSkillAtk({})
+    .setEquipAtkSkillAtk(equipAtks)
+    // masteryAtk/equipAtk here come from consumables and party buffs in production, which no
+    // scenario uses -- left empty deliberately, not an oversight.
     .setBuffBonus({ masteryAtk: {}, equipAtk: {} })
-    .setMasterySkillAtk({})
+    .setMasterySkillAtk(masteryAtks)
     .setConsumables([])
     .setAspdPotion(s.aspdPotion)
     .setExtraOptions([])
-    .setUsedSkillNames(new Set(s.activeSkillNames))
-    .setLearnedSkills(new Map(s.learnedSkills))
+    .setUsedSkillNames(mergedSkillNames)
+    .setLearnedSkills(mergedLearned)
     .setOffensiveSkill(s.selectedAtkSkill)
     .prepareAllItemBonus()
     .calcAllAtk()

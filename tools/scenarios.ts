@@ -116,11 +116,21 @@ export const SCENARIOS: ScenarioFixture[] = [
   // `if (this.isSkillActive('Asir Runestone'))` -- with no weapon equipped and no items
   // (this fixture has none), Rune Mastery is otherwise a dead value with zero effect on any
   // output number, so Asir Runestone is required, not optional, for that gate's coverage to
-  // be real. Turisus Runestone / Lux Anima Runestone are deliberately left off: their only
-  // job-bonus-gated code (RuneKnight.ts's `calcPostSkillDamgeDragonBreath` element selection)
-  // is reachable solely through the Dragon Breath skill family, which this fixture's fixed
-  // `selectedAtkSkill: 'Hundred Spears==10'` never casts -- selecting them here would add a
+  // be real. Lux Anima Runestone is deliberately left off: its only job-bonus-gated code
+  // (RuneKnight.ts's `calcPostSkillDamgeDragonBreath` element selection) is reachable solely
+  // through the Dragon Breath skill family, which this fixture's fixed
+  // `selectedAtkSkill: 'Hundred Spears==10'` never casts -- selecting it here would add a
   // false coverage claim, not real coverage.
+  //
+  // Turisus Runestone IS included (fix round, generate-snapshots.ts): its `bonus` object
+  // (`{ flatBasicDmg: 250, str: 30, melee: 15 }`, none of them `atk`/`matk`) has nothing to do
+  // with the Dragon Breath element-selection logic above -- it's a plain equip-sourced skill
+  // bonus, merged generically in calculator.ts's `equipAtkSkillBonus` loop (~1189-1213), which
+  // only surfaces at all once the harness forwards `getSkillBonusAndName()`'s `equipAtks`
+  // return value into `setEquipAtkSkillAtk` instead of discarding it. Cheap to add and
+  // exercises a second, independent bonus-merge path (equip-sourced, non-atk attrs) alongside
+  // Asir Runestone's (mastery-sourced, atk-only, read via damage-calculator.ts's
+  // `getMasteryAtk()`).
   {
     name: 'rune-knight-hundred-spears-buffed',
     classId: 12,
@@ -131,7 +141,7 @@ export const SCENARIOS: ScenarioFixture[] = [
     learnedSkills: [['Hundred Spears', 10]],
     activeSkillNames: [],
     // index: 0  1  2  3  4  5  6  7  8  9 10
-    activeSkillIds:  [0, 0, 0, 5, 0, 0, 5, 0, 0, 0, 1], // 3=Aura Blade, 6=Ride Dragon, 10=Asir Runestone
+    activeSkillIds:  [0, 0, 0, 5, 0, 0, 5, 0, 1, 0, 1], // 3=Aura Blade, 6=Ride Dragon, 8=Turisus Runestone, 10=Asir Runestone
     // index: 0  1  2  3  4  5  6  7  8  9  10 11 12
     passiveSkillIds: [0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 10], // 9=Dragon Training Lv3, 12=Rune Mastery Lv10
     selectedAtkSkill: 'Hundred Spears==10',
