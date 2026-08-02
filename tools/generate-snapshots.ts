@@ -35,7 +35,12 @@ export function runScenario(s: ScenarioFixture) {
   // RuneKnight.setAdditionalBonus). This scenario harness has no UI-driven active/passive
   // skill dropdowns, so we run it with empty selections -- the offensive skill itself flows
   // through setOffensiveSkill/calculateAllDamages below, not through this path.
-  classEntry.instant.setLearnSkills({ activeSkillIds: [], passiveSkillIds: [] }).getSkillBonusAndName();
+  classEntry.instant
+    .setLearnSkills({
+      activeSkillIds: s.activeSkillIds ?? [],
+      passiveSkillIds: s.passiveSkillIds ?? [],
+    })
+    .getSkillBonusAndName();
 
   const calc = new Calculator();
   calc.setMasterItems(items).setHpSpTable(hpSpTable).setClass(classEntry.instant);
