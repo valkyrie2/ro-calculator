@@ -214,10 +214,17 @@ export class AppTopBarComponent implements OnInit, OnDestroy {
 
   updates: { v: string; date: string; logs: string[]; }[] = [
     {
+      v: 'Extra v63',
+      date: '13-08-2569',
+      logs: [
+        'เพิ่มไอเทมใหม่'
+      ],
+    },
+    {
       v: 'Extra v62.1',
       date: '24-06-2569',
       logs: [
-        'เพิ่มไอเท็มจาก History 05-08 จำนวน 12 ชิ้น',
+        'Costume Enchant Stone จาก History 13-08 มีครบอยู่แล้ว (314661-314665, 312692-312694) — ID ในหน้า History เป็น ID ของหินไม่ใช่ ID ของ Enchant',
         'เพิ่ม Thought Ring [1] (32245) และ Thought Ring-LT [1] (491086) พร้อมเซ็ตการ์ด 12 ใบ (รวม True Card 6 ใบ ที่ลด Cooldown สกิล Ignition Break, Crimson Rock, Adoramus, Cross Ripper Slasher, Arrow Storm, Axe Tornado)',
         'เพิ่ม Snow Aura-LT (420930) พร้อมเซ็ตกับ Glacier / Dim Glacier ทุกชิ้น และเซ็ตกับ Snow Fox-LT',
         'เพิ่ม Ghost Fire (420199) พร้อมเซ็ตกับ New Wave Sunglasses (โบนัสตาม POW/STA/WIS/SPL/CON/CRT ทุก ๆ 18)',

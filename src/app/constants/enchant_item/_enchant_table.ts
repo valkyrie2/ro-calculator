@@ -152,6 +152,7 @@ import { snow_shadow2, snow_shadow3, snow_shadow4 } from './snow_shadow';
 import { luckyringLT2, luckyringLT3, luckyringLT4 } from './lucky_ring';
 import { fallenlt2, fallenlt3, fallenlt4 } from './fallen_angel_lt';
 import { promise2, promise3, promise4 } from './frozen_promise';
+import { reDimGlacierArmor2, reDimGlacierArmor3, reDimGlacierArmor4 } from './re_dim_glacier';
 
 enum TimeJewel {
   Str2 = 'aegis_313347',
@@ -1262,6 +1263,11 @@ export const EnchantTable: EntTable[] = [
   { name: 'D_Glacier_Muffler', enchants: [null, dimGlaGarment2, dimGlaGarment3, dimGlaGarment4] },
   { name: 'D_Glacier_Boots', enchants: [null, dimGlaBoot2, dimGlaBoot3, dimGlaBoot4] },
   { name: 'D_Glacier_Shoes', enchants: [null, dimGlaBoot2, dimGlaBoot3, dimGlaBoot4] },
+
+  { name: 'BP11_Antares_Armor', enchants: [null, reDimGlacierArmor2, reDimGlacierArmor3, reDimGlacierArmor4] },
+  { name: 'BP11_Sirius_Armor', enchants: [null, reDimGlacierArmor2, reDimGlacierArmor3, reDimGlacierArmor4] },
+  { name: 'BP11_Vega_Armor', enchants: [null, reDimGlacierArmor2, reDimGlacierArmor3, reDimGlacierArmor4] },
+  { name: 'BP11_Regulus_Armor', enchants: [null, reDimGlacierArmor2, reDimGlacierArmor3, reDimGlacierArmor4] },
 
   { name: "D_Glacier_Sword", enchants: [null, dimWeapon2, dimWeapon3, dimWeapon4] },
   { name: "D_Glacier_B_Sword", enchants: [null, dimWeapon2, dimWeapon3, dimWeapon4] },
