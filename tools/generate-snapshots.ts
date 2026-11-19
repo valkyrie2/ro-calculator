@@ -22,6 +22,12 @@ export function runScenario(s: ScenarioFixture) {
   model.class = s.classId;
   model.level = s.level;
   model.jobLevel = s.jobLevel;
+  // As the old app's setJobBonus (ro-calculator.component.ts:2021-2036, run on load and on every job change).
+  const { str, agi, vit, int, dex, luk, pow, sta, wis, spl, con, crt } = classEntry.instant.getJobBonusStatus(s.jobLevel);
+  Object.assign(model, {
+    jobStr: str, jobAgi: agi, jobVit: vit, jobInt: int, jobDex: dex, jobLuk: luk,
+    jobPow: pow, jobSta: sta, jobWis: wis, jobSpl: spl, jobCon: con, jobCrt: crt,
+  });
   Object.assign(model, s.stats, s.traits ?? {});
   for (const [slot, id] of Object.entries(s.equipment)) model[slot] = id;
   for (const [slot, r] of Object.entries(s.refines)) model[`${slot}Refine`] = r;

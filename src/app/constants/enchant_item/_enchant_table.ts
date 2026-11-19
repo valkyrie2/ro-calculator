@@ -1162,6 +1162,15 @@ export const EnchantTable: EntTable[] = [
   { name: 'Barmund_Flame_Hood', enchants: [null, null, varmundt3, varmundt4] },
   { name: 'Barmund_Death_Hood', enchants: [null, null, varmundt3, varmundt4] },
   { name: 'Barmund_Ice_Hood', enchants: [null, null, varmundt3, varmundt4] },
+  {
+    name: 'Baphomet_Depth_27',
+    enchants: [
+      null,
+      [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20].flatMap((lv) => [`Pow_Orb_${lv}`, `Spl_Orb_${lv}`]),
+      varmundt3,
+      varmundtAcc3.filter((a) => !a.startsWith('Ba_Stead')),
+    ],
+  },
   { name: 'Barmund_Soul_Ring', enchants: [null, null, varmundtAcc3, varmundtAcc4] },
   { name: 'Barmund_Venom_Ring', enchants: [null, null, varmundtAcc3, varmundtAcc4] },
   { name: 'Barmund_Temple_Ring', enchants: [null, null, varmundtAcc3, varmundtAcc4] },
@@ -1941,6 +1950,12 @@ export const EnchantTable: EntTable[] = [
   { name: "CA_Orrivane_R_TH",  enchants: [null, ['Orrivane_Enc_CA'],  varmundtAcc3, dim_ring_LT4] },
   { name: "SKE_Orrivane_R_TH", enchants: [null, ['Orrivane_Enc_SKE'], varmundtAcc3, dim_ring_LT4] },
   { name: "HN_Orrivane_R_TH",  enchants: [null, ['Orrivane_Enc_HN'],  varmundtAcc3, dim_ring_LT4] },
+  { name: "IQ_Orrivane_R_TH",  enchants: [null, ['Orrivane_Enc_IQ'],  varmundtAcc3, dim_ring_LT4] },
+  { name: "TR_Orrivane_R_TH",  enchants: [null, ['Orrivane_Enc_TR'],  varmundtAcc3, dim_ring_LT4] },
+  { name: "SH_Orrivane_R_TH",  enchants: [null, ['Orrivane_Enc_SH'],  varmundtAcc3, dim_ring_LT4] },
+  { name: "NW_Orrivane_R_TH",  enchants: [null, ['Orrivane_Enc_NW'],  varmundtAcc3, dim_ring_LT4] },
+  { name: "SOA_Orrivane_R_TH", enchants: [null, ['Orrivane_Enc_SOA'], varmundtAcc3, dim_ring_LT4] },
+  { name: "EM_Orrivane_R_TH",  enchants: [null, ['Orrivane_Enc_EM'],  varmundtAcc3, dim_ring_LT4] },
 
   {
     name: "Moroc_Slave_TW",

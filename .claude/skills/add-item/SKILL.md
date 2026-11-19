@@ -43,6 +43,7 @@ Before editing, confirm:
 ```json
 "1234567": {
   "id": 1234567,
+  "addDate": "2026-11-18",
   "aegisName": "Aegis_Name",
   "name": "Display Name [1]",
   "unidName": "Unidentified Name",
@@ -62,6 +63,10 @@ Before editing, confirm:
   "script": { ... }
 }
 ```
+
+### `addDate`
+
+Always set `addDate` to today's date (Gregorian `YYYY-MM-DD`) on every newly added item. For one month after that date the item gets a `[NEW] ` label prefix and is listed first in its dropdown (see `isNewItem` in [src/app/utils/to-drowdown-list.ts](src/app/utils/to-drowdown-list.ts)). Never add or change `addDate` on items you are only updating.
 
 ### `itemTypeId`
 

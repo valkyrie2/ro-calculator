@@ -217,7 +217,24 @@ export class AppTopBarComponent implements OnInit, OnDestroy {
       v: 'Extra v63',
       date: '13-08-2569',
       logs: [
-        'เพิ่มไอเทมใหม่'
+        'เพิ่มไอเทมใหม่',
+        "เพิ่ม Baphomet Depth'27 [1] (ผ้าคลุมกิจกรรมปีใหม่ 2027) พร้อม Enchant: Slot 2 Power/Spell Orb Lv1-20, Slot 3 Varmundt Lv1-3, Slot 4 Varmundt Lv1-5 และเพิ่ม Baphomet Card (4147) เพื่อให้เซ็ตทำงาน",
+        'เพิ่มไอเท็มจาก History 23-09 จำนวน 7 รายการ',
+        'เพิ่มการ์ด Orrivane 3 ใบ: Magical (300991), Fighter (300992), Range (300993) พร้อมเซ็ตอาวุธ + แหวน Orrivane ครบทุกอาชีพ',
+        'เพิ่ม Costume ROS 2026 Radiance 3 ชิ้น (480866-480868) ใส่ TIME หมดอายุ 19 พฤษภาคม 2570',
+        'เพิ่ม Miracle Stone (490704): MATK + 10%, Damage เวทมนตร์ทุกธาตุ + 10%, ลด Global Cooldown 5% พร้อมเซ็ตการ์ด 2 กลุ่ม',
+        'เพิ่มไอเท็มจาก History 16-09 จำนวน 23 รายการ',
+        'เพิ่มการ์ด 4 ใบที่ขาด: Q Scaraba Card (4507), Queen Scaraba Card (4509), Cloud Hermit Card (4262), Wild Ginseng Card (4232) ทำให้เซ็ตของ Queen Scaraba Crown และ Snake Queen Crown ทำงานครบ',
+        'เพิ่ม Orrivane Ring: Night Watch (491098), Soul Ascetic (491099), Elemental Master (491100) พร้อม Orrivane Orb (315726-315728) และผูก Enchant Slot ครบ',
+        'เพิ่ม White Furious Ring (Shadow Cross) (491096) และ Furious Ring (Abyss Chaser) (491097)',
+        'เพิ่มอุปกรณ์ 9 ชิ้น: Queen Scaraba Crown (400511), Snake Queen Crown (400710), Vicious Mind Aura-AD (420978), Laser Gem Shield (460186), Spirit Cloak of Naght Sieger (480270) และ -LT (480651), Fallen Warrior Manteau-AD (480943), Fallen Protect Manteau-LT (480946), Baby Shark Bag (480947)',
+        'เพิ่ม Enchant และการ์ดกิจกรรม 6 ใบ (315729-315732, 300834, 300835) ใส่ TIME หมดอายุ 7 ตุลาคม 2569 ตามเกม',
+        'เปลี่ยนวิธีดึงข้อมูล Divine Pride มาใช้ header `x-server: thROG` แทน query `?server=` ที่ใช้ไม่ได้แล้ว ทำให้ได้ข้อมูลไทยครบของ History 19-08 / 02-09 / 09-09',
+        'เพิ่มการ์ดอาวุธ 20 ใบ: ชุด [Royal Knight] 18 ใบ (300911, 300967-300984) เพิ่ม Damage สกิลตามอาชีพ 10% / +10% เมื่ออาวุธเลเวล 5 / +10% เมื่ออัพเกรด 10 และ [World Boss] White Knight Card (300965), Mutating White Knight Card (300966)',
+        'เพิ่ม Orrivane Ring 3 ชิ้นสุดท้าย: Inquisitor (491090), Troubadour & Trouvere (491091), Spirit Handler (491092) พร้อม Orrivane Orb (315714-315716) และผูก Enchant Slot ครบ',
+        'เพิ่ม Furious Ring (Elemental Master) (491088) และ White Furious Ring (Abyss Chaser) (491089)',
+        'เพิ่ม Arch Angeling Card (4241) เพื่อให้เซ็ตกับ Archangel Wing Ear ทำงานได้ (MaxHP + 300)',
+        'เพิ่มอุปกรณ์อีก 9 ชิ้น: Archangel Wing Ear (410719), Antique Old-Fashioned Smoking Pipe (420387), Adams Apple In Mouth-LT (420943), Lyre Aegis (460184), Santa Red Boots (470330), Naght Siegers Cloak of Vengeance (480269) และ -LT (480650), Six-Colored Diamond Ring (490719), Recovery Ring-LT (490818)'
       ],
     },
     {

@@ -46,6 +46,11 @@ export interface ItemModel {
    */
   releaseDate?: string;
   /**
+   * ISO date the item was added. For one month after this date the item is
+   * tagged NEW and listed first in its dropdown.
+   */
+  addDate?: string;
+  /**
    * When true, this is a synthetic virtual entry that simulates the item
    * after its TIME[YYYY-MM-DD] bonus has expired. Its id is the negative
    * of the original item's id. The script has all TIME[] prefixes replaced

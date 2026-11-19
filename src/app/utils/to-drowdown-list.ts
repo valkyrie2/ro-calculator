@@ -6,6 +6,15 @@ const PREMIUM_MARK = '⭐ ';
 const UNRELEASED_MARK = '🔒 ';
 /** Marker prefix added to virtual "expired simulation" entries (simulates the item after TIME[] expires). */
 const EXPIRED_SIM_MARK = '[Expired] ';
+/** Marker prefix added to items whose addDate is within the last month (auto-removed after that). */
+const NEW_MARK = '[NEW] ';
+
+export const isNewItem = (addDate: string | undefined, now = Date.now()): boolean => {
+  if (!addDate) return false;
+  const until = new Date(addDate);
+  until.setMonth(until.getMonth() + 1);
+  return now >= Date.parse(addDate) && now < until.getTime();
+};
 
 export const toDropdownList = <T extends Record<string, any>>(
   list: T[],
@@ -16,7 +25,10 @@ export const toDropdownList = <T extends Record<string, any>>(
 ): ItemDropdownModel[] => {
   const now = Date.now();
 
-  return list.map<ItemDropdownModel>((a) => {
+  const newItems: ItemDropdownModel[] = [];
+  const others: ItemDropdownModel[] = [];
+
+  for (const a of list) {
     const ex = (extraKeys || []).reduce<T>((extraAttr, key) => {
       extraAttr[key] = a[key];
 
@@ -27,9 +39,10 @@ export const toDropdownList = <T extends Record<string, any>>(
     const isUnreleased = !!a['releaseDate'] && Date.parse(a['releaseDate']) > now;
     const isPremium = !!a['isPremium'];
     const isExpiredSim = !!a['isExpiredSim'];
-    const prefix = (isUnreleased ? UNRELEASED_MARK : '') + (isPremium ? PREMIUM_MARK : '') + (isExpiredSim ? EXPIRED_SIM_MARK : '');
+    const isNew = isNewItem(a['addDate'], now);
+    const prefix = (isNew ? NEW_MARK : '') + (isUnreleased ? UNRELEASED_MARK : '') + (isPremium ? PREMIUM_MARK : '') + (isExpiredSim ? EXPIRED_SIM_MARK : '');
 
-    return {
+    (isNew ? newItems : others).push({
       label: prefix ? `${prefix}${baseLabel}` : baseLabel,
       value: a[valueKey],
       usableClass: a['usableClass'] || undefined,
@@ -37,6 +50,8 @@ export const toDropdownList = <T extends Record<string, any>>(
       element: elementKey ? a[elementKey] || '' : undefined,
       lv200ClassName: a['requiredLevel'] >= 200 ? 'lv200' : '',
       ...ex,
-    };
-  });
+    });
+  }
+
+  return [...newItems, ...others];
 };
